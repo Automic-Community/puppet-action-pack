@@ -2,3 +2,19 @@
 name: PCK.AUTOMIC_PUPPET_PUPPET
 
 source: ae
+
+# Package Build Configuration
+name: PCK.AUTOMIC_PUPPET_PUPPET
+
+source: ae/content
+appdata: ae/appdata
+  
+# binary object resource mapping will be defined here
+binaries:
+  
+  - object: RESOURCES/LIBS/PCK.AUTOMIC_PUPPET_PUPPET.PRV.STORE
+    resources: 
+      - name: PUPPETTOOL
+        type: BINARY
+        path: tools/target/puppet-tool.jar
+        version: 1.0.0
