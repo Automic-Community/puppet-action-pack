@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<VARA OVD_VRName="FREI" data_type="STATIC" name="PCK.AUTOMIC_ATLASSIAN_JIRA.PRV.VARA.PACKAGE_PARAMETERS" replacementmode="2">
+<VARA OVD_VRName="FREI" data_type="STATIC" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.VARA.PACKAGE_PARAMETERS" replacementmode="2">
 <HEADER state="1">
-<Title>Stores parameters for PCK.AUTOMIC_ATLASSIAN_JIRA</Title>
+<Title>Stores parameters for PCK.AUTOMIC_PUPPET_PUPPET</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <OH_SubType>STATIC</OH_SubType>
