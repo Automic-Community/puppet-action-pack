@@ -34,7 +34,7 @@ Assert Behaviour for Non-Existing Class
 Assert Node Group Name as Mandatory Field
                       NOK       ${EMPTY}          ${Class_Name}
 
-Assert Variable Name as Mandatory Field
+Assert Classes as Mandatory Field
                       NOK       ${Node_Group}     ${EMPTY}
 
 *** Keywords ***
