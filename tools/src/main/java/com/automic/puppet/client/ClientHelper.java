@@ -13,9 +13,9 @@ import com.automic.puppet.util.ConsoleWriter;
  * */
 public class ClientHelper {
 
-	private static final String ABSOLUTEPATH = "com.automic.puppet.actions";
-	
-	private ClientHelper() {
+    private static final String ABSOLUTEPATH = "com.automic.puppet.actions";
+
+    private ClientHelper() {
     }
 
     /**
