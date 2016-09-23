@@ -19,6 +19,8 @@ import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.automic.puppet.constants.ExceptionConstants;
+
 
 /**
  * This class is responsible to add multiple classes to provided node group.
@@ -82,6 +84,10 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
             String classes = getOptionValue("classes");
             PuppetValidator.checkNotEmpty(classes, "Classes");
             classList = Arrays.asList(classes.split(","));
+			if ( classList.size() == 0 ) { 
+                throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
+                    classes));
+			}			
         } catch (AutomicException e) {
             ConsoleWriter.writeln(e);
             throw e;
