@@ -32,7 +32,7 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
     /**
      * list of classes
      */
-    private static List<String> classList;
+    private List<String> classList;
 
     /**
      * 
@@ -88,10 +88,10 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
     }
 
     // generate json to add classes to node group
-    private static JsonObject buildJson() {
-        
+    private JsonObject buildJson() {
+
         JsonValue emptyJson = Json.createObjectBuilder().build();
-        
+
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         for (String classname : classList) {
             objectBuilder.add(classname, emptyJson);
