@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE">
 <XHEADER state="1">
-<Title>Add class parameter to node group</Title>
+<Title>Add edit variable to node group</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -52,13 +52,39 @@
 <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
+<UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
+<UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_VARA_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_VARA_VALUEs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -97,18 +123,44 @@
 <node content="1" id="PVALUE" name="Parent Variables" parent="" type="TASKVALUE">
 <VALUE state="2">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
 <node content="0" id="PPRPTS" name="Parent PromptSets" parent="" type="PPROMPTSET"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
+<UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
+<UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_VARA_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_VARA_VALUEs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -138,13 +190,39 @@
 <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
+<UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
+<UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
-<UC4RB_PUP_VARA_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+<UC4RB_PUP_VARA_VALUEs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -200,12 +278,34 @@
 <node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
 <VALUE state="1">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
+</node>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
+</PROMPTSET>
 </node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" parent="PRPTS" type="PROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" prptmode="1"/>
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_EDIT_VARIABLE" prptmode="1">
+<UC4RB_PUP_NODE_GROUPs.00 altview="0" haslist="0"/>
+<UC4RB_PUP_VARA_NAMEs.00 altview="0" haslist="0"/>
+<UC4RB_PUP_VARA_VALUEs.00 altview="0" haslist="0"/>
+</PRPTBOX>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" ontop="1">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" prptmode="1"/>
+</PROMPTSET>
+</node>
+<node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" ontop="1">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1">
+<AGENTs.00 altview="1" haslist="0">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 altview="1" haslist="0">&amp;LOGIN#</LOGINs.00>
+</PRPTBOX>
 </PROMPTSET>
 </node>
 </dyntree>

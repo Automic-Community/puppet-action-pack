@@ -115,7 +115,7 @@
 
 
 ! Define action specific java options and values
-: SET &ACTION_NAME# = "AddEditVariableAction"
+: SET &ACTION_NAME# = "AddEditVariableToNodeGroupAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
@@ -145,13 +145,7 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
 ! Invoking java binary
-: SWITCH &$PLATFORM#
-:   CASE "WINDOWS"
-           &UC4RB_PUP_CMD# -password "%UC4_DECRYPTED_PWD%"
-:   CASE "UNIX"
-           &UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
-:   OTHER
-: ENDSWITCH
+&UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
 
 
 
