@@ -1,0 +1,16 @@
+*** Settings ***
+Resource          ../../../Env/default.txt
+
+*** Variables ***
+#---- Promptset Fields --------------------------------------------------------------------------------------
+#---- Common Fields -----------------------------------------------------------------------------------------
+${Puppet_URL}     https://192.168.112.104:4433
+${Puppet_Username}    automic
+${Puppet_Password}    automic
+${Sudo_Username}    ansible
+${Sudo_Password}    ansible
+${Options}        Sudo
+${SkipCertValidation}    Yes
+#---- Add Class Parameter to Node Group -----------------------------------------------------------------------------
+${Class_Param}    dns
+${Param_Value}    docker.net
