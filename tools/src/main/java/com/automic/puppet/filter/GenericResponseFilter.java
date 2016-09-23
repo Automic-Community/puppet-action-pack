@@ -26,7 +26,8 @@ public class GenericResponseFilter extends ClientFilter {
 
         ClientResponse response = getNext().handle(request);
         String msg = null;
-        if (CommonUtil.checkNotEmpty(response.getClientResponseStatus().getReasonPhrase())) {
+        if (CommonUtil.checkNotNull(response.getClientResponseStatus())
+                && CommonUtil.checkNotEmpty(response.getClientResponseStatus().getReasonPhrase())) {
             msg = String.format(RESPONSE_MSG, response.getStatus(), response.getClientResponseStatus()
                     .getReasonPhrase());
         } else {

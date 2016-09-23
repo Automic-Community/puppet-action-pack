@@ -1,6 +1,5 @@
 package com.automic.puppet.constants;
 
-
 /**
  * 
  * Constants defining messages for exceptions
@@ -19,7 +18,8 @@ public final class ExceptionConstants {
 
     public static final String ERROR_READING_FILE = "Error occured during reading of file [%s],probably"
             + " file doesn't exists ";
-
+    public static final String ERROR_SKIPPING_CERT = "Error skipping the certificate validation";
+   
     private ExceptionConstants() {
     }
 }

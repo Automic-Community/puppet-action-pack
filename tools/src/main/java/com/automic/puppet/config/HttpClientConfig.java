@@ -11,7 +11,9 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import com.automic.puppet.constants.Constants;
+import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
@@ -26,18 +28,24 @@ public final class HttpClientConfig {
     private HttpClientConfig() {
     }
 
-    public static Client getClient(String protocol, int connectionTimeOut, int readTimeOut) throws AutomicException {
+    public static Client getClient(String protocol, int connectionTimeOut, int readTimeOut, String skipCertValidation)
+            throws AutomicException {
         Client client;
 
         ClientConfig config = new DefaultClientConfig();
 
         config.getClasses().add(com.sun.jersey.multipart.impl.MultiPartWriter.class);
-        try {
-            config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipCertValidation());
-            System.out.println("executed");
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        // to skip certificate validation
+        if (CommonUtil.convert2Bool(skipCertValidation)) {
+            try {
+                config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
+            } catch (KeyManagementException | NoSuchAlgorithmException e) {
+                throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT, e);
+            }
+
         }
+
         config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
@@ -94,7 +102,7 @@ public final class HttpClientConfig {
         return getClientConfig(null, null, connectionTimeOut, readTimeOut);
     }
 
-    public static HTTPSProperties skipCertValidation() throws NoSuchAlgorithmException, KeyManagementException {
+    public static HTTPSProperties skipValidation() throws NoSuchAlgorithmException, KeyManagementException {
 
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {

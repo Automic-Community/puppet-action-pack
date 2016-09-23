@@ -12,6 +12,8 @@ import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
 
+import com.automic.puppet.actions.helper.GetGroupId;
+import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
@@ -39,28 +41,31 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
      */
     public AddClassesToNodeGroupAction() {
         addOption("nodegroup", true, "Name of the node group");
-        addOption("jsonfile", true, "Json file containing json");
+        addOption("classes", true, "Json file containing json");
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
         prepareInputParameters();
-        // TODO: generate token
-
-        // TODO: get group id based on node group name
-        String groupId = null;
+        WebResource webResClient = getClient();
+        // generate auth token
+        String authToken = TokenHandler.getToken(webResClient, username, password, apiVersion);
+        // get group id based on node group name
+        String groupId = GetGroupId.restResponse(authToken, webResClient, nodeGroup, apiVersion);
         // json object with classes
         JsonObject jsonObject = buildJson();
 
         // Create POST request
         WebResource webResource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
         ConsoleWriter.writeln("Calling url " + webResource.getURI());
-        ClientResponse response = webResource.entity(jsonObject, MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
+        ClientResponse response = webResource.header("X-Authentication", authToken)
+                .entity(jsonObject.toString(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .post(ClientResponse.class);
         // process response
         prepareOutput(response);
 
-        // TODO: destroy token
+        //destroy token
+        TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
     }
 
     // Validating if the given input is not empty

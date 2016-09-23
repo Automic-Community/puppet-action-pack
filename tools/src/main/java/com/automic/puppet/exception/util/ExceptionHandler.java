@@ -13,7 +13,7 @@ import com.automic.puppet.util.ConsoleWriter;
 public class ExceptionHandler {
     private static final int RESPONSE_NOT_OK = 1;
 
-    private static final String ERRORMSG = "Please check the input parameters. For more details refer java logs";
+    private static final String ERRORMSG = "Please check the input parameters. For more details refer job report";
 
     private ExceptionHandler() {
 
@@ -35,6 +35,7 @@ public class ExceptionHandler {
         if (th instanceof AutomicException || th instanceof AutomicRuntimeException) {
             errorMsg = th.getMessage();
         } else {
+            ex.printStackTrace();
             errorMsg = th.getMessage();
         }
 
