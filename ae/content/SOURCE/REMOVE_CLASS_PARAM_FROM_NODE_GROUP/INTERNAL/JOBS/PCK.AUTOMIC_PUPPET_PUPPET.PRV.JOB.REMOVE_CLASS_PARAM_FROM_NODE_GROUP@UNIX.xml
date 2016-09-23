@@ -117,7 +117,7 @@
 
 !------------------------------------------ Buidling java arguments ---------------------------------------------------------------
 ! Define action specific java options and values
-: SET &ACTION_NAME# = "AddNewNodeAction"
+: SET &ACTION_NAME# = "RemoveClassParamFromNodeGroupAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
@@ -125,15 +125,15 @@
 
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_GROUP#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodename &UC4RB_PUP_ESCAPED_STRING#")
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
 
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CLASS_NAME#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classname &UC4RB_PUP_ESCAPED_STRING#")
 
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_PARAM_NAME#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classparam &UC4RB_PUP_ESCAPED_STRING#")
 
 : PRINT &UC4RB_PUP_CMD#
 export PATH=/opt/puppetlabs/server/apps/java/lib/jvm/java/bin:$PATH
