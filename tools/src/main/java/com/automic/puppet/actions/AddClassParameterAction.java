@@ -26,7 +26,7 @@ public class AddClassParameterAction extends AbstractHttpAction {
     private String paramValue;
 
     public AddClassParameterAction() {
-        addOption("nodegroup", true, "Node group to which");
+        addOption("nodegroup", true, "Node group name");
         addOption("classname", true, "Class name to add/edit the parameter");
         addOption("classparam", true, "Parameter to be added/updated");
         addOption("paramvalue", true, "Value of the parameter");
