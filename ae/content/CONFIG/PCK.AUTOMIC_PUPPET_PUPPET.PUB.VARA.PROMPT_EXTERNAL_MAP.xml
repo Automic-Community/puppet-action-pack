@@ -24,6 +24,8 @@
 </ATTR_VARA>
 <VARA state="1">
 <Variables>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>

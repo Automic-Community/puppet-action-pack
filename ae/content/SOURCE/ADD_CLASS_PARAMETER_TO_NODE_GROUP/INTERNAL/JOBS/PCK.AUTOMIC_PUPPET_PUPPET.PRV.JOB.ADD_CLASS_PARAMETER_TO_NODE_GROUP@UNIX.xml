@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_NEW_NODE@UNIX">
+<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_CLASS_PARAMETER_TO_NODE_GROUP@UNIX">
 <XHEADER state="1">
-<Title>Add new node</Title>
+<Title>Add class parameter to node group</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -108,8 +108,8 @@
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[! Status messages
-
-: SET &UC4RB_LOGGING_ERROR# = "******** ADD NEW ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** ADD CLASS PARAMETER TO NODE GROUP ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** ADD CLASS PARAMETER TO NODE GROUP ACTION FAILED ********"
 
 : DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
@@ -122,30 +122,32 @@
 
 :INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ATTACH_RESOURCE
 
-!------------------------------------------ Buidling java arguments ---------------------------------------------------------------
+!------------------------------------------ Buidling java arguments --------------------------------------------------------
 ! Define action specific java options and values
-: SET &ACTION_NAME# = "AddNewNodeAction"
+: SET &ACTION_NAME# = "AddClassParameterAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
 
 
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodename &UC4RB_PUP_ESCAPED_STRING#")
-
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_GROUP#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
 
-: IF &UC4RB_PUP_SIGN_CERT# EQ "YES"
-:  SET &UC4RB_LOGGING_INFO# = "Successfully signed the certificate"
-   puppet cert sign &UC4RB_PUP_NODE_NAME#
-:  INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
-: ENDIF
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CLASSES#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classname &UC4RB_PUP_ESCAPED_STRING#")
+
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CLASS_PARAM#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classparam &UC4RB_PUP_ESCAPED_STRING#")
+
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_PARAM_VALUE#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -paramvalue &UC4RB_PUP_ESCAPED_STRING#")
 
 : PRINT &UC4RB_PUP_CMD#
-  export PATH=/opt/puppetlabs/server/apps/java/lib/jvm/java/bin:$PATH
+export PATH=/opt/puppetlabs/server/apps/java/lib/jvm/java/bin:$PATH
 
 ! Access key is decrypted and send to jar as argument
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
@@ -169,7 +171,6 @@
 
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
-: SET &UC4RB_LOGGING_INFO# = "******** ADD NEW ACTION EXECUTED SUCCESSFULLY ********"
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
@@ -184,51 +185,7 @@
 <OSCRI/>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
-
-= General description =
-This action is used to add a new node to the puppet server and assign it to a node group. User needs to provide the connection details along with the node group name.
-Action covers the following steps:
-* Signs the certificate for the new node, based on the option selected by the user. The user must send a request to puppet server for signing the certificate.
-* Adds a new node to the given node group. The given node group name must be an existing one.
-
-= Failure Conditions =
-(none)
-
-= Inputs =
-* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
-* Username		                : Provide the username for API. E.g. puppetserver
-* Password                      : Provide the password.
-* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
-* Node name		                : Specify the node name you want to add. E.g. puppetagent. Node name should be an existing node.
-* Node group name               : Specify the node group name to which you want to add the node to. E.g. puppetgroup
-* Sign certificate              : Define if this action auto sign the new certificate for the new node. Only works if the the node is configured to remotely sign certificates. Possible values are YES or NO.
-* Sudo Password                 : The password for the sudo command.
-* Options                       : Run using sudo password (and sudo username if specified).
-* Sudo Username                 : The username to be used for the sudo command. 		  
-* Overwrite Agent               : Overwrites the default agent
-* Overwrite Login               : Overwrites the default login
-
-= Behavior =
-(none)
-
-= Return Value =
-(none)
-
-= Outputs =
-* Return code is 0 in case of success.
-* Return code is 1 in case of failure.
-
-= Rollback =
-(none)
-
-= Logging =
-AE logs will be displayed in the AE report.
-
-= Example =
-(none)
-]]></DOC>
+<DOC/>
 </DOCU_Docu>
 </JOBS_UNIX>
 </uc-export>

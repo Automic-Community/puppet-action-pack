@@ -1,7 +1,6 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 
@@ -14,26 +13,28 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
- * Class to add a new node to the given node group
+ * This action adds or edits a parameter to the given class in a noge group if it exist.
  * 
- * @author shrutinambiar
+ * @author anuragupadhyay
  *
  */
-public class AddNewNodeAction extends AbstractHttpAction {
+public class AddClassParameterAction extends AbstractHttpAction {
 
-    private String nodeName;
     private String nodeGroup;
+    private String className;
+    private String classParameter;
+    private String paramValue;
 
-    public AddNewNodeAction() {
-        addOption("nodename", true, "Node to be added");
-        addOption("nodegroup", true, "Node group name to which the node is to be added");
+    public AddClassParameterAction() {
+        addOption("nodegroup", true, "Node group to which");
+        addOption("classname", true, "Class name to add/edit the parameter");
+        addOption("classparam", true, "Parameter to be added/updated");
+        addOption("paramvalue", true, "Value of the parameter");
     }
 
-    @Override
     protected void executeSpecific() throws AutomicException {
-        // get auth token
         WebResource webResClient = getClient();
-
+        // get auth token
         String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
         if (authToken == null) {
             throw new AutomicException("Could not authenticate the user [" + username + "]");
@@ -48,10 +49,9 @@ public class AddNewNodeAction extends AbstractHttpAction {
             }
 
             // url to add the node to node group
-            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId)
-                    .path("pin");
+            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
-            ConsoleWriter.writeln("Calling URL to add a node to node group: " + webresource.getURI());
+            ConsoleWriter.writeln("Calling URL to add/edit a parameter: " + webresource.getURI());
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
                     .entity(getNodeJson(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
@@ -62,13 +62,33 @@ public class AddNewNodeAction extends AbstractHttpAction {
 
     }
 
+    private String getNodeJson() {
+
+        JsonObjectBuilder jsonParamValue = Json.createObjectBuilder();
+        jsonParamValue.add(classParameter, paramValue);
+
+        JsonObjectBuilder jsonParamField = Json.createObjectBuilder();
+        jsonParamField.add(className, jsonParamValue);
+
+        JsonObjectBuilder jsonClass = Json.createObjectBuilder();
+        jsonClass.add("classes", jsonParamField);
+
+        return jsonClass.build().toString();
+    }
+
     private void prepareInputParameters() throws AutomicException {
         try {
-            nodeName = getOptionValue("nodename");
-            PuppetValidator.checkNotEmpty(nodeName, "Node name");
-
             nodeGroup = getOptionValue("nodegroup");
             PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
+
+            className = getOptionValue("classname");
+            PuppetValidator.checkNotEmpty(className, "Class name");
+
+            classParameter = getOptionValue("classparam");
+            PuppetValidator.checkNotEmpty(classParameter, "Class name");
+
+            paramValue = getOptionValue("paramvalue");
+            PuppetValidator.checkNotEmpty(paramValue, "Class name");
 
         } catch (AutomicException e) {
             ConsoleWriter.write(e.getMessage());
@@ -76,13 +96,4 @@ public class AddNewNodeAction extends AbstractHttpAction {
         }
     }
 
-    private String getNodeJson() {
-
-        JsonArrayBuilder jsonNodeArray = Json.createArrayBuilder();
-        jsonNodeArray.add(nodeName);
-
-        JsonObjectBuilder json = Json.createObjectBuilder();
-        json.add("nodes", jsonNodeArray);
-        return json.build().toString();
-    }
 }
