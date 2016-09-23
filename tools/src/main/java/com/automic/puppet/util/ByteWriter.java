@@ -16,48 +16,48 @@ import com.automic.puppet.exception.AutomicException;
  *
  */
 public class ByteWriter {
-	private BufferedOutputStream bos = null;
+    private BufferedOutputStream bos = null;
 
-	public ByteWriter(OutputStream output) {
-		bos = new BufferedOutputStream(output, Constants.IO_BUFFER_SIZE);
-	}
+    public ByteWriter(OutputStream output) {
+        bos = new BufferedOutputStream(output, Constants.IO_BUFFER_SIZE);
+    }
 
-	/**
-	 * Method to write specific part of byte array to Stream
-	 *
-	 * @param bytes
-	 * @param offset
-	 * @param length
-	 * @throws AutomicException
-	 */
-	public void write(byte[] bytes, int offset, int length)
-			throws AutomicException {
-		try {
-			bos.write(bytes, offset, length);
-		} catch (IOException e) {
-			throw new AutomicException(ExceptionConstants.UNABLE_TO_WRITE, e);
-		}
-	}
+    /**
+     * Method to write specific part of byte array to Stream
+     *
+     * @param bytes
+     * @param offset
+     * @param length
+     * @throws AutomicException
+     */
+    public void write(byte[] bytes, int offset, int length) throws AutomicException {
+        try {
+            bos.write(bytes, offset, length);
+        } catch (IOException e) {
+            throw new AutomicException(ExceptionConstants.UNABLE_TO_WRITE, e);
+        }
+    }
 
-	/**
-	 * Method to write bytes to Stream
-	 *
-	 * @param bytes
-	 * @throws AutomicException
-	 */
-	public void write(byte[] bytes) throws AutomicException {
-		write(bytes, 0, bytes.length);
-	}
+    /**
+     * Method to write bytes to Stream
+     *
+     * @param bytes
+     * @throws AutomicException
+     */
+    public void write(byte[] bytes) throws AutomicException {
+        write(bytes, 0, bytes.length);
+    }
 
-	/**
-	 * Method to write a String to stream
-	 *
-	 * @param field
-	 * @throws AutomicException
-	 */
-	public void write(String field) throws AutomicException {
-		write(field.getBytes(StandardCharsets.UTF_8));
-	}
+    /**
+     * Method to write a String to stream
+     *
+     * @param field
+     * @throws AutomicException
+     */
+    public void write(String field) throws AutomicException {
+        write(field.getBytes(StandardCharsets.UTF_8));
+    }
+
     /**
      * Method to flush to stream
      *

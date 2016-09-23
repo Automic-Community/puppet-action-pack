@@ -11,9 +11,9 @@ import com.automic.puppet.util.ConsoleWriter;
  */
 
 public class ExceptionHandler {
-	private static final int RESPONSE_NOT_OK = 1;
+    private static final int RESPONSE_NOT_OK = 1;
 
-    private static final String ERRORMSG = "Please check the input parameters. For more details refer java logs";
+    private static final String ERRORMSG = "Please check the input parameters. For more details refer job report";
 
     private ExceptionHandler() {
 
@@ -22,7 +22,8 @@ public class ExceptionHandler {
     /**
      * This method handles some specific cases like connection timeout/unable to connect and return the response code.
      * In addition to this, it also writes the exception message to console.
-     * @throws AutomicException 
+     * 
+     * @throws AutomicException
      */
     public static int handleException(Exception ex) throws AutomicException {
         int responseCode = RESPONSE_NOT_OK;
@@ -34,6 +35,7 @@ public class ExceptionHandler {
         if (th instanceof AutomicException || th instanceof AutomicRuntimeException) {
             errorMsg = th.getMessage();
         } else {
+            ex.printStackTrace();
             errorMsg = th.getMessage();
         }
 
