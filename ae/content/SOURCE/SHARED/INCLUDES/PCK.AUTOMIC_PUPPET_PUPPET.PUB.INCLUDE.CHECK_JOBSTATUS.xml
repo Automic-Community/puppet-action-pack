@@ -7,17 +7,7 @@
 <OH_SubType/>
 </HEADER>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[:SWITCH &$PLATFORM#
-:CASE "WINDOWS"
-IF %ERRORLEVEL% EQU 0 (
-:INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
-)ELSE (
-:INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
-)
-:INC PCK.ITPA_SHARED.PRV.INCLUDE.CHECK_CMDLINE_CMD@WINDOWS
-
-:CASE "UNIX"
-execcode=$?
+<MSCRI><![CDATA[execcode=$?
 if [ $execcode -eq 0 ]
 then
 :  INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
@@ -28,8 +18,7 @@ if [ "$execcode" -ne "0" ]
 then
     exit $execcode
 fi
-:OTHER
-:ENDSWITCH]]></MSCRI>
+]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[It calculates and publish the job status based on some known parameters. It considers the following things into account.
