@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <XHEADER state="1">
-<Title>Add new node</Title>
+<Title>Add class parameter to node group</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -22,7 +22,7 @@
 <AutoDeactNo>0</AutoDeactNo>
 <AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
 <AutoDeactErrorFree>1</AutoDeactErrorFree>
-<DeactWhen>ANY_OK</DeactWhen>
+<DeactWhen/>
 <AutoDeactAlways>0</AutoDeactAlways>
 <DeactDelay>0</DeactDelay>
 <ActAtRun>1</ActAtRun>
@@ -56,19 +56,20 @@
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_CERT_VALIDATIONs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 <UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">NO</UC4RB_PUP_SIGN_CERTs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_PARAM_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -84,8 +85,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
-<AGENTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -99,7 +100,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="ADD_NEW_NODE" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_NEW_NODE@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="ADD_CLASS_PARAMETER_TO_NODE_GROUP" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_CLASS_PARAMETER_TO_NODE_GROUP@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -112,7 +113,7 @@
 <pre BranchType="0" Lnr="1" PreLnr="1" When="ANY_OK" type="container"/>
 </predecessors>
 <runtime MrtCancel="0" MrtDays="0" MrtErt="0" MrtExecute="0" MrtExecuteObj="" MrtFix="0" MrtMethodDate="0" MrtMethodErt="0" MrtMethodFix="0" MrtMethodNone="1" MrtOn="1" MrtTZ="" MrtTime="00:00" SrtErt="0" SrtFix="0" SrtMethodErt="0" SrtMethodFix="0" SrtMethodNone="1"/>
-<result ChkRExec="0" RElseHalt="1" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
+<result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
 <node content="1" id="VALUE" name="Variables" parent="" type="TASKVALUE">
@@ -133,19 +134,20 @@
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_CERT_VALIDATIONs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 <UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">NO</UC4RB_PUP_SIGN_CERTs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_PARAM_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -161,8 +163,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
-<AGENTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -196,19 +198,20 @@
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_CERT_VALIDATIONs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 <UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">NO</UC4RB_PUP_SIGN_CERTs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
+<UC4RB_PUP_PARAM_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -224,8 +227,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
-<AGENTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -289,9 +292,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
@@ -302,8 +305,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" ontop="1">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1">
-<AGENTs.00 altview="0" haslist="0">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 altview="0" haslist="0">&amp;LOGIN#</LOGINs.00>
+<AGENTs.00 altview="1" haslist="0">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 altview="1" haslist="0">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -329,7 +332,50 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP
+
+= General description =
+This action is used to add class parameter to a node group. This action fails if class parameter provided does not exists. Also if the provided class parameter already exists for the class then action will update value for that parameter.
+
+
+= Failure Conditions =
+(none)
+
+= Inputs =
+* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
+* Username		                : Provide the username for API. E.g. puppetserver
+* Password                      : Provide the password.
+* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
+* Node group name               : Specify the node group name. E.g. puppetgroup
+* Class             		    : Specify the class name. E.g. apache,docker
+* Parameter		                : Specify the class parameter. E.g. dns.
+* Value		                	: Specify value for the class parameter. E.g. docker.net.
+* Sudo Password                 : The password for the sudo command.
+* Options                       : Run using sudo password (and sudo username if specified).
+* Sudo Username                 : The username to be used for the sudo command. 		  
+* Overwrite Agent               : Overwrites the default agent
+* Overwrite Login               : Overwrites the default login
+
+= Behavior =
+(none)
+
+= Return Value =
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Rollback =
+(none)
+
+= Logging =
+AE logs will be displayed in the AE report.
+
+= Example =
+(none)
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>

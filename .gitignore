@@ -9,6 +9,7 @@ tools/.checkstyle
 tools/.classpath
 tools/.project
 tools/.settings
+ae/content/RESOURCES
 config.yml
 temp
 README.txt

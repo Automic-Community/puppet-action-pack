@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_GENERIC AttrType="GENERIC" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_NEW_NODE@GENERIC">
+<JOBS_GENERIC AttrType="GENERIC" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_CLASSES_TO_NODE_GROUP@GENERIC">
 <XHEADER state="1">
-<Title>Add new node</Title>
+<Title>Add classes to node groups</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -82,24 +82,6 @@
 <Mode>0</Mode>
 </VALUE>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
-</PROMPTSET>
-</node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" prptmode="1"/>
-</PROMPTSET>
-</node>
-<node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" ontop="1">
-<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1">
-<AGENTs.00 altview="1" haslist="0">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 altview="1" haslist="0">&amp;LOGIN#</LOGINs.00>
-</PRPTBOX>
-</PROMPTSET>
-</node>
 </dyntree>
 </DYNVALUES>
 <ROLLBACK state="1">
@@ -111,28 +93,12 @@
 <FInclSubDirs>0</FInclSubDirs>
 </ROLLBACK>
 <PRE_SCRIPT mode="1" replacementmode="1" state="1">
-<PSCRI/>
+<PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[
-: IF &$PLATFORM# EQ "WINDOWS"
+<MSCRI><![CDATA[: IF &$PLATFORM# EQ "WINDOWS"
 @echo off
 : ENDIF
-
-!-------------------------------------Logging input parameters-------------------------------------------------------------------------------------------------
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
-
-! : SET &UC4RB_LOGGING_PARAMETER# = "Node name"
-! : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_PUP_NODE_NAME#"
-! : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
-! : SET &UC4RB_LOGGING_PARAMETER# = "Node group name"
-! : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_PUP_NODE_GROUP#"
-! : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
-
-! : SET &UC4RB_LOGGING_PARAMETER# = "Sign certificate"
-! : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_PUP_SIGN_CERT#"
-! : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
@@ -142,23 +108,19 @@
 
 
 ! Define action specific java options and values
-: SET &ACTION_NAME# = "AddNewNode"
+: SET &ACTION_NAME# = "AddClassesToNodeGroupAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
 
 
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CLASSES#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -issueid &UC4RB_JIRA_ESCAPED_STRING#")
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classes &UC4RB_PUP_ESCAPED_STRING#")
 
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_GROUP#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -comment &UC4RB_JIRA_ESCAPED_STRING#")
-
-: IF &UC4RB_PUP_SIGN_CERT# <> ""
-   puppet cert sign &UC4RB_PUP_NODE_NAME#
-: ENDIF
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
 
 : PRINT &UC4RB_PUP_CMD#
 
@@ -167,26 +129,23 @@
 : SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_PUP_PASSWORD#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
 
-
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
-
-
 
 ! Invoking java binary
 : SWITCH &$PLATFORM#
 :   CASE "WINDOWS"
-           &UC4RB_JIRA_CMD# -password "%UC4_DECRYPTED_PWD%"
+           &UC4RB_PUP_CMD# -password "%UC4_DECRYPTED_PWD%"
 :   CASE "UNIX"
-           &UC4RB_JIRA_CMD# -password "$UC4_DECRYPTED_PWD"
+           &UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
 :   OTHER
 : ENDSWITCH
 
 
 
 ! Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** ADD NEW ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** ADD NEW ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** ADD CLASSES TO NODE GROUP ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** ADD CLASSES TO NODE GROUP ACTION FAILED ********"
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 

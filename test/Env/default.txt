@@ -7,7 +7,6 @@ Library           com.automic.robot.itpa.ItpaLibrary
 #---- Promptset Overwrite Agent -------------------------------------------------------------------------
 @{Promptset_Overwrite_Agent_WIN}    WIN01    LOGIN.WIN01
 @{Promptset_Overwrite_Agent_UNIX}    UNIX_AE12    LOGIN.UNIX_AE12
-@{Promptset_Overwrite_Agent_UNIX}    AGENT_UNIX02    LOGIN.AGENT_UNIX02
 #---- GLOBAL CONTEXT VARIABLES --------------------------------------------------------------------------
 ${_AE_SYSTEM}     @{AE}[0]
 ${_AE_HOST}       @{AE}[1]
