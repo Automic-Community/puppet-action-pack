@@ -1,5 +1,11 @@
 package com.automic.puppet.util;
 
+import java.io.InputStream;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+
 
 /**
  * Common Utility class contains basic function(s) required by Puppet actions.
@@ -61,5 +67,29 @@ public class CommonUtil {
      */
     public static boolean checkNotNull(Object field) {
         return field != null;
+    }
+    
+	/**
+	 * Method to convert a stream into Json object
+	 * 
+	 * @param is
+	 *            input stream
+	 * @return JSONObject
+	 */
+	public static JsonObject jsonObjectResponse(InputStream is) {
+		return Json.createReader(is).readObject();
+
+	}
+	
+	   /**
+     * Method to convert a stream into Json array
+     * 
+     * @param is
+     *            input stream
+     * @return JSONObject
+     */
+    public static JsonArray jsonArrayResponse(InputStream is) {
+        return Json.createReader(is).readArray();
+
     }
 }

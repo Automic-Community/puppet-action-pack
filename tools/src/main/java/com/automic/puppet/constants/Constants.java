@@ -19,6 +19,7 @@ public class Constants {
 	public static final String BASE_URL = "baseurl";
 	public static final String PUPPET_USERNAME = "username";
 	public static final String PUPPET_PASSWORD = "password";
+	public static final String API_VERSION = "apiversion";
 	
 	private Constants() {
 	}

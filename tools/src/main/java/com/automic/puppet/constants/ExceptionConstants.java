@@ -11,6 +11,9 @@ public class ExceptionConstants {
     public static final String SSLCONTEXT_ERROR = "Unable to build secured context.";
     public static final String INVALID_KEYSTORE = "Invalid KeyStore.";
     
+    public static final String ERROR_READING_FILE = "Error occured during reading of file [%s],probably"
+            + " file doesn't exists ";
+    
 	private ExceptionConstants() {
 	}
 }

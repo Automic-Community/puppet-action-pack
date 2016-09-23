@@ -23,9 +23,9 @@ public final class PuppetValidator {
         }
     }
 
-    public static void checkFileExists(File file, String parameterName) throws AutomicException {
+    public static void checkFileExists(File file) throws AutomicException {
         if (!(file.exists() && file.isFile())) {
-            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, parameterName, file));
+            throw new AutomicException(String.format(ExceptionConstants.ERROR_READING_FILE, file));
         }
     }
 
