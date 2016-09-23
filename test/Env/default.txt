@@ -3,7 +3,7 @@ Library           com.automic.robot.itpa.ItpaLibrary
 
 *** Variables ***
 #---- AE -------------------------
-@{AE}             AUTOMIC    192.168.112.35    2217    1000/INTEGRATION/SPARTAN    test    # system, host, port, user, pass
+@{AE}            AUTOMIC    192.168.112.35    2217    1000/INTEGRATION/SPARTAN    test    # system, host, port, user, pass
 #---- Promptset Overwrite Agent -------------------------------------------------------------------------
 @{Promptset_Overwrite_Agent_UNIX}    PUPPET_UNIX_AGENT    LOGIN.PUPPET_UNIX_AGENT
 #---- GLOBAL CONTEXT VARIABLES --------------------------------------------------------------------------

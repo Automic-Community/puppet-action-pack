@@ -1,0 +1,63 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        add_classes_to_node_group
+Test Template     Add Classes To Node Group Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup         Classes
+Add a class to a node group
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}     ${Class_Name}
+
+Add a already existing class to a node group
+                      OK        ${Node_Group}     ${Class_Name}
+
+Add multiple classes to a node group
+                      OK        ${Node_Group}     docker,pe_nginx
+
+Assert Behaviour for multiple classes out of which one invalid class is provided to a node group
+                      NOK        ${Node_Group}     docker,pe_nginx,InvalidClassTest
+
+Assert Behaviour for Non-Existing Node Group
+                      NOK       Generated         ${Class_Name}
+
+Assert Behaviour for Non-Existing Class
+                      NOK       ${Node_Group}     Generated
+
+Assert Node Group Name as Mandatory Field
+                      NOK       ${EMPTY}          ${Class_Name}
+
+Assert Classes as Mandatory Field
+                      NOK       ${Node_Group}     ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "ADD CLASSES TO NODE GROUP"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Add Classes To Node Group Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}    ${Classes}
+    [Documentation]    This test add classes to node group
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${NodeGroup}: This field specifies the node group name to which you want to add classes.
+    ...    -${Classes}: This field specifies the classes to add to a node group.
+    Generate String
+    Action Create    ${_ADD_CLASSES_ACTION}
+    Connect To Puppet
+    Action Set    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Action Set    &UC4RB_PUP_CLASSES#    ${Classes}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "ADD CLASSES TO NODE GROUP"*******
