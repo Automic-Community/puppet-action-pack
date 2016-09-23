@@ -13,9 +13,9 @@ package com.automic.puppet.exception;
  */
 public class AutomicException extends Exception {
 
-	private static final long serialVersionUID = -2593992984664372683L;
+    private static final long serialVersionUID = -2593992984664372683L;
 
-	/**
+    /**
      * Constructor that takes an error message
      *
      * @param message

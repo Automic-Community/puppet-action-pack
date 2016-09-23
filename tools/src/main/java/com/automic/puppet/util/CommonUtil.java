@@ -6,14 +6,15 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
+import com.automic.puppet.constants.Constants;
 
 /**
  * Common Utility class contains basic function(s) required by Puppet actions.
  * 
  */
 public class CommonUtil {
-	
-	private CommonUtil() {
+
+    private CommonUtil() {
     }
 
     /**
@@ -68,20 +69,20 @@ public class CommonUtil {
     public static boolean checkNotNull(Object field) {
         return field != null;
     }
-    
-	/**
-	 * Method to convert a stream into Json object
-	 * 
-	 * @param is
-	 *            input stream
-	 * @return JSONObject
-	 */
-	public static JsonObject jsonObjectResponse(InputStream is) {
-		return Json.createReader(is).readObject();
 
-	}
-	
-	   /**
+    /**
+     * Method to convert a stream into Json object
+     * 
+     * @param is
+     *            input stream
+     * @return JSONObject
+     */
+    public static JsonObject jsonObjectResponse(InputStream is) {
+        return Json.createReader(is).readObject();
+
+    }
+
+    /**
      * Method to convert a stream into Json array
      * 
      * @param is
@@ -91,5 +92,20 @@ public class CommonUtil {
     public static JsonArray jsonArrayResponse(InputStream is) {
         return Json.createReader(is).readArray();
 
+    }
+
+    /**
+     * Method to convert YES/NO values to boolean true or false
+     * 
+     * @param value
+     * @return true if YES, 1
+     */
+    public static boolean convert2Bool(String value) {
+        boolean ret = false;
+        if (checkNotEmpty(value)) {
+            ret = Constants.YES.equalsIgnoreCase(value) || Constants.TRUE.equalsIgnoreCase(value)
+                    || Constants.ONE.equalsIgnoreCase(value);
+        }
+        return ret;
     }
 }
