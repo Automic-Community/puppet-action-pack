@@ -74,14 +74,14 @@ public abstract class AbstractHttpAction extends AbstractAction {
 
     public AbstractHttpAction() {
         addOption(Constants.READ_TIMEOUT, true, "Read timeout");
-        addOption(Constants.CONNECTION_TIMEOUT, true, "connection timeout");
-        addOption(Constants.BASE_URL, true, "Base URL of Puppet classifier");
-        addOption(Constants.PUPPET_USERNAME, true, "Username for Puppet Authentication");
-        addOption(Constants.PUPPET_PASSWORD, true, "Password for Puppet user");
-        addOption(Constants.LOGIN_API_VERSION, true, "Api version for JIRA");
-        addOption(Constants.LOGOUT_API_VERSION, true, "Api version for JIRA");
-        addOption(Constants.API_VERSION, true, "Api version for JIRA");
-        addOption(Constants.SKIP_CERT_VALIDATION, true, "Option to skip certification validation");
+        addOption(Constants.CONNECTION_TIMEOUT, true, "Connection timeout");
+        addOption(Constants.BASE_URL, true, "Puppet Base URL");
+        addOption(Constants.PUPPET_USERNAME, true, "Puppet username");
+        addOption(Constants.PUPPET_PASSWORD, true, "Puppet Password");
+        addOption(Constants.LOGIN_API_VERSION, true, "Login Api version");
+        addOption(Constants.LOGOUT_API_VERSION, true, "Logout Api version");
+        addOption(Constants.API_VERSION, true, "Puppet services Api version");
+        addOption(Constants.SKIP_CERT_VALIDATION, true, "Skip SSL validation");
     }
 
     /**
