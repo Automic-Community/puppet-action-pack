@@ -1,0 +1,17 @@
+*** Settings ***
+Library           com.automic.robot.itpa.ItpaLibrary
+
+*** Variables ***
+#---- AE -------------------------
+@{AE}            UC4    192.168.112.35    2217    1000/INTEGRATION/SPARTAN    test    # system, host, port, user, pass
+#---- Promptset Overwrite Agent -------------------------------------------------------------------------
+@{Promptset_Overwrite_Agent_UNIX}    AGENT_UNIX02    LOGIN.AGENT_UNIX02
+#---- GLOBAL CONTEXT VARIABLES --------------------------------------------------------------------------
+${_AE_SYSTEM}     @{AE}[0]
+${_AE_HOST}       @{AE}[1]
+${_AE_PORT}       @{AE}[2]
+${_AE_USER}       @{AE}[3]
+${_AE_PASS}       @{AE}[4]
+${_AE_TEMP_FOLD}    TEST_PUPPET_PUPPET_PCK
+${_PROMPTSET_AGENT_UNIX}    @{Promptset_Overwrite_Agent_UNIX}[0]
+${_PROMPTSET_LOGIN_UNIX}    @{Promptset_Overwrite_Agent_UNIX}[1]

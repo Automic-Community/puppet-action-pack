@@ -15,7 +15,6 @@ import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 /**
  * This class defines the execution of any action.It provides some initializations and validations on common inputs .The
@@ -29,14 +28,29 @@ public abstract class AbstractHttpAction extends AbstractAction {
     protected URI baseUrl;
 
     /**
+     * version of puppet REST api to login
+     */
+    protected String loginApiVersion;
+
+    /**
+     * version of puppet REST api to destroy the token
+     */
+    protected String logoutApiVersion;
+
+    /**
+     * version of puppet REST api to perform various services
+     */
+    protected String apiVersion;
+
+    /**
      * Username to connect to Puppet
      */
-    private String username;
+    protected String username;
 
     /**
      * Password to Puppet username
      */
-    private String password;
+    protected String password;
 
     /**
      * Connection timeout in milliseconds
@@ -49,10 +63,14 @@ public abstract class AbstractHttpAction extends AbstractAction {
     private int readTimeOut;
 
     /**
+     * Option to skip validation
+     */
+    private String skipCertValidation;
+
+    /**
      * Service end point
      */
     private Client client;
-
 
     public AbstractHttpAction() {
         addOption(Constants.READ_TIMEOUT, true, "Read timeout");
@@ -60,6 +78,10 @@ public abstract class AbstractHttpAction extends AbstractAction {
         addOption(Constants.BASE_URL, true, "Base URL of Puppet classifier");
         addOption(Constants.PUPPET_USERNAME, true, "Username for Puppet Authentication");
         addOption(Constants.PUPPET_PASSWORD, true, "Password for Puppet user");
+        addOption(Constants.LOGIN_API_VERSION, true, "Api version for JIRA");
+        addOption(Constants.LOGOUT_API_VERSION, true, "Api version for JIRA");
+        addOption(Constants.API_VERSION, true, "Api version for JIRA");
+        addOption(Constants.SKIP_CERT_VALIDATION, true, "Option to skip certification validation");
     }
 
     /**
@@ -90,6 +112,10 @@ public abstract class AbstractHttpAction extends AbstractAction {
             this.baseUrl = new URI(temp);
             this.username = getOptionValue(Constants.PUPPET_USERNAME);
             this.password = getOptionValue(Constants.PUPPET_PASSWORD);
+            this.loginApiVersion = getOptionValue(Constants.LOGIN_API_VERSION);
+            this.logoutApiVersion = getOptionValue(Constants.LOGOUT_API_VERSION);
+            this.apiVersion = getOptionValue(Constants.API_VERSION);
+            this.skipCertValidation = getOptionValue(Constants.SKIP_CERT_VALIDATION);
         } catch (AutomicException e) {
             throw e;
         } catch (URISyntaxException e) {
@@ -113,8 +139,8 @@ public abstract class AbstractHttpAction extends AbstractAction {
      */
     protected WebResource getClient() throws AutomicException {
         if (client == null) {
-            client = HttpClientConfig.getClient(baseUrl.getScheme(), this.connectionTimeOut, this.readTimeOut);
-            client.addFilter(new HTTPBasicAuthFilter(username, password));
+            client = HttpClientConfig.getClient(baseUrl.getScheme(), this.connectionTimeOut, this.readTimeOut,
+                    this.skipCertValidation);
             client.addFilter(new GenericResponseFilter());
         }
         return client.resource(baseUrl);

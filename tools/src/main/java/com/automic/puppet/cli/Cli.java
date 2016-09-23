@@ -19,15 +19,15 @@ import com.automic.puppet.util.ConsoleWriter;
  * provides method to retrieve the argument value.
  */
 public class Cli {
- 
-	private CommandLine cmd = null;
+
+    private CommandLine cmd = null;
 
     public Cli(CliOptions options, String[] args) throws AutomicException {
         try {
             CommandLineParser parser = new DefaultParser();
             cmd = parser.parse(options.getOptions(), args, true);
         } catch (ParseException e) {
-        	ConsoleWriter.writeln("Error parsing the command line options");
+            ConsoleWriter.writeln("Error parsing the command line options");
             printHelp(options.getOptions());
             throw new AutomicException(String.format(ExceptionConstants.INVALID_ARGS, e));
         }
@@ -39,10 +39,10 @@ public class Cli {
     }
 
     public void log(List<String> ignoreOptions) throws AutomicException {
-    	ConsoleWriter.writeln("Input params ");
+        ConsoleWriter.writeln("Input params ");
         for (Option o : cmd.getOptions()) {
             if (!ignoreOptions.contains(o.getOpt())) {
-            	ConsoleWriter.writeln(o.getDescription() + "[" + o.getOpt() + "]" + " = " + o.getValue());
+                ConsoleWriter.writeln(o.getDescription() + "[" + o.getOpt() + "]" + " = " + o.getValue());
             }
         }
     }
