@@ -18,7 +18,6 @@ public class GenericResponseFilter extends ClientFilter {
     private static final int HTTP_SUCCESS_START = 200;
     private static final int HTTP_SUCCESS_END = 299;
 
-
     private static final String RESPONSE_CODE = "Response Code [%s]";
     private static final String RESPONSE_MSG = RESPONSE_CODE + " Message : [%s]";
 
@@ -27,7 +26,8 @@ public class GenericResponseFilter extends ClientFilter {
 
         ClientResponse response = getNext().handle(request);
         String msg = null;
-        if (CommonUtil.checkNotEmpty(response.getClientResponseStatus().getReasonPhrase())) {
+        if (CommonUtil.checkNotNull(response.getClientResponseStatus())
+                && CommonUtil.checkNotEmpty(response.getClientResponseStatus().getReasonPhrase())) {
             msg = String.format(RESPONSE_MSG, response.getStatus(), response.getClientResponseStatus()
                     .getReasonPhrase());
         } else {
@@ -35,19 +35,19 @@ public class GenericResponseFilter extends ClientFilter {
         }
         if (!(response.getStatus() >= HTTP_SUCCESS_START && response.getStatus() <= HTTP_SUCCESS_END)) {
             try {
-				ConsoleWriter.writeln(CommonUtil.formatErrorMessage(msg));
-			} catch (AutomicException e) {
-				e.printStackTrace();
-			}
+                ConsoleWriter.writeln(CommonUtil.formatErrorMessage(msg));
+            } catch (AutomicException e) {
+                e.printStackTrace();
+            }
             String responseMsg = response.getEntity(String.class);
             throw new AutomicRuntimeException(responseMsg);
 
         } else {
             try {
-				ConsoleWriter.writeln(msg);
-			} catch (AutomicException e) {
-				e.printStackTrace();
-			}
+                ConsoleWriter.writeln(msg);
+            } catch (AutomicException e) {
+                e.printStackTrace();
+            }
         }
         return response;
     }
