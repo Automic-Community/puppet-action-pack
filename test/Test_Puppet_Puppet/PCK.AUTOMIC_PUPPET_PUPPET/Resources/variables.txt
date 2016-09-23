@@ -14,4 +14,4 @@ ${Options}        Sudo
 ${Node_Name}      agentcentos.puppetlabs.vm
 ${Node_Group}     PE Agent
 #---- Add Classes To Node Group ------------------------------------------------------------------------------
-${Class_Name}     docker
+${Class_Name}      docker
