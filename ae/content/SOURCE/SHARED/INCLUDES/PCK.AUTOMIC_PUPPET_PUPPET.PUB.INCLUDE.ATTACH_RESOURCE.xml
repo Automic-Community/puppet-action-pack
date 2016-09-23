@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBI name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ATTACH_RESOURCE">
+<HEADER state="1">
+<Title>Attach the JIRA jar to current agent</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[:ATTACH_RES "PCK.AUTOMIC_PUPPET_PUPPET.PRV.STORE" ,"PUPPETTOOL", C, N
+
+! Setting jar class path into variable
+:SET &UC4RB_PUP_PATH_JAR#= STR_CAT(&$AGENT_RESOURCES_CLIENT#,"puppet-tool.jar")]]></MSCRI>
+</SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC><![CDATA[This includes attaches the JIRA jar to current agent
+It can be used for both Windows and Unix environment]]></DOC>
+</DOCU_Docu>
+</JOBI>
+</uc-export>

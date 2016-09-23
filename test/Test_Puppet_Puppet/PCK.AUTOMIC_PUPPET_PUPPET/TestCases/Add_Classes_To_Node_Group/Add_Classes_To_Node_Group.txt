@@ -23,7 +23,7 @@ Add multiple classes to a node group
                       OK        ${Node_Group}     docker,pe_nginx
 
 Assert Behaviour for multiple classes out of which one invalid class is provided to a node group
-                      OK        ${Node_Group}     docker,pe_nginx,InvalidClassTest
+                      NOK        ${Node_Group}     docker,pe_nginx,InvalidClassTest
 
 Assert Behaviour for Non-Existing Node Group
                       NOK       Generated         ${Class_Name}

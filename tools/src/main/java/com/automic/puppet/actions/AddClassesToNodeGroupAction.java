@@ -52,6 +52,9 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
         String authToken = TokenHandler.getToken(webResClient, username, password, apiVersion);
         // get group id based on node group name
         String groupId = GetGroupId.restResponse(authToken, webResClient, nodeGroup, apiVersion);
+        if (groupId == null) {
+            throw new AutomicException("No group id found for [" + nodeGroup + "]");
+        }
         // json object with classes
         JsonObject jsonObject = buildJson();
 
