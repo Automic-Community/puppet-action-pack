@@ -1,3 +1,0 @@
-*** Variables ***
-#---- AE Actions-------------------------
-${_ADD_CLASSES_ACTION}    PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP
