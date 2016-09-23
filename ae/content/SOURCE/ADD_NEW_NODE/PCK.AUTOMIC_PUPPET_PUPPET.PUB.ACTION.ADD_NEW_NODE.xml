@@ -56,7 +56,6 @@
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_CERT_VALIDATIONs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 <UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
@@ -68,7 +67,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
 <UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">NO</UC4RB_PUP_SIGN_CERTs.00>
+<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">YES</UC4RB_PUP_SIGN_CERTs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -133,7 +132,6 @@
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_CERT_VALIDATIONs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 <UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
@@ -145,7 +143,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
 <UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">NO</UC4RB_PUP_SIGN_CERTs.00>
+<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">YES</UC4RB_PUP_SIGN_CERTs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -196,7 +194,6 @@
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
 <UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_CERT_VALIDATIONs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
 <UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 <UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
@@ -208,7 +205,7 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
 <UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">NO</UC4RB_PUP_SIGN_CERTs.00>
+<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">YES</UC4RB_PUP_SIGN_CERTs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -329,7 +326,51 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
+
+= General description =
+This action is used to add a new node to the puppet server and assign it to a node group. User needs to provide the connection details along with the node group name.
+Action covers the following steps:
+* Signs the certificate for the new node, based on the option selected by the user. The user must send a request to puppet server for signing the certificate.
+* Adds a new node to the given node group. The given node group name must be an existing one.
+
+= Failure Conditions =
+(none)
+
+= Inputs =
+* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
+* Username		                : Provide the username for API. E.g. puppetserver
+* Password                      : Provide the password.
+* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
+* Node name		                : Specify the node name you want to add. E.g. puppetagent. Node name should be an existing node.
+* Node group name               : Specify the node group name to which you want to add the node to. E.g. puppetgroup
+* Sign certificate              : Define if this action auto sign the new certificate for the new node. Only works if the the node is configured to remotely sign certificates. Possible values are YES or NO.
+* Sudo Password                 : The password for the sudo command.
+* Options                       : Run using sudo password (and sudo username if specified).
+* Sudo Username                 : The username to be used for the sudo command. 		  
+* Overwrite Agent               : Overwrites the default agent
+* Overwrite Login               : Overwrites the default login
+
+= Behavior =
+(none)
+
+= Return Value =
+(none)
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Rollback =
+(none)
+
+= Logging =
+AE logs will be displayed in the AE report.
+
+= Example =
+(none)
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
