@@ -341,12 +341,12 @@ This action is used to add a new variable or edits an existing variable for node
 
 = Inputs =
 * Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
-* Username		                : Provide the username for API. E.g. puppetserver
+* Username		        : Provide the username for API. E.g. puppetserver
 * Password                      : Provide the password.
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name to which you want to add or edit the variable. E.g. puppetgroup
-* Variable name           		: Specify the variable name to add or edit.
-* Variable value	            : Specify value which you want to set for variable.
+* Variable name           	: Specify the variable name to add or edit.
+* Variable value	        : Specify value which you want to set for variable.
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
