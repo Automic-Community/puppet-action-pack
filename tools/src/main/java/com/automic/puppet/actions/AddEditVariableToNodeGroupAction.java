@@ -3,13 +3,18 @@
  */
 package com.automic.puppet.actions;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 
 import com.automic.puppet.actions.helper.GetGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
+import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
@@ -36,7 +41,7 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
     /**
      * Value of variable
      */
-    private String variableValue;
+    private List<String> variableValueList;
 
     /**
      * 
@@ -62,7 +67,7 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
             String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
             if (groupId == null) {
                 throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }   
+            }
 
             // Create POST request
             WebResource webResource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
@@ -90,8 +95,13 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
             PuppetValidator.checkNotEmpty(variableName, "varaname");
 
             // value of variable
-            variableValue = getOptionValue("varavalue");
-            PuppetValidator.checkNotEmpty(variableValue, "varavalue");
+            String variableValues = getOptionValue("varavalue");
+            PuppetValidator.checkNotEmpty(variableValues, "varavalue");
+            variableValueList = Arrays.asList(variableValues.split(","));
+            if (variableValueList.size() == 0) {
+                throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "varavalue",
+                        variableValues));
+            }
         } catch (AutomicException e) {
             ConsoleWriter.writeln(e);
             throw e;
@@ -108,9 +118,17 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
     // generate json to add/edit variable to node group
     private String buildJson() {
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        objectBuilder.add(variableName, variableValue);
+        if (variableValueList.size() == 1) {
+            objectBuilder.add(variableName, variableValueList.get(0));
+        } else {
+            JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+            for (String value : variableValueList) {
+                arrayBuilder.add(value);
+            }
+            objectBuilder.add(variableName, arrayBuilder.build());
+        }
         JsonObjectBuilder jsonObject = Json.createObjectBuilder();
-        jsonObject.add("variables", objectBuilder);        
+        jsonObject.add("variables", objectBuilder);
         return jsonObject.build().toString();
 
     }
