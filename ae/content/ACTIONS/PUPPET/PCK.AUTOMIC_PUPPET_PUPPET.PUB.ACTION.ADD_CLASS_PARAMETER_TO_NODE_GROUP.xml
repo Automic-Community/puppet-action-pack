@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
@@ -143,7 +142,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
@@ -207,7 +205,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
@@ -344,13 +341,13 @@ This action is used to add class parameter to a node group. This action fails if
 
 = Inputs =
 * Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
-* Username		                : Provide the username for API. E.g. puppetserver
+* Username		        : Provide the username for API. E.g. puppetserver
 * Password                      : Provide the password.
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name. E.g. puppetgroup
-* Class             		    : Specify the class name. E.g. apache,docker
-* Parameter		                : Specify the class parameter. E.g. dns.
-* Value		                	: Specify value for the class parameter. E.g. docker.net.
+* Class             		: Specify the class name. E.g. apache,docker
+* Parameter		        : Specify the class parameter. E.g. dns.
+* Value		              	: Specify value for the class parameter. E.g. docker.net.
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  

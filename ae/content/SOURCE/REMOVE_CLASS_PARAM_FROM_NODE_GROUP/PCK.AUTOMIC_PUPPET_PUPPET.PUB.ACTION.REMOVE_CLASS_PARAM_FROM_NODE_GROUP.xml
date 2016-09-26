@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
 <XHEADER state="1">
-<Title>Add new node</Title>
+<Title>Remove class parameter from node groups</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -62,12 +62,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">YES</UC4RB_PUP_SIGN_CERTs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
+<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_PARAM_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -84,7 +84,7 @@
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <AGENTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -98,7 +98,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="ADD_NEW_NODE" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.ADD_NEW_NODE@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="REMOVE_CLASS_PARAM_FROM_NODE_GROUP" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.REMOVE_CLASS_PARAM_FROM_NODE_GROUP@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -138,12 +138,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">YES</UC4RB_PUP_SIGN_CERTs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
+<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_PARAM_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -160,7 +160,7 @@
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <AGENTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -200,12 +200,12 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_NODE_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE"/>
-<UC4RB_PUP_SIGN_CERTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SIGN_CERT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE">YES</UC4RB_PUP_SIGN_CERTs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
+<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_PARAM_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -222,7 +222,7 @@
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <AGENTs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -286,9 +286,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_NEW_NODE" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
@@ -300,7 +300,7 @@
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" ontop="1">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1">
 <AGENTs.00 altview="0" haslist="0">&amp;AGENT#</AGENTs.00>
-<LOGINs.00 altview="0" haslist="0">&amp;LOGIN#</LOGINs.00>
+<LOGINs.00 altview="0" haslist="0">&amp;AGENT#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -327,25 +327,23 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP
 
 = General description =
-This action is used to add a new node to the puppet server and assign it to a node group. User needs to provide the connection details along with the node group name.
-Action covers the following steps:
-* Signs the certificate for the new node, based on the option selected by the user. The user must send a request to puppet server for signing the certificate.
-* Adds a new node to the given node group. The given node group name must be an existing one.
+This action is used to remove class parameter from anode group. This action fails if class parameter provided does not exists.
 
 = Failure Conditions =
 (none)
 
 = Inputs =
-* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
-* Username		                : Provide the username for API. E.g. puppetserver
-* Password                      : Provide the password.
-* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
-* Node name		                : Specify the node name you want to add. E.g. puppetagent. Node name should be an existing node.
-* Node group name               : Specify the node group name to which you want to add the node to. E.g. puppetgroup
-* Sign certificate              : Define if this action auto sign the new certificate for the new node. Only works if the the node is configured to remotely sign certificates. Possible values are YES or NO.
+
+* Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
+* Username    					: Provide the username for API. E.g puppetserver
+* Password         				: Provide the password
+* Skip SSL validation           : Skips SSL validation if checkbox is selected.
+* Node group name               : Specify the node group name. E.g. puppetgroup
+* Class name					: Specify the class name. E.g. class1,class2
+* Parameter name				: Specify the class parameter E.g. dns
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  

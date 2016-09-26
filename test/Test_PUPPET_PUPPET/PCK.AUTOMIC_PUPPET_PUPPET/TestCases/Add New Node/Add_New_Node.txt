@@ -4,6 +4,7 @@ Suite Teardown    Teardown
 Force Tags        add_new_node
 Test Template     Add New Node Template
 Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
 Resource          ../../Resources/messages.txt
 Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
