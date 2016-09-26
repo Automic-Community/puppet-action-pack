@@ -1,12 +1,14 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupId;
+import com.automic.puppet.actions.helper.GetGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
@@ -20,85 +22,86 @@ import com.sun.jersey.api.client.WebResource;
  */
 public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
 
-	private String nodeGroup;
-	private String className;
-	private String classParameter;
+    private String nodeGroup;
+    private String className;
+    private String classParameter;
 
-	public RemoveClassParamFromNodeGroupAction() {
-		addOption("nodegroup", true, "Node group name");
-		addOption("classname", true,
-				"Class name whose parameter is to be removed");
-		addOption("classparam", true, "Parameter to be removed");
-	}
+    public RemoveClassParamFromNodeGroupAction() {
+        addOption("nodegroup", true, "Node group name");
+        addOption("classname", true, "Class name whose parameter is to be removed");
+        addOption("classparam", true, "Parameter to be removed");
+    }
 
-	@Override
-	protected void executeSpecific() throws AutomicException {
-		WebResource webResClient = getClient();
-		// get auth token
-		String authToken = TokenHandler.getToken(webResClient, username,
-				password, loginApiVersion);
-		if (authToken == null) {
-			throw new AutomicException("Could not authenticate the user ["
-					+ username + "]");
-		}
+    @Override
+    protected void executeSpecific() throws AutomicException {
 
-		try {
-			prepareInputParameters();
+        WebResource webResClient = getClient();
 
-			String groupId = GetGroupId.restResponse(authToken, webResClient,
-					nodeGroup, apiVersion);
-			if (groupId == null) {
-				throw new AutomicException("No group id found for ["
-						+ nodeGroup + "]");
-			}
+        // get auth token
+        String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
+        if (authToken == null) {
+            throw new AutomicException("Could not authenticate the user [" + username + "]");
+        }
 
-			// url to add the node to node group
-			WebResource webresource = getClient().path("classifier-api")
-					.path(apiVersion).path("groups").path(groupId);
+        try {
+            prepareInputParameters();
 
-			ConsoleWriter.writeln("Calling URL to remove a class parameter: "
-					+ webresource.getURI());
+            // get group information
+            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
 
-			webresource.accept(MediaType.APPLICATION_JSON)
-					.header("X-Authentication", authToken)
-					.entity(getNodeJson(), MediaType.APPLICATION_JSON)
-					.post(ClientResponse.class);
-		} finally {
-			// revoke the token
-			TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
-		}
+            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
+            if (groupId == null) {
+                throw new AutomicException("No group id found for [" + nodeGroup + "]");
+            }
 
-	}
+            // check if class exist or not
+            if (!CommonUtil.checkClassExist(jsonobj, className, nodeGroup)) {
+                throw new AutomicException("No class found with the name [" + className + "]");
+            }
 
-	private String getNodeJson() {
+            // url to add the node to node group
+            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
-		JsonObjectBuilder jsonParamField = Json.createObjectBuilder();
-		jsonParamField.addNull(classParameter);
+            ConsoleWriter.writeln("Calling URL to remove a class parameter: " + webresource.getURI());
 
-		JsonObjectBuilder jsonClass = Json.createObjectBuilder();
-		jsonClass.add(className, jsonParamField);
+            webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
+                    .entity(getNodeJson(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
+        } finally {
+            // revoke the token
+            TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
+        }
 
-		JsonObjectBuilder json = Json.createObjectBuilder();
-		json.add("classes", jsonClass);
+    }
 
-		return json.build().toString();
-	}
+    private String getNodeJson() {
 
-	private void prepareInputParameters() throws AutomicException {
-		try {
-			nodeGroup = getOptionValue("nodegroup");
-			PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
+        JsonObjectBuilder jsonParamField = Json.createObjectBuilder();
+        jsonParamField.addNull(classParameter);
 
-			className = getOptionValue("classname");
-			PuppetValidator.checkNotEmpty(className, "Class name");
+        JsonObjectBuilder jsonClass = Json.createObjectBuilder();
+        jsonClass.add(className, jsonParamField);
 
-			classParameter = getOptionValue("classparam");
-			PuppetValidator.checkNotEmpty(classParameter, "Class name");
+        JsonObjectBuilder json = Json.createObjectBuilder();
+        json.add("classes", jsonClass);
 
-		} catch (AutomicException e) {
-			ConsoleWriter.write(e.getMessage());
-			throw e;
-		}
-	}
+        return json.build().toString();
+    }
+
+    private void prepareInputParameters() throws AutomicException {
+        try {
+            nodeGroup = getOptionValue("nodegroup");
+            PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
+
+            className = getOptionValue("classname");
+            PuppetValidator.checkNotEmpty(className, "Class name");
+
+            classParameter = getOptionValue("classparam");
+            PuppetValidator.checkNotEmpty(classParameter, "Class name");
+
+        } catch (AutomicException e) {
+            ConsoleWriter.write(e.getMessage());
+            throw e;
+        }
+    }
 
 }

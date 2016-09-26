@@ -16,7 +16,7 @@ import com.sun.jersey.api.client.WebResource;
  * @author shrutinambiar
  *
  */
-public final class GetGroupId {
+public final class GetGroupInfo {
 
     /**
      * Method to get the group id
@@ -28,31 +28,39 @@ public final class GetGroupId {
      * @return
      * @throws AutomicException
      */
-    public static String restResponse(String authToken, WebResource webresource, String nodeGroup, String apiVersion)
+    public static JsonObject restResponse(String authToken, WebResource webresource, String nodeGroup, String apiVersion)
             throws AutomicException {
         ClientResponse response = null;
 
         WebResource webres = webresource.path("classifier-api").path(apiVersion).path("groups");
 
-        ConsoleWriter.writeln("Calling URL to get the group ID : " + webres.getURI());
+        ConsoleWriter.writeln("Calling URL to get the group info : " + webres.getURI());
 
         response = webres.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
                 .get(ClientResponse.class);
 
-        return getGroupId(CommonUtil.jsonArrayResponse(response.getEntityInputStream()), nodeGroup);
+        return getJsonObject(CommonUtil.jsonArrayResponse(response.getEntityInputStream()), nodeGroup);
 
     }
-
-    private static String getGroupId(JsonArray jsonArray, String nodeGroup) {
-        String groupId = null;
-        for (int i = 0, arraySize = jsonArray.size(); i < arraySize; i++) {
-            JsonObject obj = jsonArray.getJsonObject(i);
+    
+    /**
+     * Get the jsonobject of the group, if found
+     * 
+     * @param jsonarray
+     * @param nodeGroup
+     * @return
+     */
+    private static JsonObject getJsonObject(JsonArray jsonarray, String nodeGroup) {
+        JsonObject obj = null;
+        for (int i = 0, arraySize = jsonarray.size(); i < arraySize; i++) {
+            obj = jsonarray.getJsonObject(i);
             if (nodeGroup.equals(obj.getString("name"))) {
-                groupId = obj.getString("id");
                 break;
+            } else {
+                obj = null;
             }
         }
-        return groupId;
+        return obj;
     }
-
+    
 }
