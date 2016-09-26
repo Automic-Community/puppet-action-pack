@@ -335,6 +335,8 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP
 = General description =
 This action is used to add class parameter to a node group. This action fails if class parameter provided does not exists. Also if the provided class parameter already exists for the class then action will update value for that parameter.
 
+= Note =
+*If user provides a class name that does not exist in the given node group then the action will add the class to node group.
 
 = Failure Conditions =
 (none)
