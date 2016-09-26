@@ -53,7 +53,7 @@ public class AddNewNodeAction extends AbstractHttpAction {
             }
 
             // url to add the node to node group
-            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId)
+            WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId)
                     .path("pin");
 
             ConsoleWriter.writeln("Calling URL to add a node to node group: " + webresource.getURI());

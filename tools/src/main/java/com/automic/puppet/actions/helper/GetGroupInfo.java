@@ -42,7 +42,7 @@ public final class GetGroupInfo {
         return getJsonObject(CommonUtil.jsonArrayResponse(response.getEntityInputStream()), nodeGroup);
 
     }
-    
+
     /**
      * Get the jsonobject of the group, if found
      * 
@@ -62,5 +62,5 @@ public final class GetGroupInfo {
         }
         return obj;
     }
-    
+
 }

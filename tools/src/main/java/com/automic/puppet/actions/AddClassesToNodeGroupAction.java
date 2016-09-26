@@ -3,11 +3,7 @@
  */
 package com.automic.puppet.actions;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
@@ -37,7 +33,7 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
     /**
      * list of classes
      */
-    private List<String> classList;
+    private String[] classList;
 
     /**
      * 
@@ -63,19 +59,16 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
             if (groupId == null) {
                 throw new AutomicException("No group id found for [" + nodeGroup + "]");
             }
-            // json object with classes
-            JsonObject jsonObject = buildJson();
 
             // Create POST request
-            WebResource webResource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
+            WebResource webResource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
             ConsoleWriter.writeln("Calling url " + webResource.getURI());
             ClientResponse response = webResource.header("X-Authentication", authToken)
-                    .entity(jsonObject.toString(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                    .entity(buildJson(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
                     .post(ClientResponse.class);
             // process response
             prepareOutput(response);
         } finally {
-
             // destroy token
             TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
         }
@@ -91,8 +84,8 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
             // classes
             String classes = getOptionValue("classes");
             PuppetValidator.checkNotEmpty(classes, "Classes");
-            classList = Arrays.asList(classes.split(","));
-            if (classList.size() == 0) {
+            classList = classes.split(",");
+            if (classList.length == 0) {
                 throw new AutomicException(
                         String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes", classes));
             }
@@ -110,7 +103,7 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
     }
 
     // generate json to add classes to node group
-    private JsonObject buildJson() {
+    private String buildJson() {
 
         JsonValue emptyJson = Json.createObjectBuilder().build();
 
@@ -118,7 +111,9 @@ public class AddClassesToNodeGroupAction extends AbstractHttpAction {
         for (String classname : classList) {
             objectBuilder.add(classname, emptyJson);
         }
-        return Json.createObjectBuilder().add("classes", objectBuilder).build();
+        JsonObjectBuilder classesJson = Json.createObjectBuilder();
+        classesJson.add("classes", objectBuilder);
+        return classesJson.build().toString();
 
     }
 

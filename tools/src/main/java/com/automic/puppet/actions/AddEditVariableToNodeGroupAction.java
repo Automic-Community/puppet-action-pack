@@ -4,7 +4,6 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
@@ -63,15 +62,13 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
             String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
             if (groupId == null) {
                 throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
-            // json object with classes
-            JsonObject jsonObject = buildJson();
+            }   
 
             // Create POST request
-            WebResource webResource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
+            WebResource webResource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
             ConsoleWriter.writeln("Calling url " + webResource.getURI());
             ClientResponse response = webResource.header("X-Authentication", authToken)
-                    .entity(jsonObject.toString(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                    .entity(buildJson(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
                     .post(ClientResponse.class);
             // process response
             prepareOutput(response);
@@ -109,11 +106,12 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
     }
 
     // generate json to add/edit variable to node group
-    private JsonObject buildJson() {
-
+    private String buildJson() {
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         objectBuilder.add(variableName, variableValue);
-        return Json.createObjectBuilder().add("variables", objectBuilder).build();
+        JsonObjectBuilder jsonObject = Json.createObjectBuilder();
+        jsonObject.add("variables", objectBuilder);        
+        return jsonObject.build().toString();
 
     }
 

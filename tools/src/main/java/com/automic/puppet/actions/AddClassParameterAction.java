@@ -1,7 +1,6 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
@@ -54,7 +53,7 @@ public class AddClassParameterAction extends AbstractHttpAction {
             }
 
             // url to add the node to node group
-            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
+            WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
             ConsoleWriter.writeln("Calling URL to add/edit a parameter: " + webresource.getURI());
 

@@ -60,7 +60,7 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
             }
 
             // url to add the node to node group
-            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
+            WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
             ConsoleWriter.writeln("Calling URL to remove a class parameter: " + webresource.getURI());
 
