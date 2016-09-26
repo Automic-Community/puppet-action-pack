@@ -108,4 +108,39 @@ public class CommonUtil {
         }
         return ret;
     }
+
+    /**
+     * Get the group Id for a given group name
+     * 
+     * @param jsonArray
+     * @param nodeGroup
+     * @return
+     */
+    public static String getGroupId(JsonObject jsonobj, String nodeGroup) {
+        String groupId = null;
+        if (jsonobj != null) {
+            groupId = jsonobj.getString("id");
+        }
+        return groupId;
+    }
+
+    /**
+     * Check if the class exist in the given node group
+     * 
+     * @param jsonArray
+     * @param className
+     * @param nodeGroup
+     * @return
+     */
+    public static boolean checkClassExist(JsonObject jsonobj, String className, String nodeGroup) {
+        boolean classExist = false;
+        if (jsonobj != null) {
+            JsonObject classobj = jsonobj.getJsonObject("classes");
+            if (classobj.containsKey(className)) {
+                classExist = true;
+            }
+
+        }
+        return classExist;
+    }
 }

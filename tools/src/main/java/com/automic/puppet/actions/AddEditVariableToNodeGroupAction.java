@@ -4,13 +4,15 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupId;
+import com.automic.puppet.actions.helper.GetGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
@@ -53,24 +55,30 @@ public class AddEditVariableToNodeGroupAction extends AbstractHttpAction {
         // generate auth token
         String authToken = TokenHandler.getToken(webResClient, username, password, apiVersion);
         // get group id based on node group name
-        String groupId = GetGroupId.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-        if (groupId == null) {
-            throw new AutomicException("No group id found for [" + nodeGroup + "]");
+
+        try {
+
+            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
+
+            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
+            if (groupId == null) {
+                throw new AutomicException("No group id found for [" + nodeGroup + "]");
+            }
+            // json object with classes
+            JsonObject jsonObject = buildJson();
+
+            // Create POST request
+            WebResource webResource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
+            ConsoleWriter.writeln("Calling url " + webResource.getURI());
+            ClientResponse response = webResource.header("X-Authentication", authToken)
+                    .entity(jsonObject.toString(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                    .post(ClientResponse.class);
+            // process response
+            prepareOutput(response);
+        } finally {
+            // destroy token
+            TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
         }
-        // json object with classes
-        JsonObject jsonObject = buildJson();
-
-        // Create POST request
-        WebResource webResource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
-        ConsoleWriter.writeln("Calling url " + webResource.getURI());
-        ClientResponse response = webResource.header("X-Authentication", authToken)
-                .entity(jsonObject.toString(), MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
-                .post(ClientResponse.class);
-        // process response
-        prepareOutput(response);
-
-        // destroy token
-        TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
     }
 
     // Validating if the given input is not empty
