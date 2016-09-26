@@ -1,13 +1,16 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
+import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupId;
+import com.automic.puppet.actions.helper.GetGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
@@ -42,7 +45,9 @@ public class AddNewNodeAction extends AbstractHttpAction {
         try {
             prepareInputParameters();
 
-            String groupId = GetGroupId.restResponse(authToken, webResClient, nodeGroup, apiVersion);
+            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
+
+            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
             if (groupId == null) {
                 throw new AutomicException("No group id found for [" + nodeGroup + "]");
             }
