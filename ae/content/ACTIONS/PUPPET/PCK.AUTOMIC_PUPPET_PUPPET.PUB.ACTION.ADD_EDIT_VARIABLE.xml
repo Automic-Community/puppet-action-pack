@@ -346,7 +346,7 @@ This action is used to add a new variable or edits an existing variable for node
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name to which you want to add or edit the variable. E.g. puppetgroup
 * Variable name           	: Specify the variable name to add or edit.
-* Variable value	        : Specify value which you want to set for variable.
+* Variable value	        : Specify value which you want to set for variable. To assign an array of values to the variable user can provide comma separated values. E.g. value1,value2
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
