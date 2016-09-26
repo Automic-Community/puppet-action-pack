@@ -9,7 +9,38 @@
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[About Automic's Puppet Package
 ================================
-]]></DOC>
+Puppet Enterprise is the leading platform for automatically delivering, operating and securing your infrastructure. The result is you can deliver more software faster than ever, while maintaining quality, security, and compliance. With this package we automate the given business goal:
+* Classify nodes into node group
+* Add/remove/replace classes from node group
+* Add/Edit variables in node group 
+
+
+=Supported versions=
+Puppet enterprise 4.5
+
+=Limitations=
+please add
+
+=Setup=
+* Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
+
+* For actions running on Puppet server the AE agent should be running on it.
+ 
+* For actions based on HTTP client the Agent should be able to access the Puppet server in order to make HTTP requests.
+
+* You should have connection details to connect to Puppet server.
+
+=Actions=
+Following actions are supported for Puppet Enterprise:
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
+* Action Description: This action is used to add multiple classes to a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE
+* Action Description: This action is used to add a new variable or edits an existing variable for node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP
+* Action Description: This action is used to add multiple classes to a node group.]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
