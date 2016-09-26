@@ -1,0 +1,74 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        add_class_parameter_to_node_group
+Test Template     Add Class Parameter To Node Group Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup         Class            Parameter         Value
+Add class parameter to a node group
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}     ${Class_Name}    ${Class_Param}    ${Param_Value}
+
+Update already existing class parameter for a node group
+                      OK        ${Node_Group}     ${Class_Name}    ${Class_Param}    Generated
+
+Assert Behavior for Non-Existing Node Group
+                      NOK       Invalid           ${Class_Name}    ${Class_Param}    ${Param_Value}
+
+Assert Behavior for Non-Existing Class
+                      NOK       ${Node_Group}     Invalid          ${Class_Param}    ${Param_Value}
+
+Assert Behavior for Non-Existing Class Parameter
+                      NOK       ${Node_Group}     ${Class_Name}    Invalid           ${Param_Value}
+
+Assert Node Group Name as Mandatory Field
+                      NOK       ${EMPTY}          ${Class_Name}    ${Class_Param}    ${Param_Value}
+
+Assert Class as Mandatory Field
+                      NOK       ${Node_Group}     ${EMPTY}         ${Class_Param}    ${Param_Value}
+
+Assert Parameter as Mandatory Field
+                      NOK       ${Node_Group}     ${Class_Name}    ${EMPTY}          ${Param_Value}
+
+Assert Value as Mandatory Field
+                      NOK       ${Node_Group}     ${Class_Name}    ${Class_Param}    ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "ADD CLASS PARAMETER TO NODE GROUP"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Add Class Parameter To Node Group Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}    ${Class}    ${Parameter}    ${Value}
+    [Documentation]    This test add class parameter to node group.
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${NodeGroup}: This field specifies the node group name to which you want to add class parameters.
+    ...    -${Class}: This field specifies the class name to which you want to add parameter.
+    ...    -${Parameter}: This field specifies the class parameter which you want to add.
+    ...    -${Value}: This field specifies the value for the parameter.
+    Generate String
+    Action Create    ${_ADD_CLASS_PARAM_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Run Keyword If    '${Classes}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASSES#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASSES#    ${Classes}
+    Run Keyword If    '${Parameter}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASS_PARAM#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASS_PARAM#    ${Parameter}
+    Run Keyword If    '${Value}' == 'Generated'    Action Set    &UC4RB_PUP_PARAM_VALUE#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_PARAM_VALUE#    ${Value}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "ADD CLASS PARAMETER TO NODE GROUP"*******

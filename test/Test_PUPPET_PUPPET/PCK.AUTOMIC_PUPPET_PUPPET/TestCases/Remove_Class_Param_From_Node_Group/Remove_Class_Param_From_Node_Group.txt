@@ -1,0 +1,65 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        remove_class_parameter_from_node_group
+Test Template     Remove Class Parameter From Node Group Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup         Class            Parameter
+Remove class parameter from node group
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}     ${Class_Name}    ${Class_Param}
+
+Assert Behavior for Non-Existing Class Parameter
+                      OK        ${Node_Group}     ${Class_Name}    Invalid
+
+Assert Behavior for Non-Existing Node Group
+                      NOK       Invalid           ${Class_Name}    ${Class_Param}
+
+Assert Behavior for Non-Existing Class
+                      NOK       ${Node_Group}     Invalid          ${Class_Param}
+
+Assert Node Group Name as Mandatory Field
+                      NOK       ${EMPTY}          ${Class_Name}    ${Class_Param}
+
+Assert Class as Mandatory Field
+                      NOK       ${Node_Group}     ${EMPTY}         ${Class_Param}
+
+Assert Parameter as Mandatory Field
+                      NOK       ${Node_Group}     ${Class_Name}    ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "REMOVE CLASS PARAMETER FROM NODE GROUP"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Remove Class Parameter From Node Group Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}    ${Class}    ${Parameter}
+    [Documentation]    This test remove class parameter from node group.
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${NodeGroup}: This field specifies the node group name from which you remove class parameter.
+    ...    -${Class}: This field specifies the class name from which you want remove add parameter.
+    ...    -${Parameter}: This field specifies the class parameter which you want to remove.
+    Generate String
+    Action Create    ${_REMOVE_CLASS_PARAM_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Run Keyword If    '${Classes}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASSES#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASSES#    ${Classes}
+    Run Keyword If    '${Parameter}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASS_PARAM#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASS_PARAM#    ${Parameter}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "REMOVE CLASS PARAMETER FROM NODE GROUP"*******
