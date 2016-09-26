@@ -19,14 +19,14 @@ Add class parameter to a node group
 Update already existing class parameter for a node group
                       OK        ${Node_Group}     ${Class_Name}    ${Class_Param}    Generated
 
-Assert Behaviour for Non-Existing Node Group
-                      NOK       Generated         ${Class_Name}    ${Class_Param}    ${Param_Value}
+Assert Behavior for Non-Existing Node Group
+                      NOK       Invalid           ${Class_Name}    ${Class_Param}    ${Param_Value}
 
-Assert Behaviour for Non-Existing Class
-                      NOK       ${Node_Group}     Generated        ${Class_Param}    ${Param_Value}
+Assert Behavior for Non-Existing Class
+                      NOK       ${Node_Group}     Invalid          ${Class_Param}    ${Param_Value}
 
-Assert Behaviour for Non-Existing Class Parameter
-                      NOK       ${Node_Group}     ${Class_Name}    Generated         ${Param_Value}
+Assert Behavior for Non-Existing Class Parameter
+                      NOK       ${Node_Group}     ${Class_Name}    Invalid           ${Param_Value}
 
 Assert Node Group Name as Mandatory Field
                       NOK       ${EMPTY}          ${Class_Name}    ${Class_Param}    ${Param_Value}
@@ -58,10 +58,14 @@ Add Class Parameter To Node Group Template
     Generate String
     Action Create    ${_ADD_CLASS_PARAM_ACTION}
     Connect To Puppet
-    Action Set    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
-    Action Set    &UC4RB_PUP_CLASSES#    ${Class}
-    Action Set    &UC4RB_PUP_CLASS_PARAM#    ${Parameter}
-    Action Set    &UC4RB_PUP_PARAM_VALUE#    ${Value}
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Run Keyword If    '${Classes}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASSES#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASSES#    ${Classes}
+    Run Keyword If    '${Parameter}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASS_PARAM#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASS_PARAM#    ${Parameter}
+    Run Keyword If    '${Value}' == 'Generated'    Action Set    &UC4RB_PUP_PARAM_VALUE#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_PARAM_VALUE#    ${Value}
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
