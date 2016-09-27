@@ -1,7 +1,6 @@
 package com.automic.puppet.actions;
 
 import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
@@ -24,7 +23,14 @@ import com.sun.jersey.api.client.WebResource;
  */
 public class AddNewNodeAction extends AbstractHttpAction {
 
+    /**
+     * Name of the node
+     */
     private String nodeName;
+
+    /**
+     * Name of the node group
+     */
     private String nodeGroup;
 
     public AddNewNodeAction() {

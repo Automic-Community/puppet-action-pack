@@ -337,6 +337,8 @@ This action is used to add class parameter to a node group. This action fails if
 
 = Note =
 *If user provides a class name that does not exist in the given node group then the action will add the class to node group.
+*If the user wants to add or edit multiple values for a given variable. The user must provide it in a valid json format.
+Example : ["value1","value2"]
 
 = Failure Conditions =
 (none)
@@ -349,7 +351,7 @@ This action is used to add class parameter to a node group. This action fails if
 * Node group name               : Specify the node group name. E.g. puppetgroup
 * Class             		: Specify the class name. E.g. apache,docker
 * Parameter		        : Specify the class parameter. E.g. dns.
-* Value		              	: Specify value for the class parameter. E.g. docker.net.
+* Value		              	: Specify value for the class parameter. E.g. value1 or ["value1","value2"]
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  

@@ -330,7 +330,10 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP
 
 = General description =
-This action is used to remove class parameter from a node group. This action fails if class parameter provided does not exists.
+This action is used to remove class parameter(s) from a node group. This action fails if class parameter provided does not exists.
+
+Note : 
+* Parameter name should be provided as comma seperated, if the user wants to remove multiple class parameters.
 
 = Failure Conditions =
 (none)
@@ -343,7 +346,7 @@ This action is used to remove class parameter from a node group. This action fai
 * Skip SSL validation           : Skips SSL validation if checkbox is selected.
 * Node group name               : Specify the node group name. E.g. puppetgroup
 * Class name			: Specify the class name. E.g. class1,class2
-* Parameter name		: Specify the class parameter E.g. dns
+* Parameter name		: Specify the class parameter name or names separated by comma. E.g. dns
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
