@@ -65,8 +65,7 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
-<UC4RB_PUP_NO_FAILs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NO_FAIL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
+<UC4RB_PUP_NO_FAILs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NO_FAIL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">NO</UC4RB_PUP_NO_FAILs.00>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
 <UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
 </PRPTBOX>
@@ -142,8 +141,7 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
-<UC4RB_PUP_NO_FAILs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NO_FAIL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
+<UC4RB_PUP_NO_FAILs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NO_FAIL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">NO</UC4RB_PUP_NO_FAILs.00>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
 <UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
 </PRPTBOX>
@@ -205,8 +203,7 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
-<UC4RB_PUP_NO_FAILs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NO_FAIL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
+<UC4RB_PUP_NO_FAILs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NO_FAIL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE">NO</UC4RB_PUP_NO_FAILs.00>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
 <UC4RB_PUP_VARA_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_VARA_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.READ_NODE_GROUP_VARIABLE"/>
 </PRPTBOX>
@@ -333,24 +330,24 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.READ_NODE_GROUP_VARIABLE
 
 = General description =
-This action is used to read value of a variable from node group
+This action is used to read value of a variable from node group.
 
 = Failure Conditions =
 (none)
 
 = Inputs =
-* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
-* Username		        : Provide the username for API. E.g. puppetserver
-* Password                      : Provide the password.
-* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
-* Node group name               : Specify the node group name of the variable. E.g. puppetgroup
-* Variable name           	: Specify the variable name to read. E.g. dns
-* End Successfully	        : End successfully If variable not found
-* Sudo Password                 : The password for the sudo command.
-* Options                       : Run using sudo password (and sudo username if specified).
-* Sudo Username                 : The username to be used for the sudo command. 		  
-* Overwrite Agent               : Overwrites the default agent
-* Overwrite Login               : Overwrites the default login
+* Puppet classifier URL         		: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
+* Username		        		: Provide the username for API. E.g. puppetserver
+* Password                      	        : Provide the password.
+* Skip SSL Validation           	        : Skips SSL validation if 'YES' is selected.
+* Node group name               	        : Specify the node group name of the variable. E.g. puppetgroup
+* Variable name           		        : Specify the variable name to read. E.g. dns
+* End successfully when variable not found	: End successfully when variable not found(NO is default).
+* Sudo Password                 		: The password for the sudo command.
+* Options                       		: Run using sudo password (and sudo username if specified).
+* Sudo Username                 		: The username to be used for the sudo command. 		  
+* Overwrite Agent               		: Overwrites the default agent
+* Overwrite Login               		: Overwrites the default login
 
 = Behavior =
 (none)

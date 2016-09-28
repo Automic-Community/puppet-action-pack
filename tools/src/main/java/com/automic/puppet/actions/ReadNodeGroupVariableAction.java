@@ -30,14 +30,14 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
 	 * Name of variable
 	 */
 	private String variableName;
-	private boolean failwhenvarnotfound;
+	private boolean endSuccessfully;
 
 	public ReadNodeGroupVariableAction() {
 		addOption("nodegroup", true, "Name of the node group");
 		addOption("varaname", true,
 				"Name of the variable to read from given node group");
-		addOption("failwhenvarnotfound", false,
-				"Fail action when varaibale not found");
+		addOption("endSuccessfully", true,
+				"End successfully when variable not found");
 		}
 
 	@Override
@@ -90,7 +90,7 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
 			variableName = getOptionValue("varaname");
 			PuppetValidator.checkNotEmpty(variableName, "varaname");
 			
-			failwhenvarnotfound = CommonUtil.checkNotEmpty(getOptionValue("failwhenvarnotfound"))?true:false;
+			endSuccessfully = "YES".equalsIgnoreCase(getOptionValue("endSuccessfully"))?true:false;
 
 		} catch (AutomicException e) {
 			ConsoleWriter.writeln(e);
@@ -108,9 +108,10 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
             if (variableObj.containsKey(variableName)) {
             	ConsoleWriter.writeln("UC4RB_PUP_VARA_VALUE::="+variableObj.getString(variableName)); 
             	}else{
-            		if(failwhenvarnotfound){
+            		if(!endSuccessfully){
             			throw new AutomicException("No variable found with name ["+ variableName + "]");
             		}
+            		ConsoleWriter.writeln("[INFO] No variable found with name ["+ variableName + "]"); 
             	}
 
         }
