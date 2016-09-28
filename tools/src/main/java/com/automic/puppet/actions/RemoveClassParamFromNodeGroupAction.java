@@ -7,6 +7,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.automic.puppet.actions.helper.GetGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
+import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
@@ -22,9 +23,20 @@ import com.sun.jersey.api.client.WebResource;
  */
 public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
 
+    /**
+     * Name of the node group
+     */
     private String nodeGroup;
+
+    /**
+     * Name of the class
+     */
     private String className;
-    private String classParameter;
+
+    /**
+     * Parameter list to be removed
+     */
+    private String[] classParamList;
 
     public RemoveClassParamFromNodeGroupAction() {
         addOption("nodegroup", true, "Node group name");
@@ -75,11 +87,13 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
 
     private String getNodeJson() {
 
-        JsonObjectBuilder jsonParamField = Json.createObjectBuilder();
-        jsonParamField.addNull(classParameter);
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+        for (String paramName : classParamList) {
+            objectBuilder.addNull(paramName);
+        }
 
         JsonObjectBuilder jsonClass = Json.createObjectBuilder();
-        jsonClass.add(className, jsonParamField);
+        jsonClass.add(className, objectBuilder);
 
         JsonObjectBuilder json = Json.createObjectBuilder();
         json.add("classes", jsonClass);
@@ -95,9 +109,14 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
             className = getOptionValue("classname");
             PuppetValidator.checkNotEmpty(className, "Class name");
 
-            classParameter = getOptionValue("classparam");
-            PuppetValidator.checkNotEmpty(classParameter, "Class name");
+            String classParameters = getOptionValue("classparam");
+            PuppetValidator.checkNotEmpty(classParameters, "Class name");
 
+            classParamList = classParameters.split(",");
+            if (classParamList.length == 0) {
+                throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
+                        classParameters));
+            }
         } catch (AutomicException e) {
             ConsoleWriter.write(e.getMessage());
             throw e;

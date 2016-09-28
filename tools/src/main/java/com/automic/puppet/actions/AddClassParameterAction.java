@@ -1,8 +1,13 @@
 package com.automic.puppet.actions;
 
+import java.io.StringReader;
+
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonReader;
+import javax.json.JsonStructure;
+import javax.json.stream.JsonParsingException;
 import javax.ws.rs.core.MediaType;
 
 import com.automic.puppet.actions.helper.GetGroupInfo;
@@ -22,10 +27,25 @@ import com.sun.jersey.api.client.WebResource;
  */
 public class AddClassParameterAction extends AbstractHttpAction {
 
+    /**
+     * Name of the node group
+     */
     private String nodeGroup;
+
+    /**
+     * Name of the class to which parameter will be added
+     */
     private String className;
+
+    /**
+     * Class parameter to be add
+     */
     private String classParameter;
-    private String paramValue;
+
+    /**
+     * Parameter value for the given class parameter.
+     */
+    private String paramValues;
 
     public AddClassParameterAction() {
         addOption("nodegroup", true, "Node group name");
@@ -68,11 +88,25 @@ public class AddClassParameterAction extends AbstractHttpAction {
 
     private String getNodeJson() {
 
-        JsonObjectBuilder jsonParamValue = Json.createObjectBuilder();
-        jsonParamValue.add(classParameter, paramValue);
+        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+
+        // check if the given parameter value is a valid json or just a string
+        JsonReader reader = Json.createReader(new StringReader(paramValues));
+        JsonStructure jsonstruct = null;
+
+        try {
+            jsonstruct = reader.read();
+        } catch (JsonParsingException ex) {
+        }
+
+        if (jsonstruct == null) {
+            objectBuilder.add(classParameter, paramValues);
+        } else {
+            objectBuilder.add(classParameter, jsonstruct);
+        }
 
         JsonObjectBuilder jsonParamField = Json.createObjectBuilder();
-        jsonParamField.add(className, jsonParamValue);
+        jsonParamField.add(className, objectBuilder);
 
         JsonObjectBuilder jsonClass = Json.createObjectBuilder();
         jsonClass.add("classes", jsonParamField);
@@ -91,8 +125,8 @@ public class AddClassParameterAction extends AbstractHttpAction {
             classParameter = getOptionValue("classparam");
             PuppetValidator.checkNotEmpty(classParameter, "Class name");
 
-            paramValue = getOptionValue("paramvalue");
-            PuppetValidator.checkNotEmpty(paramValue, "Class name");
+            paramValues = getOptionValue("paramvalue");
+            PuppetValidator.checkNotEmpty(paramValues, "Class name");
 
         } catch (AutomicException e) {
             ConsoleWriter.write(e.getMessage());
