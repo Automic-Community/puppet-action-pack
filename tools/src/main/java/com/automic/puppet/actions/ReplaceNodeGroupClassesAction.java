@@ -1,8 +1,11 @@
 package com.automic.puppet.actions;
 
+import java.util.Map.Entry;
+
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
 
 import com.automic.puppet.actions.helper.GetGroupInfo;
@@ -16,32 +19,20 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
- * This class removes a parameter from the given node group, if it exist.
+ * This class is used to replace existing node group classes with provided classes.
  * 
- * @author shrutinambiar
+ * @author anuragupadhyay
  *
  */
-public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
+public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
 
-    /**
-     * Name of the node group
-     */
     private String nodeGroup;
+    private String[] classesNameArray;
 
-    /**
-     * Name of the class
-     */
-    private String className;
-
-    /**
-     * Parameter list to be removed
-     */
-    private String[] classParamList;
-
-    public RemoveClassParamFromNodeGroupAction() {
+    public ReplaceNodeGroupClassesAction() {
         addOption("nodegroup", true, "Node group name");
-        addOption("classname", true, "Class name whose parameter is to be removed");
-        addOption("classparam", true, "Parameter to be removed");
+        addOption("classesname", true, "Classes name to be removed");
+
     }
 
     @Override
@@ -60,16 +51,11 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
 
             // get group information
             JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-
             String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
             if (groupId == null) {
                 throw new AutomicException("No group id found for [" + nodeGroup + "]");
             }
-
-            // check if class exist or not
-            if (!CommonUtil.checkClassExist(jsonobj, className, nodeGroup)) {
-                throw new AutomicException("No class found with the name [" + className + "]");
-            }
+            String jsonObject = prepareJsonObject(jsonobj);
 
             // url to add the node to node group
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
@@ -77,7 +63,8 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
             ConsoleWriter.writeln("Calling URL to remove a class parameter: " + webresource.getURI());
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
-                    .entity(getNodeJson(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
+                    .entity(jsonObject, MediaType.APPLICATION_JSON).put(ClientResponse.class);
+
         } finally {
             // revoke the token
             TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
@@ -85,20 +72,25 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
 
     }
 
-    private String getNodeJson() {
+    private String prepareJsonObject(JsonObject jsonobj) {
+
+        JsonValue emptyJson = Json.createObjectBuilder().build();
 
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-        for (String paramName : classParamList) {
-            objectBuilder.addNull(paramName);
+        for (String classname : classesNameArray) {
+            objectBuilder.add(classname, emptyJson);
         }
 
-        JsonObjectBuilder jsonClass = Json.createObjectBuilder();
-        jsonClass.add(className, objectBuilder);
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        for (Entry<String, JsonValue> entry : jsonobj.entrySet()) {
+            if (!"classes".equals(entry.getKey())) {
+                builder.add(entry.getKey(), entry.getValue());
+            } else {
+                builder.add("classes", objectBuilder.build());
+            }
+        }
 
-        JsonObjectBuilder json = Json.createObjectBuilder();
-        json.add("classes", jsonClass);
-
-        return json.build().toString();
+        return builder.build().toString();
     }
 
     private void prepareInputParameters() throws AutomicException {
@@ -106,17 +98,14 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
             nodeGroup = getOptionValue("nodegroup");
             PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
 
-            className = getOptionValue("classname");
-            PuppetValidator.checkNotEmpty(className, "Class name");
-
-            String classParameters = getOptionValue("classparam");
-            PuppetValidator.checkNotEmpty(classParameters, "Class name");
-
-            classParamList = classParameters.split(",");
-            if (classParamList.length == 0) {
+            String classesName = getOptionValue("classesname");
+            PuppetValidator.checkNotEmpty(classesName, "Class name");
+            classesNameArray = classesName.split(",");
+            if (classesNameArray.length == 0) {
                 throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
-                        classParameters));
+                        classesName));
             }
+
         } catch (AutomicException e) {
             ConsoleWriter.write(e.getMessage());
             throw e;
