@@ -40,7 +40,16 @@ Following actions are supported for Puppet Enterprise:
 * Action Description: This action is used to add a new variable or edits an existing variable for node group.
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP
-* Action Description: This action is used to add multiple classes to a node group.]]></DOC>
+* Action Description: This action is used to add multiple classes to a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP
+* Action Description: This action is used to add class parameter to a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP
+* Action Description: This action is used to remove class parameter from a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES
+* Action Description: This action is used to get all classes present in a node group published in an AE variable.]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
