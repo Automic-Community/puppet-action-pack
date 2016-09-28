@@ -49,7 +49,10 @@ Following actions are supported for Puppet Enterprise:
 * Action Description: This action is used to remove class parameter from a node group.
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES
-* Action Description: This action is used to get all classes present in a node group published in an AE variable.]]></DOC>
+* Action Description: This action is used to get all classes present in a node group published in an AE variable.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES
+* Action Description: This action is used to replace existing node group classes with provided classes.]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
