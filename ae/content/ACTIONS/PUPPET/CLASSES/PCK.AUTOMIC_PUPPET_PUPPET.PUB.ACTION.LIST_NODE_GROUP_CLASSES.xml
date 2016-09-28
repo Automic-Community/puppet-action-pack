@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES">
 <XHEADER state="1">
-<Title>Replace node group classes</Title>
+<Title>List classes assigned to node group</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -22,10 +22,10 @@
 <AutoDeactNo>0</AutoDeactNo>
 <AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
 <AutoDeactErrorFree>1</AutoDeactErrorFree>
-<DeactWhen/>
+<DeactWhen>ANY_OK</DeactWhen>
 <AutoDeactAlways>0</AutoDeactAlways>
 <DeactDelay>0</DeactDelay>
-<ActAtRun>0</ActAtRun>
+<ActAtRun>1</ActAtRun>
 <UC4Priority>0</UC4Priority>
 <MaxParallel2>0</MaxParallel2>
 <ReuseHG>1</ReuseHG>
@@ -62,11 +62,10 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES">
-<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES">
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -97,7 +96,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="REPLACE_NODE_GROUP_CLASSES" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.REPLACE_NODE_GROUP_CLASSES@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="LIST_NODE_GROUP_CLASSES" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODE_GROUP_CLASSES@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -122,7 +121,7 @@
 <node content="1" id="PVALUE" name="Parent Variables" parent="" type="TASKVALUE">
 <VALUE state="2">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
@@ -137,11 +136,10 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES">
-<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES">
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -198,11 +196,10 @@
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES">
-<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES">
+<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -275,7 +272,7 @@
 <node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
 <VALUE state="1">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
@@ -283,9 +280,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUP_CLASSES" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASSES" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
@@ -324,22 +321,21 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES
 
 = General description =
-This action is used to replace existing node group classes with provided classes. If provided classes is not a valid class action will fail.
+This action is used to get all classes present in a node group published in an AE variable. If there are no classes present in node group the action does not fail.
+This action fails if the node group name is invalid.
 
 = Failure Conditions =
 (none)
 
 = Inputs =
-
-* Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
-* Username    					: Provide the username for API. E.g puppetserver
-* Password         				: Provide the password
-* Skip SSL validation           : Skips SSL validation if checkbox is selected.
-* Node group name               : Specify the node group name. E.g. Apache_group
-* Classes						: Provide name of new classes. E.g. apt, docker, epel
+* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
+* Username		        : Provide the username for API. E.g. puppetserver
+* Password                      : Provide the password.
+* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
+* Node group name               : Specify the node group name. E.g. puppetgroup
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
@@ -350,7 +346,7 @@ This action is used to replace existing node group classes with provided classes
 (none)
 
 = Return Value =
-(none)
+* UC4RB_PUP_CLASS_LIST : comma separated list of classes present in node group
 
 = Outputs =
 * Return code is 0 in case of success.

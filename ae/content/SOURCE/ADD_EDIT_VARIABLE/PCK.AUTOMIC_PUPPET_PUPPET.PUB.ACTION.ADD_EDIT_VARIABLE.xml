@@ -334,7 +334,11 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE
 
 = General description =
-This action is used to add a new variable or edits an existing variable for node group. 
+This action is used to add new variable or edits an existing variable for node group. 
+
+Note:
+If the user wants to add or edit multiple values for a given variable. The user must provide it in a valid json format.
+Example : ["value1","value2"]
 
 = Failure Conditions =
 (none)
@@ -346,7 +350,7 @@ This action is used to add a new variable or edits an existing variable for node
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name to which you want to add or edit the variable. E.g. puppetgroup
 * Variable name           	: Specify the variable name to add or edit.
-* Variable value	        : Specify value which you want to set for variable. To assign an array of values to the variable user can provide comma separated values. E.g. value1,value2
+* Variable value	        : Specify value which you want to set for variable. E.g. value1 or ["value1","value2"]
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
