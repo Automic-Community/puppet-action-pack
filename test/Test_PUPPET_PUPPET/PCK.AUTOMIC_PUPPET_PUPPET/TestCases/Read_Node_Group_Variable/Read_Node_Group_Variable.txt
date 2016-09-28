@@ -1,0 +1,61 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        read_node_group_variable
+Test Template     Read Node Group Variable Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup         VariableName        EndSuccessfully
+Retrieve value for an variable which exists for provided node group
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}     ${Variable_Name}    ${EMPTY}
+
+Retrieve value for an variable which doesn't exists for provided node group and End Successfully is selected
+                      OK        ${Node_Group}     Invalid             If variable not found
+
+Assert Behavior for Non-Existing Node Group
+                      NOK       Invalid           ${Variable_Name}    ${EMPTY}
+
+Retrieve value for an variable which doesn't exists for provided node group and End Successfully is not selected
+                      NOK       ${Node_Group}     Invalid             ${EMPTY}
+
+Assert Node Group Name as Mandatory Field
+                      NOK       ${EMPTY}          ${Variable_Name}    If variable not found
+
+Assert Variable Name as Mandatory Field
+                      NOK       ${Node_Group}     ${EMPTY}            If variable not found
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "READ NODE GROUP VARIABLE"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Read Node Group Variable Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}    ${VariableName}    ${EndSuccessfully}
+    [Documentation]    This test retrieves value for an existing variable of node group
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${NodeGroup}: This field specifies the node group name.
+    ...    -${VariableName}: This field specifies the variable name whose value is to be retrieved.
+    ...    -${EndSuccessfully}: If this field is selected, action will execute successfully if variable doesn't exists for provided node group.
+    Action Create    ${_READ_NODE_GROUP_VARIABLE_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Run Keyword If    '${VariableName}' == 'Invalid'    Action Set    &UC4RB_PUP_VARA_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_VARA_NAME#    ${VariableName}
+    Action Set    &UC4RB_PUP_NO_FAIL#    ${EndSuccessfully}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_VARA_VALUE#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_VARA_VALUE#
+
+Teardown
+    Log    *******End Test "READ NODE GROUP VARIABLE"*******
