@@ -16,3 +16,5 @@ ${Class_Name}     docker
 #---- Add Class Parameter to Node Group -----------------------------------------------------------------------------
 ${Class_Param}    dns
 ${Param_Value}    docker.net
+#---- Read Node Group Variable-------------------------------------------------------------------------------
+${Variable_Name}    ntp_servers
