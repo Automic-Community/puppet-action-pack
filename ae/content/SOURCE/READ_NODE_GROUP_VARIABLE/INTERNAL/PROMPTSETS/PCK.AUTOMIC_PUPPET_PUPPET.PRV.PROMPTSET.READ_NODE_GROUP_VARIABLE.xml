@@ -66,25 +66,10 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </text><dynradiogroup alt="1" enabled="1" fill="b" focus="0" id="UC4RB_PUP_NO_FAILs.00" nl="1" text="End successfully when variable not found" tooltip="End successfully when variable not found" required="0">
-      <properties>
-        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.ITPA_SHARED.PRV.VARA.YES_NO</entry>
-        <entry name="xmlkey"/>
-        <entry name="xmlpath"/>
-        <entry name="text">End successfully when variable not found</entry>
-        <entry name="quotes"/>
-        <entry name="id">UC4RB_PUP_NO_FAILs.00</entry>
-        <entry name="enabled">0</entry>
-        <entry name="focus">0</entry>
-        <entry name="tooltip">End successfully when variable not found</entry>
-        <entry name="modifiable">1</entry>
-        <entry name="customfield"/>
-      <entry name="initvalue"/>
-         </properties>
-    </dynradiogroup></readpanel></dialog>]]></XUIEDITOR>
+    </text></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_NODE_GROUPs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_NODE_GROUP#" ReadFromTable="OPSE"></UC4RB_PUP_NODE_GROUPs.00><UC4RB_PUP_VARA_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_VARA_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_VARA_NAMEs.00><UC4RB_PUP_NO_FAILs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_NO_FAIL#" ReadFromTable="OPSE">NO</UC4RB_PUP_NO_FAILs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_NODE_GROUPs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_NODE_GROUP#" ReadFromTable="OPSE"></UC4RB_PUP_NODE_GROUPs.00><UC4RB_PUP_VARA_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_VARA_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_VARA_NAMEs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
