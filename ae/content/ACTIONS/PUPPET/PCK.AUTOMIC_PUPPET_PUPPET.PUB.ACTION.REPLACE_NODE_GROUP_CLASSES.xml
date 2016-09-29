@@ -327,19 +327,18 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES
 
 = General description =
-This action is used to replace existing node group classes with provided classes. If provided classes is not a valid class action will fail.
-
+This action is used to replace existing node group classes with provided classes. If provided classes are not valid then action will fail.
 = Failure Conditions =
 (none)
 
 = Inputs =
 
 * Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
-* Username    					: Provide the username for API. E.g puppetserver
-* Password         				: Provide the password
+* Username    			: Provide the username for API. E.g puppetserver
+* Password         		: Provide the password
 * Skip SSL validation           : Skips SSL validation if checkbox is selected.
 * Node group name               : Specify the node group name. E.g. Apache_group
-* Classes						: Provide name of new classes. E.g. apt, docker, epel
+* Classes			: Provide name of new classes. E.g. apt, docker, epel
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
