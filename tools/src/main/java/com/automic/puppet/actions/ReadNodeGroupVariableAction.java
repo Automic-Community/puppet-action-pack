@@ -4,6 +4,7 @@
 package com.automic.puppet.actions;
 
 import javax.json.JsonObject;
+import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
 
 import com.automic.puppet.actions.helper.GetGroupInfo;
@@ -98,7 +99,13 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
         if (jsonobj != null) {
             JsonObject variableObj = jsonobj.getJsonObject("variables");
             if (variableObj.containsKey(variableName)) {
-                ConsoleWriter.writeln("UC4RB_PUP_VARA_VALUE::=" + variableObj.get(variableName));
+
+                JsonValue varValue = variableObj.get(variableName);
+                if (varValue.getValueType() == JsonValue.ValueType.STRING) {
+                    ConsoleWriter.writeln("UC4RB_PUP_VARA_VALUE::=" + variableObj.getString(variableName));
+                } else {
+                    ConsoleWriter.writeln("UC4RB_PUP_VARA_VALUE::=" + varValue);
+                }
 
             } else {
                 if (!endSuccessfully) {
