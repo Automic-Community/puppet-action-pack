@@ -137,21 +137,11 @@
 : SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_PUP_PASSWORD#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
 
-
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
-
-
 ! Invoking java binary
-: SWITCH &$PLATFORM#
-:   CASE "WINDOWS"
-           &UC4RB_PUP_CMD# -password "%UC4_DECRYPTED_PWD%"
-:   CASE "UNIX"
-           &UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
-:   OTHER
-: ENDSWITCH
-
+&UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 ! Status messages
