@@ -4,15 +4,17 @@ Resource          ../../../Env/default.txt
 *** Variables ***
 #---- Promptset Fields --------------------------------------------------------------------------------------
 #---- Common Fields --------------------------------------------------------------------------------------
-${Puppet_URL}     https://192.168.112.104:4433
+${Puppet_URL}     https://learning.puppetlabs.vm:4433
 ${Puppet_Username}    automic
 ${Puppet_Password}    automic
-${SkipCertValidation}    Yes
-#---- Add new node --------------------------------------------------------------------------------------
+${SkipSSLValidation}    YES
+#---- Add new node, List Node Group Classes --------------------------------------------------------------------------------------
 ${Node_Name}      agentcentos.puppetlabs.vm
 ${Node_Group}     PE Agent
-#---- Add Classes to Node Group -----------------------------------------------------------------------------
+#---- Add Classes to Node Group, Replace Node Group Classes -----------------------------------------------------------------------------
 ${Class_Name}     docker
 #---- Add Class Parameter to Node Group -----------------------------------------------------------------------------
 ${Class_Param}    dns
 ${Param_Value}    docker.net
+#---- Read Node Group Variable-------------------------------------------------------------------------------
+${Variable_Name}    ntp_servers
