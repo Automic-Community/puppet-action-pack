@@ -57,7 +57,7 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
             }
             String jsonObject = prepareJsonObject(jsonobj);
 
-            // url to add the node to node group
+            // url to replace class in node group
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
             ConsoleWriter.writeln("Calling URL to replace classes parameter: " + webresource.getURI());
