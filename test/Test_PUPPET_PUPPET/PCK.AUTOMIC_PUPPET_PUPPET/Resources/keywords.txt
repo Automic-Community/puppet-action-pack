@@ -91,4 +91,4 @@ Connect To Puppet
     Action Set    &UC4RB_PUP_BASE_URL#    ${Puppet_URL}
     Action Set    &UC4RB_PUP_USERNAME#    ${Puppet_Username}
     Action Set    &UC4RB_PUP_PASSWORD#    ${Puppet_Password}
-    Action Set    &UC4RB_PUP_CERT_VALIDATION#    ${SkipCertValidation}
+    Action Set    &UC4RB_PUP_SSL_VALIDATION#    ${SkipSSLValidation}

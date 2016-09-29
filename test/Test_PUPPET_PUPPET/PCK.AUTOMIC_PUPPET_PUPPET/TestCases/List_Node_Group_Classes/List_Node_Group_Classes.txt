@@ -44,6 +44,8 @@ List Node Group Classes Template
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
     Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_CLASS_LIST#    ELSE IF    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found
     ...    &UC4RB_PUP_CLASS_LIST#
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_CLASS_COUNT#    ELSE IF    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found
+    ...    &UC4RB_PUP_CLASS_COUNT#
 
 Teardown
     Log    *******End Test "LIST NODE GROUP CLASSES"*******
