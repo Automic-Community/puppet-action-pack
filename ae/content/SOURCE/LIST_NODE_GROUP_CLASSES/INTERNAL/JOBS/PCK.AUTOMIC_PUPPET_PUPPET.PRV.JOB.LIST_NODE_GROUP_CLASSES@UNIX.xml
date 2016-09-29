@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODE_GROUP_CLASSES@UNIX">
 <XHEADER state="1">
-<Title/>
+<Title>List classes assigned to node group</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -32,7 +32,7 @@
 <DeactDelay>0</DeactDelay>
 <AutoDeactAlways>1</AutoDeactAlways>
 <AttDialog>0</AttDialog>
-<ActAtRun>1</ActAtRun>
+<ActAtRun>0</ActAtRun>
 <Consumption>0</Consumption>
 <UC4Priority>0</UC4Priority>
 <MaxParallel2>0</MaxParallel2>
@@ -109,7 +109,7 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[! Status messages
 
-: SET &UC4RB_LOGGING_ERROR# = "******** LIST NODE GROUP CLASSES ACTION FAILED ********"
+
 
 : DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
@@ -146,6 +146,7 @@
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 : SET &UC4RB_LOGGING_INFO# = "******** LIST NODE GROUP CLASSES ACTION EXECUTED SUCCESSFULLY ********"
+:  SET &UC4RB_LOGGING_ERROR# = "******** LIST NODE GROUP CLASSES ACTION FAILED ********"
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
@@ -161,18 +162,25 @@
 :SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
 
 :IF &STATUS# EQ 0
-:SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP",,"COL=DELIMITER", 'DELIMITER=*::=*')
+:SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_CLASS*","COL=DELIMITER", 'DELIMITER=*::=*')
 :PROCESS &HND#
 :   SET &KEY# = GET_PROCESS_LINE(&HND#,1)
 :   SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
-:   IF &KEY# EQ "UC4RB_PUP_CLASS_LIST"
-:      SET &UC4RB_PUP_CLASS_LIST# = STR_TRIM(&VALUE#)
-:      PUBLISH &UC4RB_PUP_CLASS_LIST#,,"WORKFLOW"
-:      TERM_PROCESS
-:   ENDIF
+
+:   SWITCH &KEY#
+:       CASE "UC4RB_PUP_CLASS_COUNT"
+:              SET &UC4RB_PUP_CLASS_COUNT# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_CLASS_COUNT#,,"WORKFLOW"
+
+:       CASE "UC4RB_PUP_CLASS_LIST"
+:              SET &UC4RB_PUP_CLASS_LIST# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_CLASS_LIST#,,"WORKFLOW"
+:   ENDSWITCH
+
 :ENDPROCESS
 :CLOSE_PROCESS &HND#
 :ELSE
+:  PSET &UC4RB_PUP_CLASS_COUNT# = ""
 :  PSET &UC4RB_PUP_CLASS_LIST# = ""
 :ENDIF]]></OSCRI>
 </POST_SCRIPT>
