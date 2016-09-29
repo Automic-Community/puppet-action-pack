@@ -3,6 +3,7 @@
  */
 package com.automic.puppet.actions;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import javax.json.JsonObject;
@@ -51,7 +52,7 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
             }
 
             // Get list of classes
-            String classList = getListOfClasses(jsonobj);
+            ArrayList<String> classList = getListOfClasses(jsonobj);
             // process response
             prepareOutput(classList);
         } finally {
@@ -78,28 +79,26 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
     }
 
     // print the list of class in AE vara UC4RB_PUP_CLASS_LIST in the job report
-    private void prepareOutput(String classList) throws AutomicException {
+    private void prepareOutput(ArrayList<String> classList) throws AutomicException {
         // write the node group details to job report
-        ConsoleWriter.writeln("UC4RB_PUP_CLASS_LIST::=" + classList);
+        ConsoleWriter.writeln("UC4RB_PUP_CLASS_COUNT::=" + classList.size());
+        String list = classList.toString();
+        ConsoleWriter.writeln("UC4RB_PUP_CLASS_LIST::=" + list.substring(1, list.length() - 1));
+
     }
 
     // read json to get list of classes in node group
-    private String getListOfClasses(JsonObject nodeGroupJson) {
+    private ArrayList<String> getListOfClasses(JsonObject nodeGroupJson) {
 
-        final StringBuilder stringBuilder = new StringBuilder();
-
+        ArrayList<String> classList = new ArrayList<>();
         Set<String> entries = nodeGroupJson.getJsonObject("classes").keySet();
-        int pointer = 1, size = entries.size();
+
         // iterate over all classes
         for (String className : entries) {
-            stringBuilder.append(className);
-            if (pointer < size) {
-                stringBuilder.append(",");
-                pointer++;
-            }
+            classList.add(className);
         }
 
-        return stringBuilder.toString();
+        return classList;
 
     }
 }
