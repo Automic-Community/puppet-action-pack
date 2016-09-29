@@ -31,7 +31,7 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
 
     public ReplaceNodeGroupClassesAction() {
         addOption("nodegroup", true, "Node group name");
-        addOption("classesname", true, "Classes name to be removed");
+        addOption("classesname", true, "Classes to be replace");
 
     }
 
@@ -60,7 +60,7 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
             // url to add the node to node group
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
-            ConsoleWriter.writeln("Calling URL to remove a class parameter: " + webresource.getURI());
+            ConsoleWriter.writeln("Calling URL to replace classes parameter: " + webresource.getURI());
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
                     .entity(jsonObject, MediaType.APPLICATION_JSON).put(ClientResponse.class);
