@@ -41,9 +41,9 @@ public class Cli {
 
     public void log(List<String> ignoreOptions) throws AutomicException {
         ConsoleWriter.newLine();
-        ConsoleWriter.write("**************************************************");
-        ConsoleWriter.write("     Parameter validation start      ");
-        ConsoleWriter.write("**************************************************");
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.writeln("     Parameter validation start      ");
+        ConsoleWriter.writeln("**************************************************");
         ConsoleWriter.newLine();
         for (Option o : cmd.getOptions()) {
             if (!ignoreOptions.contains(o.getOpt())) {

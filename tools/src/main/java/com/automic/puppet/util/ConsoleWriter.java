@@ -3,6 +3,8 @@ package com.automic.puppet.util;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import com.automic.puppet.exception.AutomicException;
+
 /**
  * This class writes content to standard console
  * 
@@ -10,7 +12,7 @@ import java.io.StringWriter;
  *
  */
 public final class ConsoleWriter {
-    private static final PrintWriter WRITER = System.console().writer();
+    private static final ByteWriter WRITER = new ByteWriter(System.out);
 
     /**
      * Method to write string to console
@@ -19,7 +21,11 @@ public final class ConsoleWriter {
      */
     public static void write(String content) {
         String temp = content != null ? content : "null";
-        WRITER.write(temp);
+        try {
+            WRITER.write(temp);
+        } catch (AutomicException e) {
+            System.out.println(content);
+        }
     }
 
     /**
@@ -27,7 +33,7 @@ public final class ConsoleWriter {
      * 
      */
     public static void newLine() {
-        WRITER.write(System.lineSeparator());
+        write(System.lineSeparator());
     }
 
     /**
@@ -60,6 +66,10 @@ public final class ConsoleWriter {
      * 
      */
     public static void flush() {
-        WRITER.flush();
+        try {
+            WRITER.flush();
+        } catch (AutomicException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

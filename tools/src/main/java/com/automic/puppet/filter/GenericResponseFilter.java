@@ -36,18 +36,18 @@ public class GenericResponseFilter extends ClientFilter {
         } else {
             msg = String.format(RESPONSE_CODE, response.getStatus());
         }
-        if (!ignoreCheck) {
-            if (!(response.getStatus() >= HTTP_SUCCESS_START && response.getStatus() <= HTTP_SUCCESS_END)) {
 
-                ConsoleWriter.writeln(CommonUtil.formatErrorMessage(msg));
+        if (!(response.getStatus() >= HTTP_SUCCESS_START && response.getStatus() <= HTTP_SUCCESS_END)) {
 
+            ConsoleWriter.writeln(CommonUtil.formatErrorMessage(msg));
+            if (!ignoreCheck) {
                 String responseMsg = response.getEntity(String.class);
                 throw new AutomicRuntimeException(responseMsg);
-
-            } else {
-                ConsoleWriter.writeln(msg);
-
             }
+
+        } else {
+            ConsoleWriter.writeln(msg);
+
         }
         return response;
     }

@@ -48,7 +48,7 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
         ConsoleWriter.newLine();
 
         // generate auth token
-        String authToken = TokenHandler.getToken(webResClient, username, password, apiVersion);
+        String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
         if (authToken == null) {
             throw new AutomicException("Could not authenticate the user [" + username + "]");
         }

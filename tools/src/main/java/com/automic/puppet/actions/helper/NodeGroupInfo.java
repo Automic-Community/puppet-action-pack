@@ -8,6 +8,7 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
+import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
@@ -48,7 +49,10 @@ public class NodeGroupInfo {
      */
     public String getGroupId(String nodeGroup) throws AutomicException {
         String groupId = getNodeGroup(nodeGroup).getString("id");
-        PuppetValidator.checkNotEmpty(groupId, "Node Group");
+        if (!CommonUtil.checkNotEmpty(groupId)) {
+            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Node Group",
+                    nodeGroup));
+        }
         return groupId;
     }
 
@@ -89,7 +93,10 @@ public class NodeGroupInfo {
                 obj = null;
             }
         }
-        PuppetValidator.checkNotNull(obj, "Node Group");
+        if (!CommonUtil.checkNotNull(obj)) {
+            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Node Group",
+                    nodeGroup));
+        }
         return obj;
     }
 
