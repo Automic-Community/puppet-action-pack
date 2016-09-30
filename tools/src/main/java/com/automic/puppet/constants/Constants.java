@@ -9,8 +9,8 @@ public class Constants {
     public static final int MINUS_ONE = -1;
     public static final int ZERO = 0;
 
-    public static final String ENV_CONNECTION_TIMEOUT = "CONNECTION_TIMEOUT";
-    public static final String ENV_READ_TIMEOUT = "READ_TIMEOUT";
+    public static final String ENV_CONNECTION_TIMEOUT = "ENV_CONNECTION_TIMEOUT";
+    public static final String ENV_READ_TIMEOUT = "ENV_READ_TIMEOUT";
     public static final String ENV_LOGIN_API_VERSION = "ENV_LOGINAPI_VERSION";
     public static final String ENV_LOGOUT_API_VERSION = "ENV_LOGOUTAPI_VERSION";
     public static final String ENV_API_VERSION = "ENV_API_VERSION";

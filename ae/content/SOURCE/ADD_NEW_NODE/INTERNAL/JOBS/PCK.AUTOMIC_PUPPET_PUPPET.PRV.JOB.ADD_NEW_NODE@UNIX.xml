@@ -152,9 +152,7 @@
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
-&UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
-
-
+&UC4RB_PUP_CMD#
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 : SET &UC4RB_LOGGING_INFO# = "******** ADD NEW ACTION EXECUTED SUCCESSFULLY ********"
 

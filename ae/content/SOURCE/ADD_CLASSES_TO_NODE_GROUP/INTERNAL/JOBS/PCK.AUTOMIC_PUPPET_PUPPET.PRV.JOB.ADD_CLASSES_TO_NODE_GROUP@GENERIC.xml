@@ -135,9 +135,9 @@
 ! Invoking java binary
 : SWITCH &$PLATFORM#
 :   CASE "WINDOWS"
-           &UC4RB_PUP_CMD# -password "%UC4_DECRYPTED_PWD%"
+           &UC4RB_PUP_CMD#
 :   CASE "UNIX"
-           &UC4RB_PUP_CMD# -password "$UC4_DECRYPTED_PWD"
+           &UC4RB_PUP_CMD#
 :   OTHER
 : ENDSWITCH
 
