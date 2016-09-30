@@ -1,0 +1,53 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        list_nodes
+Test Template     List Nodes Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup         Filter
+List node groups with valid inputs
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}     ${Filter}
+
+Assert node name and filter as optional fields
+                      OK        ${EMPTY}          ${EMPTY}
+
+Assert behaviour for Non-Existing Node Name
+                      OK        Invalid           ${Filter}
+
+Assert behaviour for invalid filter
+                      OK        ${Node_Group}     Invalid
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "LIST NODES"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+List Nodes Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}    ${NodeFilter}
+    [Documentation]    This test list classes assigned to node group
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${NodeGroup}: This field specifies the node group name to list only belonging nodes.
+    ...    -${Filter}: This field specifies filter which will be applied on node name. Eg. Dev
+    Generate String
+    Action Create    ${_LIST_NODES_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Run Keyword If    '${NodeFilter}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_FILTER#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_FILTER#    ${NodeFilter}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+
+Teardown
+    Log    *******End Test "LIST NODES"*******
