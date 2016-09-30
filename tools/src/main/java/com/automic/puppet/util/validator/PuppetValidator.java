@@ -22,6 +22,13 @@ public final class PuppetValidator {
                     parameter));
         }
     }
+    
+    public static void checkNotNull(Object parameter, String parameterName) throws AutomicException {
+        if (!CommonUtil.checkNotNull(parameter)) {
+            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, parameterName,
+                    parameter));
+        }
+    }
 
     public static void checkFileExists(File file) throws AutomicException {
         if (!(file.exists() && file.isFile())) {

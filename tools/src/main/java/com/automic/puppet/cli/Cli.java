@@ -14,6 +14,7 @@ import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.ConsoleWriter;
 
+
 /**
  * This class is used to parse the arguments against provided options using apache cli library. Further this class
  * provides method to retrieve the argument value.
@@ -39,10 +40,14 @@ public class Cli {
     }
 
     public void log(List<String> ignoreOptions) throws AutomicException {
-        ConsoleWriter.writeln("Input params ");
+        ConsoleWriter.newLine();
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.writeln("     Parameter validation start      ");
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.newLine();
         for (Option o : cmd.getOptions()) {
             if (!ignoreOptions.contains(o.getOpt())) {
-                ConsoleWriter.writeln(o.getDescription() + "[" + o.getOpt() + "]" + " = " + o.getValue());
+                ConsoleWriter.writeln("[" + o.getOpt() + "]" + " = " + o.getValue());
             }
         }
     }

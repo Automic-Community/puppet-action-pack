@@ -1,5 +1,11 @@
 package com.automic.puppet.constants;
 
+/**
+ * Exception constants used in the application
+ * 
+ * @author shrutinambiar
+ *
+ */
 public class ExceptionConstants {
 
     public static final String UNABLE_TO_WRITE = "Error writing on console";

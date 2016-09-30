@@ -8,11 +8,10 @@ import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupInfo;
+import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
@@ -40,6 +39,12 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
 
         WebResource webResClient = getClient();
 
+        ConsoleWriter.newLine();
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.writeln("    Execution starts for action      ");
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.newLine();
+
         // get auth token
         String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
         if (authToken == null) {
@@ -49,13 +54,11 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
         try {
             prepareInputParameters();
 
-            // get group information
-            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
-            if (groupId == null) {
-                throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
-            String jsonObject = prepareJsonObject(jsonobj);
+            NodeGroupInfo groupInfo = new NodeGroupInfo(authToken, webResClient, apiVersion);
+
+            String jsonObject = prepareJsonObject(groupInfo.getNodeGroup(nodeGroup));
+
+            String groupId = groupInfo.getGroupId(nodeGroup);
 
             // url to replace class in node group
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);

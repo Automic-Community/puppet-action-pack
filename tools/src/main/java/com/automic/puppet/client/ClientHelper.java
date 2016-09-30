@@ -6,7 +6,6 @@ import com.automic.puppet.cli.CliOptions;
 import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.ConsoleWriter;
 
 /**
  * Helper class to delegate request to specific Action based on input arguments .
@@ -28,7 +27,6 @@ public class ClientHelper {
 
     public static void executeAction(String[] actionParameters) throws AutomicException {
         String actionName = new Cli(new CliOptions(), actionParameters).getOptionValue(Constants.ACTION);
-        ConsoleWriter.writeln("Execution starts for action [" + actionName + "]...");
 
         AbstractAction action = null;
         try {

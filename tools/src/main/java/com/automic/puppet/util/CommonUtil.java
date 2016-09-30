@@ -31,6 +31,45 @@ public class CommonUtil {
 
     /**
      *
+     * Method to parse string containing numeric integer value. If string is not valid, then it returns the default
+     * value as specified.
+     *
+     * @param value
+     * @param defaultValue
+     * @return numeric value
+     */
+    public static int parseEnvIntValue(final String value, int defaultValue) {
+        String val = System.getenv(value);
+        int i;
+        if (checkNotNull(val)) {
+            try {
+                i = Integer.parseInt(val);
+            } catch (final NumberFormatException nfe) {
+                i = defaultValue;
+            }
+        } else {
+            i = defaultValue;
+        }
+        return i;
+    }
+
+    /**
+     * Method to parse string value. If string is not valid, then it returns the default value as specified.
+     * 
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static String parseEnvStringValue(final String value, String defaultValue) {
+        String val = System.getenv(value);
+        if (!checkNotNull(val)) {
+            val = defaultValue;
+        }
+        return val;
+    }
+
+    /**
+     *
      * Method to parse String containing numeric integer value. If string is not valid, then it returns the default
      * value as specified.
      *
@@ -107,21 +146,6 @@ public class CommonUtil {
                     || Constants.ONE.equalsIgnoreCase(value);
         }
         return ret;
-    }
-
-    /**
-     * Get the group Id for a given group name
-     * 
-     * @param jsonArray
-     * @param nodeGroup
-     * @return
-     */
-    public static String getGroupId(JsonObject jsonobj, String nodeGroup) {
-        String groupId = null;
-        if (jsonobj != null) {
-            groupId = jsonobj.getString("id");
-        }
-        return groupId;
     }
 
     /**

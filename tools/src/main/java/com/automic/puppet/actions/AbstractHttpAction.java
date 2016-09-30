@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.automic.puppet.actions;
 
 import java.net.URI;
@@ -12,7 +9,6 @@ import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.filter.GenericResponseFilter;
 import com.automic.puppet.util.CommonUtil;
-import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
@@ -73,14 +69,8 @@ public abstract class AbstractHttpAction extends AbstractAction {
     private Client client;
 
     public AbstractHttpAction() {
-        addOption(Constants.READ_TIMEOUT, true, "Read timeout");
-        addOption(Constants.CONNECTION_TIMEOUT, true, "Connection timeout");
         addOption(Constants.BASE_URL, true, "Puppet Base URL");
         addOption(Constants.PUPPET_USERNAME, true, "Puppet username");
-        addOption(Constants.PUPPET_PASSWORD, true, "Puppet Password");
-        addOption(Constants.LOGIN_API_VERSION, true, "Login Api version");
-        addOption(Constants.LOGOUT_API_VERSION, true, "Logout Api version");
-        addOption(Constants.API_VERSION, true, "Puppet services Api version");
         addOption(Constants.SKIP_CERT_VALIDATION, true, "Skip SSL validation");
     }
 
@@ -104,20 +94,19 @@ public abstract class AbstractHttpAction extends AbstractAction {
     private void prepareCommonInputs() throws AutomicException {
         String temp = getOptionValue(Constants.BASE_URL);
         try {
-            this.connectionTimeOut = CommonUtil.parseStringValue(getOptionValue(Constants.CONNECTION_TIMEOUT),
-                    Constants.MINUS_ONE);
-            PuppetValidator.lessThan(connectionTimeOut, Constants.ZERO, "Connect Timeout");
-            this.readTimeOut = CommonUtil.parseStringValue(getOptionValue(Constants.READ_TIMEOUT), Constants.MINUS_ONE);
-            PuppetValidator.lessThan(readTimeOut, Constants.ZERO, "Read Timeout");
+            this.connectionTimeOut = CommonUtil.parseEnvIntValue(Constants.ENV_CONNECTION_TIMEOUT,
+                    Constants.CONN_TIMEOUT);
+            this.readTimeOut = CommonUtil.parseEnvIntValue(Constants.ENV_READ_TIMEOUT, Constants.READ_TIMEOUT);
             this.baseUrl = new URI(temp);
             this.username = getOptionValue(Constants.PUPPET_USERNAME);
-            this.password = getOptionValue(Constants.PUPPET_PASSWORD);
-            this.loginApiVersion = getOptionValue(Constants.LOGIN_API_VERSION);
-            this.logoutApiVersion = getOptionValue(Constants.LOGOUT_API_VERSION);
-            this.apiVersion = getOptionValue(Constants.API_VERSION);
+            this.password = System.getenv("UC4_DECRYPTED_PWD");
+            this.loginApiVersion = CommonUtil.parseEnvStringValue(Constants.ENV_LOGIN_API_VERSION,
+                    Constants.LOGIN_API_VERSION);
+            this.logoutApiVersion = CommonUtil.parseEnvStringValue(Constants.ENV_LOGOUT_API_VERSION,
+                    Constants.LOGOUT_API_VERSION);
+            this.apiVersion = CommonUtil.parseEnvStringValue(Constants.ENV_API_VERSION, Constants.API_VERSION);
             this.skipCertValidation = getOptionValue(Constants.SKIP_CERT_VALIDATION);
-        } catch (AutomicException e) {
-            throw e;
+
         } catch (URISyntaxException e) {
             String msg = String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "URL", temp);
             throw new AutomicException(msg, e);

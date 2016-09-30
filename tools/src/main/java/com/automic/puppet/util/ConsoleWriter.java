@@ -1,5 +1,8 @@
 package com.automic.puppet.util;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import com.automic.puppet.exception.AutomicException;
 
 /**
@@ -11,30 +14,25 @@ import com.automic.puppet.exception.AutomicException;
 public final class ConsoleWriter {
     private static final ByteWriter WRITER = new ByteWriter(System.out);
 
-    private ConsoleWriter() {
-    }
-
     /**
-     * Method to write object to console
+     * Method to write string to console
      *
      * @param content
-     * @throws AutomicException
      */
-    public static void write(Object content) throws AutomicException {
-        String temp = content != null ? content.toString() : "null";
+    public static void write(String content) {
+        String temp = content != null ? content : "null";
         try {
             WRITER.write(temp);
-        } catch (AutomicException ae) {
-            ConsoleWriter.writeln(ae.getMessage());
+        } catch (AutomicException e) {
+            System.out.println(content);
         }
     }
 
     /**
      * Method to write a newline to console
      * 
-     * @throws AutomicException
      */
-    public static void newLine() throws AutomicException {
+    public static void newLine() {
         write(System.lineSeparator());
     }
 
@@ -42,23 +40,36 @@ public final class ConsoleWriter {
      * Method to write an Object to console and followed by newline.
      *
      * @param content
-     * @throws AutomicException
      */
-    public static void writeln(Object content) throws AutomicException {
-        write(content);
+    public static void writeln(Object content) {
+        String temp = content != null ? content.toString() : "null";
+        write(temp);
+        newLine();
+    }
+
+    /**
+     * Method to to log the trace.
+     * 
+     * @param content
+     */
+    public static void writeln(Throwable content) {
+        StringWriter sw = new StringWriter(4 * 1024);
+        PrintWriter pw = new PrintWriter(sw);
+        content.printStackTrace(pw);
+        pw.flush();
+        write(sw.toString());
         newLine();
     }
 
     /**
      * Method to flush to console
      * 
-     * @throws AutomicException
      */
-    public static void flush() throws AutomicException {
+    public static void flush() {
         try {
             WRITER.flush();
-        } catch (AutomicException ae) {
-            ConsoleWriter.writeln(ae.getMessage());
+        } catch (AutomicException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
