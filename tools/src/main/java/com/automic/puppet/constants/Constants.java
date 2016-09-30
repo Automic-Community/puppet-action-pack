@@ -5,10 +5,7 @@ package com.automic.puppet.constants;
  *
  */
 public class Constants {
-
-    public static final int MINUS_ONE = -1;
-    public static final int ZERO = 0;
-
+    
     public static final String ENV_CONNECTION_TIMEOUT = "ENV_CONNECTION_TIMEOUT";
     public static final String ENV_READ_TIMEOUT = "ENV_READ_TIMEOUT";
     public static final String ENV_LOGIN_API_VERSION = "ENV_LOGINAPI_VERSION";
@@ -20,12 +17,10 @@ public class Constants {
     public static final String LOGIN_API_VERSION = "v1";
     public static final String LOGOUT_API_VERSION = "v2";
     public static final String API_VERSION = "v1";
-
-    public static final int IO_BUFFER_SIZE = 4 * 1024;
+   
     public static final String ACTION = "action";
     public static final String HELP = "help";
 
-    public static final String HTTPS = "https";
     public static final String BASE_URL = "baseurl";
     public static final String PUPPET_USERNAME = "username";
     public static final String PUPPET_PASSWORD = "password";
@@ -35,7 +30,8 @@ public class Constants {
     public static final String TRUE = "TRUE";
     public static final String ONE = "1";
 
-    public static final String IGNORE_CHECK = "IGNORE-CHECK";
+    public static final String IGNORE_HTTPERROR = "IGNORE-HTTPERROR";
+    
 
     private Constants() {
     }

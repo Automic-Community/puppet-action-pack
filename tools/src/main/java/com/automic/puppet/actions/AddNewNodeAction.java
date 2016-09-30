@@ -7,7 +7,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
@@ -25,38 +27,28 @@ public class AddNewNodeAction extends AbstractHttpAction {
      * Name of the node group
      */
     private String nodeGroup;
-    
+
     /**
      * Name of the node
      */
     private String nodeName;
 
     public AddNewNodeAction() {
-        addOption("nodename", true, "Node to be added");
-        addOption("nodegroup", true, "Node group name to which the node is to be added");
+        addOption("nodename", true, "Node");
+        addOption("nodegroup", true, "Node Group");
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
+        prepareInputParameters();
         WebResource webResClient = getClient();
-        
-        ConsoleWriter.newLine();
-        ConsoleWriter.writeln("**************************************************");
-        ConsoleWriter.writeln("    Execution starts for action      ");
-        ConsoleWriter.writeln("**************************************************");
-        ConsoleWriter.newLine();
-        
-        String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
-        if (authToken == null) {
-            throw new AutomicException("Could not authenticate the user [" + username + "]");
-        }
 
+        TokenHandler tHandler = new TokenHandler(webResClient);
+        String authToken = tHandler.login(username);
         try {
-            prepareInputParameters();
+            String groupId = new NodeGroupInfo(authToken, webResClient).getGroupId(nodeGroup);
 
-            String groupId = new NodeGroupInfo(authToken, webResClient, apiVersion).getGroupId(nodeGroup);
-
-            // url to add the node to node group
+            String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId)
                     .path("pin");
 
@@ -66,24 +58,17 @@ public class AddNewNodeAction extends AbstractHttpAction {
                     .entity(getNodeJson(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
         } finally {
             // revoke the token
-            TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
+            tHandler.logout(authToken);
         }
-
 
     }
 
     private void prepareInputParameters() throws AutomicException {
-        try {
-            nodeGroup = getOptionValue("nodegroup");
-            PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
-            
-            nodeName = getOptionValue("nodename");
-            PuppetValidator.checkNotEmpty(nodeName, "Node name");
+        nodeGroup = getOptionValue("nodegroup");
+        PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
 
-        } catch (AutomicException e) {
-            ConsoleWriter.write(e.getMessage());
-            throw e;
-        }
+        nodeName = getOptionValue("nodename");
+        PuppetValidator.checkNotEmpty(nodeName, "Node name");
     }
 
     protected String getNodeJson() {

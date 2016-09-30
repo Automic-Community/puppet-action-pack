@@ -9,7 +9,6 @@ import javax.json.JsonStructure;
 import javax.json.stream.JsonParsingException;
 
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 
 /**
@@ -29,8 +28,8 @@ public class AddEditVariableToNodeGroupAction extends UpdateNodeGroupAction {
     private String variableValueList;
 
     public AddEditVariableToNodeGroupAction() {
-        addOption("varaname", true, "Name of variable to add/edit");
-        addOption("varavalue", true, "Value of variable");
+        addOption("varaname", true, "Variable name");
+        addOption("varavalue", true, "variable value");
     }
 
     @Override
@@ -42,20 +41,13 @@ public class AddEditVariableToNodeGroupAction extends UpdateNodeGroupAction {
 
     // Validating if the given input is not empty
     private void actionSpecificValidation() throws AutomicException {
-        try {
+        // variable name
+        variableName = getOptionValue("varaname");
+        PuppetValidator.checkNotEmpty(variableName, "varaname");
 
-            // variable name
-            variableName = getOptionValue("varaname");
-            PuppetValidator.checkNotEmpty(variableName, "varaname");
-
-            // value of variable
-            variableValueList = getOptionValue("varavalue");
-            PuppetValidator.checkNotEmpty(variableValueList, "varavalue");
-
-        } catch (AutomicException e) {
-            ConsoleWriter.writeln(e);
-            throw e;
-        }
+        // value of variable
+        variableValueList = getOptionValue("varavalue");
+        PuppetValidator.checkNotEmpty(variableValueList, "varavalue");
     }
 
     // generate json to add/edit variable to node group
@@ -81,7 +73,6 @@ public class AddEditVariableToNodeGroupAction extends UpdateNodeGroupAction {
         JsonObjectBuilder jsonObject = Json.createObjectBuilder();
         jsonObject.add("variables", objectBuilder);
         return jsonObject.build().toString();
-
     }
 
 }

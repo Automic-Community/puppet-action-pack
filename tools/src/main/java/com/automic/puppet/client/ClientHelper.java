@@ -6,6 +6,7 @@ import com.automic.puppet.cli.CliOptions;
 import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.ConsoleWriter;
 
 /**
  * Helper class to delegate request to specific Action based on input arguments .
@@ -33,8 +34,9 @@ public class ClientHelper {
             Class<?> classDefinition = Class.forName(getCanonicalName(actionName));
             action = (AbstractAction) classDefinition.newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            ConsoleWriter.writeln(e);
             String msg = String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, Constants.ACTION, actionName);
-            throw new AutomicException(msg, e);
+            throw new AutomicException(msg);
         }
         action.executeAction(actionParameters);
     }

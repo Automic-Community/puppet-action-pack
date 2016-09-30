@@ -9,7 +9,6 @@ import javax.json.JsonStructure;
 import javax.json.stream.JsonParsingException;
 
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 
 /**
@@ -36,9 +35,9 @@ public class AddClassParameterAction extends UpdateNodeGroupAction {
     private String paramValues;
 
     public AddClassParameterAction() {
-        addOption("classname", true, "Class name to add/edit the parameter");
-        addOption("classparam", true, "Parameter to be added/updated");
-        addOption("paramvalue", true, "Value of the parameter");
+        addOption("classname", true, "Class");
+        addOption("classparam", true, "Parameter");
+        addOption("paramvalue", true, "Value");
     }
 
     @Override
@@ -78,21 +77,14 @@ public class AddClassParameterAction extends UpdateNodeGroupAction {
     }
 
     private void actionSpecificValidation() throws AutomicException {
-        try {
+        className = getOptionValue("classname");
+        PuppetValidator.checkNotEmpty(className, "Class name");
 
-            className = getOptionValue("classname");
-            PuppetValidator.checkNotEmpty(className, "Class name");
+        classParameter = getOptionValue("classparam");
+        PuppetValidator.checkNotEmpty(classParameter, "Class name");
 
-            classParameter = getOptionValue("classparam");
-            PuppetValidator.checkNotEmpty(classParameter, "Class name");
-
-            paramValues = getOptionValue("paramvalue");
-            PuppetValidator.checkNotEmpty(paramValues, "Class name");
-
-        } catch (AutomicException e) {
-            ConsoleWriter.write(e.getMessage());
-            throw e;
-        }
+        paramValues = getOptionValue("paramvalue");
+        PuppetValidator.checkNotEmpty(paramValues, "Class name");
     }
 
 }

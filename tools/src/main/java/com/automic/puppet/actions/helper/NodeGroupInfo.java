@@ -8,11 +8,11 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
-import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
@@ -26,9 +26,11 @@ public class NodeGroupInfo {
 
     private JsonArray jsonArray;
 
-    public NodeGroupInfo(String authToken, WebResource webresource, String apiVersion) throws AutomicException {
+    public NodeGroupInfo(String authToken, WebResource webresource) throws AutomicException {
         ClientResponse response = null;
 
+        String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
+        
         WebResource webres = webresource.path("classifier-api").path(apiVersion).path("groups");
 
         ConsoleWriter.writeln("Calling URL to get the group info : " + webres.getURI());
@@ -63,7 +65,7 @@ public class NodeGroupInfo {
      * @return
      * @throws AutomicException
      */
-    public List<String> getGroupJson(String nodeGroup) throws AutomicException {
+    public List<String> getClasses(String nodeGroup) throws AutomicException {
         ArrayList<String> classList = new ArrayList<>();
         Set<String> entries = getNodeGroup(nodeGroup).getJsonObject("classes").keySet();
 

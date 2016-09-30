@@ -28,9 +28,10 @@ public class Cli {
             CommandLineParser parser = new DefaultParser();
             cmd = parser.parse(options.getOptions(), args, true);
         } catch (ParseException e) {
+            ConsoleWriter.writeln(e);
             ConsoleWriter.writeln("Error parsing the command line options");
             printHelp(options.getOptions());
-            throw new AutomicException(String.format(ExceptionConstants.INVALID_ARGS, e));
+            throw new AutomicException(String.format(ExceptionConstants.INVALID_ARGS, e.getMessage()));
         }
     }
 
@@ -41,13 +42,11 @@ public class Cli {
 
     public void log(List<String> ignoreOptions) throws AutomicException {
         ConsoleWriter.newLine();
-        ConsoleWriter.writeln("**************************************************");
-        ConsoleWriter.writeln("     Parameter validation start      ");
-        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.writeln("******     Input Parameters     ******");
         ConsoleWriter.newLine();
         for (Option o : cmd.getOptions()) {
             if (!ignoreOptions.contains(o.getOpt())) {
-                ConsoleWriter.writeln("[" + o.getOpt() + "]" + " = " + o.getValue());
+                ConsoleWriter.writeln("Parameter [" + o.getDescription() + "] = " + o.getValue());
             }
         }
     }

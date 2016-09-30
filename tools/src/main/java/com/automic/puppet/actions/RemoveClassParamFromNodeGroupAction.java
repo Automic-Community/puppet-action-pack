@@ -5,7 +5,6 @@ import javax.json.JsonObjectBuilder;
 
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 
 /**
@@ -27,15 +26,14 @@ public class RemoveClassParamFromNodeGroupAction extends UpdateNodeGroupAction {
     private String[] classParamList;
 
     public RemoveClassParamFromNodeGroupAction() {
-        addOption("classname", true, "Class name whose parameter is to be removed");
-        addOption("classparam", true, "Parameter to be removed");
+        addOption("classname", true, "Class");
+        addOption("classparam", true, "Parameter Name");
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
         actionSpecificValidation();
         super.executeSpecific();
-
     }
 
     protected String getEntity() {
@@ -55,22 +53,16 @@ public class RemoveClassParamFromNodeGroupAction extends UpdateNodeGroupAction {
     }
 
     private void actionSpecificValidation() throws AutomicException {
-        try {
+        className = getOptionValue("classname");
+        PuppetValidator.checkNotEmpty(className, "Class name");
 
-            className = getOptionValue("classname");
-            PuppetValidator.checkNotEmpty(className, "Class name");
+        String classParameters = getOptionValue("classparam");
+        PuppetValidator.checkNotEmpty(classParameters, "Class name");
 
-            String classParameters = getOptionValue("classparam");
-            PuppetValidator.checkNotEmpty(classParameters, "Class name");
-
-            classParamList = classParameters.split(",");
-            if (classParamList.length == 0) {
-                throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
-                        classParameters));
-            }
-        } catch (AutomicException e) {
-            ConsoleWriter.write(e.getMessage());
-            throw e;
+        classParamList = classParameters.split(",");
+        if (classParamList.length == 0) {
+            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
+                    classParameters));
         }
     }
 

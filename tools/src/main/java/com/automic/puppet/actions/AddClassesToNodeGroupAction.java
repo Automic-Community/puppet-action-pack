@@ -6,7 +6,6 @@ import javax.json.JsonValue;
 
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 
 /**
@@ -24,14 +23,13 @@ public class AddClassesToNodeGroupAction extends UpdateNodeGroupAction {
      * 
      */
     public AddClassesToNodeGroupAction() {
-        addOption("classes", true, "Json file containing json");
+        addOption("classes", true, "Classes");
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
         actionSpecificValidation();
         super.executeSpecific();
-
     }
 
     @Override
@@ -48,20 +46,13 @@ public class AddClassesToNodeGroupAction extends UpdateNodeGroupAction {
     }
 
     private void actionSpecificValidation() throws AutomicException {
-        try {
-            // classes
-            String classes = getOptionValue("classes");
-            PuppetValidator.checkNotEmpty(classes, "Classes");
-            classList = classes.split(",");
-            if (classList.length == 0) {
-                throw new AutomicException(
-                        String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes", classes));
-            }
-        } catch (AutomicException e) {
-            ConsoleWriter.writeln(e);
-            throw e;
+        // classes
+        String classes = getOptionValue("classes");
+        PuppetValidator.checkNotEmpty(classes, "Classes");
+        classList = classes.split(",");
+        if (classList.length == 0) {
+            throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes", classes));
         }
-
     }
 
 }
