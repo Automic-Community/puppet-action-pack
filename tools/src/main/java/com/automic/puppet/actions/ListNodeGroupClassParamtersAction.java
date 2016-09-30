@@ -17,7 +17,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
- * @author sumitsamson
+ * This class is responsible to get a class parameters for a given node group
  *
  */
 public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
@@ -57,7 +57,7 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
                 throw new AutomicException("No group id found for [" + nodeGroup + "]");
             }
 
-            // url to add the node to node group
+            // url to get parameters
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
             ConsoleWriter.writeln("Calling URL to get parameter(s): " + webresource.getURI());
