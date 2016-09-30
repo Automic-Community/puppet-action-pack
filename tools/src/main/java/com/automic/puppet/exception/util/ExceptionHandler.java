@@ -13,7 +13,8 @@ import com.automic.puppet.util.ConsoleWriter;
 public class ExceptionHandler {
     private static final int RESPONSE_NOT_OK = 1;
 
-    private static final String ERRORMSG = "Please check the input parameters. For more details refer Exception details.";
+    private static final String ERRORMSG = "Please check the input parameters. "
+            + "For more details refer Exception details.";
 
     private ExceptionHandler() {
 

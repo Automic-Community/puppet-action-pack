@@ -37,11 +37,13 @@ public final class TokenHandler {
 
         WebResource webres = webresource.path("rbac-api").path(apiVersion).path("auth").path("token");
 
+        ConsoleWriter.newLine();
         ConsoleWriter.writeln("Calling URL to authenticate the user : " + webres.getURI());
 
         response = webres.accept(MediaType.APPLICATION_JSON)
                 .entity(getJsonAuthentication(username, password), MediaType.APPLICATION_JSON)
                 .post(ClientResponse.class);
+        ConsoleWriter.newLine();
 
         return getAuthToken(CommonUtil.jsonObjectResponse(response.getEntityInputStream()));
 
@@ -59,9 +61,13 @@ public final class TokenHandler {
             throws AutomicException {
 
         WebResource webres = webresource.path("rbac-api").path(logoutApiVersion).path("tokens");
-        ConsoleWriter.writeln("Calling URL to delete the token : " + webres.getURI());
-        webres.queryParam("revoke_tokens", token).header("X-Authentication", token).delete(ClientResponse.class);
 
+        ConsoleWriter.newLine();
+        ConsoleWriter.writeln("Calling URL to delete the token : " + webres.getURI());
+
+        webres.queryParam("revoke_tokens", token).header("X-Authentication", token).header("IGNORE-CHECK", "true")
+                .delete(ClientResponse.class);
+        ConsoleWriter.newLine();
     }
 
     private static String getAuthToken(JsonObject jsonobj) {

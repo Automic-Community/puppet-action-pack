@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.automic.puppet.config;
 
 import java.io.FileInputStream;

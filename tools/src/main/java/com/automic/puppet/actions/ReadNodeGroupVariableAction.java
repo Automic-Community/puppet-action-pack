@@ -1,13 +1,10 @@
-/**
- * 
- */
 package com.automic.puppet.actions;
 
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupInfo;
+import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
@@ -43,25 +40,27 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
         prepareInputParameters();
 
         WebResource webResClient = getClient();
+
+        ConsoleWriter.newLine();
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.writeln("    Execution starts for action      ");
+        ConsoleWriter.writeln("**************************************************");
+        ConsoleWriter.newLine();
+
         // generate auth token
         String authToken = TokenHandler.getToken(webResClient, username, password, apiVersion);
-        // get group id based on node group name
+        if (authToken == null) {
+            throw new AutomicException("Could not authenticate the user [" + username + "]");
+        }
 
         try {
+            // get group id based on node group name
+            String groupId = new NodeGroupInfo(authToken, webResClient, apiVersion).getGroupId(nodeGroup);
 
-            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-
-            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
-            if (groupId == null) {
-                throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
-
-            // Create GET request
             WebResource webResource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
             ConsoleWriter.writeln("Calling url " + webResource.getURI());
             ClientResponse response = webResource.header("X-Authentication", authToken)
                     .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-            // process response
             prepareOutput(response);
         } finally {
             // destroy token
