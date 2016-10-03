@@ -14,6 +14,7 @@ import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
+import com.automic.puppet.util.ConsoleWriter;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
@@ -28,81 +29,24 @@ public final class HttpClientConfig {
     private HttpClientConfig() {
     }
 
-    public static Client getClient(String protocol, int connectionTimeOut, int readTimeOut, String skipCertValidation)
-            throws AutomicException {
-        Client client;
-
+    public static Client getClient(String skipCertValidation) throws AutomicException {
         ClientConfig config = new DefaultClientConfig();
-
-        config.getClasses().add(com.sun.jersey.multipart.impl.MultiPartWriter.class);
 
         // to skip certificate validation
         if (CommonUtil.convert2Bool(skipCertValidation)) {
-            try {
-                config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
-            } catch (KeyManagementException | NoSuchAlgorithmException e) {
-                throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT, e);
-            }
-
+            config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
         }
-
+        int connectionTimeOut = CommonUtil.getEnvParameter(Constants.ENV_CONNECTION_TIMEOUT, Constants.CONN_TIMEOUT);
+        ConsoleWriter.writeln("Using Connection timeout as " + connectionTimeOut + " (ms)");
+        int readTimeOut = CommonUtil.getEnvParameter(Constants.ENV_READ_TIMEOUT, Constants.READ_TIMEOUT);
+        ConsoleWriter.writeln("Using Read timeout as " + readTimeOut + " (ms)");
         config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
-
-        if (Constants.HTTPS.equalsIgnoreCase(protocol)) {
-            // https code goes here
-        }
-        client = Client.create(config);
-
-        return client;
+        return Client.create(config);
     }
 
-    /**
-     * Method to create HTTP client config with user defined ssl context
-     *
-     * @param keyStore
-     *            kesytore file
-     * @param password
-     *            password to keystore file
-     * @param connectionTimeOut
-     *            connection timeout
-     * @param readTimeOut
-     *            read timeout
-     * @return
-     * @throws AutomicException
-     */
-    public static ClientConfig getClientConfig(String keyStore, String password, int connectionTimeOut, int readTimeOut)
-            throws AutomicException {
-        ClientConfig config = new DefaultClientConfig();
-
-        config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
-        config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
-
-        if (keyStore != null && password != null) {
-            CertificatesManagement acm = new CertificatesManagement(keyStore, password);
-            HTTPSProperties props = new HTTPSProperties(acm.hostnameVerifier(), acm.getSslContext());
-            config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, props);
-
-        }
-
-        return config;
-    }
-
-    /**
-     * Method to create HTTP client config without user defined ssl context
-     *
-     * @param connectionTimeOut
-     * @param readTimeOut
-     * @return
-     * @throws AutomicException
-     */
-    public static ClientConfig getClientConfig(int connectionTimeOut, int readTimeOut) throws AutomicException {
-
-        return getClientConfig(null, null, connectionTimeOut, readTimeOut);
-    }
-
-    public static HTTPSProperties skipValidation() throws NoSuchAlgorithmException, KeyManagementException {
+    private static HTTPSProperties skipValidation() throws AutomicException {
 
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {
@@ -116,20 +60,22 @@ public final class HttpClientConfig {
             }
         } };
 
-        // Install the all-trusting trust manager
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-
         // Create all-trusting host name verifier
         HostnameVerifier allHostsValid = new HostnameVerifier() {
             public boolean verify(String hostname, SSLSession session) {
                 return true;
             }
         };
-
-        // Install the all-trusting host verifier
-        HTTPSProperties props = new HTTPSProperties(allHostsValid, sc);
-        return props;
+        // Install the all-trusting trust manager
+        try {
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HTTPSProperties props = new HTTPSProperties(allHostsValid, sc);
+            return props;
+        } catch (KeyManagementException | NoSuchAlgorithmException e) {
+            ConsoleWriter.writeln(e);
+            throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT);
+        }
     }
 
 }

@@ -1,7 +1,8 @@
 package com.automic.puppet.client;
 
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.exception.util.ExceptionHandler;
+import com.automic.puppet.exception.AutomicRuntimeException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 
 /**
@@ -16,29 +17,37 @@ import com.automic.puppet.util.ConsoleWriter;
 public final class Client {
 
     private static final int RESPONSE_OK = 0;
+    private static final int RESPONSE_NOT_OK = 1;
+
+    private static final String ERRORMSG = "Please check the input parameters.";
 
     private Client() {
     }
 
     /**
-     * Main method which will start the execution of an action on Atlassian Puppet. This method will call the
+     * Main method which will start the execution of an action on Puppet. This method will call the
      * ClientHelper class which will trigger the execution of specific action and then if action fails this main method
      * will handle the failed scenario and print the error message and system will exit with the respective response
      * code.
      *
-     * @param args
-     *            array of Arguments
+     * @param params
+     *            array of parameters
      */
-    public static void main(String[] args) throws AutomicException {
-        int responseCode = RESPONSE_OK;
+    public static void main(String[] params) {
+        ConsoleWriter.writeln("****** Execution starts ******");
+        int responseCode = RESPONSE_NOT_OK;        
         try {
-            ClientHelper.executeAction(args);
+            ClientHelper.executeAction(params);
+            responseCode = RESPONSE_OK;
+        } catch (AutomicException | AutomicRuntimeException e) {
+            ConsoleWriter.writeln(CommonUtil.formatErrorMessage(e.getMessage()));
+            ConsoleWriter.writeln(CommonUtil.formatErrorMessage(ERRORMSG));
         } catch (Exception e) {
-            responseCode = ExceptionHandler.handleException(e);
-        } finally {
-            ConsoleWriter.flush();
-        }
-        ConsoleWriter.writeln("@@@@@@@ Execution ends for action  with response code : " + responseCode);
+            ConsoleWriter.writeln(e);            
+            ConsoleWriter.writeln(CommonUtil.formatErrorMessage(ERRORMSG));
+        }        
+        ConsoleWriter.writeln("****** Execution ends with response code : " + responseCode);
+        ConsoleWriter.flush();
         System.exit(responseCode);
     }
 }
