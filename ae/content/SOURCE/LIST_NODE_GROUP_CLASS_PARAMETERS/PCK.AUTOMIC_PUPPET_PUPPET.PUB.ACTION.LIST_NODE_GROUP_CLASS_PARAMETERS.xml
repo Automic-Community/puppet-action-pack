@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 <UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 </PRPTBOX>
@@ -141,7 +140,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 <UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 </PRPTBOX>
@@ -203,7 +201,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 <UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODE_GROUP_CLASS_PARAMETERS"/>
 </PRPTBOX>
@@ -330,7 +327,11 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION. LIST_NODE_GROUP_CLASS_PARAMETERS
 
 = General description =
-This action is used to list the class parameters for node group/class pair.
+This action is used to list the class parameters for node group/class pair.The action returns the parameter along with the value which will stored in the dynamically
+created VARA.Incase for the given class there are no paramter then it will return an empty VARA.Apart from the VARA ,the count of the number of parameters also gets
+published.
+
+VARA will be created at location PACKAGES\APPDATA\TEMP. If the following folder location does not exists then VARA will be created at the root.
 
 = Failure Conditions =
 (none)
@@ -352,8 +353,8 @@ This action is used to list the class parameters for node group/class pair.
 (none)
 
 = Return Value =
-
-UC4RB_PUP_CLASS_PARAMS : comma separated list of class parameters
+UC4RB_PUP_CLASS_PARAM_COUNT : Count of the class pararmters returned.
+UC4RB_PUP_VARA_NAME : Name of the VARA containing the parameters along with the value.
 
 = Outputs =
 * Return code is 0 in case of success.

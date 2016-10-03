@@ -3,6 +3,8 @@
  */
 package com.automic.puppet.actions;
 
+import java.util.Set;
+
 import javax.json.JsonObject;
 import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
@@ -76,15 +78,31 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
         JsonObject jsonobj = CommonUtil.jsonObjectResponse(response.getEntityInputStream());
 
         if (jsonobj != null) {
-            JsonObject variableObj = jsonobj.getJsonObject("classes");
-            if (variableObj.containsKey(className)) {
+            JsonObject classObj = jsonobj.getJsonObject("classes");
+            if (classObj.containsKey(className)) {
 
-                JsonValue varValue = variableObj.get(className);
-                if (varValue.getValueType() == JsonValue.ValueType.STRING) {
-                    ConsoleWriter.writeln("UC4RB_PUP_CLASS_PARAMS::=" + variableObj.getString(className));
-                } else {
-                    ConsoleWriter.writeln("UC4RB_PUP_CLASS_PARAMS::=" + varValue);
+                JsonObject paramObj = classObj.getJsonObject(className);
+               // ConsoleWriter.writeln("UC4RB_PUP_CLASS_PARAMS::=" + paramObj);
+                
+                Set<String>keys = paramObj.keySet();
+                StringBuilder sb = new StringBuilder();
+                sb.append("UC4RB_PUP_CLASS_PARAM_COUNT::=");
+                sb.append(keys.size());
+                sb.append("\n");
+                
+                for(String key:paramObj.keySet()){
+                    sb.append("UC4RB_PUP_CLASS_PARAM_"+key+"::=");
+                    
+                    JsonValue varValue = paramObj.get(key);
+                    if (varValue.getValueType() == JsonValue.ValueType.STRING) {
+                        sb.append(paramObj.getString(key));
+                    } else {
+                        sb.append(paramObj.get(key));
+                    }
+                        sb.append("\n");
                 }
+               
+                ConsoleWriter.writeln(sb.toString());
 
             } else {
                 throw new AutomicException("No class found with name [" + className + "]");
