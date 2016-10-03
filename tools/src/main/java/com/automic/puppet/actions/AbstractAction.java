@@ -48,7 +48,7 @@ public abstract class AbstractAction {
 
     public final void executeAction(String[] args) throws AutomicException {
         cli = new Cli(actionOptions, args);
-        cli.log(Arrays.asList(new String[] { Constants.PUPPET_PASSWORD }));
+        cli.log(Arrays.asList(new String[] { Constants.ACTION }));
         execute();
     }
 

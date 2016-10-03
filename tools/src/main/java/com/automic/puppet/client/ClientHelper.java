@@ -28,15 +28,15 @@ public class ClientHelper {
 
     public static void executeAction(String[] actionParameters) throws AutomicException {
         String actionName = new Cli(new CliOptions(), actionParameters).getOptionValue(Constants.ACTION);
-        ConsoleWriter.writeln("Execution starts for action [" + actionName + "]...");
 
         AbstractAction action = null;
         try {
             Class<?> classDefinition = Class.forName(getCanonicalName(actionName));
             action = (AbstractAction) classDefinition.newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            ConsoleWriter.writeln(e);
             String msg = String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, Constants.ACTION, actionName);
-            throw new AutomicException(msg, e);
+            throw new AutomicException(msg);
         }
         action.executeAction(actionParameters);
     }

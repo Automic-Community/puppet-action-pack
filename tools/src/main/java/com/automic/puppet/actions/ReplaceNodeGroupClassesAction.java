@@ -8,8 +8,9 @@ import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupInfo;
+import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
@@ -30,32 +31,27 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
     private String[] classesNameArray;
 
     public ReplaceNodeGroupClassesAction() {
-        addOption("nodegroup", true, "Node group name");
-        addOption("classesname", true, "Classes to be replace");
+        addOption("nodegroup", true, "Node group");
+        addOption("classesname", true, "Classes");
 
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
-
+        prepareInputParameters();
         WebResource webResClient = getClient();
 
         // get auth token
-        String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
-        if (authToken == null) {
-            throw new AutomicException("Could not authenticate the user [" + username + "]");
-        }
+        TokenHandler tHandler = new TokenHandler(webResClient);
+        String authToken = tHandler.login(username);
 
         try {
-            prepareInputParameters();
+            NodeGroupInfo groupInfo = new NodeGroupInfo(authToken, webResClient);
 
-            // get group information
-            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
-            if (groupId == null) {
-                throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
-            String jsonObject = prepareJsonObject(jsonobj);
+            String jsonObject = prepareJsonObject(groupInfo.getNodeGroup(nodeGroup));
+
+            String groupId = groupInfo.getGroupId(nodeGroup);
+            String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
 
             // url to replace class in node group
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
@@ -67,7 +63,7 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
 
         } finally {
             // revoke the token
-            TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
+            tHandler.logout(authToken);
         }
 
     }
@@ -94,21 +90,15 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
     }
 
     private void prepareInputParameters() throws AutomicException {
-        try {
-            nodeGroup = getOptionValue("nodegroup");
-            PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
+        nodeGroup = getOptionValue("nodegroup");
+        PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
 
-            String classesName = getOptionValue("classesname");
-            PuppetValidator.checkNotEmpty(classesName, "Class name");
-            classesNameArray = classesName.split(",");
-            if (classesNameArray.length == 0) {
-                throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
-                        classesName));
-            }
-
-        } catch (AutomicException e) {
-            ConsoleWriter.write(e.getMessage());
-            throw e;
+        String classesName = getOptionValue("classesname");
+        PuppetValidator.checkNotEmpty(classesName, "Class name");
+        classesNameArray = classesName.split(",");
+        if (classesNameArray.length == 0) {
+            throw new AutomicException(
+                    String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes", classesName));
         }
     }
 
