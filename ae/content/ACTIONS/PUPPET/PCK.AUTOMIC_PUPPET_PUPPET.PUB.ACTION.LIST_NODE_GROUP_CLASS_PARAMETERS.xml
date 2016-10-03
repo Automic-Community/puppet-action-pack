@@ -354,7 +354,7 @@ VARA will be created at location PACKAGES\APPDATA\TEMP. If the following folder 
 
 = Return Value =
 UC4RB_PUP_CLASS_PARAM_COUNT : Count of the class pararmters returned.
-UC4RB_PUP_VARA_NAME : Name of the VARA containing the parameters along with the value.
+UC4RB_PUP_CLASS_PARAM_VARA : Name of the VARA containing the parameters along with the value.
 
 = Outputs =
 * Return code is 0 in case of success.

@@ -7,15 +7,12 @@ import java.util.Set;
 
 import javax.json.JsonObject;
 import javax.json.JsonValue;
-import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupInfo;
+import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
@@ -36,72 +33,58 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
 
     public ListNodeGroupClassParamtersAction() {
         addOption("nodegroup", true, "Node group name");
-        addOption("classname", true, "Class name whose parameters need to be retrieved");
+        addOption("classname", true, "Class name");
 
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
+        prepareInputParameters();
+
         WebResource webResClient = getClient();
-        // get auth token
-        String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
-        if (authToken == null) {
-            throw new AutomicException("Could not authenticate the user [" + username + "]");
-        }
+
+        // generate auth token
+        TokenHandler tHandler = new TokenHandler(webResClient);
+        String authToken = tHandler.login(username);
 
         try {
-            prepareInputParameters();
 
-            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
+            JsonObject ngJson = new NodeGroupInfo(authToken, webResClient).getNodeGroup(nodeGroup);
 
-            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
-            if (groupId == null) {
-                throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
+            prepareOutput(ngJson);
 
-            // url to get parameters
-            WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
-
-            ConsoleWriter.writeln("Calling URL to get parameter(s): " + webresource.getURI());
-
-            ClientResponse response = webresource.accept(MediaType.APPLICATION_JSON)
-                    .header("X-Authentication", authToken).get(ClientResponse.class);
-            prepareOutput(response);
         } finally {
-            // revoke the token
-            TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
+            // destroy token
+            tHandler.logout(authToken);
         }
 
     }
 
-    private void prepareOutput(ClientResponse response) throws AutomicException {
-        JsonObject jsonobj = CommonUtil.jsonObjectResponse(response.getEntityInputStream());
-
-        if (jsonobj != null) {
-            JsonObject classObj = jsonobj.getJsonObject("classes");
+    private void prepareOutput(JsonObject ngJson) throws AutomicException {
+        if (ngJson != null) {
+            JsonObject classObj = ngJson.getJsonObject("classes");
             if (classObj.containsKey(className)) {
 
                 JsonObject paramObj = classObj.getJsonObject(className);
-               // ConsoleWriter.writeln("UC4RB_PUP_CLASS_PARAMS::=" + paramObj);
-                
-                Set<String>keys = paramObj.keySet();
+
+                Set<String> keys = paramObj.keySet();
                 StringBuilder sb = new StringBuilder();
                 sb.append("UC4RB_PUP_CLASS_PARAM_COUNT::=");
                 sb.append(keys.size());
                 sb.append("\n");
-                
-                for(String key:paramObj.keySet()){
-                    sb.append("UC4RB_PUP_CLASS_PARAM_"+key+"::=");
-                    
+
+                for (String key : paramObj.keySet()) {
+                    sb.append("UC4RB_PUP_CLASS_PARAM_" + key + "::=");
+
                     JsonValue varValue = paramObj.get(key);
                     if (varValue.getValueType() == JsonValue.ValueType.STRING) {
                         sb.append(paramObj.getString(key));
                     } else {
                         sb.append(paramObj.get(key));
                     }
-                        sb.append("\n");
+                    sb.append("\n");
                 }
-               
+
                 ConsoleWriter.writeln(sb.toString());
 
             } else {
@@ -114,17 +97,11 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
     }
 
     private void prepareInputParameters() throws AutomicException {
-        try {
-            nodeGroup = getOptionValue("nodegroup");
-            PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
+        nodeGroup = getOptionValue("nodegroup");
+        PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
 
-            className = getOptionValue("classname");
-            PuppetValidator.checkNotEmpty(className, "Class name");
-
-        } catch (AutomicException e) {
-            ConsoleWriter.write(e.getMessage());
-            throw e;
-        }
+        className = getOptionValue("classname");
+        PuppetValidator.checkNotEmpty(className, "Class name");
     }
 
 }
