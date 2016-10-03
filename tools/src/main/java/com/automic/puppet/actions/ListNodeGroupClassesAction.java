@@ -1,17 +1,10 @@
-/**
- * 
- */
 package com.automic.puppet.actions;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.List;
 
-import javax.json.JsonObject;
-
-import com.automic.puppet.actions.helper.GetGroupInfo;
+import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
-import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.WebResource;
@@ -27,11 +20,8 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
      */
     private String nodeGroup;
 
-    /**
-     * 
-     */
     public ListNodeGroupClassesAction() {
-        addOption("nodegroup", true, "Name of the node group");
+        addOption("nodegroup", true, "Node Group");
     }
 
     @Override
@@ -40,46 +30,29 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
         WebResource webResClient = getClient();
 
         // generate auth token
-        String authToken = TokenHandler.getToken(webResClient, username, password, apiVersion);
+        TokenHandler tHandler = new TokenHandler(webResClient);
+        String authToken = tHandler.login(username);
         try {
-            // get group id based on node group name
-            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-
-            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
-
-            if (groupId == null) {
-                throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
-
             // Get list of classes
-            ArrayList<String> classList = getListOfClasses(jsonobj);
+            List<String> classList = new NodeGroupInfo(authToken, webResClient).getClasses(nodeGroup);
             // process response
             prepareOutput(classList);
         } finally {
             // destroy token
-            try {
-                TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            tHandler.logout(authToken);
         }
     }
 
     // Validating if the given input is not empty
     private void prepareInputParameters() throws AutomicException {
-        try {
-            // get node group
-            nodeGroup = getOptionValue("nodegroup");
-            PuppetValidator.checkNotEmpty(nodeGroup, "Node Group");
+        // get node group
+        nodeGroup = getOptionValue("nodegroup");
+        PuppetValidator.checkNotEmpty(nodeGroup, "Node Group");
 
-        } catch (AutomicException e) {
-            ConsoleWriter.writeln(e);
-            throw e;
-        }
     }
 
     // print the list of class in AE vara UC4RB_PUP_CLASS_LIST in the job report
-    private void prepareOutput(ArrayList<String> classList) throws AutomicException {
+    private void prepareOutput(List<String> classList) {
         // write the node group details to job report
         ConsoleWriter.writeln("UC4RB_PUP_CLASS_COUNT::=" + classList.size());
         String list = classList.toString();
@@ -87,18 +60,4 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
 
     }
 
-    // read json to get list of classes in node group
-    private ArrayList<String> getListOfClasses(JsonObject nodeGroupJson) {
-
-        ArrayList<String> classList = new ArrayList<>();
-        Set<String> entries = nodeGroupJson.getJsonObject("classes").keySet();
-
-        // iterate over all classes
-        for (String className : entries) {
-            classList.add(className);
-        }
-
-        return classList;
-
-    }
 }

@@ -9,7 +9,7 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[
 ! Add read action, URL and username  to java arguments
-: SET &UC4RB_PUP_CMD# = "java -jar &UC4RB_PUP_PATH_JAR#"
+: SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#"'
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -action &ACTION_NAME#")
 
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_BASE_URL#
@@ -27,12 +27,6 @@
 ! Load package parameters
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.LOAD_PCK_PARAMETERS
 
-! Add read timeout, connection timeout and apiversion to java arguments
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -readtimeout &UC4RB_PUP_READ_TIMEOUT#")
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -connectiontimeout &UC4RB_PUP_CONNECTION_TIMEOUT#")
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -apiversion &UC4RB_PUP_APIVERSION#")
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -loginapiversion &UC4RB_PUP_LOGIN_APIVERSION#")
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -logoutapiversion &UC4RB_PUP_LOGOUT_APIVERSION#")
 
 ]]></MSCRI>
 </SCRIPT>

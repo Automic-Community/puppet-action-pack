@@ -31,24 +31,43 @@ public class CommonUtil {
 
     /**
      *
-     * Method to parse String containing numeric integer value. If string is not valid, then it returns the default
+     * Method to read the value as defined in environment. If value is not valid integer, then it returns the default
      * value as specified.
      *
-     * @param value
+     * @param paramName
      * @param defaultValue
-     * @return numeric value
+     * @return parameter value
      */
-    public static int parseStringValue(final String value, int defaultValue) {
-        int i = defaultValue;
-        if (checkNotEmpty(value)) {
+    public static int getEnvParameter(final String paramName, int defaultValue) {
+        String val = System.getenv(paramName);
+        int i;
+        if (checkNotNull(val)) {
             try {
-                i = Integer.parseInt(value);
+                i = Integer.parseInt(val);
             } catch (final NumberFormatException nfe) {
                 i = defaultValue;
             }
+        } else {
+            i = defaultValue;
         }
         return i;
     }
+
+    /**
+     * Method to read environment value. If not defined then it returns the default value as specified.
+     * 
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static String getEnvParameter(final String paramName, String defaultValue) {
+        String val = System.getenv(paramName);
+        if (!checkNotNull(val)) {
+            val = defaultValue;
+        }
+        return val;
+    }
+
 
     /**
      * Method to check if a String is not empty
@@ -75,7 +94,7 @@ public class CommonUtil {
      * 
      * @param is
      *            input stream
-     * @return JSONObject
+     * @return {@link JsonObject}
      */
     public static JsonObject jsonObjectResponse(InputStream is) {
         return Json.createReader(is).readObject();
@@ -87,7 +106,7 @@ public class CommonUtil {
      * 
      * @param is
      *            input stream
-     * @return JSONObject
+     * @return {@link JsonArray}
      */
     public static JsonArray jsonArrayResponse(InputStream is) {
         return Json.createReader(is).readArray();
@@ -109,38 +128,4 @@ public class CommonUtil {
         return ret;
     }
 
-    /**
-     * Get the group Id for a given group name
-     * 
-     * @param jsonArray
-     * @param nodeGroup
-     * @return
-     */
-    public static String getGroupId(JsonObject jsonobj, String nodeGroup) {
-        String groupId = null;
-        if (jsonobj != null) {
-            groupId = jsonobj.getString("id");
-        }
-        return groupId;
-    }
-
-    /**
-     * Check if the class exist in the given node group
-     * 
-     * @param jsonArray
-     * @param className
-     * @param nodeGroup
-     * @return
-     */
-    public static boolean checkClassExist(JsonObject jsonobj, String className, String nodeGroup) {
-        boolean classExist = false;
-        if (jsonobj != null) {
-            JsonObject classobj = jsonobj.getJsonObject("classes");
-            if (classobj.containsKey(className)) {
-                classExist = true;
-            }
-
-        }
-        return classExist;
-    }
 }
