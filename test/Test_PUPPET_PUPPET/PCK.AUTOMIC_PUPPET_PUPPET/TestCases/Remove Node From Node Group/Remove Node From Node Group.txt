@@ -1,0 +1,63 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        remove_node_from_node_group
+Test Template     Remove Node From Node Group Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DataTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK            NodeGroup         NodeName
+Remove node from node group with valid node group name and valid node name
+                      [Tags]            main_scenarios
+                      OK                ${Node_Group}     ${Node_Name}
+
+Remove node from node group with multiplte node name
+                      OK                ${Node_Group}     learning.puppetlabs.vm,agentcentos.puppetlabs.vm
+
+Remove node from node group when one node is valid and other one is invalid
+                      OK                ${Node_Group}     learning.puppetlabs.vm,test
+
+Assertion with invalid node name
+                      OK                ${Node_Group}     Invalid
+
+Assertion with invalid node group name
+                      [Tags]            main_scenarios
+                      NOK               Invalid           ${Node_Name}
+
+Assert node group name as mandatory Field
+                      NOK               ${EMPTY}          ${Node_Name}
+
+Assert node name as mandatory Field
+                      NOK               ${Node_Group}     ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "REMOVE NODE FROM NODE GROUP"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Remove Node From Node Group Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}    ${NodeName}
+    [Documentation]    This action is used to remove node from the node group. These tests will run only on UNIX agent.
+    ...    -Precondition:  learning.puppetlabs.vm and agentcentos.puppetlabs.vm these node should exist. In case of invalid node name,given node name should be non existed
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK, NOK.
+    ...    -${NodeName}: This field specifies the node name you want to remove from node group. 
+    ...    -${NodeGroup}: This field specifies the node group name of which you want to remove the node
+    Generate String
+    Action Create    ${_REMOVE_NODE_FROM_NODE_GROUP_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Run Keyword If    '${NodeName}' == 'Invalid'    Action Set    UC4RB_PUP_NODES#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    UC4RB_PUP_NODES#    ${NodeName}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+
+Teardown
+    Log    *******End Test "REMOVE NODE FROM NODE GROUP"*******
