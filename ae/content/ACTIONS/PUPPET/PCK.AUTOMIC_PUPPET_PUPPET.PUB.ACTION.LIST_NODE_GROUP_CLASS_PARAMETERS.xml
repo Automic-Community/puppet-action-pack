@@ -324,11 +324,11 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION. LIST_NODE_GROUP_CLASS_PARAMETERS
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS
 
 = General description =
 This action is used to list the class parameters for node group/class pair.The action returns the parameter along with the value which will stored in the dynamically
-created VARA.Incase for the given class there are no paramter then it will return an empty VARA.Apart from the VARA ,the count of the number of parameters also gets
+created VARA.Incase for the given class there are no parameter then it will not create any VARA.Apart from the VARA ,the count of the number of parameters also gets
 published.
 
 VARA will be created at location PACKAGES\APPDATA\TEMP. If the following folder location does not exists then VARA will be created at the root.
