@@ -190,6 +190,8 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 !--- Publish VARA only when count is greater than 0
 :              IF &UC4RB_PUP_CLASS_PARAM_COUNT# > 0
 :                 PUBLISH &UC4RB_PUP_CLASS_PARAM_VARA#,,"WORKFLOW"
+:              ELSE
+:                 PSET &UC4RB_PUP_CLASS_PARAM_VARA# = ""
 :              ENDIF
 
 

@@ -3,6 +3,8 @@
  */
 package com.automic.puppet.actions;
 
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.json.JsonObject;
@@ -63,26 +65,31 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
     private void prepareOutput(JsonObject ngJson) throws AutomicException {
         if (ngJson != null) {
             JsonObject classObj = ngJson.getJsonObject("classes");
+
             if (classObj.containsKey(className)) {
 
                 JsonObject paramObj = classObj.getJsonObject(className);
 
-                Set<String> keys = paramObj.keySet();
+                Set<Entry<String, JsonValue>> paramEntrySet = paramObj.entrySet();
+
                 StringBuilder sb = new StringBuilder();
                 sb.append("UC4RB_PUP_CLASS_PARAM_COUNT::=");
-                sb.append(keys.size());
+                sb.append(paramEntrySet.size());
                 sb.append("\n");
 
-                for (String key : paramObj.keySet()) {
+                for (Map.Entry<String, JsonValue> entry : paramObj.entrySet())
+                {
+                    String key = entry.getKey();
                     sb.append("UC4RB_PUP_CLASS_PARAM_" + key + "::=");
 
-                    JsonValue varValue = paramObj.get(key);
+                    JsonValue varValue = entry.getValue();
                     if (varValue.getValueType() == JsonValue.ValueType.STRING) {
                         sb.append(paramObj.getString(key));
                     } else {
                         sb.append(paramObj.get(key));
                     }
                     sb.append("\n");
+
                 }
 
                 ConsoleWriter.writeln(sb.toString());
