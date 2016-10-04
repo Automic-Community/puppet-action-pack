@@ -26,7 +26,7 @@ public class UpdateNodeGroupAction extends AbstractHttpAction {
     protected String nodeGroup;
 
     public UpdateNodeGroupAction() {
-        addOption("nodegroup", true, "Node group");
+        addOption("nodegroup", true, "Node group name");
     }
 
     @Override

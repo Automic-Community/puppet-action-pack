@@ -31,7 +31,7 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
     private String[] classesNameArray;
 
     public ReplaceNodeGroupClassesAction() {
-        addOption("nodegroup", true, "Node group");
+        addOption("nodegroup", true, "Node group name");
         addOption("classesname", true, "Classes");
 
     }

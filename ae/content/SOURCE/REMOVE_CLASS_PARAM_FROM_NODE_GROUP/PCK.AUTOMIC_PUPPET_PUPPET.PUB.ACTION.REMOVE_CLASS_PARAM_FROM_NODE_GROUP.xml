@@ -65,7 +65,7 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
-<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 <UC4RB_PUP_PARAM_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 </PRPTBOX>
@@ -141,7 +141,7 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
-<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 <UC4RB_PUP_PARAM_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 </PRPTBOX>
@@ -203,7 +203,7 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP">
-<UC4RB_PUP_CLASS_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
+<UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 <UC4RB_PUP_PARAM_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_CLASS_PARAM_FROM_NODE_GROUP"/>
 </PRPTBOX>
@@ -345,7 +345,7 @@ Note :
 * Password         		: Provide the password
 * Skip SSL validation           : Skips SSL validation if checkbox is selected.
 * Node group name               : Specify the node group name. E.g. puppetgroup
-* Class name			: Specify the class name. E.g. class1,class2
+* Class name			: Specify the class name. E.g. docker
 * Parameter name		: Specify the class parameter name or names separated by comma. E.g. dns
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).

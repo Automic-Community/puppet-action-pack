@@ -2,10 +2,18 @@ package com.automic.puppet.actions;
 
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
+import javax.ws.rs.core.MediaType;
 
+import com.automic.puppet.actions.helper.NodeGroupInfo;
+import com.automic.puppet.actions.helper.TokenHandler;
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
+import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 
 /**
  * This class removes a parameter from the given node group, if it exist.
@@ -13,7 +21,12 @@ import com.automic.puppet.util.validator.PuppetValidator;
  * @author shrutinambiar
  *
  */
-public class RemoveClassParamFromNodeGroupAction extends UpdateNodeGroupAction {
+public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
+
+    /**
+     * Node group name
+     */
+    private String nodeGroup;
 
     /**
      * Name of the class
@@ -26,14 +39,46 @@ public class RemoveClassParamFromNodeGroupAction extends UpdateNodeGroupAction {
     private String[] classParamList;
 
     public RemoveClassParamFromNodeGroupAction() {
+        addOption("nodegroup", true, "Node group name");
         addOption("classname", true, "Class");
         addOption("classparam", true, "Parameter Name");
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
-        actionSpecificValidation();
-        super.executeSpecific();
+
+        WebResource webResClient = getClient();
+
+        // get auth token
+        TokenHandler tHandler = new TokenHandler(webResClient);
+        String authToken = tHandler.login(username);
+
+        try {
+            prepareInputParameters();
+
+            // get group information
+            NodeGroupInfo groupInfo = new NodeGroupInfo(authToken, webResClient);
+
+            String groupId = groupInfo.getGroupId(nodeGroup);
+
+            String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
+
+            // check if class exist or not
+            if (!groupInfo.checkClassExist(className, nodeGroup)) {
+                throw new AutomicException("No class found with the name [" + className + "]");
+            }
+
+            // url to add the node to node group
+            WebResource webresource = getClient().path("classifier-api").path(apiVersion).path("groups").path(groupId);
+
+            ConsoleWriter.writeln("Calling URL to remove a class parameter: " + webresource.getURI());
+
+            webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
+                    .entity(getEntity(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
+        } finally {
+            // revoke the token
+            tHandler.logout(authToken);
+        }
     }
 
     protected String getEntity() {
@@ -52,7 +97,11 @@ public class RemoveClassParamFromNodeGroupAction extends UpdateNodeGroupAction {
         return json.build().toString();
     }
 
-    private void actionSpecificValidation() throws AutomicException {
+    private void prepareInputParameters() throws AutomicException {
+
+        nodeGroup = getOptionValue("nodegroup");
+        PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
+
         className = getOptionValue("classname");
         PuppetValidator.checkNotEmpty(className, "Class name");
 
