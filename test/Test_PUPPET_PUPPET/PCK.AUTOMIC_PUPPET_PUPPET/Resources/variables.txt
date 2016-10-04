@@ -8,7 +8,7 @@ ${Puppet_URL}     https://learning.puppetlabs.vm:4433
 ${Puppet_Username}    automic
 ${Puppet_Password}    automic
 ${SkipSSLValidation}    YES
-#---- Add new node, List Node Group Classes, List Node Groups, List Nodes ------------------------------------
+#---- Add new node, List Node Group Classes, List Node Groups -----------------------------------------------
 ${Node_Name}      agentcentos.puppetlabs.vm
 ${Node_Group}     PE Agent
 #---- Add Classes to Node Group, Replace Node Group Classes --------------------------------------------------
@@ -20,4 +20,4 @@ ${Param_Value}    docker.net
 ${Variable_Name}    ntp_servers
 #---- List Node Group, List Nodes----------------------------------------------------------------------------
 ${Filter}         agent*
-
+${Puppet_URL_For_List_Nodes}    https://learning.puppetlabs.vm:8080
