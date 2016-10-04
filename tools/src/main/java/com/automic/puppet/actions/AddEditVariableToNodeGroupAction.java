@@ -29,7 +29,7 @@ public class AddEditVariableToNodeGroupAction extends UpdateNodeGroupAction {
 
     public AddEditVariableToNodeGroupAction() {
         addOption("varaname", true, "Variable name");
-        addOption("varavalue", true, "variable value");
+        addOption("varavalue", true, "Variable value");
     }
 
     @Override

@@ -103,6 +103,27 @@ public class NodeGroupInfo {
     }
 
     /**
+     * Check if the class exist in the given node group
+     * 
+     * @param jsonArray
+     * @param className
+     * @param nodeGroup
+     * @return
+     * @throws AutomicException
+     */
+    public boolean checkClassExist(String className, String nodeGroup) throws AutomicException {
+        JsonObject jsonobj = getNodeGroup(nodeGroup);
+        boolean classExist = false;
+        if (jsonobj != null) {
+            JsonObject classobj = jsonobj.getJsonObject("classes");
+            if (classobj.containsKey(className)) {
+                classExist = true;
+            }
+        }
+        return classExist;
+    }
+
+        /**
      * Get the available node groups
      * 
      * @return List of node groups

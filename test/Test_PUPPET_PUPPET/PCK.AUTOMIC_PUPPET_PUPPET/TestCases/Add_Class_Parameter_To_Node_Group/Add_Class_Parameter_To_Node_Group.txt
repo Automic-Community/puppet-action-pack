@@ -60,8 +60,8 @@ Add Class Parameter To Node Group Template
     Connect To Puppet
     Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
-    Run Keyword If    '${Classes}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASSES#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_PUP_CLASSES#    ${Classes}
+    Run Keyword If    '${Classes}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_CLASS#    ${Classes}
     Run Keyword If    '${Parameter}' == 'Invalid'    Action Set    &UC4RB_PUP_CLASS_PARAM#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_CLASS_PARAM#    ${Parameter}
     Run Keyword If    '${Value}' == 'Generated'    Action Set    &UC4RB_PUP_PARAM_VALUE#    ${Generated_Name}_${Time}    ELSE    Action Set
