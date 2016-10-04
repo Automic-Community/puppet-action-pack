@@ -123,7 +123,7 @@ public class NodeGroupInfo {
         return classExist;
     }
 
-        /**
+    /**
      * Get the available node groups
      * 
      * @return List of node groups

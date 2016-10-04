@@ -323,7 +323,56 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS
+
+= General description =
+This action is used to get node groups based on the provided filter and published in an AE variable. If there is no node group available for provide filter, action will be pass.
+
+* Node group filter Regex examples:
+	.  = any char
+	.* = match any char zero or more times
+	.? = match any char zero or one times	
+	.+ = match any char one or more times
+	
+ For more information use below provided link
+ Link: https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html	
+
+= Failure Conditions =
+(none)
+
+= Inputs =
+* Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
+* Username		        : Provide the username for API. E.g. puppetserver
+* Password                      : Provide the password.
+* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
+* Node group filter             : Specify filter which will be applied on node group name. Eg. Dev.*
+* Sudo Password                 : The password for the sudo command.
+* Options                       : Run using sudo password (and sudo username if specified).
+* Sudo Username                 : The username to be used for the sudo command. 		  
+* Overwrite Agent               : Overwrites the default agent
+* Overwrite Login               : Overwrites the default login
+
+= Behavior =
+(none)
+
+= Return Value =
+* UC4RB_PUP_CLASS_LIST : comma separated list of node group
+* UC4RB_PUP_CLASS_LIST : Number of node groups listed
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Rollback =
+(none)
+
+= Logging =
+AE logs will be displayed in the AE report.
+
+= Example =
+(none)
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
