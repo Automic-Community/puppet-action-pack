@@ -30,7 +30,7 @@ public class NodeGroupInfo {
         ClientResponse response = null;
 
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
-        
+
         WebResource webres = webresource.path("classifier-api").path(apiVersion).path("groups");
 
         ConsoleWriter.writeln("Calling URL to get the group info : " + webres.getURI());
@@ -100,6 +100,22 @@ public class NodeGroupInfo {
                     nodeGroup));
         }
         return obj;
+    }
+
+    /**
+     * Get the available node groups
+     * 
+     * @return List of node groups
+     * @throws AutomicException
+     */
+    public List<String> getNodeGroups() throws AutomicException {
+        List<String> nodeGroups = new ArrayList<String>();
+        JsonObject obj = null;
+        for (int i = 0, arraySize = jsonArray.size(); i < arraySize; i++) {
+            obj = jsonArray.getJsonObject(i);
+            nodeGroups.add(obj.getString("name"));
+        }
+        return nodeGroups;
     }
 
 }
