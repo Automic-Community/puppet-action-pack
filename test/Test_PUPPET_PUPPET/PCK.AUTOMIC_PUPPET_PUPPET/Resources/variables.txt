@@ -20,3 +20,4 @@ ${Param_Value}    docker.net
 ${Variable_Name}    ntp_servers
 #---- List Node Group, List Nodes----------------------------------------------------------------------------
 ${Filter}         agent*
+${Puppet_URL_For_List_Nodes}    https://learning.puppetlabs.vm:8080

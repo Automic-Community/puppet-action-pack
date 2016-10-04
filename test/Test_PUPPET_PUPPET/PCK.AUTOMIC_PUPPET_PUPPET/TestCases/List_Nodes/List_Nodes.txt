@@ -36,7 +36,8 @@ List Nodes Template
     ...    -${Filter}: This field specifies filter which will be applied on node name. Eg. Dev
     Generate String
     Action Create    ${_LIST_NODES_ACTION}
-    Connect To Puppet
+    Action Set    &UC4RB_PUP_BASE_URL#    ${Puppet_URL_For_List_Nodes}
+    Action Set    &UC4RB_PUP_SSL_VALIDATION#    ${SkipSSLValidation}
     Run Keyword If    '${NodeFilter}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_FILTER#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_FILTER#    ${NodeFilter}
     Set Overwrite Agent
