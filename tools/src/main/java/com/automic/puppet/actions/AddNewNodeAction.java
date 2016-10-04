@@ -35,7 +35,7 @@ public class AddNewNodeAction extends AbstractHttpAction {
 
     public AddNewNodeAction() {
         addOption("nodename", true, "Node");
-        addOption("nodegroup", true, "Node Group");
+        addOption("nodegroup", true, "Node group name");
     }
 
     @Override
