@@ -1,10 +1,12 @@
 package com.automic.puppet.actions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.sun.jersey.api.client.WebResource;
 
@@ -50,22 +52,23 @@ public class ListNodeGroupAction extends AbstractHttpAction {
     // print the list of node groups in AE vara UC4RB_PUP_NODE_GROUP_LIST in the job report
     private void prepareOutput(List<String> nodeGroups) {
         // write the node group details to job report
-        StringBuilder sb = new StringBuilder();
+        List<String> filterNodeGroups = new ArrayList<String>();
         if (!nodeGroups.isEmpty()) {
-            if (nodeGroupsFilter != null && "".equals(nodeGroupsFilter)) {
+            if (CommonUtil.checkNotEmpty(nodeGroupsFilter)) {
                 for (String group : nodeGroups) {
                     if (group.matches(nodeGroupsFilter)) {
-                        sb.append(group);
+                        filterNodeGroups.add(group);
                     }
                 }
             } else {
-                sb.append(nodeGroups.toString());
-                sb.deleteCharAt(0);
-                sb.deleteCharAt(sb.length() - 1);
+                filterNodeGroups = nodeGroups;
             }
         }
+        String nodeGroupResult = filterNodeGroups.toString();
+        nodeGroupResult = nodeGroupResult.substring(1, nodeGroupResult.length() - 1);
 
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + sb);
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + nodeGroupResult);
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_COUNT::=" + filterNodeGroups.size());
 
     }
 
