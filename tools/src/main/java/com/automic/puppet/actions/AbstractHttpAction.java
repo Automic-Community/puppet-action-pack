@@ -40,7 +40,7 @@ public abstract class AbstractHttpAction extends AbstractAction {
 
     public AbstractHttpAction() {
         addOption(Constants.BASE_URL, true, "Puppet URL");
-        addOption(Constants.PUPPET_USERNAME, true, "Username");
+        addOption(Constants.PUPPET_USERNAME, false, "Username");
         addOption(Constants.SKIP_CERT_VALIDATION, true, "Skip SSL validation");
     }
 
