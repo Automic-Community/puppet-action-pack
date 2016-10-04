@@ -27,7 +27,7 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
     private String variableName;
 
     public ReadNodeGroupVariableAction() {
-        addOption("nodegroup", true, "Node group");
+        addOption("nodegroup", true, "Node group name");
         addOption("varaname", true, "Variable name");
     }
 

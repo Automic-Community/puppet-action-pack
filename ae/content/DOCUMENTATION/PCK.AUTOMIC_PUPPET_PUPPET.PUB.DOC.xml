@@ -59,6 +59,9 @@ Following actions are supported for Puppet Enterprise:
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_NODES_FROM_NODE_GROUP
 * Action Description: This action is used to remove node(s) from a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS
+* Action Description: This action is used to list the class parameters for node group/class pair.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>

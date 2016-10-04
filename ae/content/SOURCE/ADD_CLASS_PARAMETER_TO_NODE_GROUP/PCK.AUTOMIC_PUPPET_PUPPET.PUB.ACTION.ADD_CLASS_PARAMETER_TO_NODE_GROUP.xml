@@ -65,8 +65,8 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
-<UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_PARAM_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 </PRPTBOX>
@@ -142,8 +142,8 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
-<UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_PARAM_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 </PRPTBOX>
@@ -205,8 +205,8 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP">
+<UC4RB_PUP_CLASSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_CLASS_PARAMs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASS_PARAM#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
-<UC4RB_PUP_CLASSESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CLASSES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 <UC4RB_PUP_PARAM_VALUEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PARAM_VALUE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.ADD_CLASS_PARAMETER_TO_NODE_GROUP"/>
 </PRPTBOX>
@@ -349,7 +349,7 @@ Example : ["value1","value2"]
 * Password                      : Provide the password.
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name. E.g. puppetgroup
-* Class             		: Specify the class name. E.g. apache,docker
+* Class             		: Specify the class name. E.g. apache
 * Parameter		        : Specify the class parameter. E.g. dns.
 * Value		              	: Specify value for the class parameter. E.g. value1 or ["value1","value2"]
 * Sudo Password                 : The password for the sudo command.

@@ -30,7 +30,7 @@ public class NodeGroupInfo {
         ClientResponse response = null;
 
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
-        
+
         WebResource webres = webresource.path("classifier-api").path(apiVersion).path("groups");
 
         ConsoleWriter.writeln("Calling URL to get the group info : " + webres.getURI());
@@ -100,6 +100,27 @@ public class NodeGroupInfo {
                     nodeGroup));
         }
         return obj;
+    }
+
+    /**
+     * Check if the class exist in the given node group
+     * 
+     * @param jsonArray
+     * @param className
+     * @param nodeGroup
+     * @return
+     * @throws AutomicException
+     */
+    public boolean checkClassExist(String className, String nodeGroup) throws AutomicException {
+        JsonObject jsonobj = getNodeGroup(nodeGroup);
+        boolean classExist = false;
+        if (jsonobj != null) {
+            JsonObject classobj = jsonobj.getJsonObject("classes");
+            if (classobj.containsKey(className)) {
+                classExist = true;
+            }
+        }
+        return classExist;
     }
 
 }
