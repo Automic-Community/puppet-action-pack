@@ -2,12 +2,12 @@ package com.automic.puppet.actions;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.core.MediaType;
 
-import com.automic.puppet.actions.helper.GetGroupInfo;
+import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
@@ -24,41 +24,31 @@ import com.sun.jersey.api.client.WebResource;
 public class AddNewNodeAction extends AbstractHttpAction {
 
     /**
-     * Name of the node
-     */
-    private String nodeName;
-
-    /**
      * Name of the node group
      */
     private String nodeGroup;
 
+    /**
+     * Name of the node
+     */
+    private String nodeName;
+
     public AddNewNodeAction() {
-        addOption("nodename", true, "Node to be added");
-        addOption("nodegroup", true, "Node group name to which the node is to be added");
+        addOption("nodename", true, "Node");
+        addOption("nodegroup", true, "Node Group");
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
-        // get auth token
+        prepareInputParameters();
         WebResource webResClient = getClient();
 
-        String authToken = TokenHandler.getToken(webResClient, username, password, loginApiVersion);
-        if (authToken == null) {
-            throw new AutomicException("Could not authenticate the user [" + username + "]");
-        }
-
+        TokenHandler tHandler = new TokenHandler(webResClient);
+        String authToken = tHandler.login(username);
         try {
-            prepareInputParameters();
+            String groupId = new NodeGroupInfo(authToken, webResClient).getGroupId(nodeGroup);
 
-            JsonObject jsonobj = GetGroupInfo.restResponse(authToken, webResClient, nodeGroup, apiVersion);
-
-            String groupId = CommonUtil.getGroupId(jsonobj, nodeGroup);
-            if (groupId == null) {
-                throw new AutomicException("No group id found for [" + nodeGroup + "]");
-            }
-
-            // url to add the node to node group
+            String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId)
                     .path("pin");
 
@@ -68,26 +58,20 @@ public class AddNewNodeAction extends AbstractHttpAction {
                     .entity(getNodeJson(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
         } finally {
             // revoke the token
-            TokenHandler.revokeToken(webResClient, logoutApiVersion, authToken);
+            tHandler.logout(authToken);
         }
 
     }
 
     private void prepareInputParameters() throws AutomicException {
-        try {
-            nodeName = getOptionValue("nodename");
-            PuppetValidator.checkNotEmpty(nodeName, "Node name");
+        nodeGroup = getOptionValue("nodegroup");
+        PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
 
-            nodeGroup = getOptionValue("nodegroup");
-            PuppetValidator.checkNotEmpty(nodeGroup, "Node group name");
-
-        } catch (AutomicException e) {
-            ConsoleWriter.write(e.getMessage());
-            throw e;
-        }
+        nodeName = getOptionValue("nodename");
+        PuppetValidator.checkNotEmpty(nodeName, "Node name");
     }
 
-    private String getNodeJson() {
+    protected String getNodeJson() {
 
         JsonArrayBuilder jsonNodeArray = Json.createArrayBuilder();
         jsonNodeArray.add(nodeName);

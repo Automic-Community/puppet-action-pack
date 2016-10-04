@@ -1,6 +1,6 @@
 package com.automic.puppet.filter;
 
-import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.exception.AutomicRuntimeException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
@@ -23,7 +23,7 @@ public class GenericResponseFilter extends ClientFilter {
 
     @Override
     public ClientResponse handle(ClientRequest request) {
-
+        boolean ignoreHttpError = (request.getHeaders().remove(Constants.IGNORE_HTTPERROR) != null);
         ClientResponse response = getNext().handle(request);
         String msg = null;
         if (CommonUtil.checkNotNull(response.getClientResponseStatus())
@@ -33,21 +33,15 @@ public class GenericResponseFilter extends ClientFilter {
         } else {
             msg = String.format(RESPONSE_CODE, response.getStatus());
         }
-        if (!(response.getStatus() >= HTTP_SUCCESS_START && response.getStatus() <= HTTP_SUCCESS_END)) {
-            try {
-                ConsoleWriter.writeln(CommonUtil.formatErrorMessage(msg));
-            } catch (AutomicException e) {
-                e.printStackTrace();
-            }
-            String responseMsg = response.getEntity(String.class);
-            throw new AutomicRuntimeException(responseMsg);
 
-        } else {
-            try {
-                ConsoleWriter.writeln(msg);
-            } catch (AutomicException e) {
-                e.printStackTrace();
+        if (!(response.getStatus() >= HTTP_SUCCESS_START && response.getStatus() <= HTTP_SUCCESS_END)) {
+            ConsoleWriter.writeln(CommonUtil.formatErrorMessage(msg));
+            if (!ignoreHttpError) {
+                String responseMsg = response.getEntity(String.class);
+                throw new AutomicRuntimeException(responseMsg);
             }
+        } else {
+            ConsoleWriter.writeln(msg);
         }
         return response;
     }
