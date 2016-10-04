@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.READ_NODE_GROUP_VARIABLE@UNIX">
+<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODE_GROUP_CLASS_PARAMETERS@UNIX">
 <XHEADER state="1">
-<Title>Read node group variable</Title>
+<Title>List class parameters for node groups/class pair</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -107,19 +107,17 @@
 <PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[
-: DEFINE &STRING_ARR#, string, 30
+<MSCRI><![CDATA[: DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
-!------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
 :INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 :INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ATTACH_RESOURCE
 
-
+!------------------------------------------ Buidling java arguments --------------------------------------------------------
 ! Define action specific java options and values
-: SET &ACTION_NAME# = "ReadNodeGroupVariableAction"
+: SET &ACTION_NAME# = "ListNodeGroupClassParamtersAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
@@ -129,9 +127,9 @@
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
 
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_VARA_NAME#
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CLASS#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -varaname &UC4RB_PUP_ESCAPED_STRING#")
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classname &UC4RB_PUP_ESCAPED_STRING#")
 
 : PRINT &UC4RB_PUP_CMD#
 
@@ -144,18 +142,19 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
+
+
 ! Invoking java binary
  &UC4RB_PUP_CMD#
 
-
-
 ! Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** READ NODE GROUP VARIABLE ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** READ NODE GROUP VARIABLE ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** LIST NODE GROUP CLASS PARAMETERS ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** LIST NODE GROUP CLASS PARAMETERS ACTION FAILED ********"
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER
 ]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
@@ -165,20 +164,42 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 <LoginFsc/>
 </OUTPUTSCAN>
 <POST_SCRIPT mode="1" replacementmode="1" state="1">
-<OSCRI><![CDATA[! Publishing variable value
+<OSCRI><![CDATA[! Publishing class params
 :SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
 
 :IF &STATUS# EQ 0
-:    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_VARA_VALUE*","COL=DELIMITER", 'DELIMITER=*::=*')
+:    SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_CLASS_PARAM*","COL=DELIMITER", 'DELIMITER=*::=*')
 :    PROCESS &HND#
-:           SET &UC4RB_PUP_VARA_VALUE# = GET_PROCESS_LINE(&HND#,2)
-:           PUBLISH &UC4RB_PUP_VARA_VALUE#,,"WORKFLOW"
-:           TERM_PROCESS
+:       SET &KEY# = GET_PROCESS_LINE(&HND#,1)
+:       SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
+:   SWITCH &KEY#
+:       CASE "UC4RB_PUP_CLASS_PARAM_COUNT"
+:              SET &UC4RB_PUP_CLASS_PARAM_COUNT# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_CLASS_PARAM_COUNT#,,"WORKFLOW"
+:              IF &UC4RB_PUP_CLASS_PARAM_COUNT# > 0
+!--creating dynamic VARA only when count is greater than 0
+:                  SET &UC4RB_PUP_CLASS_PARAM_VARA# = "PCK.AUTOMIC_PUPPET_PUPPET.PRV.VARA.CLASSPARAMS_&$RUNID#"
+:                  SET &RET# = CREATE_OBJECT("VARA",&UC4RB_PUP_CLASS_PARAM_VARA#,"/PACKAGES/APPDATA/TEMP","Node group class parameters",,,)
+:              ENDIF
+:       OTHER
+:              SET &KEY_LENGTH#=STR_LNG(&KEY#)
+:              SET &KEY_LENGTH#=&KEY_LENGTH# -22
+:              SET &KEY#=SUBSTR(&KEY#,23,&KEY_LENGTH#)
+:              PUT_VAR "&UC4RB_PUP_CLASS_PARAM_VARA#","&KEY#","&VALUE#"
+:   ENDSWITCH
+!--- Publish VARA only when count is greater than 0
+:              IF &UC4RB_PUP_CLASS_PARAM_COUNT# > 0
+:                 PUBLISH &UC4RB_PUP_CLASS_PARAM_VARA#,,"WORKFLOW"
+:              ELSE
+:                 PSET &UC4RB_PUP_CLASS_PARAM_VARA# = ""
+:              ENDIF
+
+
 :  ENDPROCESS
 :  CLOSE_PROCESS &HND#
 :ELSE
-:    SET &UC4RB_PUP_VARA_VALUE# = ""
-:    PUBLISH &UC4RB_PUP_VARA_VALUE#,,"WORKFLOW"
+:    PSET &UC4RB_PUP_CLASS_PARAM_COUNT# = ""
+:    PSET &UC4RB_PUP_CLASS_PARAM_VARA# = ""
 :ENDIF]]></OSCRI>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">
