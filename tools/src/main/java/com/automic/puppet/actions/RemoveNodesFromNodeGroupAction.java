@@ -33,14 +33,14 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
     /**
      * Name of the node group
      */
-    protected String nodeGroup;
+    private String nodeGroup;
 
     /**
      * 
      */
     public RemoveNodesFromNodeGroupAction() {
         addOption("nodes", true, "Nodes");
-        addOption("nodegroup", true, "Node group");
+        addOption("nodegroup", true, "Node group name");
     }
 
     @Override
@@ -67,7 +67,6 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
                     .entity(getEntity(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
-            ConsoleWriter.newLine();
         } finally {
             // revoke the token
             tokenHandler.logout(authToken);
