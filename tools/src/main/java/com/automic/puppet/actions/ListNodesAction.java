@@ -36,9 +36,9 @@ public class ListNodesAction extends AbstractHttpAction {
 
     @Override
     protected void executeSpecific() throws AutomicException {
-        
+
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
-        
+
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
 
         // check if filter is provided or not
@@ -66,9 +66,19 @@ public class ListNodesAction extends AbstractHttpAction {
     private void prepareOutput(JsonArray jsonArray) {
         List<String> nodeList = getNodes(jsonArray);
 
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + nodeList.size());
-        String list = nodeList.toString();
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + list.substring(1, list.length() - 1));
+        int pointer = 1;
+        int size = nodeList.size();
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + size);
+        // iterate over all nodes
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String nodeName : nodeList) {
+            stringBuilder.append(nodeName);
+            if (pointer < size) {
+                stringBuilder.append(",");
+                pointer++;
+            }
+        }
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + stringBuilder.toString());
     }
 
     // get the list of nodes

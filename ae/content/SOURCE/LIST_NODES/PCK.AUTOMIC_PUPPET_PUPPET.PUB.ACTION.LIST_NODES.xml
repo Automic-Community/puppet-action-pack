@@ -63,7 +63,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 <UC4RB_PUP_NODE_FILTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_FILTER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -80,8 +79,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
-<AGENTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT"/>
-<LOGINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT"/>
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -120,7 +119,7 @@
 <node content="1" id="PVALUE" name="Parent Variables" parent="" type="TASKVALUE">
 <VALUE state="2">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
@@ -136,7 +135,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 <UC4RB_PUP_NODE_FILTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_FILTER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -153,8 +151,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
-<AGENTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT"/>
-<LOGINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT"/>
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -195,7 +193,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 <UC4RB_PUP_NODE_FILTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_FILTER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 </PRPTBOX>
 </PROMPTSET>
@@ -212,8 +209,8 @@
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
 <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
-<AGENTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT"/>
-<LOGINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT"/>
+<AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -269,7 +266,7 @@
 <node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
 <VALUE state="1">
 <Values/>
-<Mode>0</Mode>
+<Mode>1</Mode>
 </VALUE>
 </node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
@@ -289,7 +286,10 @@
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
 <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" ontop="1">
-<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1"/>
+<PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1">
+<AGENTs.00 altview="1" haslist="0">&amp;AGENT#</AGENTs.00>
+<LOGINs.00 altview="1" haslist="0">&amp;LOGIN#</LOGINs.00>
+</PRPTBOX>
 </PROMPTSET>
 </node>
 </dyntree>
@@ -314,7 +314,54 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
+
+= General description =
+This action is used to List nodes. User can also provide regex filter to list the nodes that satisfies the provided filter criteria.
+
+* Nodes filter Regex examples:
+	.  = any char
+	.* = match any char zero or more times
+	.? = match any char zero or one times	
+	.+ = match any char one or more times
+	
+ For more information check query syntax for puppetDB.
+ https://docs.puppet.com/puppetdb/4.2/api/query/v4/ast.html#regexp-match
+
+= Failure Conditions =
+(none)
+
+= Inputs =
+* PuppetDB URL         		: Specify address of the puppet classifier API. E.g. http://127.0.0.1:8080
+* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
+* Filter             		: Specify filter which will be applied on node name. E.g. agent*
+* Sudo Password                 : The password for the sudo command.
+* Options                       : Run using sudo password (and sudo username if specified).
+* Sudo Username                 : The username to be used for the sudo command. 		  
+* Overwrite Agent               : Overwrites the default agent
+* Overwrite Login               : Overwrites the default login
+
+= Behavior =
+(none)
+
+= Return Value =
+* UC4RB_PUP_CLASS_LIST : comma separated list of node group
+* UC4RB_PUP_CLASS_LIST : Number of node groups listed
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is 1 in case of failure.
+
+= Rollback =
+(none)
+
+= Logging =
+AE logs will be displayed in the AE report.
+
+= Example =
+(none)
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
