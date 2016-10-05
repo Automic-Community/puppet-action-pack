@@ -10,6 +10,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
+import com.automic.puppet.constants.Constants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
@@ -35,7 +36,10 @@ public class ListNodesAction extends AbstractHttpAction {
 
     @Override
     protected void executeSpecific() throws AutomicException {
-        WebResource webResource = getClient().path("pdb").path("query").path("v4").path("nodes");
+        
+        String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
+        
+        WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
 
         // check if filter is provided or not
         filter = getOptionValue("filter");

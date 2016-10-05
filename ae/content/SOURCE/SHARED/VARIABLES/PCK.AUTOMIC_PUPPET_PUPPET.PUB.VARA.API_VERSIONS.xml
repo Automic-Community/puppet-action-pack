@@ -25,6 +25,7 @@
 <VARA state="1">
 <Variables>
 <row Name="API_VERSION" Value="v1" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="DB_API_VERSION" Value="v4" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="LOGIN_API_VERSION" Value="v1" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="LOGOUT_API_VERSION" Value="v2" Value1="" Value2="" Value3="" Value4=""/>
 </Variables>
