@@ -49,8 +49,8 @@ List Nodes Template
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
-    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_LIST#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_LIST#
-    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_COUNT#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_COUNT#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '${NodeFilter}' != 'Invalid'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_LIST#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_LIST#
+    Run Keyword If    '${OK_NOK}' == 'OK' and '${NodeFilter}' != 'Invalid'    Action Object Variable Count Value Should Be > 0    &UC4RB_PUP_NODE_COUNT#    ELSE    Action Object Variable Count Value Should Be = 0    &UC4RB_PUP_NODE_COUNT#
 
 Teardown
     Log    *******End Test "LIST NODES"*******
