@@ -21,7 +21,7 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
     private String nodeGroup;
 
     public ListNodeGroupClassesAction() {
-        addOption("nodegroup", true, "Node Group");
+        addOption("nodegroup", true, "Node group name");
     }
 
     @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.REMOVE_CLASS_PARAM_FROM_NODE_GROUP@UNIX">
+<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODE_GROUPS@UNIX">
 <XHEADER state="1">
 <Title/>
 <ArchiveKey1/>
@@ -32,7 +32,7 @@
 <DeactDelay>0</DeactDelay>
 <AutoDeactAlways>1</AutoDeactAlways>
 <AttDialog>0</AttDialog>
-<ActAtRun>1</ActAtRun>
+<ActAtRun>0</ActAtRun>
 <Consumption>0</Consumption>
 <UC4Priority>0</UC4Priority>
 <MaxParallel2>0</MaxParallel2>
@@ -107,9 +107,13 @@
 <PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[
+<MSCRI><![CDATA[! Status messages
+
+
+
 : DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
+
 
 :INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
@@ -117,23 +121,16 @@
 
 !------------------------------------------ Buidling java arguments ---------------------------------------------------------------
 ! Define action specific java options and values
-: SET &ACTION_NAME# = "RemoveClassParamFromNodeGroupAction"
+: SET &ACTION_NAME# = "ListNodeGroupAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
 
-
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_GROUP#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
-
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CLASS#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classname &UC4RB_PUP_ESCAPED_STRING#")
-
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_PARAM_NAME#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -classparam &UC4RB_PUP_ESCAPED_STRING#")
+: IF &UC4RB_PUP_NODE_FILTER# NE ""
+:   SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_FILTER#
+:   INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:   SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroupfilter &UC4RB_PUP_ESCAPED_STRING#")
+: ENDIF
 
 : PRINT &UC4RB_PUP_CMD#
 
@@ -146,22 +143,12 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
-
-
-! Invoking java binary
-: SWITCH &$PLATFORM#
-:   CASE "WINDOWS"
-           &UC4RB_PUP_CMD#
-:   CASE "UNIX"
-           &UC4RB_PUP_CMD#
-:   OTHER
-: ENDSWITCH
+&UC4RB_PUP_CMD#
 
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
-! Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** REMOVE CLASS PARAM FROM NODE GROUP ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** REMOVE CLASS PARAM FROM NODE GROUP ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** LIST NODE GROUPS ACTION EXECUTED SUCCESSFULLY ********"
+:  SET &UC4RB_LOGGING_ERROR# = "******** LIST NODE GROUPS ACTION FAILED ********"
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
@@ -173,7 +160,31 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 <LoginFsc/>
 </OUTPUTSCAN>
 <POST_SCRIPT mode="1" replacementmode="1" state="1">
-<OSCRI/>
+<OSCRI><![CDATA[!Publish the list of classes
+:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
+
+:IF &STATUS# EQ 0
+:SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_NODE_GROUP*","COL=DELIMITER", 'DELIMITER=*::=*')
+:PROCESS &HND#
+:   SET &KEY# = GET_PROCESS_LINE(&HND#,1)
+:   SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
+
+:   SWITCH &KEY#
+:       CASE "UC4RB_PUP_NODE_GROUP_LIST"
+:              SET     &UC4RB_PUP_NODE_GROUP_LIST# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_NODE_GROUP_LIST#,,"WORKFLOW"
+
+:       CASE "UC4RB_PUP_NODE_GROUP_COUNT"
+:              SET     &UC4RB_PUP_NODE_GROUP_COUNT# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_NODE_GROUP_COUNT#,,"WORKFLOW"
+:   ENDSWITCH
+
+:ENDPROCESS
+:CLOSE_PROCESS &HND#
+:ELSE
+:  PSET &UC4RB_PUP_NODE_GROUP_LIST# = ""
+:  PSET &UC4RB_PUP_NODE_GROUP_COUNT# = ""
+:ENDIF]]></OSCRI>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC/>
