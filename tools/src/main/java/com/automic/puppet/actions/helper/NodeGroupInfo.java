@@ -123,4 +123,20 @@ public class NodeGroupInfo {
         return classExist;
     }
 
+    /**
+     * Get the available node groups
+     * 
+     * @return List of node groups
+     * @throws AutomicException
+     */
+    public List<String> getNodeGroups() throws AutomicException {
+        List<String> nodeGroups = new ArrayList<String>();
+        JsonObject obj = null;
+        for (int i = 0, arraySize = jsonArray.size(); i < arraySize; i++) {
+            obj = jsonArray.getJsonObject(i);
+            nodeGroups.add(obj.getString("name"));
+        }
+        return nodeGroups;
+    }
+
 }
