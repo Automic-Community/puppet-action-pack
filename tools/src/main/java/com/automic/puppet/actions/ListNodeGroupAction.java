@@ -64,10 +64,16 @@ public class ListNodeGroupAction extends AbstractHttpAction {
                 filterNodeGroups = nodeGroups;
             }
         }
+        StringBuilder sb = new StringBuilder();
+        for(String nodeGroup: filterNodeGroups ){
+        	sb.append(nodeGroup).append(",");        	
+        }
+        sb.deleteCharAt(sb.length()-1); 
+        
         String nodeGroupResult = filterNodeGroups.toString();
         nodeGroupResult = nodeGroupResult.substring(1, nodeGroupResult.length() - 1);
 
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + nodeGroupResult);
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + sb.toString());
         ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_COUNT::=" + filterNodeGroups.size());
 
     }
