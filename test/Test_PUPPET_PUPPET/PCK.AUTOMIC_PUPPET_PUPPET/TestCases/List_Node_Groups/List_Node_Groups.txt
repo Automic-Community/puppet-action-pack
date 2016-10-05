@@ -11,19 +11,16 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    NodeName          Filter
-List node groups with valid inputs
+*** Test Cases ***    OK_NOK    Filter
+List node groups with valid filter
                       [Tags]    main_scenarios
-                      OK        ${Node_Name}      ${Filter}
+                      OK        ${Filter}
 
-Assert node name and filter as optional fields
-                      OK        ${EMPTY}          ${EMPTY}
+Assert filter as optional field
+                      OK        ${EMPTY}
 
 Assert behaviour for invalid filter
-                      OK        ${Node_Name}      Invalid
-
-Assert behaviour for Non-Existing Node Name
-                      OK        Invalid           ${Filter}
+                      OK        Invalid
 
 *** Keywords ***
 Startup
@@ -32,22 +29,21 @@ Startup
     Connect AE
 
 List Node Groups Template
-    [Arguments]    ${OK_NOK}    ${NodeName}    ${NodeFilter}
-    [Documentation]    This test list classes assigned to node group
-    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    [Arguments]    ${OK_NOK}    ${NodeFilter}
+    [Documentation]    This test lists the node groups that satisfies the given filter criteria.
+    ...    -Precondition: To execute this test, required variable values should be change in variable.txt file
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
-    ...    -${NodeName}: This field specifies the node name to list only linked node groups.
     ...    -${Filter}: This field specifies filter which will be applied on node name. Eg. Dev
     Generate String
     Action Create    ${_LIST_NODE_GROUPS_ACTION}
     Connect To Puppet
-    Run Keyword If    '${NodeName}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_PUP_NODE_NAME#    ${NodeName}
     Run Keyword If    '${NodeFilter}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_FILTER#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_FILTER#    ${NodeFilter}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_GROUP_LIST#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_GROUP_LIST#
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_GROUP_COUNT#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_GROUP_COUNT#
 
 Teardown
     Log    *******End Test "LIST NODE GROUPS"*******
