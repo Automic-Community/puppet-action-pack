@@ -51,10 +51,15 @@ Action Object Variable File Path Should Be
     Should End With    ${File_path}    ${File_name}
     Set Global Variable    ${File_path}
 
-Action Object Variable Count Value Should Be
+Action Object Variable Count Value Should Be > 0
     [Arguments]    ${Variable_Name}
     ${Count_Value}=    Action Get Variable    ${Variable_Name}
     Should Be True    ${Count_Value} >= 0
+
+Action Object Variable Count Value Should Be = 0
+    [Arguments]    ${Variable_Name}
+    ${Count_Value}=    Action Get Variable    ${Variable_Name}
+    Should Be True    ${Count_Value} == 0
 
 Action Object Variable Should Be Found
     [Arguments]    ${Object_Variable}

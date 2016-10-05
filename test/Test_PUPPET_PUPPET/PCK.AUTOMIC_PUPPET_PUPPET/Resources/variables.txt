@@ -21,3 +21,4 @@ ${Variable_Name}    ntp_servers
 #---- List Node Group, List Nodes----------------------------------------------------------------------------
 ${Filter}         agent*
 ${Puppet_DB_URL}    http://learning.puppetlabs.vm:8080
+
