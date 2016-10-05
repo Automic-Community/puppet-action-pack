@@ -70,7 +70,7 @@ public class ListNodeGroupAction extends AbstractHttpAction {
 		for (String nodeGroup : filterNodeGroups) {
 			sb.append(nodeGroup).append(",");
 		}
-		if(sb.length() > 1){
+		if (sb.length() > 1) {
 			sb.deleteCharAt(sb.length() - 1);
 		}
 
