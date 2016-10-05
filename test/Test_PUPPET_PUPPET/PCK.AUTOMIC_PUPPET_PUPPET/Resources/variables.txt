@@ -18,5 +18,6 @@ ${Class_Param}    dns
 ${Param_Value}    docker.net
 #---- Read Node Group Variable------------------------------------------------------------------------------
 ${Variable_Name}    ntp_servers
-#---- List Node Group, List Nodes---------------------------------------------------------------------------
+#---- List Node Groups, List Nodes---------------------------------------------------------------------------
 ${Filter}         .*
+${Puppet_DB_URL}    http://learning.puppetlabs.vm:8080
