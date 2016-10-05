@@ -340,7 +340,7 @@ This action is used to remove node(s) from a node group. This action doesn't fai
 * Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
 * Username    			: Provide the username for API. E.g puppetserver
 * Password         		: Provide the password
-* Skip SSL validation           : Skips SSL validation if checkbox is selected.
+* Skip SSL validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name from where node should be removed. E.g. puppetgroup
 * Nodes				: Specify the node names separated by comma. E.g. node1,node2
 * Sudo Password                 : The password for the sudo command.
