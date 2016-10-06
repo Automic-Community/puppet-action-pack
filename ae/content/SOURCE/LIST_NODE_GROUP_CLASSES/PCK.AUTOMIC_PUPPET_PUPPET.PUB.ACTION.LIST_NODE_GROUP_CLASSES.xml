@@ -347,6 +347,7 @@ This action fails if the node group name is invalid.
 
 = Return Value =
 * UC4RB_PUP_CLASS_LIST : comma separated list of classes present in node group
+* UC4RB_PUP_CLASS_COUNT : No of classes present in node group
 
 = Outputs =
 * Return code is 0 in case of success.

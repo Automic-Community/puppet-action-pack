@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_NODES_FROM_NODE_GROUP">
+<JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES">
 <XHEADER state="1">
-<Title>Remove nodes from node group</Title>
+<Title>List nodes</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -52,22 +52,18 @@
 <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
-<UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
-<UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
+<UC4RB_PUP_DB_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
-<UC4RB_PUP_NODESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
+<UC4RB_PUP_NODE_FILTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_FILTER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -98,7 +94,7 @@
 </PostCon>
 </postconditions>
 </task>
-<task Alias="REMOVE_NODES" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.REMOVE_NODES_FROM_NODE_GROUP@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
+<task Alias="LIST_NODES" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODES@UNIX" ParentAlias="" ParentObject="" Row="1" Text2="">
 <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0"/>
 <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0"/>
 <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0"/>
@@ -128,22 +124,18 @@
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
 <node content="0" id="PPRPTS" name="Parent PromptSets" parent="" type="PPROMPTSET"/>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
-<UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
-<UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
+<UC4RB_PUP_DB_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
-<UC4RB_PUP_NODESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
+<UC4RB_PUP_NODE_FILTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_FILTER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -190,22 +182,18 @@
 <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">
-<UC4RB_PUP_BASE_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_BASE_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
-<UC4RB_PUP_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
+<UC4RB_PUP_DB_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS"/>
+<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
-<UC4RB_PUP_NODE_GROUPs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUP#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
-<UC4RB_PUP_NODESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES">
+<UC4RB_PUP_NODE_FILTERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_FILTER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -281,14 +269,14 @@
 <Mode>1</Mode>
 </VALUE>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REMOVE_NODES_FROM_NODE_GROUP" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
@@ -327,22 +315,27 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_NODES_FROM_NODE_GROUP
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
 
 = General description =
-This action is used to remove node(s) from a node group. This action doesn't fails for non-existing node and nodes which are not pinned to group.
+This action is used to List nodes. User can also provide regex filter to list the nodes that satisfies the provided filter criteria.
+
+* Nodes filter Regex examples:
+	.  = any char
+	.* = match any char zero or more times
+	.? = match any char zero or one times	
+	.+ = match any char one or more times
+	
+ For more information check query syntax for puppetDB.
+ https://docs.puppet.com/puppetdb/4.2/api/query/v4/ast.html#regexp-match
 
 = Failure Conditions =
 (none)
 
 = Inputs =
-
-* Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
-* Username    			: Provide the username for API. E.g puppetserver
-* Password         		: Provide the password
-* Skip SSL validation           : Skips SSL validation if 'YES' is selected.
-* Node group name               : Specify the node group name from where node should be removed. E.g. puppetgroup
-* Nodes				: Specify the node names separated by comma. E.g. node1,node2
+* PuppetDB URL         		: Specify address of the puppet classifier API. E.g. http://127.0.0.1:8080
+* Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
+* Filter             		: Specify filter which will be applied on node name. E.g. agent*
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
@@ -353,7 +346,8 @@ This action is used to remove node(s) from a node group. This action doesn't fai
 (none)
 
 = Return Value =
-(none)
+* UC4RB_PUP_NODE_LIST : comma separated list of node names
+* UC4RB_PUP_NODE_COUNT : Number of node groups listed
 
 = Outputs =
 * Return code is 0 in case of success.
