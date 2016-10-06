@@ -337,7 +337,7 @@ This action is used to add class parameter to a node group. This action fails if
 
 = Note =
 *If user provides a class name that does not exist in the given node group then the action will add the class to node group.
-*If the user wants to add or edit multiple values for a given variable. The user must provide it in a valid json format.
+*If the user wants to add or edit multiple values for a given class parameter. The user must provide it in a valid json format.
 Example : ["value1","value2"]
 
 = Failure Conditions =
