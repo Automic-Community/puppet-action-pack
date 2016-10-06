@@ -68,6 +68,9 @@ Following actions are supported for Puppet Enterprise:
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
 * Action Description: This action is used to List nodes.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT
+* Action Description: This action is used to trigger a puppet run on an agent node.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
