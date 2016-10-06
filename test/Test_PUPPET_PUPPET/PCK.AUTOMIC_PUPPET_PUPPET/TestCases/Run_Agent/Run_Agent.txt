@@ -1,0 +1,47 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        run_agent
+Test Template     Run Agent Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    PuppetPath
+Run agent with valid puppet path
+                      [Tags]    main_scenarios
+                      OK        ${Puppet_Path}
+
+Run agent with puppet path as optional field
+                      OK        ${EMPTY}
+
+Assert behaviour for invalid puppet path
+                      NOK       Invalid
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "RUN AGENT"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Run Agent Template
+    [Arguments]    ${OK_NOK}    ${PuppetPath}
+    [Documentation]    This test is used to trigger a puppet run on an agent node.
+    ...    -Precondition: To execute this test, puppet exe should be present in Path provided and if no path is provided then puppet exe should be present in default path.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${Puppet_Path}: This field specifies path to the puppet executable, if empty defaults to ./puppet
+    Generate String
+    Action Create    ${_RUN_AGENT_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${PuppetPath}' == 'Invalid'    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_PUPPET_PATH#    ${PuppetPath}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+
+Teardown
+    Log    *******End Test "RUN AGENT"*******
