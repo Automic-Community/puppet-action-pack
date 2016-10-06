@@ -1,0 +1,62 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        replace_node_groups
+Test Template     Replace Node Groups Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup                 NodeName
+Replace existing node groups of an node with a new node group
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}             ${Node_Name}
+
+Replace existing node groups of an node with multiple new node groups
+                      OK        ${Node_Groups}            ${Node_Name}
+
+Assertion with invalid node group
+                      NOK       Invalid                   ${Node_Name}
+
+Assertion with one valid and other invalid node group
+                      NOK       PE Agent,Invalid_group    ${Node_Name}
+
+Assertion with invalid node name
+                      NOK       ${Node_Group}             Invalid
+
+Assert node group as mandatory Field
+                      NOK       ${EMPTY}                  ${Node_Name}
+
+Assert node name as mandatory Field
+                      NOK       ${Node_Group}             ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "REPLACE NODE GROUPS"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+Replace Node Groups Template
+    [Arguments]    ${OK_NOK}    ${NodeName}    ${NodeGroup}
+    [Documentation]    This action is used to replace the existing node groups for a node with new node groups. These tests will run only on UNIX agent.
+    ...    -Precondition: To execute this test Node Groups with name PE Agent,PE Infrastructure,Production environment should exist and Invalid_group should not exist. Also node with agentcentos.puppetlabs.vm name should exist.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK, NOK.
+    ...    -${NodeGroup}: This field specifies the node group name(s) to which you want to add the node to
+    ...    -${NodeName}: This field specifies the node name for which you want to replace the node groups
+    Generate String
+    Action Create    ${_REPLACE_NODE_GROUPS_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUPS#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUPS#    ${NodeGroup}
+    Run Keyword If    '${NodeName}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_NAME#    ${NodeName}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+
+Teardown
+    Log    *******End Test "REPLACE NODE GROUPS"*******

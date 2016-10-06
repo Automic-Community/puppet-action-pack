@@ -20,3 +20,5 @@ ${Param_Value}    docker.net
 ${Variable_Name}    ntp_servers
 #---- List Node Group, List Nodes---------------------------------------------------------------------------
 ${Filter}         agent*
+#---- Replace Node Groups------------------------------------------------------------------------------------
+${Node_Groups}    PE Infrastructure,Production environment
