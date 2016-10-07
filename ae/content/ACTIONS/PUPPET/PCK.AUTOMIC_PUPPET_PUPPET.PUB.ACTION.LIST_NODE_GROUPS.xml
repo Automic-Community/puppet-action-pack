@@ -324,29 +324,28 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS
 
 = General description =
-This action is used to get node groups based on the provided filter and published in an AE variable. If there is no node group available for provide filter, action will be pass.
+This action is used to retrieve node groups based on the provided filter and publishes list and count in AE variables. If there are no node group(s) available for the provided filter, action will be execute successfully with count as zero.
 
 * Node group filter Regex examples:
-	.  = any char
-	.* = match any char zero or more times
-	.? = match any char zero or one times	
-	.+ = match any char one or more times
-	
- For more information use below provided link
- Link: https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html	
+               .* = match any char zero or more times
+               .? = match any char zero or one times       
+               .+ = match any char one or more times
+               
+For more information use below provided link
+Link: https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html       
 
 = Failure Conditions =
 (none)
 
 = Inputs =
 * Puppet classifier URL         : Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433/
-* Username		        : Provide the username for API. E.g. puppetserver
+* Username                      : Provide the username for API. E.g. puppetserver
 * Password                      : Provide the password.
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group filter             : Specify filter which will be applied on node group name.It is case sensitive. Eg. Dev.*
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
-* Sudo Username                 : The username to be used for the sudo command. 		  
+* Sudo Username                 : The username to be used for the sudo command.                          
 * Overwrite Agent               : Overwrites the default agent
 * Overwrite Login               : Overwrites the default login
 

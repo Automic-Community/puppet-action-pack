@@ -39,8 +39,8 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
      * 
      */
     public RemoveNodesFromNodeGroupAction() {
-        addOption("nodes", true, "Nodes");
         addOption("nodegroup", true, "Node group name");
+        addOption("nodes", true, "Nodes");
     }
 
     @Override
@@ -92,7 +92,7 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
 
         JsonArrayBuilder jsonarrayBuilder = Json.createArrayBuilder();
         for (String nodename : nodeList) {
-            jsonarrayBuilder.add(nodename);
+            jsonarrayBuilder.add(nodename.trim());
         }
         JsonObjectBuilder nodesJson = Json.createObjectBuilder();
         nodesJson.add("nodes", jsonarrayBuilder);
