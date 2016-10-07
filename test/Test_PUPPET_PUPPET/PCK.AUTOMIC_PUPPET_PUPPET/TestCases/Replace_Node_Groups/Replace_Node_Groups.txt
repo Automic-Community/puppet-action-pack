@@ -19,14 +19,14 @@ Replace existing node groups of an node with a new node group
 Replace existing node groups of an node with multiple new node groups
                       OK        ${Node_Groups}            ${Node_Name}
 
+Assertion with invalid node name
+                      OK        ${Node_Group}             Invalid
+
 Assertion with invalid node group
                       NOK       Invalid                   ${Node_Name}
 
 Assertion with one valid and other invalid node group
                       NOK       PE Agent,Invalid_group    ${Node_Name}
-
-Assertion with invalid node name
-                      NOK       ${Node_Group}             Invalid
 
 Assert node group as mandatory Field
                       NOK       ${EMPTY}                  ${Node_Name}
@@ -42,7 +42,7 @@ Startup
 
 Replace Node Groups Template
     [Arguments]    ${OK_NOK}    ${NodeName}    ${NodeGroup}
-    [Documentation]    This action is used to replace the existing node groups for a node with new node groups. These tests will run only on UNIX agent.
+    [Documentation]    This action is used to replace the existing node group(s) for a node with new node group(s). These tests will run only on UNIX agent.
     ...    -Precondition: To execute this test Node Groups with name PE Agent,PE Infrastructure,Production environment should exist and Invalid_group should not exist. Also node with agentcentos.puppetlabs.vm name should exist.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK, NOK.
     ...    -${NodeGroup}: This field specifies the node group name(s) to which you want to add the node to
