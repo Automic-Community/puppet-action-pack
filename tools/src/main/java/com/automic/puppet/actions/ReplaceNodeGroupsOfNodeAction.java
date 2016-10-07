@@ -53,47 +53,24 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
         try {
             // 1 get groups for a given node
-            List<String> presentNodeGroupIdList = getPresentGroupList(webResClient, authToken);
+            List<String> unpinNodeGroupIdList = getPresentGroupList(webResClient, authToken);
 
+            // 2 get the ids for the user provided node group names
             Map<String, String> nodeGroupMap = new NodeGroupInfo(authToken, webResClient).getNodeGroupIdAndName();
 
-            List<String> newNodeGroupIdList = new ArrayList<>();
-
-            // 2 get the id for the user provided node group names
-
-            for (String groupName : nodeGroupNameList) {
-                boolean found = false;
-                for (String key : nodeGroupMap.keySet()) {
-                    if (groupName.trim().equals(nodeGroupMap.get(key))) {
-                        newNodeGroupIdList.add(key);
-                        found = true;
-                        break;
-                    }
-
-                }
-                if (!found) {
-                    throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER,
-                            "Node group name ", groupName));
-                }
-            }
+            List<String> pinNodeGroupIdList = getIdForUserProvidedGroups(nodeGroupMap);
 
             // 3 compare the newNodeGroupList with the presentNodeGroupList
-            for (String groupName : new ArrayList<String>(newNodeGroupIdList)) {
-                if (presentNodeGroupIdList.contains(groupName)) {
-                    newNodeGroupIdList.remove(groupName);
-                    presentNodeGroupIdList.remove(groupName);
-                }
-
-            }
+            updatePinAndUnpinLists(unpinNodeGroupIdList, pinNodeGroupIdList);
 
             String nodeJsonString = getNodeJson();
             ConsoleWriter.writeln("JSON of nodes to be removed :: " + nodeJsonString);
 
             // 4 un-pin the groups
 
-            if (presentNodeGroupIdList.size() > 0) {
+            if (unpinNodeGroupIdList.size() > 0) {
 
-                for (String groupId : presentNodeGroupIdList) {
+                for (String groupId : unpinNodeGroupIdList) {
 
                     WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups")
                             .path(groupId).path("unpin");
@@ -106,9 +83,9 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
 
             // 5 pin the groups
 
-            if (newNodeGroupIdList.size() > 0) {
+            if (pinNodeGroupIdList.size() > 0) {
 
-                for (String groupId : newNodeGroupIdList) {
+                for (String groupId : pinNodeGroupIdList) {
 
                     WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups")
                             .path(groupId).path("pin");
@@ -124,6 +101,37 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
             tokenHandler.logout(authToken);
         }
 
+    }
+
+    private void updatePinAndUnpinLists(List<String> unpinNodeGroupIdList, List<String> pinNodeGroupIdList) {
+        for (String groupName : new ArrayList<String>(pinNodeGroupIdList)) {
+            if (unpinNodeGroupIdList.contains(groupName)) {
+                pinNodeGroupIdList.remove(groupName);
+                unpinNodeGroupIdList.remove(groupName);
+            }
+
+        }
+    }
+
+    private List<String> getIdForUserProvidedGroups(Map<String, String> nodeGroupMap) throws AutomicException {
+        List<String> newNodeGroupIdList = new ArrayList<>();
+        for (String groupName : nodeGroupNameList) {
+            boolean found = false;
+            for (String key : nodeGroupMap.keySet()) {
+                if (groupName.trim().equals(nodeGroupMap.get(key))) {
+                    newNodeGroupIdList.add(key);
+                    found = true;
+                    break;
+                }
+
+            }
+            if (!found) {
+                throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER,
+                        "Node group name ", groupName));
+            }
+        }
+
+        return newNodeGroupIdList;
     }
 
     private void prepareInputParameters() throws AutomicException {
