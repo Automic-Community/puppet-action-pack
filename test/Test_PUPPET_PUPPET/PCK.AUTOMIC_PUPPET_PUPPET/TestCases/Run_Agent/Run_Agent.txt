@@ -11,16 +11,16 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    PuppetPath
+*** Test Cases ***    OK_NOK    PuppetPath        SudoUsername        Options       SudoPassword
 Run agent with valid puppet path
                       [Tags]    main_scenarios
-                      OK        ${Puppet_Path}
+                      OK        ${Puppet_Path}    ${Sudo_Username}    ${Options}    ${Sudo_Password}
 
 Run agent with puppet path as optional field
-                      OK        ${EMPTY}
+                      OK        ${EMPTY}          ${Sudo_Username}    ${Options}    ${Sudo_Password}
 
 Assert behaviour for invalid puppet path
-                      NOK       Invalid
+                      NOK       Invalid           ${Sudo_Username}    ${Options}    ${Sudo_Password}
 
 *** Keywords ***
 Startup
@@ -29,19 +29,28 @@ Startup
     Connect AE
 
 Run Agent Template
-    [Arguments]    ${OK_NOK}    ${PuppetPath}
+    [Arguments]    ${OK_NOK}    ${PuppetPath}    ${Sudo_Username}    ${Options}    ${Sudo_Password}
     [Documentation]    This test is used to trigger a puppet run on an agent node.
     ...    -Precondition: To execute this test, puppet exe should be present in Path provided and if no path is provided then puppet exe should be present in default path.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${Puppet_Path}: This field specifies path to the puppet executable, if empty defaults to ./puppet
+    ...    -${Sudo_Username}: This field specifies sudo username in case of UNIX environment.
+    ...    -${Options}: This field specifies sudo options in case of UNIX environment.
+    ...    -${Sudo_Password}: This field specifies sudo password in case of UNIX environment.
     Generate String
     Action Create    ${_RUN_AGENT_ACTION}
     Connect To Puppet
     Run Keyword If    '${PuppetPath}' == 'Invalid'    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_PUPPET_PATH#    ${PuppetPath}
+    Run Keyword If    '${ENV}' == 'UNIX'    Action Set    &UC4RB_SUDO_USER#    ${Sudo_Username}
+    Run Keyword If    '${ENV}' == 'UNIX'    Action Set    &UC4RB_USE_SUDO#    ${Options}
+    Run Keyword If    '${ENV}' == 'UNIX'    Action Set    &UC4RB_SUDO_PASSWORD#    ${Sudo_Password}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Report Should Be Found
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Return Status Should Be    ${ENDED_OK}
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Return Code Should Be    ${RETURN_CODE_SUCCESS}
+    Run Keyword If    '${OK_NOK}' == 'NOK'    Assert Failure
 
 Teardown
     Log    *******End Test "RUN AGENT"*******
