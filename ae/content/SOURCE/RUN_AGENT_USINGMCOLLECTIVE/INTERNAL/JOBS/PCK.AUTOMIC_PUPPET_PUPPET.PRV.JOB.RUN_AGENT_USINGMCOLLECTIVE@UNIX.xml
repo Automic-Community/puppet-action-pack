@@ -125,11 +125,15 @@
 : SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_PUP_NODES#"
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
+:  SET &UC4RB_LOGGING_PARAMETER# = "Concurrency limit"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_PUP_CONCURRENCY#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !------------------------------------------ Buidling Puppet run command -------------------------------------------------------------------------------------------
 
-: SET &UC4RB_PUP_CMD# = "mco puppet runonce"
+: SET &UC4RB_PUP_CMD# = "mco puppet runall &UC4RB_PUP_CONCURRENCY# --verbose"
 
 ! config file of mcollective
 : IF &UC4RB_PUP_MCO_CONFIG# <> ""
@@ -141,7 +145,7 @@
 ! List of nodes
 : IF &UC4RB_PUP_NODES# <> ""
 
-:    DEFINE &NODES#, string, 10
+:    DEFINE &NODES#, string, 50
 :    FILL &NODES#[] = STR_SPLIT(&UC4RB_PUP_NODES#,",")
 
 :    SET &VAR# = 1
