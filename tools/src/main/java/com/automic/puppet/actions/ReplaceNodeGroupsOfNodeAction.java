@@ -64,7 +64,7 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
             for (String groupName : nodeGroupNameList) {
                 boolean found = false;
                 for (String key : nodeGroupMap.keySet()) {
-                    if (groupName.equals(nodeGroupMap.get(key))) {
+                    if (groupName.trim().equals(nodeGroupMap.get(key))) {
                         newNodeGroupIdList.add(key);
                         found = true;
                         break;
@@ -170,11 +170,6 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
             presentNodeGroupList.add(jArray.getString(i));
 
         }
-
-        /*
-         * for (JsonValue jv : jArray.getJsonArray("groups").getValuesAs(JsonValue.class)) {
-         * presentNodeGroupList.add(String.valueOf(jv)); }
-         */
 
         ConsoleWriter.writeln("[INFO] Present group ids ::= " + presentNodeGroupList);
 
