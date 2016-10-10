@@ -347,7 +347,7 @@ This action is used to List nodes. User can also provide regex filter to list th
 
 = Return Value =
 * UC4RB_PUP_NODE_LIST : comma separated list of node names
-* UC4RB_PUP_NODE_COUNT : Number of node groups listed
+* UC4RB_PUP_NODE_COUNT : Number of nodes listed
 
 = Outputs =
 * Return code is 0 in case of success.

@@ -330,7 +330,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP
 
 = General description =
-This action is used to remove class parameter(s) from a node group. This action fails if class parameter provided does not exists.
+This action is used to remove class parameter(s) from a node group. This action will not fail if provided class parameter does not exist.
 
 Note : 
 * Parameter name should be provided as comma seperated, if the user wants to remove multiple class parameters.
@@ -343,7 +343,7 @@ Note :
 * Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
 * Username    			: Provide the username for API. E.g puppetserver
 * Password         		: Provide the password
-* Skip SSL validation           : Skips SSL validation if checkbox is selected.
+* Skip SSL validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name. E.g. puppetgroup
 * Class name			: Specify the class name. E.g. docker
 * Parameter name		: Specify the class parameter name or names separated by comma. E.g. dns
