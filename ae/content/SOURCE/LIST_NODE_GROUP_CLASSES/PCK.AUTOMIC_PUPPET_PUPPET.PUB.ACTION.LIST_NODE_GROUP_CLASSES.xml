@@ -324,7 +324,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES
 
 = General description =
-This action is used to get all classes present in a node group published in an AE variable. If there are no classes present in node group the action does not fail.
+This action is used to get all classes present in a node group and publish the list and count in AE variables. If there are no classes present in node group the action does not fail.
 This action fails if the node group name is invalid.
 
 = Failure Conditions =
@@ -346,8 +346,8 @@ This action fails if the node group name is invalid.
 (none)
 
 = Return Value =
-* UC4RB_PUP_CLASS_LIST : comma separated list of classes present in node group
-* UC4RB_PUP_CLASS_COUNT : No of classes present in node group
+* UC4RB_PUP_CLASS_LIST : Comma separated list of classes present in node group
+* UC4RB_PUP_CLASS_COUNT : Number of classes present in node group
 
 = Outputs =
 * Return code is 0 in case of success.

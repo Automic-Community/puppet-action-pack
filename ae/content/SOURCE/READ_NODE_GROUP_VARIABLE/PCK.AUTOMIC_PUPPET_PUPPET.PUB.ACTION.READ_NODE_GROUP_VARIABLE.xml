@@ -349,7 +349,7 @@ This action is used to read value of a variable from node group.
 (none)
 
 = Return Value =
-UC4RB_PUP_VARA_VALUE :  Value of the group node variable
+UC4RB_PUP_VARA_VALUE :  Value of the node group variable
 
 = Outputs =
 * Return code is 0 in case of success.

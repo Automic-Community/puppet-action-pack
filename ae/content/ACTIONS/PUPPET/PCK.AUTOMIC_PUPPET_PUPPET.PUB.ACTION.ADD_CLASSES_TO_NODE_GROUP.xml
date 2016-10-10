@@ -337,7 +337,7 @@ This action is used to add multiple classes to a node group. This action fails i
 * Puppet classifier URL        	: Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433
 * Username    			: Provide the username for API. E.g puppetserver
 * Password         		: Provide the password
-* Skip SSL validation           : Skips SSL validation if checkbox is selected.
+* Skip SSL validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name. E.g. puppetgroup
 * Classes			: Specify the class name or names separated by comma. E.g. class1,class2
 * Sudo Password                 : The password for the sudo command.
