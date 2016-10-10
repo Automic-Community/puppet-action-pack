@@ -3,8 +3,6 @@ package com.automic.puppet.actions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
@@ -23,6 +21,12 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+/**
+ * This class list all the nodes for the specified node group
+ * 
+ * @author anuragupadhyay
+ *
+ */
 public class ListNodesForNodeGroupAction extends AbstractHttpAction {
 
     /**
