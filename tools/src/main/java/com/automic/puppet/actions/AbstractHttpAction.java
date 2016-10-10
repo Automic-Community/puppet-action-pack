@@ -31,12 +31,12 @@ public abstract class AbstractHttpAction extends AbstractAction {
     /**
      * Option to skip validation
      */
-    private String skipCertValidation;
+    protected String skipCertValidation;
 
     /**
      * Service end point
      */
-    private Client client;
+    protected Client client;
 
     public AbstractHttpAction() {
         addOption(Constants.BASE_URL, true, "Puppet URL");
