@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.RUN_AGENT@UNIX">
+<JOBS_GENERIC AttrType="GENERIC" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.RUN_AGENT@GENERIC">
 <XHEADER state="1">
 <Title>Run puppet agent</Title>
 <ArchiveKey1/>
@@ -17,8 +17,8 @@
 <ATTR_JOBS state="1">
 <Queue>CLIENT_QUEUE</Queue>
 <StartType/>
-<HostDst>|&lt;UNIX&gt;|HOST</HostDst>
-<HostATTR_Type>UNIX</HostATTR_Type>
+<HostDst>|&lt;GENERIC&gt;|HOST</HostDst>
+<HostATTR_Type>GENERIC</HostATTR_Type>
 <CodeName/>
 <Login/>
 <IntAccount/>
@@ -40,17 +40,6 @@
 <MpElse2>0</MpElse2>
 <TZ/>
 </ATTR_JOBS>
-<ATTR_UNIX state="1">
-<OutputDb>1</OutputDb>
-<OutputDbErr>0</OutputDbErr>
-<OutputFile>0</OutputFile>
-<ShellScript>1</ShellScript>
-<Command>0</Command>
-<Priority>0</Priority>
-<Shell/>
-<ShellOptions/>
-<Com/>
-</ATTR_UNIX>
 <RUNTIME state="1">
 <MaxRetCode>0</MaxRetCode>
 <MrcExecute/>
@@ -107,7 +96,10 @@
 <PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[
+<MSCRI><![CDATA[: IF &$PLATFORM# EQ "WINDOWS"
+@echo off
+: ENDIF
+
 : DEFINE &STRING_ARR#, string, 30
 
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
@@ -129,10 +121,18 @@
 : SET &UC4RB_PUP_PUPPET_OPTIONS# = "--onetime --no-daemonize --debug --detailed-exitcodes --color=false"
 
 : IF &UC4RB_PUP_PUPPET_PATH# <> ""
-:    SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, '"&UC4RB_PUP_PUPPET_PATH#" agent &UC4RB_PUP_PUPPET_OPTIONS#')
+
+:   SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, '"&UC4RB_PUP_PUPPET_PATH#" agent &UC4RB_PUP_PUPPET_OPTIONS#')
+:   IF &$PLATFORM# EQ "WINDOWS"
+:        SET &UC4RB_PUP_CMD# = STR_CAT('call ', &UC4RB_PUP_CMD#)
+:   ENDIF
+
 : ELSE
 :    SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, 'puppet agent &UC4RB_PUP_PUPPET_OPTIONS#')
 : ENDIF
+
+! Set Execution Environment
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
 : PRINT &UC4RB_PUP_CMD#
 ! Invoking command
@@ -143,10 +143,39 @@
 : SET &UC4RB_LOGGING_INFO# = "******** RUN AGENT ACTION EXECUTED SUCCESSFULLY ********"
 : SET &UC4RB_LOGGING_ERROR# = "******** RUN AGENT ACTION FAILED ********"
 
+! Check error level based on platform
+: SWITCH &$PLATFORM#
+:   CASE "WINDOWS"
+
+@set retcode=%errorlevel%
+
+if %retcode% == 0 (
+:      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
+exit 0
+)
+
+if %retcode% == 2 (
+  echo INFO: The puppet run succeeded, and some resources were changed.
+)
+
+if %retcode% == 4 (
+  echo INFO: The run succeeded, and some resources failed.
+)
+
+if %retcode% == 6 (
+  echo INFO: The run succeeded, and included both changes and failures.
+)
+
+echo ERROR: Faile to run agent.
+:      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
+exit %retcode%
+
+:   CASE "UNIX"
+
 execcode=$?
 if [ $execcode -eq 0 ]
 then
-:  INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
+:      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
 else
 case $execcode in
   2) echo "INFO: The puppet run succeeded, and some resources were changed.";;
@@ -154,13 +183,18 @@ case $execcode in
   6) echo "INFO: The run succeeded, and included both changes and failures.";;
   *) echo "ERROR: Fail to run agent.";;
 esac
-:  INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
+:      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
 fi
 
 if [ "$execcode" -ne "0" ]
 then
     exit $execcode
 fi
+
+:   OTHER
+: ENDSWITCH
+
+
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
@@ -175,5 +209,5 @@ fi
 <DOCU_Docu state="1" type="text">
 <DOC/>
 </DOCU_Docu>
-</JOBS_UNIX>
+</JOBS_GENERIC>
 </uc-export>
