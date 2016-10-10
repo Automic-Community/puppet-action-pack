@@ -1,7 +1,9 @@
 package com.automic.puppet.actions.helper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.json.JsonArray;
@@ -137,6 +139,24 @@ public class NodeGroupInfo {
             nodeGroups.add(obj.getString("name"));
         }
         return nodeGroups;
+    }
+    
+    
+    /**
+     * Get the available node groups id
+     * 
+     * @return List of node groups
+     * @throws AutomicException
+     */
+    public Map<String,String> getNodeGroupIdAndName() throws AutomicException {
+        Map<String,String> nodeGroupMap = new HashMap<String,String>();
+        JsonObject obj = null;
+        for (int i = 0, arraySize = jsonArray.size(); i < arraySize; i++) {
+            obj = jsonArray.getJsonObject(i);
+            nodeGroupMap.put( obj.getString("id"),obj.getString("name"));
+           
+        }
+        return nodeGroupMap;
     }
 
 }

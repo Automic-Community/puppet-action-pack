@@ -24,5 +24,8 @@ ${Variable_Name}    ntp_servers
 #---- List Node Groups, List Nodes---------------------------------------------------------------------------
 ${Filter}         .*
 ${Puppet_DB_URL}    http://learning.puppetlabs.vm:8080
+
 #---- Run Agent---------------------------------------------------------------------------------------------
 ${Puppet_Path}    /opt/puppetlabs/bin/puppet
+${Node_Groups}    PE Infrastructure,Production environment
+

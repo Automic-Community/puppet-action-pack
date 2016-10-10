@@ -3,10 +3,10 @@ package com.automic.puppet.actions;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
-import javax.json.Json;
 import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
@@ -43,16 +43,6 @@ public class ListNodesAction extends AbstractHttpAction {
 
         // check if filter is provided or not
         filter = getOptionValue("filter");
-        if (CommonUtil.checkNotEmpty(filter)) {
-
-            // create json array ["~","certname","<filter>"]
-            JsonArrayBuilder json = Json.createArrayBuilder();
-            json.add("~");
-            json.add("certname");
-            json.add(filter);
-
-            webResource = webResource.queryParam("query", json.build().toString());
-        }
 
         ConsoleWriter.writeln("Calling URL : " + webResource.getURI());
 
@@ -65,20 +55,36 @@ public class ListNodesAction extends AbstractHttpAction {
     // prepare the output - list of nodes and total count
     private void prepareOutput(JsonArray jsonArray) {
         List<String> nodeList = getNodes(jsonArray);
-
-        int pointer = 1;
-        int size = nodeList.size();
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + size);
-        // iterate over all nodes
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String nodeName : nodeList) {
-            stringBuilder.append(nodeName);
-            if (pointer < size) {
-                stringBuilder.append(",");
-                pointer++;
+        List<String> filterNodeList = null;
+        Pattern pt = null;
+        // filtering data
+        if (CommonUtil.checkNotEmpty(filter) && !nodeList.isEmpty()) {
+            filterNodeList = new ArrayList<String>();
+            try {
+                pt = Pattern.compile(filter);
+            } catch (PatternSyntaxException pe) {
+                pt = Pattern.compile(Pattern.quote(filter));
             }
+            for (String group : nodeList) {
+                if (pt.matcher(group).matches()) {
+                    filterNodeList.add(group);
+                }
+            }
+        } else {
+            filterNodeList = nodeList;
         }
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + stringBuilder.toString());
+        // preparing output of filtered data
+        StringBuilder sb = new StringBuilder();
+        for (String nodeGroup : filterNodeList) {
+            sb.append(nodeGroup).append(",");
+        }
+        if (sb.length() > 1) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + filterNodeList.size());
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + sb.toString());
+
     }
 
     // get the list of nodes
