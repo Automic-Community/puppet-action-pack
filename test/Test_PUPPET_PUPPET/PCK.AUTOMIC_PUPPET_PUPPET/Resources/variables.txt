@@ -8,7 +8,7 @@ ${Puppet_URL}     https://learning.puppetlabs.vm:4433
 ${Puppet_Username}    automic
 ${Puppet_Password}    automic
 ${SkipSSLValidation}    YES
-#---- Add new node, List Node Group Classes, List Node Groups Of Node---------------------------------------
+#---- Add new node, List Node Group Classes, List All Node Groups Of Node---------------------------------------
 ${Node_Name}      agentcentos.puppetlabs.vm
 ${Node_Group}     PE Agent
 #---- Add Classes to Node Group, Replace Node Group Classes-------------------------------------------------
