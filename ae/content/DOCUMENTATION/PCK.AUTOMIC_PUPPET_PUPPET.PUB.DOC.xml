@@ -70,7 +70,12 @@ Following actions are supported for Puppet Enterprise:
 * Action Description: This action is used to List nodes.
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE
-* Action Description: This action is used to replace the already existing node groups for a node with provided node groups.]]></DOC>
+* Action Description: This action is used to replace the already existing node groups for a node with provided node groups.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_ALL_NODE_GROUPS_OF_NODE
+* Action Description: This action is used to get all the node groups of a node.
+
+]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>

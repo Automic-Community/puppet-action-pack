@@ -32,6 +32,8 @@
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_ALL_NODE_GROUPS_OF_NODE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_ALL_NODE_GROUPS_OF_NODE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
 <row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
