@@ -55,7 +55,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
 <UC4RB_PUP_CONCURRENCYs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CONCURRENCY#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">5</UC4RB_PUP_CONCURRENCYs.00>
 <UC4RB_PUP_MCO_CONFIGs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MCO_CONFIG#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
 <UC4RB_PUP_NODESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
@@ -122,7 +121,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
 <UC4RB_PUP_CONCURRENCYs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CONCURRENCY#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">5</UC4RB_PUP_CONCURRENCYs.00>
 <UC4RB_PUP_MCO_CONFIGs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MCO_CONFIG#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
 <UC4RB_PUP_NODESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
@@ -175,7 +173,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
 <UC4RB_PUP_CONCURRENCYs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CONCURRENCY#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE">5</UC4RB_PUP_CONCURRENCYs.00>
 <UC4RB_PUP_MCO_CONFIGs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MCO_CONFIG#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
 <UC4RB_PUP_NODESs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODES#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.RUN_AGENT_USINGMCOLLECTIVE"/>
@@ -302,7 +299,8 @@ This action is used to trigger a puppet run on all agent nodes remotely from pup
 * the Path to mcollective config file.
 * list of nodes comma separated
 Note:
-By default number of nodes to be processed concurrently by mcollective is 5 which could be modified using Concurrent limit field.
+* By default number of nodes to be processed concurrently by mcollective is 5 which could be modified using Concurrent limit field.
+* This action skips agents which do not exist or which do not respond to status check by mcollective.
 
 = Failure Conditions =
 (none)
@@ -310,7 +308,7 @@ By default number of nodes to be processed concurrently by mcollective is 5 whic
 = Inputs =
 * Path to config file		: The path to the mcollective config file, if empty defaults to ~/.mcollective
 * Nodes				: Specify the node names separated by comma. E.g. node1,node2
-* Concurrency limit		: Number of agents to run puppet on in a batch. 
+* Concurrency limit		: Number of agents to run puppet on in a batch. Default value is 5.
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  

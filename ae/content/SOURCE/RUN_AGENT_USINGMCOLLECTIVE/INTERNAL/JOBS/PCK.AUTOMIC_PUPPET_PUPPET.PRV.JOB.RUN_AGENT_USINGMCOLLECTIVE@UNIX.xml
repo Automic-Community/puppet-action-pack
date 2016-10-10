@@ -32,7 +32,7 @@
 <DeactDelay>0</DeactDelay>
 <AutoDeactAlways>1</AutoDeactAlways>
 <AttDialog>0</AttDialog>
-<ActAtRun>1</ActAtRun>
+<ActAtRun>0</ActAtRun>
 <Consumption>0</Consumption>
 <UC4Priority>0</UC4Priority>
 <MaxParallel2>0</MaxParallel2>
@@ -144,19 +144,21 @@
 
 ! List of nodes
 : IF &UC4RB_PUP_NODES# <> ""
+:    SET &LENGTH# = STR_LENGTH(&UC4RB_PUP_NODES#)
 
-:    DEFINE &NODES#, string, 50
-:    FILL &NODES#[] = STR_SPLIT(&UC4RB_PUP_NODES#,",")
+:    SET &COMMA_POS#=STR_FIND(&UC4RB_PUP_NODES#, ",")
+:    IF &COMMA_POS# = 1
+:      STOP MSG, 51, "Node list cannot start with comma."
+:    ENDIF
 
-:    SET &VAR# = 1
-:    SET &LEN# = LENGTH(&NODES#[],SIZE)
+:    SET &COMMA_POS#=STR_FIND_REVERSE(&UC4RB_PUP_NODES#, ",")
+:    IF &COMMA_POS# = &LENGTH#
+:      STOP MSG, 51, "Node list cannot end with comma."
+:    ENDIF
 
-:    WHILE &VAR# LE &LEN#
-:      SET &VAR# = FORMAT(&VAR#,"0")
-:      SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -I &NODES#[&VAR#]")
-:      SET &VAR# = &VAR#+ 1
-:    ENDWHILE
-
+:    SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -I ")
+:    SET &UC4RB_PUP_NODES# = STR_SUB(&UC4RB_PUP_NODES#,","," -I ")
+:    SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "&UC4RB_PUP_NODES#")
 : ENDIF
 
 : PRINT &UC4RB_PUP_CMD#
@@ -166,7 +168,7 @@
 !------------------------------------------ Error Handling --------------------------------------------------------------------------------------------------------
 ! Status messages
 : SET &UC4RB_LOGGING_INFO# = "******** RUN AGENT USING MCOLLECTIVE ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** RUN AGENT USING MCOLLECTIVE ACTION FAILED ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** RUN AGENT USING MCOLLECTIVE ACTION FAILED. PLEASE CHECK INPUT PARAMETER ********"
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
