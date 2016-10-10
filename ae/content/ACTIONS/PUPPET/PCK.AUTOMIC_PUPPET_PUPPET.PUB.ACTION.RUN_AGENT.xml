@@ -298,7 +298,7 @@ Note:
 (none)
 
 = Inputs =
-* Puppet Path			: The path to the puppet executable, if empty defaults to puppet in PATH.
+* Puppet Path			: The path to the puppet executable, if empty defaults to puppet in PATH. The default value in prompset is /opt/puppetlabs/bin/puppet.
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
