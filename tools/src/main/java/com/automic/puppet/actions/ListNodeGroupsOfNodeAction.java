@@ -16,7 +16,7 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
- * @author sumitsamson
+ * @author sumitsamson This class is used to get all the node groups a node belong to
  *
  */
 public class ListNodeGroupsOfNodeAction extends AbstractHttpAction {
@@ -30,13 +30,6 @@ public class ListNodeGroupsOfNodeAction extends AbstractHttpAction {
     @Override
     protected void executeSpecific() throws AutomicException {
         prepareInputParameters();
-
-    }
-
-    private void prepareInputParameters() throws AutomicException {
-
-        nodeName = getOptionValue("nodename");
-        PuppetValidator.checkNotEmpty(nodeName, "Node name");
 
         WebResource webResClient = getClient();
 
@@ -77,6 +70,13 @@ public class ListNodeGroupsOfNodeAction extends AbstractHttpAction {
             // revoke the token
             tokenHandler.logout(authToken);
         }
+
+    }
+
+    private void prepareInputParameters() throws AutomicException {
+
+        nodeName = getOptionValue("nodename");
+        PuppetValidator.checkNotEmpty(nodeName, "Node name");
 
     }
 
