@@ -1,12 +1,15 @@
 package com.automic.puppet.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
@@ -28,7 +31,8 @@ public class ListNodesAction extends AbstractHttpAction {
     /**
      * Atching criteria for the existing nodes
      */
-    private String filter;
+    private Pattern ptrn;
+    private JsonArrayBuilder filterArray;
 
     public ListNodesAction() {
         addOption("filter", false, "Filter");
@@ -37,12 +41,15 @@ public class ListNodesAction extends AbstractHttpAction {
     @Override
     protected void executeSpecific() throws AutomicException {
 
+        prepareInputParameters();
+
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
 
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
-
-        // check if filter is provided or not
-        filter = getOptionValue("filter");
+        
+        if (filterArray != null) {
+            webResource = webResource.queryParam("query", filterArray.build().toString());
+        }
 
         ConsoleWriter.writeln("Calling URL : " + webResource.getURI());
 
@@ -56,23 +63,19 @@ public class ListNodesAction extends AbstractHttpAction {
     private void prepareOutput(JsonArray jsonArray) {
         List<String> nodeList = getNodes(jsonArray);
         List<String> filterNodeList = null;
-        Pattern pt = null;
         // filtering data
-        if (CommonUtil.checkNotEmpty(filter) && !nodeList.isEmpty()) {
+        if (CommonUtil.checkNotNull(ptrn) && !nodeList.isEmpty()) {
             filterNodeList = new ArrayList<String>();
-            try {
-                pt = Pattern.compile(filter);
-            } catch (PatternSyntaxException pe) {
-                pt = Pattern.compile(Pattern.quote(filter));
-            }
             for (String group : nodeList) {
-                if (pt.matcher(group).matches()) {
+                if (ptrn.matcher(group).matches()) {
                     filterNodeList.add(group);
                 }
             }
         } else {
             filterNodeList = nodeList;
         }
+        // Sorting Filter data on name
+        Collections.sort(filterNodeList);
         // preparing output of filtered data
         StringBuilder sb = new StringBuilder();
         for (String nodeGroup : filterNodeList) {
@@ -85,6 +88,23 @@ public class ListNodesAction extends AbstractHttpAction {
         ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + filterNodeList.size());
         ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + sb.toString());
 
+    }
+
+    private void prepareInputParameters() {
+        // check if filter is provided or not
+        String filter = getOptionValue("filter");
+        if (CommonUtil.checkNotEmpty(filter)) {
+            try {
+                ptrn = Pattern.compile(filter);
+                filterArray = Json.createArrayBuilder();
+                filterArray.add("~");
+                filterArray.add("certname");
+                filterArray.add(filter);
+            } catch (PatternSyntaxException pe) {
+                filter = Pattern.quote(filter);
+                ptrn = Pattern.compile(filter);
+            }            
+        }
     }
 
     // get the list of nodes

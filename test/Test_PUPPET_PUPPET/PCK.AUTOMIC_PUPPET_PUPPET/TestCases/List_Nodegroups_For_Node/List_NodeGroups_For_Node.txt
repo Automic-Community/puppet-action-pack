@@ -1,0 +1,61 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        list_nodegroups_for_node
+Test Template     List Node Groups For Node Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    Protocol          ServerName               Port    SkipSSLValidation       NodeName
+List node groups with valid node name
+                      [Tags]    main_scenarios
+                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${Node_Name}
+
+List node groups with invalid node name
+                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    Invalid
+
+Assertion with invalid server name
+                      NOK       http              Invalid                  8080    ${SkipSSLValidation}    ${Node_Name}
+
+Assert node name as mandatory field
+                      NOK       http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "LIST NODE GROUPS FOR NODE"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+List Node Groups For Node Template
+    [Arguments]    ${OK_NOK}    ${Protocol}    ${ServerName}    ${Port}    ${SSLValidation}    ${NodeName}
+    [Documentation]    This test lists all the node groups of the specified node.
+    ...    -Precondition: To execute this test, required variable values should be change in variable.txt file
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${Protocol}: This field specifies protocol to be used.
+    ...    -${ServerName}: This field specifies server name to be used.
+    ...    -${Port}: This field specifies port to be used.
+    ...    -${SkipSSLValidation}: This field Skips SSL validation if "Yes" is selected.
+    ...    -${NodeName}: This field specifies name of the node of which user wants to display the node groups.
+    Generate String
+    Action Create    ${_LIST_NODEGROUPS_FOR_NODE_ACTION}
+	Connect To Puppet
+    Action Set    &UC4RB_PUP_PROTOCOL#    ${Protocol}
+    Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_SERVER_NAME#    ${ServerName}
+    Action Set    &UC4RB_PUP_PORT#    ${Port}
+    Action Set    &UC4RB_PUP_SSL_VALIDATION#    ${SSLValidation}
+    Run Keyword If    '${NodeName}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_NAME#    ${NodeName}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_GROUP_LIST#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_GROUP_LIST#
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_NODE_GROUP_COUNT#    ELSE    Action Object Variable Should Not Be Found    &UC4RB_PUP_NODE_GROUP_COUNT#
+
+Teardown
+    Log    *******End Test "LIST NODE GROUPS FOR NODE"*******

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
-<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODES@UNIX">
+<JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODEGROUPS_FOR_NODE@UNIX">
 <XHEADER state="1">
-<Title>List nodes</Title>
+<Title>List all node groups of a node</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -110,15 +110,14 @@
 <MSCRI><![CDATA[: DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ATTACH_RESOURCE
+:INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
+
+:INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ATTACH_RESOURCE
 
 !------------------------------------------ Buidling java arguments ---------------------------------------------------------------
 
-! Add read action, URL and username  to java arguments
-
+!checking valid node
 : SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'
 
 
@@ -127,12 +126,10 @@
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_DB_CMD#")
 
 ! SSL Validation
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_DB_SSL_VALIDATION#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "  -skipvalidation &UC4RB_PUP_ESCAPED_STRING#")
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "  -skipvalidation &UC4RB_PUP_DB_SSL_VALIDATION#")
 
 ! Filter criteria
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_FILTER#
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -filter &UC4RB_PUP_ESCAPED_STRING#")
 
@@ -150,18 +147,54 @@ export READ_TIMEOUT="&UC4RB_PUP_READ_TIMEOUT#"
 :SET &UC4RB_PUP_DB_APIVERSION# = GET_VAR(&VARA_API_OBJ_CONFIG#, "DB_API_VERSION")
 export ENV_DB_API_VERSION="&UC4RB_PUP_DB_APIVERSION#"
 
-: PRINT &UC4RB_PUP_CMD#
+output_var=`&UC4RB_PUP_CMD#`
+execcode=$?
+echo  "$output_var"
+
+
+if [ "$execcode" -ne "0" ]
+then
+
+    echo "System error ,please check the input parameters"
+    echo "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
+    exit $execcode
+fi
+
+(echo "$output_var")|grep -q "UC4RB_PUP_NODE_COUNT::=1"
+
+execcode=$?
+
+if [ "$execcode" -ne "0" ]
+then
+    echo "[ERROR] Either node name [&UC4RB_PUP_NODE_NAME#] is invalid or more than one node exists for the given node name"
+    echo "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
+    exit $execcode
+fi
+
+
+node_name="$(echo "$output_var" | grep "UC4RB_PUP_NODE_LIST::=" | sed s/UC4RB_PUP_NODE_LIST::=//g)"
+
+
+! Define action specific java options and values
+: SET &ACTION_NAME# = "ListNodeGroupsOfNodeAction"
+
+! Build java arguments
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
+
+! Access key is decrypted and send to jar as argument
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
+: SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_PUP_PASSWORD#"
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
+export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
+: PRINT &UC4RB_PUP_CMD#
 
-&UC4RB_PUP_CMD#
-
-
-!------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
-! Status messages
-: SET &UC4RB_LOGGING_INFO# = "******** LIST NODES ACTION EXECUTED SUCCESSFULLY ********"
-: SET &UC4RB_LOGGING_ERROR# = "******** LIST NODES ACTION FAILED ********"
+&UC4RB_PUP_CMD# -nodename "$node_name"
+!------------------------------------------ Error Handling ------------------------------------------------------------------------------------------
+: SET &UC4RB_LOGGING_ERROR# = "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
+: SET &UC4RB_LOGGING_INFO# = "******** LIST NODE GROUPS FOR NODE ACTION EXECUTED SUCCESSFULLY ********"
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
@@ -177,26 +210,26 @@ export ENV_DB_API_VERSION="&UC4RB_PUP_DB_APIVERSION#"
 :SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
 
 :IF &STATUS# EQ 0
-:SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_NODE*","COL=DELIMITER", 'DELIMITER=*::=*')
+:SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_NODE_GROUP_*","COL=DELIMITER", 'DELIMITER=*::=*')
 :PROCESS &HND#
 :   SET &KEY# = GET_PROCESS_LINE(&HND#,1)
 :   SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
 
 :   SWITCH &KEY#
-:       CASE "UC4RB_PUP_NODE_COUNT"
-:              SET &UC4RB_PUP_NODE_COUNT# = "&VALUE#"
-:              PUBLISH &UC4RB_PUP_NODE_COUNT#,,"WORKFLOW"
+:       CASE "UC4RB_PUP_NODE_GROUP_COUNT"
+:              SET &UC4RB_PUP_NODE_GROUP_COUNT# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_NODE_GROUP_COUNT#,,"WORKFLOW"
 
-:       CASE "UC4RB_PUP_NODE_LIST"
-:              SET &UC4RB_PUP_NODE_LIST# = "&VALUE#"
-:              PUBLISH &UC4RB_PUP_NODE_LIST#,,"WORKFLOW"
+:       CASE "UC4RB_PUP_NODE_GROUP_LIST"
+:              SET &UC4RB_PUP_NODE_GROUP_LIST# = "&VALUE#"
+:              PUBLISH &UC4RB_PUP_NODE_GROUP_LIST#,,"WORKFLOW"
 :   ENDSWITCH
 
 :ENDPROCESS
 :CLOSE_PROCESS &HND#
 :ELSE
-:  PSET &UC4RB_PUP_NODE_COUNT# = ""
-:  PSET &UC4RB_PUP_NODE_LIST# = ""
+:  PSET &UC4RB_PUP_NODE_GROUP_COUNT# = ""
+:  PSET &UC4RB_PUP_NODE_GROUP_LIST# = ""
 :ENDIF]]></OSCRI>
 </POST_SCRIPT>
 <DOCU_Docu state="1" type="text">
