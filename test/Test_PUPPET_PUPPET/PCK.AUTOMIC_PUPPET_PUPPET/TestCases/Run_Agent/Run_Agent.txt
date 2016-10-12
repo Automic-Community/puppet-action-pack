@@ -11,16 +11,16 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    PuppetPath        SudoUsername        Options       SudoPassword
+*** Test Cases ***    OK_NOK    PuppetPath             SudoUsername        Options       SudoPassword
 Run agent with valid puppet path
                       [Tags]    main_scenarios
-                      OK        ${Puppet_Path}    ${Sudo_Username}    ${Options}    ${Sudo_Password}
+                      OK        ${Puppet_Path_UNIX}    ${Sudo_Username}    ${Options}    ${Sudo_Password}
 
 Run agent with puppet path as optional field
-                      OK        ${EMPTY}          ${Sudo_Username}    ${Options}    ${Sudo_Password}
+                      OK        ${EMPTY}               ${Sudo_Username}    ${Options}    ${Sudo_Password}
 
 Assert behaviour for invalid puppet path
-                      NOK       Invalid           ${Sudo_Username}    ${Options}    ${Sudo_Password}
+                      NOK       Invalid                ${Sudo_Username}    ${Options}    ${Sudo_Password}
 
 *** Keywords ***
 Startup
@@ -39,9 +39,12 @@ Run Agent Template
     ...    -${Sudo_Password}: This field specifies sudo password in case of UNIX environment.
     Generate String
     Action Create    ${_RUN_AGENT_ACTION}
-    Connect To Puppet
-    Run Keyword If    '${PuppetPath}' == 'Invalid'    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${Generated_Name}_${Time}    ELSE    Action Set
-    ...    &UC4RB_PUP_PUPPET_PATH#    ${PuppetPath}
+    Run Keyword If    '${ENV}' == 'WIN'    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${Puppet_Path_WIN}    ELSE    Action Set
+    ...    &UC4RB_PUP_PUPPET_PATH#    ${Puppet_Path_UNIX}
+    Run Keyword If    '${PuppetPath}' == 'Invalid'    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${Generated_Name}_${Time}    ELSE IF    '${ENV}' == 'WIN'
+    ...    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${Puppet_Path_WIN}    ELSE    Action Set    &UC4RB_PUP_PUPPET_PATH#
+    ...    ${Puppet_Path_UNIX}
+    Run Keyword If    '${PuppetPath}' == '${EMPTY}'    Action Set    &UC4RB_PUP_PUPPET_PATH#    ${PuppetPath}
     Run Keyword If    '${ENV}' == 'UNIX'    Action Set    &UC4RB_SUDO_USER#    ${Sudo_Username}
     Run Keyword If    '${ENV}' == 'UNIX'    Action Set    &UC4RB_USE_SUDO#    ${Options}
     Run Keyword If    '${ENV}' == 'UNIX'    Action Set    &UC4RB_SUDO_PASSWORD#    ${Sudo_Password}

@@ -26,5 +26,6 @@ ${Filter}         .*
 #---- List Node Groups of Node, List Nodes---------------------------------------------------------------------------
 ${Puppet_Server_Name}    learning.puppetlabs.vm
 #---- Run Agent---------------------------------------------------------------------------------------------
-${Puppet_Path}    /opt/puppetlabs/bin/puppet
+${Puppet_Path_UNIX}    /opt/puppetlabs/bin/puppet
+${Puppet_Path_WIN}    C:\\Program Files\\Puppet Labs\\Puppet\\bin\\puppet
 ${Node_Groups}    PE Infrastructure,Production environment

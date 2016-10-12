@@ -43,7 +43,7 @@ List Node Groups For Node Template
     ...    -${NodeName}: This field specifies name of the node of which user wants to display the node groups.
     Generate String
     Action Create    ${_LIST_NODEGROUPS_FOR_NODE_ACTION}
-	Connect To Puppet
+    Connect To Puppet
     Action Set    &UC4RB_PUP_PROTOCOL#    ${Protocol}
     Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_SERVER_NAME#    ${ServerName}
