@@ -14,16 +14,16 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    Protocol          ServerName               Port    SkipSSLValidation       Filter
 List nodes with valid filter
                       [Tags]    main_scenarios
-                      OK        HTTP              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${Filter}
+                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${Filter}
 
 Assert filter as optional field
-                      OK        HTTP              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${EMPTY}
+                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${EMPTY}
 
 Assert behaviour for invalid filter
-                      OK        HTTP              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    Invalid
+                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    Invalid
 
-Assertion with invalid puppet DB url
-                      NOK       HTTP              Invalid                  8080    ${SkipSSLValidation}    ${Filter}
+Assertion with invalid server name
+                      NOK       http              Invalid                  8080    ${SkipSSLValidation}    ${Filter}
 
 *** Keywords ***
 Startup
