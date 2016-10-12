@@ -172,18 +172,14 @@ then
 fi
 
 
+node_name="$(echo "$output_var" | grep "UC4RB_PUP_NODE_LIST::=" | sed s/UC4RB_PUP_NODE_LIST::=//g)"
+
+
 ! Define action specific java options and values
 : SET &ACTION_NAME# = "ListNodeGroupsOfNodeAction"
 
 ! Build java arguments
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
-
-
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodename &UC4RB_PUP_ESCAPED_STRING#")
-
-: PRINT &UC4RB_PUP_CMD#
 
 ! Access key is decrypted and send to jar as argument
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
@@ -193,8 +189,9 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
+: PRINT &UC4RB_PUP_CMD#
 
-&UC4RB_PUP_CMD#
+&UC4RB_PUP_CMD# -nodename "$node_name"
 !------------------------------------------ Error Handling ------------------------------------------------------------------------------------------
 : SET &UC4RB_LOGGING_ERROR# = "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
 : SET &UC4RB_LOGGING_INFO# = "******** LIST NODE GROUPS FOR NODE ACTION EXECUTED SUCCESSFULLY ********"
