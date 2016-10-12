@@ -31,7 +31,7 @@ Startup
     Log    *******Connect to AE*******
     Connect AE
 
-List Node Groups Of Node Template
+List Node Groups For Node Template
     [Arguments]    ${OK_NOK}    ${Protocol}    ${ServerName}    ${Port}    ${SSLValidation}    ${NodeName}
     [Documentation]    This test lists all the node groups of the specified node.
     ...    -Precondition: To execute this test, required variable values should be change in variable.txt file
