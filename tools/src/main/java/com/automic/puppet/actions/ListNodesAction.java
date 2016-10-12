@@ -46,7 +46,7 @@ public class ListNodesAction extends AbstractHttpAction {
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
 
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
-
+        
         if (filterArray != null) {
             webResource = webResource.queryParam("query", filterArray.build().toString());
         }
@@ -96,14 +96,14 @@ public class ListNodesAction extends AbstractHttpAction {
         if (CommonUtil.checkNotEmpty(filter)) {
             try {
                 ptrn = Pattern.compile(filter);
+                filterArray = Json.createArrayBuilder();
+                filterArray.add("~");
+                filterArray.add("certname");
+                filterArray.add(filter);
             } catch (PatternSyntaxException pe) {
                 filter = Pattern.quote(filter);
                 ptrn = Pattern.compile(filter);
-            }
-            filterArray = Json.createArrayBuilder();
-            filterArray.add("~");
-            filterArray.add("certname");
-            filterArray.add(filter);
+            }            
         }
     }
 
