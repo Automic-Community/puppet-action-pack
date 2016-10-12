@@ -116,6 +116,64 @@
 :INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ATTACH_RESOURCE
 
 !------------------------------------------ Buidling java arguments ---------------------------------------------------------------
+
+!checking valid node
+: SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'
+
+
+! PuppetDB URL
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DB_CONNECTION_URL
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_DB_CMD#")
+
+! SSL Validation
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_SSL_VALIDATION#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "  -skipvalidation &UC4RB_PUP_ESCAPED_STRING#")
+
+! Filter criteria
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -filter &UC4RB_PUP_ESCAPED_STRING#")
+
+! read connection timeout and read timeout from vara
+:SET &VARA_OBJ_CONFIG# = "PCK.AUTOMIC_PUPPET_PUPPET.PRV.VARA.PACKAGE_PARAMETERS"
+
+:SET &UC4RB_PUP_CONNECTION_TIMEOUT# = GET_VAR(&VARA_OBJ_CONFIG#, "CONNECTION_TIMEOUT")
+export CONNECTION_TIMEOUT="&UC4RB_PUP_CONNECTION_TIMEOUT#"
+
+:SET &UC4RB_PUP_READ_TIMEOUT# = GET_VAR(&VARA_OBJ_CONFIG#, "READ_TIMEOUT")
+export READ_TIMEOUT="&UC4RB_PUP_READ_TIMEOUT#"
+
+! read puppetDB API version from vara
+:SET &VARA_API_OBJ_CONFIG# = "PCK.AUTOMIC_PUPPET_PUPPET.PUB.VARA.API_VERSIONS"
+:SET &UC4RB_PUP_DB_APIVERSION# = GET_VAR(&VARA_API_OBJ_CONFIG#, "DB_API_VERSION")
+export ENV_DB_API_VERSION="&UC4RB_PUP_DB_APIVERSION#"
+
+
+output_var=`&UC4RB_PUP_CMD#`
+
+execcode=$?
+
+if [ "$execcode" -ne "0" ]
+then
+    echo "System error ,please check the input parameters"
+    echo "******** LIST ALL NODE GROUPS OF NODE ACTION FAILED ********"
+    exit $execcode
+fi
+
+(echo $output_var)|grep UC4RB_PUP_NODE_COUNT::=1 -q
+
+execcode=$?
+
+if [ "$execcode" -ne "0" ]
+then
+    echo  $output_var
+    echo "[ERROR] Either node name [&UC4RB_PUP_NODE_NAME#] is invalid or more than one node exists for the given node name"
+    echo "******** LIST ALL NODE GROUPS OF NODE ACTION FAILED ********"
+    exit $execcode
+fi
+
+
 ! Define action specific java options and values
 : SET &ACTION_NAME# = "ListNodeGroupsOfNodeAction"
 

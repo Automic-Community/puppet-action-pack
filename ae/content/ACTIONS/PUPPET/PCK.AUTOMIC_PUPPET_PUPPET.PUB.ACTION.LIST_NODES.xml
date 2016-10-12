@@ -338,7 +338,9 @@ This action is used to List nodes. User can also provide regex filter to list th
 (none)
 
 = Inputs =
-* PuppetDB URL         		: Specify address of the puppetDB API. E.g. http://127.0.0.1:8080
+* Protocol         		: Specify protocol. E.g. http or https
+* Server name                   : Specify server name of Puppet db. E.g 192.168.59.101
+* Port                          : Specify the port number for puppet db. E.g 8080
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Filter             		: Specify filter which will be applied on node name. E.g. agent*
 * Sudo Password                 : The password for the sudo command.
