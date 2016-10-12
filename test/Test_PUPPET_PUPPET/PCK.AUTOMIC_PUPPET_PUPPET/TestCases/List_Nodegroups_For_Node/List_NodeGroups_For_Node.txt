@@ -1,7 +1,7 @@
 *** Settings ***
 Suite Setup       Startup
 Suite Teardown    Teardown
-Force Tags        list_node_groups_for_node
+Force Tags        list_nodegroups_for_node
 Test Template     List Node Groups For Node Template
 Library           com.automic.robot.itpa.ItpaLibrary
 Library           String
@@ -42,7 +42,7 @@ List Node Groups For Node Template
     ...    -${SkipSSLValidation}: This field Skips SSL validation if "Yes" is selected.
     ...    -${NodeName}: This field specifies name of the node of which user wants to display the node groups.
     Generate String
-    Action Create    ${_LIST_NODE_GROUPS_FOR_NODE_ACTION}
+    Action Create    ${_LIST_NODEGROUPS_FOR_NODE_ACTION}
 	Connect To Puppet
     Action Set    &UC4RB_PUP_PROTOCOL#    ${Protocol}
     Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
