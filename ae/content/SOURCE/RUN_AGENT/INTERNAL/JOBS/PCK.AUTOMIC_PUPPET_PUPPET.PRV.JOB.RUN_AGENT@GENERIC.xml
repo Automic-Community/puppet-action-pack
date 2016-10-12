@@ -180,18 +180,16 @@ execcode=$?
 if [ "$execcode" -eq "0" ] ;
 then
 :    INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
-exit 0
 fi
-
-case $execcode in
-  2) echo "INFO: The puppet run succeeded, and some resources were changed.";;
-  4) echo "INFO: The run succeeded, and some resources failed.";;
-  6) echo "INFO: The run succeeded, and included both changes and failures.";;
-  *) echo "ERROR: Fail to run agent.";;
-esac
 
 if [ "$execcode" -ne "0" ] ;
 then
+  case $execcode in
+    2) echo "INFO: The puppet run succeeded, and some resources were changed.";;
+    4) echo "INFO: The run succeeded, and some resources failed.";;
+    6) echo "INFO: The run succeeded, and included both changes and failures.";;
+    *) echo "ERROR: Fail to run agent.";;
+  esac
 :     INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
     exit $execcode
 fi
