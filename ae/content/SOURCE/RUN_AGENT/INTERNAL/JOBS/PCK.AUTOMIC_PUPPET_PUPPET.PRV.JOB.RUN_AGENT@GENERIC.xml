@@ -124,10 +124,11 @@
 :   INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 
 :   SET &UC4RB_PUP_CMD# = '&UC4RB_PUP_ESCAPED_STRING#'
+: ENDIF
+
 :   IF &$PLATFORM# EQ "WINDOWS"
 :        SET &UC4RB_PUP_CMD# = STR_CAT("call ", &UC4RB_PUP_CMD#)
 :   ENDIF
-: ENDIF
 
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, ' agent &UC4RB_PUP_PUPPET_OPTIONS#')
 
@@ -137,6 +138,8 @@
 
 : PRINT &UC4RB_PUP_CMD#
 
+! Invoking command
+&UC4RB_PUP_CMD#
 
 !------------------------------------------ Error Handling --------------------------------------------------------------------------------------------------------
 ! Status messages
@@ -147,15 +150,9 @@
 : SWITCH &$PLATFORM#
 :   CASE "WINDOWS"
 
-! Invoking command
-for /F "tokens=1 delims=" %%a IN ('&UC4RB_PUP_CMD#') DO (
-  echo %%a
-)
-
 @set retcode=%errorlevel%
 if %retcode% == 0 (
 :      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
-exit 0
 )
 
 if %retcode% == 2 (
@@ -170,14 +167,14 @@ if %retcode% == 6 (
   echo INFO: The run succeeded, and included both changes and failures.
 )
 
+if NOT %retcode% == 0 (
 echo ERROR: Fail to run agent.
 :      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
-exit %retcode%
+)
+
+:INC PCK.ITPA_SHARED.PRV.INCLUDE.CHECK_CMDLINE_CMD@WINDOWS
 
 :   CASE "UNIX"
-
-! invoke command
-&UC4RB_PUP_CMD#
 
 execcode=$?
 if [ "$execcode" -eq "0" ] ;
