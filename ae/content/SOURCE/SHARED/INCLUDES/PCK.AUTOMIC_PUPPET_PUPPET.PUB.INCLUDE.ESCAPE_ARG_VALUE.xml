@@ -27,7 +27,7 @@
 : SET &UC4RB_PUP_ESCAPED_STRING# = STR_CAT(&UC4RB_PUP_ESCAPED_STRING#, '"')]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC><![CDATA[It escapes the JIRA input parameters and wrap the parameter surrounded by quotes(").
+<DOC><![CDATA[It escapes the Puppet input parameters and wrap the parameter surrounded by quotes(").
 ]]></DOC>
 </DOCU_Docu>
 </JOBI>

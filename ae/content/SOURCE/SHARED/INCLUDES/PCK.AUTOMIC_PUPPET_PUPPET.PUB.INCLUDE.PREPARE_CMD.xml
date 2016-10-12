@@ -31,7 +31,7 @@
 ]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC><![CDATA[This include is used add arguments which are common for all actions.This along with action specific arguments are passed to the java command while calling the JIRA tool jar.
+<DOC><![CDATA[This include is used add arguments which are common for all actions.This along with action specific arguments are passed to the java command while calling the PUPPET tool jar.
 It can be used for both Windows and Unix environment]]></DOC>
 </DOCU_Docu>
 </JOBI>

@@ -321,19 +321,18 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
 This action is used to List nodes. User can also provide regex filter to list the nodes that satisfies the provided filter criteria.
 
 * Nodes filter Regex examples:
-	.  = any char
 	.* = match any char zero or more times
 	.? = match any char zero or one times	
 	.+ = match any char one or more times
 	
  For more information check query syntax for puppetDB.
- https://docs.puppet.com/puppetdb/4.2/api/query/v4/ast.html#regexp-match
+ https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html 
 
 = Failure Conditions =
 (none)
 
 = Inputs =
-* PuppetDB URL         		: Specify address of the puppet classifier API. E.g. http://127.0.0.1:8080
+* PuppetDB URL         		: Specify address of the puppetDB API. E.g. http://127.0.0.1:8080
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Filter             		: Specify filter which will be applied on node name. E.g. agent*
 * Sudo Password                 : The password for the sudo command.
