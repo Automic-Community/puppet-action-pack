@@ -11,7 +11,7 @@ ${SkipSSLValidation}    YES
 ${Sudo_Username}    vagrant
 ${Sudo_Password}    vagrant
 ${Options}        Sudo
-#---- Add new node, List Node Group Classes-----------------------------------------------------------------
+#---- Add new node, List Node Group Classes-
 ${Node_Name}      agentcentos.puppetlabs.vm
 ${Node_Group}     PE Agent
 #---- Add Classes to Node Group, Replace Node Group Classes-------------------------------------------------
@@ -23,9 +23,8 @@ ${Param_Value}    docker.net
 ${Variable_Name}    ntp_servers
 #---- List Node Groups, List Nodes---------------------------------------------------------------------------
 ${Filter}         .*
-${Puppet_DB_URL}    http://learning.puppetlabs.vm:8080
-
+#---- List Node Groups of Node, List Nodes---------------------------------------------------------------------------
+${Puppet_Server_Name}    learning.puppetlabs.vm
 #---- Run Agent---------------------------------------------------------------------------------------------
 ${Puppet_Path}    /opt/puppetlabs/bin/puppet
 ${Node_Groups}    PE Infrastructure,Production environment
-
