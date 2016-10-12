@@ -339,7 +339,7 @@ This action is used to replace existing node group classes with provided classes
 * Password         		: Provide the password
 * Skip SSL validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node group name. E.g. Apache_group
-* Classes			: Provide name of new classes. E.g. apt, docker, epel
+* Classes			: Provide name of new class or classes as comma separated. E.g. apt, docker, epel
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  

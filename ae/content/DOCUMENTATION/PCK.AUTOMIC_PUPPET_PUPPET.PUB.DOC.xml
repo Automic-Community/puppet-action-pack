@@ -11,15 +11,19 @@
 ================================
 Puppet Enterprise is the leading platform for automatically delivering, operating and securing your infrastructure. The result is you can deliver more software faster than ever, while maintaining quality, security, and compliance. With this package we automate the given business goal:
 * Classify nodes into node group
-* Add/remove/replace classes from node group
-* Add/Edit variables in node group 
+* List/add/remove/replace classes from node group
+* Read/add/edit variables in node group 
+* List/add/remove class parameter to node group
+* List/remove nodes
+* List/replace node group
+* Run agent
 
 
 =Supported versions=
 Puppet enterprise 4.5
 
 =Limitations=
-please add
+(none)
 
 =Setup=
 * Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
