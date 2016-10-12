@@ -356,7 +356,7 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_ALL_NODE_GROUPS_OF_NODE
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS_FOR_NODE
 
 = General description =
 This action is used to get all the node groups of a node.
@@ -371,7 +371,7 @@ This action is used to get all the node groups of a node.
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node group name               : Specify the node name to list linked node groups. E.g. puppetgroup
 * Protocol         		: Specify protocol. E.g. http or https
-* Server name                   : Specify server name of Puppet db. E.g 192.168.59.101
+* Server name                   : Specify server name of Puppet db. E.g learning.puppetlabs.vm
 * Port                          : Specify the port number for puppet db. E.g 8080
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Sudo Password                 : The password for the sudo command.
