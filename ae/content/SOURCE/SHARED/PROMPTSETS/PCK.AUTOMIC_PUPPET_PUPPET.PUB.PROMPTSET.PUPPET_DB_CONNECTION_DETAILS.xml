@@ -31,7 +31,7 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </combo><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_PUP_SERVER_NAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Server Name" tooltip="Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+    </combo><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_PUP_SERVER_NAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Server Name" tooltip="Specify server name. E.g. learning.puppetlabs.vm" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
          
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
@@ -52,7 +52,7 @@
         <entry name="upper">0</entry>
         <entry name="focus">0</entry>
         <entry name="showaspassword">0</entry>
-        <entry name="tooltip">Specify address of the puppet classifier API. E.g. https://127.0.0.1:4433</entry>
+        <entry name="tooltip">Specify server name. E.g. learning.puppetlabs.vm</entry>
         <entry name="modifiable">1</entry>
         <entry name="customfield"/>
         <entry name="onchangereset"/>
@@ -74,14 +74,14 @@
         <entry name="customfield"/>
       <entry name="initvalue">0</entry>
          </properties>
-    </integer><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_PUP_SSL_VALIDATIONs.00" nl="1" text="Skip SSL validation" tooltip="Skips SSL validation if &apos;YES&apos; is selected." required="0">
+    </integer><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_PUP_DB_SSL_VALIDATIONs.00" nl="1" text="Skip SSL validation" tooltip="Skips SSL validation if &apos;YES&apos; is selected." required="0">
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">PCK.ITPA_SHARED.PRV.VARA.YES_NO</entry>
         <entry name="xmlkey"/>
         <entry name="xmlpath"/>
         <entry name="text">Skip SSL validation</entry>
         <entry name="quotes"/>
-        <entry name="id">UC4RB_PUP_SSL_VALIDATIONs.00</entry>
+        <entry name="id">UC4RB_PUP_DB_SSL_VALIDATIONs.00</entry>
         <entry name="enabled">0</entry>
         <entry name="focus">0</entry>
         <entry name="tooltip">Skips SSL validation if &apos;YES&apos; is selected.</entry>
@@ -92,7 +92,7 @@
     </dynradiogroup></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_PROTOCOLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PROTOCOL#" ReadFromTable="OPSE">HTTP</UC4RB_PUP_PROTOCOLs.00><UC4RB_PUP_SERVER_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_SERVER_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_SERVER_NAMEs.00><UC4RB_PUP_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PORT#" ReadFromTable="OPSE">8080</UC4RB_PUP_PORTs.00><UC4RB_PUP_SSL_VALIDATIONs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_SSL_VALIDATION#" ReadFromTable="OPSE">NO</UC4RB_PUP_SSL_VALIDATIONs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_PROTOCOLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PROTOCOL#" ReadFromTable="OPSE">HTTP</UC4RB_PUP_PROTOCOLs.00><UC4RB_PUP_SERVER_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_SERVER_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_SERVER_NAMEs.00><UC4RB_PUP_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PORT#" ReadFromTable="OPSE">8080</UC4RB_PUP_PORTs.00><UC4RB_PUP_DB_SSL_VALIDATIONs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_DB_SSL_VALIDATION#" ReadFromTable="OPSE">YES</UC4RB_PUP_DB_SSL_VALIDATIONs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
