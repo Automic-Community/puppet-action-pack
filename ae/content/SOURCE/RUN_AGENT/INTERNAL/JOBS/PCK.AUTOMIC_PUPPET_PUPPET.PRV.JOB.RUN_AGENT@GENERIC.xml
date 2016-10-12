@@ -136,8 +136,7 @@
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 
 : PRINT &UC4RB_PUP_CMD#
-! Invoking command
-&UC4RB_PUP_CMD#
+
 
 !------------------------------------------ Error Handling --------------------------------------------------------------------------------------------------------
 ! Status messages
@@ -147,6 +146,11 @@
 ! Check error level based on platform
 : SWITCH &$PLATFORM#
 :   CASE "WINDOWS"
+
+! Invoking command
+for /F "tokens=1 delims=" %%a IN ('&UC4RB_PUP_CMD#') DO (
+  echo %%a
+)
 
 @set retcode=%errorlevel%
 if %retcode% == 0 (
@@ -166,11 +170,14 @@ if %retcode% == 6 (
   echo INFO: The run succeeded, and included both changes and failures.
 )
 
-echo ERROR: Faile to run agent.
+echo ERROR: Fail to run agent.
 :      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
 exit %retcode%
 
 :   CASE "UNIX"
+
+! invoke command
+&UC4RB_PUP_CMD#
 
 execcode=$?
 if [ "$execcode" -eq "0" ] ;
