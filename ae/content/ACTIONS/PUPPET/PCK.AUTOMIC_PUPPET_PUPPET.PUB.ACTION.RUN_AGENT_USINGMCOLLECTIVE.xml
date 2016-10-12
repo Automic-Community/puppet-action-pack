@@ -297,7 +297,7 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT_USINGMCOLLECTIVE
 = General description =
 This action is used to trigger a puppet run on all agent nodes remotely from puppet master using mcollective. You can also optionally provide
 * the Path to mcollective config file.
-* list of nodes comma separated
+* list of nodes comma separated without any spaces in between
 Note:
 * By default number of nodes to be processed concurrently by mcollective is 5 which could be modified using Concurrent limit field.
 * This action skips agents which do not exist or which do not respond to status check by mcollective.
@@ -307,7 +307,7 @@ Note:
 
 = Inputs =
 * Path to config file		: The path to the mcollective config file, if empty defaults to ~/.mcollective
-* Nodes				: Specify the node names separated by comma. E.g. node1,node2
+* Nodes				: Specify the node names separated by comma without any spaces in between. E.g. node1,node2
 * Concurrency limit		: Number of agents to run puppet on in a batch. Default value is 5.
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).

@@ -289,7 +289,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT
 
 = General description =
-This action is used to trigger a puppet run on an agent node. You can also optionally provide the Path to puppet command if it is not already set in the PATH environment variable.
+This action is used to trigger a puppet run on an agent node. You can also optionally provide the Path to puppet executable if it is not already set in the PATH environment variable.
 
 Note:
 * AE Agent needs to be setup on the puppet agent node.

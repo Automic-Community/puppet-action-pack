@@ -101,35 +101,36 @@
 : ENDIF
 
 : DEFINE &STRING_ARR#, string, 30
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
-
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
 !----------------------------------------------- Parameter validation ---------------------------------------------------------------------------------------------
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
 
 : SET &UC4RB_LOGGING_PARAMETER# = "Puppet Path"
-: SET &UC4RB_LOGGING_PARAMETER_VAL# = "&UC4RB_PUP_PUPPET_PATH#"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_PUPPET_PATH#
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
 
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
 
 !------------------------------------------ Buidling Puppet run command -------------------------------------------------------------------------------------------
 
-: SET &UC4RB_PUP_CMD# = ""
+: SET &UC4RB_PUP_CMD# = "puppet"
 : SET &UC4RB_PUP_PUPPET_OPTIONS# = "--onetime --no-daemonize --debug --detailed-exitcodes --color=false"
 
 : IF &UC4RB_PUP_PUPPET_PATH# <> ""
+:   SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_PUPPET_PATH#
+:   INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 
-:   SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, '"&UC4RB_PUP_PUPPET_PATH#" agent &UC4RB_PUP_PUPPET_OPTIONS#')
+:   SET &UC4RB_PUP_CMD# = '&UC4RB_PUP_ESCAPED_STRING#'
 :   IF &$PLATFORM# EQ "WINDOWS"
-:        SET &UC4RB_PUP_CMD# = STR_CAT('call ', &UC4RB_PUP_CMD#)
+:        SET &UC4RB_PUP_CMD# = STR_CAT("call ", &UC4RB_PUP_CMD#)
 :   ENDIF
-
-: ELSE
-:    SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, 'puppet agent &UC4RB_PUP_PUPPET_OPTIONS#')
 : ENDIF
+
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, ' agent &UC4RB_PUP_PUPPET_OPTIONS#')
+
 
 ! Set Execution Environment
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
@@ -148,7 +149,6 @@
 :   CASE "WINDOWS"
 
 @set retcode=%errorlevel%
-
 if %retcode% == 0 (
 :      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
 exit 0
@@ -173,27 +173,27 @@ exit %retcode%
 :   CASE "UNIX"
 
 execcode=$?
-if [ $execcode -eq 0 ]
+if [ "$execcode" -eq "0" ] ;
 then
-:      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
-else
+:    INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
+exit 0
+fi
+
 case $execcode in
   2) echo "INFO: The puppet run succeeded, and some resources were changed.";;
   4) echo "INFO: The run succeeded, and some resources failed.";;
   6) echo "INFO: The run succeeded, and included both changes and failures.";;
   *) echo "ERROR: Fail to run agent.";;
 esac
-:      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
-fi
 
-if [ "$execcode" -ne "0" ]
+if [ "$execcode" -ne "0" ] ;
 then
+:     INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
     exit $execcode
 fi
 
 :   OTHER
 : ENDSWITCH
-
 
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
 </SCRIPT>
