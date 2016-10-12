@@ -38,7 +38,7 @@ public class AddClassesToNodeGroupAction extends UpdateNodeGroupAction {
 
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         for (String classname : classList) {
-            objectBuilder.add(classname, emptyJson);
+            objectBuilder.add(classname.trim(), emptyJson);
         }
         JsonObjectBuilder classesJson = Json.createObjectBuilder();
         classesJson.add("classes", objectBuilder);
