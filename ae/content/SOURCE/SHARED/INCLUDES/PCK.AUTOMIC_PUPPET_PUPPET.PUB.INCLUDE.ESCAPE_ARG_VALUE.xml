@@ -7,22 +7,22 @@
 <OH_SubType/>
 </HEADER>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[! We escape characters based on Platform for java Strings
-
+<MSCRI><![CDATA[
+! We escape characters based on Platform
+: SET &UC4RB_PUP_ESCAPED_STRING# = STR_TRIM(&UC4RB_PUP_ESCAPED_STRING#)
+: SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, "\", "\\")
 : SWITCH &$PLATFORM#
 :   CASE "WINDOWS"
-:     SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, "%", "%%")
+:      SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, "%", "%%")
+:      SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, '"', '""')
 :   CASE "UNIX"
-:     SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, "\", "\\")
 :     SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, "$", "\$")
 :     SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, "`", "\`")
+:     SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, '"', '\"')
 :   OTHER
 : ENDSWITCH
 
-! Escape double-quotes
-: SET &UC4RB_PUP_ESCAPED_STRING# = STR_SUB(&UC4RB_PUP_ESCAPED_STRING#, '"', '\"')
-
-! then we add double-quotes to String to preserve spaces in value
+! Escape double-quotes then we add double-quotes to String to preserve spaces in value
 : SET &UC4RB_PUP_ESCAPED_STRING# = STR_CAT('"', &UC4RB_PUP_ESCAPED_STRING#)
 : SET &UC4RB_PUP_ESCAPED_STRING# = STR_CAT(&UC4RB_PUP_ESCAPED_STRING#, '"')]]></MSCRI>
 </SCRIPT>
