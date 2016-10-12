@@ -11,7 +11,7 @@ ${SkipSSLValidation}    YES
 ${Sudo_Username}    vagrant
 ${Sudo_Password}    vagrant
 ${Options}        Sudo
-#---- Add new node, List Node Group Classes-----------------------------------------------------------------
+#---- Add new node, List Node Group Classes-
 ${Node_Name}      agentcentos.puppetlabs.vm
 ${Node_Group}     PE Agent
 #---- Add Classes to Node Group, Replace Node Group Classes-------------------------------------------------
