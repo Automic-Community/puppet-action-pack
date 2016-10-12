@@ -1,6 +1,7 @@
 package com.automic.puppet.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -73,6 +74,8 @@ public class ListNodesAction extends AbstractHttpAction {
         } else {
             filterNodeList = nodeList;
         }
+        // Sorting Filter data on name
+        Collections.sort(filterNodeList);
         // preparing output of filtered data
         StringBuilder sb = new StringBuilder();
         for (String nodeGroup : filterNodeList) {

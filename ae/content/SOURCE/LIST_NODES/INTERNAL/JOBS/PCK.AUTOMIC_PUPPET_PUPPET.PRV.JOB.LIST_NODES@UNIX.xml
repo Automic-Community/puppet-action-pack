@@ -117,12 +117,13 @@
 !------------------------------------------ Buidling java arguments ---------------------------------------------------------------
 
 ! Add read action, URL and username  to java arguments
+
 : SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'
 
+
 ! PuppetDB URL
-: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_DB_URL#
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_ESCAPED_STRING#")
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DB_CONNECTION_URL
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_DB_CMD#")
 
 ! SSL Validation
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_SSL_VALIDATION#
