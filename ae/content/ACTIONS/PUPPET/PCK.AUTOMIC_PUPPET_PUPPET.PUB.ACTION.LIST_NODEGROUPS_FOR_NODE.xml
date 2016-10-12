@@ -356,7 +356,7 @@
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
 <DOC><![CDATA[= Action name =
-PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS_FOR_NODE
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE
 
 = General description =
 This action is used to get all the node groups of a node.
