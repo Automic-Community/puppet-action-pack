@@ -100,6 +100,8 @@
 @echo off
 : ENDIF
 
+: DEFINE &STRING_ARR#, string, 30
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 !------------------------------------------ Buidling java arguments --------------------------------------------------------------------------------------------
 
 :INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
@@ -150,7 +152,9 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
 
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS]]></MSCRI>
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
+
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
 </SCRIPT>
 <OUTPUTSCAN state="1">
 <Inherit>N</Inherit>

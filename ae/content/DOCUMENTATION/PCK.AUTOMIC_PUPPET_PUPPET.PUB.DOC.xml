@@ -11,15 +11,19 @@
 ================================
 Puppet Enterprise is the leading platform for automatically delivering, operating and securing your infrastructure. The result is you can deliver more software faster than ever, while maintaining quality, security, and compliance. With this package we automate the given business goal:
 * Classify nodes into node group
-* Add/remove/replace classes from node group
-* Add/Edit variables in node group 
+* List/add/remove/replace classes from node group
+* Read/add/edit variables in node group 
+* List/add/remove class parameter to node group
+* List/remove nodes
+* List/replace node group
+* Run agent
 
 
 =Supported versions=
 Puppet enterprise 4.5
 
 =Limitations=
-please add
+(none)
 
 =Setup=
 * Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
@@ -54,6 +58,9 @@ Following actions are supported for Puppet Enterprise:
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES
 * Action Description: This action is used to replace existing node group classes with provided classes.
 
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE
+* Action Description: This action is used to replace the already existing node groups for a node with provided node groups.
+
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.READ_NODE_GROUP_VARIABLE
 * Action Description: This action is used to read value of a variable from node group.
 
@@ -69,8 +76,14 @@ Following actions are supported for Puppet Enterprise:
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
 * Action Description: This action is used to List nodes.
 
-* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE
-* Action Description: This action is used to replace the already existing node groups for a node with provided node groups.]]></DOC>
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT
+* Action Description: This action is used to trigger a puppet run on an agent node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT_USINGMCOLLECTIVE
+* Action Description: This action is used to trigger a puppet run on all agent nodes remotely from puppet master using mcollective.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE
+* Action Description: This action is used to get all the node groups of a node.]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>

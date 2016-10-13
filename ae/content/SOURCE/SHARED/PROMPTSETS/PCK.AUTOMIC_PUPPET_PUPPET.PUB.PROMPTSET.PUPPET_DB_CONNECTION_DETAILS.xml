@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<PRPT name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<HEADER state="1">
+<Title>Puppet DB connection details</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<PROMPTDESIGNER state="1">
+<DESIGNER/>
+</PROMPTDESIGNER>
+<PROMPTSETXUI state="1">
+<XUIEDITOR><![CDATA[<dialog height="422" icon="PRPT" id="PRPTS" left="0" top="0" width="330"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="Puppet DB connection details"><properties><entry name="text">Puppet DB connection details</entry><entry name="modifiable">0</entry></properties><combo alt="1" dynamic="0" enabled="1" fill="b" filter="0" focus="0" id="UC4RB_PUP_PROTOCOLs.00" nl="1" strict="1" text="Protocol" tooltip="Specify the protocol to use." vtype="i"><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command owner="_self" owneraction="setsource" ownerparam="src|_dialog@src"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptcombolist" target="_self" targetaction="setlist" wait="0"/>
+         
+         
+         
+      <properties>
+        <entry listparam="" name="reference" reftype="STATIC">PCK.AUTOMIC_PUPPET_PUPPET.PUB.VARA.PROTOCOLS</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Protocol</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_PUP_PROTOCOLs.00</entry>
+        <entry name="dynamic">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify the protocol to use.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="onchangereset"/>
+        <entry name="customfield"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </combo><text alt="1" enabled="1" fill="b" focus="0" id="UC4RB_PUP_SERVER_NAMEs.00" inputassistance="0" len="" multiline="0" multilineIcon="0" nl="1" regex="" required="0" separator=";" showaspassword="0" text="Server Name" tooltip="Specify server name. E.g. learning.puppetlabs.vm" upper="0"><oninputassistant><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptvalue|@value"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptinputassistance" target="_chainwindow"/></oninputassistant>
+         
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">UC_DATATYPE_STRING</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Server Name</entry>
+        <entry name="multiline">0</entry>
+        <entry name="multilineIcon">0</entry>
+        <entry name="multiselect">0</entry>
+        <entry name="separator">;</entry>
+        <entry name="len"/>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_PUP_SERVER_NAMEs.00</entry>
+        <entry name="regex"/>
+        <entry name="inputassistance">0</entry>
+        <entry name="enabled">0</entry>
+        <entry name="required">1</entry>
+        <entry name="upper">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="showaspassword">0</entry>
+        <entry name="tooltip">Specify server name. E.g. learning.puppetlabs.vm</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+        <entry name="onchangereset"/>
+        <entry name="resetable">1</entry>
+      <entry name="initvalue"/>
+         </properties>
+    </text><integer alt="1" enabled="1" fill="b" focus="0" id="UC4RB_PUP_PORTs.00" max="2147483647" min="0" nl="1" text="Port" tooltip="Specify the port to use.">
+      <properties>
+        <entry listparam="N" name="reference" reftype="STATIC">UC_DATATYPE_NUMERIC</entry>
+        <entry name="text">Port</entry>
+        <entry name="min">0</entry>
+        <entry name="max">2147483647</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_PUP_PORTs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Specify the port to use.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+      <entry name="initvalue">0</entry>
+         </properties>
+    </integer><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_PUP_DB_SSL_VALIDATIONs.00" nl="1" text="Skip SSL validation" tooltip="Skips SSL validation if &apos;YES&apos; is selected." required="0">
+      <properties>
+        <entry listparam="C,N" name="reference" reftype="STATIC">PCK.ITPA_SHARED.PRV.VARA.YES_NO</entry>
+        <entry name="xmlkey"/>
+        <entry name="xmlpath"/>
+        <entry name="text">Skip SSL validation</entry>
+        <entry name="quotes"/>
+        <entry name="id">UC4RB_PUP_DB_SSL_VALIDATIONs.00</entry>
+        <entry name="enabled">0</entry>
+        <entry name="focus">0</entry>
+        <entry name="tooltip">Skips SSL validation if &apos;YES&apos; is selected.</entry>
+        <entry name="modifiable">1</entry>
+        <entry name="customfield"/>
+      <entry name="initvalue"/>
+         </properties>
+    </dynradiogroup></readpanel></dialog>]]></XUIEDITOR>
+</PROMPTSETXUI>
+<PROMPTSETDATA state="1">
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_PROTOCOLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PROTOCOL#" ReadFromTable="OPSE">http</UC4RB_PUP_PROTOCOLs.00><UC4RB_PUP_SERVER_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_SERVER_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_SERVER_NAMEs.00><UC4RB_PUP_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PORT#" ReadFromTable="OPSE">8080</UC4RB_PUP_PORTs.00><UC4RB_PUP_DB_SSL_VALIDATIONs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_DB_SSL_VALIDATION#" ReadFromTable="OPSE">YES</UC4RB_PUP_DB_SSL_VALIDATIONs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+</PROMPTSETDATA>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</PRPT>
+</uc-export>

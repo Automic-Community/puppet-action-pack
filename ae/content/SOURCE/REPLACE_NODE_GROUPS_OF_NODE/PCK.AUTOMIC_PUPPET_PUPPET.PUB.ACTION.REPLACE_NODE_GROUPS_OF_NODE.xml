@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE">
 <XHEADER state="1">
-<Title>Replace node groups a node belongs to</Title>
+<Title>Replace node groups</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -65,7 +65,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 <UC4RB_PUP_NODEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 <UC4RB_PUP_NODE_GROUPSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUPS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 </PRPTBOX>
@@ -141,7 +140,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 <UC4RB_PUP_NODEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 <UC4RB_PUP_NODE_GROUPSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUPS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 </PRPTBOX>
@@ -203,7 +201,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 <UC4RB_PUP_NODEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 <UC4RB_PUP_NODE_GROUPSs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_GROUPS#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.REPLACE_NODE_GROUPS_OF_NODE"/>
 </PRPTBOX>
@@ -334,6 +331,7 @@ This action is used to replace the already existing node groups for a node with 
 
 =Note=
 * Action will not fail if the node does not exists
+* Node groups with generic rule like .* won't be replaced, to replace those node groups change the rule defined 
 
 = Failure Conditions =
 * Action will fail if any of the provided node group is non-existing.
