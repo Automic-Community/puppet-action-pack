@@ -30,26 +30,13 @@ import com.sun.jersey.api.client.WebResource;
 public class ListNodesForNodeGroupAction extends AbstractHttpAction {
 
     /**
-     * Atching criteria for the existing nodes
-     */
-    /**
      * Name of Node Group
      */
     private String nodeGroup;
 
-    /**
-     * Name of variable
-     */
-    private String dbURL;
-
-    /**
-     * Service end point
-     */
-    private Client client;
-
+  
     public ListNodesForNodeGroupAction() {
         addOption("nodegroup", true, "Node group name");
-        addOption("dburl", true, "Puppet DB url");
     }
 
     @Override
@@ -67,24 +54,8 @@ public class ListNodesForNodeGroupAction extends AbstractHttpAction {
         JsonArray rule = getRule(jsonobj);
         // Calling translator URL
         JsonObject ruleQueryObject = getQueryObject(authToken, webResClient, rule);
-        // calling puppet db to resolve Query
-        JsonArray jsonArray = getNodes(authToken, ruleQueryObject);
-        prepareOutput(jsonArray);
+        prepareOutput(ruleQueryObject);
 
-    }
-
-    /**
-     * Method to initialize Client instance.
-     * 
-     * @throws AutomicException
-     * 
-     */
-    private WebResource getDbClient() throws AutomicException {
-        if (client == null) {
-            client = HttpClientConfig.getClient(this.skipCertValidation);
-            client.addFilter(new GenericResponseFilter());
-        }
-        return client.resource(dbURL);
     }
 
     private JsonObject getQueryObject(String authToken, WebResource webresource, JsonArray rule) {
@@ -106,32 +77,12 @@ public class ListNodesForNodeGroupAction extends AbstractHttpAction {
 
     }
 
-    private JsonArray getNodes(String authToken, JsonObject ruleQueryObject) throws AutomicException {
-
-        String dbApiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
-
-        WebResource webResource = getDbClient().path("pdb").path("query").path(dbApiVersion).path("nodes");
-
-        ConsoleWriter.writeln("Calling URL : " + webResource.getURI());
-
-        ClientResponse dbApiResponse = webResource.accept(MediaType.APPLICATION_JSON)
-                .entity(ruleQueryObject.toString(), MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
-                .post(ClientResponse.class);
-
-        JsonArray jsonArray = CommonUtil.jsonArrayResponse(dbApiResponse.getEntityInputStream());
-        return jsonArray;
-
-    }
-
     // Validating if the given input is not empty
     private void prepareInputParameters() throws AutomicException {
         // get node group
         nodeGroup = getOptionValue("nodegroup");
         PuppetValidator.checkNotEmpty(nodeGroup, "Node Group");
 
-        // variable name
-        dbURL = getOptionValue("dburl");
-        PuppetValidator.checkNotEmpty(dbURL, "DB URL");
     }
 
     private JsonArray getRule(JsonObject jsonobj) {
@@ -145,21 +96,9 @@ public class ListNodesForNodeGroupAction extends AbstractHttpAction {
 
     }
 
-    // prepare the output - list of nodes and total count
-    private void prepareOutput(JsonArray jsonArray) {
-        List<String> nodeList = getNodes(jsonArray);
+    private void prepareOutput(JsonObject ruleQueryObject) {
 
-        // preparing output of filtered data
-        StringBuilder sb = new StringBuilder();
-        for (String nodeGroup : nodeList) {
-            sb.append(nodeGroup).append(",");
-        }
-        if (sb.length() > 1) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
-
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + nodeList.size());
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + sb.toString());
+        ConsoleWriter.writeln("DB_QUERY_OBJECT::=" + ruleQueryObject.toString());
 
     }
 

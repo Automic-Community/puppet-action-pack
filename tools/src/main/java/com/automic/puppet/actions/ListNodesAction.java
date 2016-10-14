@@ -29,13 +29,22 @@ import com.sun.jersey.api.client.WebResource;
 public class ListNodesAction extends AbstractHttpAction {
 
     /**
-     * Atching criteria for the existing nodes
+     * Attaching criteria for the existing nodes
      */
+    private String operator;
+    private String key;
+    private String value;
+    private String filterJson;
+
     private Pattern ptrn;
-    private JsonArrayBuilder filterArray;
+    private String filter;
 
     public ListNodesAction() {
-        addOption("filter", false, "Filter");
+        addOption("operator", false, "Filter operator");
+        addOption("key", false, "Filter key");
+        addOption("value", false, "Filter value");
+        addOption("filterjson", false, "Filter json object");
+        filter = "";
     }
 
     @Override
@@ -46,15 +55,12 @@ public class ListNodesAction extends AbstractHttpAction {
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
 
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
-        
-        if (filterArray != null) {
-            webResource = webResource.queryParam("query", filterArray.build().toString());
-        }
 
+        ConsoleWriter.writeln("Using Filter " + filter);
         ConsoleWriter.writeln("Calling URL : " + webResource.getURI());
 
-        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-
+        ClientResponse response = webResource.entity(filter, MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
         prepareOutput(CommonUtil.jsonArrayResponse(response.getEntityInputStream()));
 
     }
@@ -66,9 +72,9 @@ public class ListNodesAction extends AbstractHttpAction {
         // filtering data
         if (CommonUtil.checkNotNull(ptrn) && !nodeList.isEmpty()) {
             filterNodeList = new ArrayList<String>();
-            for (String group : nodeList) {
-                if (ptrn.matcher(group).matches()) {
-                    filterNodeList.add(group);
+            for (String node : nodeList) {
+                if (ptrn.matcher(node).matches()) {
+                    filterNodeList.add(node);
                 }
             }
         } else {
@@ -92,18 +98,27 @@ public class ListNodesAction extends AbstractHttpAction {
 
     private void prepareInputParameters() {
         // check if filter is provided or not
-        String filter = getOptionValue("filter");
-        if (CommonUtil.checkNotEmpty(filter)) {
-            try {
-                ptrn = Pattern.compile(filter);
-                filterArray = Json.createArrayBuilder();
-                filterArray.add("~");
-                filterArray.add("certname");
-                filterArray.add(filter);
-            } catch (PatternSyntaxException pe) {
-                filter = Pattern.quote(filter);
-                ptrn = Pattern.compile(filter);
-            }            
+        filterJson = getOptionValue("filterjson");
+        if (CommonUtil.checkNotEmpty(filterJson)) {
+            filter = filterJson;
+        } else {
+
+            operator = getOptionValue("operator");
+            key = getOptionValue("key");
+            value = getOptionValue("value");
+            if (CommonUtil.checkNotEmpty(operator) && CommonUtil.checkNotEmpty(key) && CommonUtil.checkNotEmpty(value)) {
+
+                try {
+                    ptrn = Pattern.compile(value);
+                    JsonArrayBuilder filterArray = Json.createArrayBuilder();
+                    filterArray.add(operator);
+                    filterArray.add(key);
+                    filterArray.add(value);
+                    filter = Json.createObjectBuilder().add("query", filterArray).build().toString();
+                } catch (PatternSyntaxException pe) {
+                    ptrn = Pattern.compile(Pattern.quote(value));
+                }
+            }
         }
     }
 

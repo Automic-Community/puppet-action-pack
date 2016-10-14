@@ -83,7 +83,10 @@ Following actions are supported for Puppet Enterprise:
 * Action Description: This action is used to trigger a puppet run on all agent nodes remotely from puppet master using mcollective.
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE
-* Action Description: This action is used to get all the node groups of a node.]]></DOC>
+* Action Description: This action is used to get all the node groups of a node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES_FOR_NODE_GROUP
+* Action Description: Listing all the nodes for the specified node group.]]></DOC>
 </DOCU_Docu>
 </DOCU>
 </uc-export>
