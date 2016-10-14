@@ -283,7 +283,60 @@
 <MSCRI/>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
-<DOC/>
+<DOC><![CDATA[= Action name =
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS
+
+= General description =
+This action is used to install agent on windows platform. The action doesn't fail if the puppet agent is already installed.
+The progress of installation will be logged in a log file, UC4RB_PUP_LOG_FILE# . 
+
+= Failure Conditions =
+(none)
+
+= Inputs =
+* Agent installer file         	: Specify full path of the puppet agent installer file. E.g. C:\puppet.msi
+* Server Name	   	       	: Specify the Pappet master server name. If empty, it defaults to puppet. E.g. learning.puppetlabs.vm
+* Installation directory	: Specify the directory where puppet and its dependencies should be installed. E.g. C:\puppetlabs
+* Puppet server hostname	: Specify the hostname where the CA Puppet master server can be reached (if you are using multiple masters and only one of them is acting as the CA). If empty, it defaults to the value of the PUPPET_MASTER_SERVER property. E.g. learning.puppetlabs.vm
+* Certificate name          	: Specify the node's certificate name. Use only lowercase letters, numbers, periods, and dashes. If empty, it defaults to node's fully-qualified name. E.g. puppetcert
+* Environment			: Specify node's environment. If empty, it defaults to production. E.g. staging
+* Startup mode			: Specify whether if the Puppet agent service should run. Possible values are Automatic(default), Manual, Disabled
+* Agent account user		: Specify the user account which should be used by puppet agent service. E.g. automic
+* Agent account password	: Specify the password for the user account.
+* Agent account domain		: Specify the domain of agent user account.
+* Overwrite Agent  		: Overwrites the default agent
+* Overwrite Login  		: Overwrites the default login
+
+Note:
+* Startup node (Options)
+	* Automatic (default) 	? Puppet agent will start with Windows and stay running in the background.
+	* Manual 		? Puppet agent won?t run by default, but can be started in the services console or with net start on the command line.
+	* Disabled 		? Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
+
+* Installation directory (default values)
+	* 32-bit(Puppet install type)	32-bit(OS type)		C:\Program Files\Puppet Labs\Puppet(Default install path)
+	* 32-bit(Puppet install type)	64-bit(OS type)		C:\Program Files (x86)\Puppet Labs\Puppet(Default install path)
+	* 64-bit(Puppet install type)	64-bit(OS type)		C:\Program Files \Puppet Labs\Puppet(Default install path)
+
+= Behavior =
+(none)
+
+= Return Value =
+* UC4RB_PUP_LOG_FILE : File to log the progress of installation
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is non-zero in case of failure.
+
+= Rollback =
+(none)
+
+= Logging =
+AE logs will be displayed in the AE report.
+
+= Example =
+(none)
+]]></DOC>
 </DOCU_Docu>
 </JOBP>
 </uc-export>
