@@ -131,7 +131,8 @@
 ! Filter criteria
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -filter &UC4RB_PUP_ESCAPED_STRING#")
+: SET &NODE_NAME# = &UC4RB_PUP_ESCAPED_STRING#
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -filter &NODE_NAME#")
 
 ! read connection timeout and read timeout from vara
 :SET &VARA_OBJ_CONFIG# = "PCK.AUTOMIC_PUPPET_PUPPET.PRV.VARA.PACKAGE_PARAMETERS"
@@ -166,7 +167,7 @@ execcode=$?
 
 if [ "$execcode" -ne "0" ]
 then
-    echo "[ERROR] Either node name [&UC4RB_PUP_NODE_NAME#] is invalid or more than one node exists for the given node name"
+    echo "[ERROR] Either node name [&NODE_NAME#] is invalid or more than one node exists for the given node name"
     echo "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
     exit $execcode
 fi
