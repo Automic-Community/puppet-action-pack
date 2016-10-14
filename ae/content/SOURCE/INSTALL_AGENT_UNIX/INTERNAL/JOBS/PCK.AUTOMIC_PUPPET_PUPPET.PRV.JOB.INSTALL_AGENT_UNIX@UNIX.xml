@@ -136,7 +136,7 @@
 
 : SET &BASE_URL# = "&UC4RB_PUP_MASTER_PRTCL#://&UC4RB_PUP_ESCAPED_STRING#:&UC4RB_PUP_MASTER_PORT#"
 
-: SET &UC4RB_PUP_CMD# = "curl -k &BASE_URL#/packages/current/install.bash | sudo bash"
+: SET &UC4RB_PUP_CMD# = "curl -k &BASE_URL#/packages/current/install.bash -w '%{http_code}' | sudo bash"
 
 : PRINT &UC4RB_PUP_CMD#
 
