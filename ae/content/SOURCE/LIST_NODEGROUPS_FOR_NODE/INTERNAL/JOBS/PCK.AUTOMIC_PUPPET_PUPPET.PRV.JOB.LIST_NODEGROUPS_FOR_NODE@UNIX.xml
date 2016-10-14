@@ -153,6 +153,14 @@ export READ_TIMEOUT="&UC4RB_PUP_READ_TIMEOUT#"
 :SET &UC4RB_PUP_DB_APIVERSION# = GET_VAR(&VARA_API_OBJ_CONFIG#, "DB_API_VERSION")
 export ENV_DB_API_VERSION="&UC4RB_PUP_DB_APIVERSION#"
 
+! Set Execution Environment
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
+: IF &UC4RB_PUP_PROTOCOL# EQ "https"
+:   IF &UC4RB_PUP_SSL_VALIDATION# EQ "NO"
+:    INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CERTIFICATE
+:   ENDIF
+: ENDIF
+
 output_var=`&UC4RB_PUP_CMD#`
 execcode=$?
 echo  "$output_var"
@@ -172,7 +180,7 @@ execcode=$?
 
 if [ "$execcode" -ne "0" ]
 then
-    echo "[ERROR] Either node name [&UC4RB_PUP_NODE_NAME#] is invalid or more than one node exists for the given node name"
+    echo "[ERROR]Invalid node group [&UC4RB_PUP_NODE_NAME#] "
     echo "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
     exit $execcode
 fi
