@@ -1,6 +1,7 @@
 package com.automic.puppet.util;
 
 import java.io.InputStream;
+import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -23,7 +24,7 @@ public class CommonUtil {
      * @param message
      * @return formatted message
      */
-    public static String formatErrorMessage(final String message) {
+    public static final String formatErrorMessage(final String message) {
         final StringBuilder sb = new StringBuilder();
         sb.append("ERROR").append(" | ").append(message);
         return sb.toString();
@@ -38,7 +39,7 @@ public class CommonUtil {
      * @param defaultValue
      * @return parameter value
      */
-    public static int getEnvParameter(final String paramName, int defaultValue) {
+    public static final int getEnvParameter(final String paramName, int defaultValue) {
         String val = System.getenv(paramName);
         int i;
         if (checkNotNull(val)) {
@@ -60,7 +61,7 @@ public class CommonUtil {
      * @param defaultValue
      * @return
      */
-    public static String getEnvParameter(final String paramName, String defaultValue) {
+    public static final String getEnvParameter(final String paramName, String defaultValue) {
         String val = System.getenv(paramName);
         if (!checkNotNull(val)) {
             val = defaultValue;
@@ -68,14 +69,13 @@ public class CommonUtil {
         return val;
     }
 
-
     /**
      * Method to check if a String is not empty
      *
      * @param field
      * @return true if String is not empty else false
      */
-    public static boolean checkNotEmpty(String field) {
+    public static final boolean checkNotEmpty(String field) {
         return field != null && !field.isEmpty();
     }
 
@@ -85,7 +85,7 @@ public class CommonUtil {
      * @param field
      * @return true or false
      */
-    public static boolean checkNotNull(Object field) {
+    public static final boolean checkNotNull(Object field) {
         return field != null;
     }
 
@@ -96,7 +96,7 @@ public class CommonUtil {
      *            input stream
      * @return {@link JsonObject}
      */
-    public static JsonObject jsonObjectResponse(InputStream is) {
+    public static final JsonObject jsonObjectResponse(InputStream is) {
         return Json.createReader(is).readObject();
 
     }
@@ -108,7 +108,7 @@ public class CommonUtil {
      *            input stream
      * @return {@link JsonArray}
      */
-    public static JsonArray jsonArrayResponse(InputStream is) {
+    public static final JsonArray jsonArrayResponse(InputStream is) {
         return Json.createReader(is).readArray();
 
     }
@@ -119,7 +119,7 @@ public class CommonUtil {
      * @param value
      * @return true if YES, 1
      */
-    public static boolean convert2Bool(String value) {
+    public static final boolean convert2Bool(String value) {
         boolean ret = false;
         if (checkNotEmpty(value)) {
             ret = Constants.YES.equalsIgnoreCase(value) || Constants.TRUE.equalsIgnoreCase(value)
@@ -127,17 +127,36 @@ public class CommonUtil {
         }
         return ret;
     }
+
+    /**
+     * Method to convert the specified list to the specified delimeter string
+     * 
+     * @param list
+     * @param delimeter
+     * 
+     * @return String Array
+     */
+    public static final String listToString(List<String> list, String delimeter) {
+        StringBuilder sb = new StringBuilder();
+        for (String value : list) {
+            sb.append(value).append(delimeter);
+        }
+        if (sb.length() > 0) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+        return sb.toString();
+    }
+
     
     /**
-     * Method to split and trim space 
+     * Method to split and trim space
      * 
      * @param value
      * @param delimeter
-     *           
+     * 
      * @return String Array
      */
-    public static String [] splitAndTrimSpace(String value, String delimeter) {
-            return value.split("[\\s]*"+delimeter+"[\\s]*");
+    public static final String[] splitAndTrimSpace(String value, String delimeter) {
+        return value.split("[\\s]*" + delimeter + "[\\s]*");
     }
-
 }

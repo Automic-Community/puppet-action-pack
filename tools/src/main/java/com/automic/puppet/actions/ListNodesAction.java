@@ -31,11 +31,6 @@ public class ListNodesAction extends AbstractHttpAction {
     /**
      * Attaching criteria for the existing nodes
      */
-    private String operator;
-    private String key;
-    private String value;
-    private String filterJson;
-
     private Pattern ptrn;
     private String filter;
 
@@ -49,11 +44,8 @@ public class ListNodesAction extends AbstractHttpAction {
 
     @Override
     protected void executeSpecific() throws AutomicException {
-
         prepareInputParameters();
-
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
-
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
 
         ConsoleWriter.writeln("Using Filter " + filter);
@@ -62,7 +54,6 @@ public class ListNodesAction extends AbstractHttpAction {
         ClientResponse response = webResource.entity(filter, MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
         prepareOutput(CommonUtil.jsonArrayResponse(response.getEntityInputStream()));
-
     }
 
     // prepare the output - list of nodes and total count
@@ -82,42 +73,33 @@ public class ListNodesAction extends AbstractHttpAction {
         }
         // Sorting Filter data on name
         Collections.sort(filterNodeList);
-        // preparing output of filtered data
-        StringBuilder sb = new StringBuilder();
-        for (String nodeGroup : filterNodeList) {
-            sb.append(nodeGroup).append(",");
-        }
-        if (sb.length() > 1) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
 
         ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + filterNodeList.size());
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + sb.toString());
-
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + CommonUtil.listToString(filterNodeList, ","));
     }
 
     private void prepareInputParameters() {
         // check if filter is provided or not
-        filterJson = getOptionValue("filterjson");
+        String filterJson = getOptionValue("filterjson");
         if (CommonUtil.checkNotEmpty(filterJson)) {
             filter = filterJson;
         } else {
 
-            operator = getOptionValue("operator");
-            key = getOptionValue("key");
-            value = getOptionValue("value");
-            if (CommonUtil.checkNotEmpty(operator) && CommonUtil.checkNotEmpty(key) && CommonUtil.checkNotEmpty(value)) {
-                if ("~".equals(operator)) {
+            String opr = getOptionValue("operator");
+            String key = getOptionValue("key");
+            String val = getOptionValue("value");
+            if (CommonUtil.checkNotEmpty(opr) && CommonUtil.checkNotEmpty(key) && CommonUtil.checkNotEmpty(val)) {
+                if ("~".equals(opr)) {
                     try {
-                        ptrn = Pattern.compile(value);
+                        ptrn = Pattern.compile(val);
                     } catch (PatternSyntaxException pe) {
-                        operator = "=";
+                        opr = "=";
                     }
                 }
                 JsonArrayBuilder filterArray = Json.createArrayBuilder();
-                filterArray.add(operator);
+                filterArray.add(opr);
                 filterArray.add(key);
-                filterArray.add(value);
+                filterArray.add(val);
                 filter = Json.createObjectBuilder().add("query", filterArray).build().toString();
             }
         }
@@ -139,7 +121,6 @@ public class ListNodesAction extends AbstractHttpAction {
                     }
                 }
             }
-
         }
         return nodeList;
     }

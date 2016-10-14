@@ -18,7 +18,7 @@ import com.sun.jersey.api.client.WebResource;
  * @author shrutinambiar
  *
  */
-public class UpdateNodeGroupAction extends AbstractHttpAction {
+public abstract class UpdateNodeGroupAction extends AbstractHttpAction {
 
     /**
      * Name of the node group
@@ -49,19 +49,15 @@ public class UpdateNodeGroupAction extends AbstractHttpAction {
             // url to add the node to node group
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId);
 
-            ConsoleWriter.newLine();
             ConsoleWriter.writeln("Calling action specific URL: " + webresource.getURI());
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
-                    .entity(getEntity(), MediaType.APPLICATION_JSON).post(ClientResponse.class);
-            ConsoleWriter.newLine();
+                    .entity(getEntity(), MediaType.APPLICATION_JSON).post(ClientResponse.class);            
         } finally {
             // revoke the token
             tokenHandler.logout(authToken);
         }
     }
 
-    protected String getEntity() {
-        return "";
-    }
+    protected abstract String getEntity();
 }

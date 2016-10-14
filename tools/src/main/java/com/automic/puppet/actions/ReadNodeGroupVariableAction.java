@@ -72,6 +72,6 @@ public class ReadNodeGroupVariableAction extends AbstractHttpAction {
 
         // variable name
         variableName = getOptionValue("varaname");
-        PuppetValidator.checkNotEmpty(variableName, "varaname");
+        PuppetValidator.checkNotEmpty(variableName, "Variable Name");
     }
 }

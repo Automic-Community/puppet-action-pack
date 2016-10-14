@@ -21,7 +21,7 @@ public class ListNodeGroupAction extends AbstractHttpAction {
     /**
      * Node Group Filter
      */
-    private String nodeGroupsFilter;
+    private Pattern nodeGroupsFilter;
 
     public ListNodeGroupAction() {
         addOption("nodegroupfilter", false, "Node Group filter");
@@ -48,7 +48,14 @@ public class ListNodeGroupAction extends AbstractHttpAction {
 
     private void prepareInputParameters() throws AutomicException {
         // Initialize node group filter
-        nodeGroupsFilter = getOptionValue("nodegroupfilter");
+        String temp = getOptionValue("nodegroupfilter");
+        if (CommonUtil.checkNotEmpty(temp)) {
+            try {
+                nodeGroupsFilter = Pattern.compile(temp);
+            } catch (PatternSyntaxException pe) {
+                nodeGroupsFilter = Pattern.compile(Pattern.quote(temp));
+            }
+        }
     }
 
     // print the list of node groups in AE vara UC4RB_PUP_NODE_GROUP_LIST in the
@@ -56,34 +63,18 @@ public class ListNodeGroupAction extends AbstractHttpAction {
     private void prepareOutput(List<String> nodeGroups) {
         // write the node group details to job report
         List<String> filterNodeGroups = new ArrayList<String>();
-        if (!nodeGroups.isEmpty()) {
-            if (CommonUtil.checkNotEmpty(nodeGroupsFilter)) {
-                Pattern pt = null;
-                try {
-                    pt = Pattern.compile(nodeGroupsFilter);
-                } catch (PatternSyntaxException pe) {
-                    pt = Pattern.compile(Pattern.quote(nodeGroupsFilter));
+        if (CommonUtil.checkNotNull(nodeGroupsFilter)) {
+            for (String group : nodeGroups) {
+                if (nodeGroupsFilter.matcher(group).matches()) {
+                    filterNodeGroups.add(group);
                 }
-                for (String group : nodeGroups) {
-                    if (pt.matcher(group).matches()) {
-                        filterNodeGroups.add(group);
-                    }
-                }
-            } else {
-                filterNodeGroups = nodeGroups;
             }
+        } else {
+            filterNodeGroups = nodeGroups;
         }
-        StringBuilder sb = new StringBuilder();
-        for (String nodeGroup : filterNodeGroups) {
-            sb.append(nodeGroup).append(",");
-        }
-        if (sb.length() > 1) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
-
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + sb.toString());
+        
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + CommonUtil.listToString(filterNodeGroups, ","));
         ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_COUNT::=" + filterNodeGroups.size());
-
     }
 
 }

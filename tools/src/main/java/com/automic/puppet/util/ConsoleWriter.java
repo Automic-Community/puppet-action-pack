@@ -23,7 +23,7 @@ public final class ConsoleWriter {
      *
      * @param content
      */
-    public static void write(String content) {
+    public static final void write(String content) {
         String temp = content != null ? content : "null";
         WRITER.write(temp);
     }
@@ -32,7 +32,7 @@ public final class ConsoleWriter {
      * Method to write a newline to console
      * 
      */
-    public static void newLine() {
+    public static final void newLine() {
         write(System.lineSeparator());
     }
 
@@ -41,7 +41,7 @@ public final class ConsoleWriter {
      *
      * @param content
      */
-    public static void writeln(Object content) {
+    public static final void writeln(Object content) {
         String temp = content != null ? content.toString() : "null";
         write(temp);
         newLine();
@@ -52,7 +52,7 @@ public final class ConsoleWriter {
      * 
      * @param content
      */
-    public static void writeln(Throwable content) {
+    public static final void writeln(Throwable content) {
         StringWriter sw = new StringWriter(4 * 1024);
         PrintWriter pw = new PrintWriter(sw);
         content.printStackTrace(pw);
@@ -65,7 +65,7 @@ public final class ConsoleWriter {
      * Method to flush to console
      * 
      */
-    public static void flush() {
+    public static final void flush() {
         WRITER.flush();
     }
 

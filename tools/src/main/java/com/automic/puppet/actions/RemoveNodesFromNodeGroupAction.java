@@ -62,7 +62,6 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId)
                     .path("unpin");
 
-            ConsoleWriter.newLine();
             ConsoleWriter.writeln("Calling action specific URL: " + webresource.getURI());
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)

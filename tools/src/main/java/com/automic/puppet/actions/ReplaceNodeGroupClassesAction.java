@@ -85,7 +85,6 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
                 builder.add("classes", objectBuilder.build());
             }
         }
-
         return builder.build().toString();
     }
 
