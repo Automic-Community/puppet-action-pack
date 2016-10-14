@@ -108,7 +108,7 @@ public class RemoveClassParamFromNodeGroupAction extends AbstractHttpAction {
         String classParameters = getOptionValue("classparam");
         PuppetValidator.checkNotEmpty(classParameters, "Class name");
 
-        classParamList = classParameters.split(",");
+        classParamList = CommonUtil.splitAndTrimSpace(classParameters, ",");
         if (classParamList.length == 0) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes",
                     classParameters));

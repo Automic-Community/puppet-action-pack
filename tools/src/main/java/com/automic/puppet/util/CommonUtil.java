@@ -127,5 +127,17 @@ public class CommonUtil {
         }
         return ret;
     }
+    
+    /**
+     * Method to split and trim space 
+     * 
+     * @param value
+     * @param delimeter
+     *           
+     * @return String Array
+     */
+    public static String [] splitAndTrimSpace(String value, String delimeter) {
+            return value.split("[\\s]*"+delimeter+"[\\s]*");
+    }
 
 }

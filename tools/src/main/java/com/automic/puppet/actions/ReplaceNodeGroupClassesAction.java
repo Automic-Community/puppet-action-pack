@@ -95,7 +95,7 @@ public class ReplaceNodeGroupClassesAction extends AbstractHttpAction {
 
         String classesName = getOptionValue("classesname");
         PuppetValidator.checkNotEmpty(classesName, "Class name");
-        classesNameArray = classesName.split(",");
+        classesNameArray = CommonUtil.splitAndTrimSpace(classesName, ",");
         if (classesNameArray.length == 0) {
             throw new AutomicException(
                     String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes", classesName));

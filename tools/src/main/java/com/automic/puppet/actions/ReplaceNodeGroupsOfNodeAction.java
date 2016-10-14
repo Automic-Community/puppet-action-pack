@@ -109,8 +109,9 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
                 pinNodeGroupIdList.remove(groupName);
                 unpinNodeGroupIdList.remove(groupName);
             }
-
         }
+        ConsoleWriter.writeln("Unpinned Nodes "+unpinNodeGroupIdList);
+        ConsoleWriter.writeln("Pinned Nodes "+pinNodeGroupIdList);
     }
 
     private List<String> getIdForUserProvidedGroups(Map<String, String> nodeGroupMap) throws AutomicException {
@@ -118,7 +119,7 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
         for (String groupName : nodeGroupNameList) {
             boolean found = false;
             for (String key : nodeGroupMap.keySet()) {
-                if (groupName.trim().equals(nodeGroupMap.get(key))) {
+                if (groupName.equals(nodeGroupMap.get(key))) {
                     newNodeGroupIdList.add(key);
                     found = true;
                     break;
@@ -142,7 +143,7 @@ public class ReplaceNodeGroupsOfNodeAction extends AbstractHttpAction {
         // nodes
         String nodeGroups = getOptionValue("nodegroups");
         PuppetValidator.checkNotEmpty(nodeGroups, "Node groups");
-        nodeGroupNameList = nodeGroups.split(",");
+        nodeGroupNameList = CommonUtil.splitAndTrimSpace(nodeGroups, ",");
         if (nodeGroupNameList.length == 0) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Node group(s)",
                     nodeGroups));

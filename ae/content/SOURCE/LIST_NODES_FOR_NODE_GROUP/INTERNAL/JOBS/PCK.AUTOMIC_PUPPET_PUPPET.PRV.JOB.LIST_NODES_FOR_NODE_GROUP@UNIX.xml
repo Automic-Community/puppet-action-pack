@@ -120,6 +120,7 @@
 ! Define action specific java options and values
 : SET &ACTION_NAME# = "TranslateNodeGroupRuleAction"
 
+echo "***** Retrieving rules for the specified Node Group *****"
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CMD
 ! Node group name
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_GROUP#
@@ -152,7 +153,9 @@ then
     exit $execcode
 fi
 
-rules=(echo "$output_var")|grep -q "DB_QUERY_OBJECT::"
+echo "***** Rules has been retrieved for the specified Node Group *****"
+
+rules=`echo "$output_var" | grep -q "DB_QUERY_OBJECT::"`
 execcode=$?
 
 if [ "$execcode" -ne "0" ]
@@ -160,6 +163,7 @@ then
     echo "UC4RB_PUP_NODE_COUNT::=0"
     echo "UC4RB_PUP_NODE_LIST::="
 else
+echo "***** Retrieving Nodes for the rules *****"
 db_query="$(echo "$rules" | sed s/DB_QUERY_OBJECT::=//g)"
 !List nodes
 : SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'

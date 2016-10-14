@@ -120,7 +120,7 @@
 !checking valid node
 : SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'
 
-
+echo "***** Validating the node name *****"
 ! PuppetDB URL
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DB_CONNECTION_URL
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_DB_CMD#")
@@ -180,7 +180,7 @@ then
     exit $execcode
 fi
 
-
+echo "***** Node name is valid *****"
 node_name="$(echo "$output_var" | grep "UC4RB_PUP_NODE_LIST::=" | sed s/UC4RB_PUP_NODE_LIST::=//g)"
 
 
