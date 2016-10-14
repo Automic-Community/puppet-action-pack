@@ -15,6 +15,9 @@ public class ExceptionConstants {
 
     public static final String INVALID_FILE = "Invalid file [%s], possibly file doesn't exists";
     public static final String ERROR_SKIPPING_CERT = "Error skipping the certificate validation";
+    public static final String PUPPET_CERTIFICATE_MISSING = "Puppet certificate(s) are missing";
+    public static final String GENERIC_ERROR_MSG = "System Error occured.";
+    public static final String EMPTY_PUPPET_CERITIFCATE_PATH = "Puppet certificate path is empty";
 
     private ExceptionConstants() {
     }
