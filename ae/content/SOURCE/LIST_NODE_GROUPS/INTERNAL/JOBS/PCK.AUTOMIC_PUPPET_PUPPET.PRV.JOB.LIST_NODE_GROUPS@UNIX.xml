@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.LIST_NODE_GROUPS@UNIX">
 <XHEADER state="1">
-<Title/>
+<Title>List node groups</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>

@@ -52,11 +52,13 @@
 <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
-<UC4RB_PUP_DB_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<UC4RB_PUP_DB_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">YES</UC4RB_PUP_DB_SSL_VALIDATIONs.00>
+<UC4RB_PUP_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">8080</UC4RB_PUP_PORTs.00>
+<UC4RB_PUP_PROTOCOLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PROTOCOL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">http</UC4RB_PUP_PROTOCOLs.00>
+<UC4RB_PUP_SERVER_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SERVER_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -124,11 +126,13 @@
 </node>
 <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET"/>
 <node content="0" id="PPRPTS" name="Parent PromptSets" parent="" type="PPROMPTSET"/>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
-<UC4RB_PUP_DB_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<UC4RB_PUP_DB_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">YES</UC4RB_PUP_DB_SSL_VALIDATIONs.00>
+<UC4RB_PUP_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">8080</UC4RB_PUP_PORTs.00>
+<UC4RB_PUP_PROTOCOLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PROTOCOL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">http</UC4RB_PUP_PROTOCOLs.00>
+<UC4RB_PUP_SERVER_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SERVER_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -182,11 +186,13 @@
 <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen=""/>
 <dynvalues>
 <dyntree>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">
-<UC4RB_PUP_DB_URLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_URL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS"/>
-<UC4RB_PUP_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS">NO</UC4RB_PUP_SSL_VALIDATIONs.00>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">
+<UC4RB_PUP_DB_SSL_VALIDATIONs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_DB_SSL_VALIDATION#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">YES</UC4RB_PUP_DB_SSL_VALIDATIONs.00>
+<UC4RB_PUP_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">8080</UC4RB_PUP_PORTs.00>
+<UC4RB_PUP_PROTOCOLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_PROTOCOL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS">http</UC4RB_PUP_PROTOCOLs.00>
+<UC4RB_PUP_SERVER_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_SERVER_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -269,9 +275,9 @@
 <Mode>1</Mode>
 </VALUE>
 </node>
-<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.CONNECTION_DETAILS" prptmode="1"/>
+<node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" ontop="1">
+<PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PUB.PROMPTSET.PUPPET_DB_CONNECTION_DETAILS" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.LIST_NODES" parent="PRPTS" type="PROMPTSET">
@@ -321,19 +327,20 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
 This action is used to List nodes. User can also provide regex filter to list the nodes that satisfies the provided filter criteria.
 
 * Nodes filter Regex examples:
-	.  = any char
 	.* = match any char zero or more times
 	.? = match any char zero or one times	
 	.+ = match any char one or more times
 	
  For more information check query syntax for puppetDB.
- https://docs.puppet.com/puppetdb/4.2/api/query/v4/ast.html#regexp-match
+ https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html 
 
 = Failure Conditions =
 (none)
 
 = Inputs =
-* PuppetDB URL         		: Specify address of the puppet classifier API. E.g. http://127.0.0.1:8080
+* Protocol         		: Specify protocol. E.g. http or https
+* Server name                   : Specify server name of Puppet db. E.g 192.168.59.101
+* Port                          : Specify the port number for puppet db. E.g 8080
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Filter             		: Specify filter which will be applied on node name. E.g. agent*
 * Sudo Password                 : The password for the sudo command.
@@ -347,7 +354,7 @@ This action is used to List nodes. User can also provide regex filter to list th
 
 = Return Value =
 * UC4RB_PUP_NODE_LIST : comma separated list of node names
-* UC4RB_PUP_NODE_COUNT : Number of node groups listed
+* UC4RB_PUP_NODE_COUNT : Number of nodes listed
 
 = Outputs =
 * Return code is 0 in case of success.

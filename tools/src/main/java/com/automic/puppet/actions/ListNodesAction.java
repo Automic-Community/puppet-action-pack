@@ -1,12 +1,15 @@
 package com.automic.puppet.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.ws.rs.core.MediaType;
 
@@ -26,28 +29,38 @@ import com.sun.jersey.api.client.WebResource;
 public class ListNodesAction extends AbstractHttpAction {
 
     /**
-     * Atching criteria for the existing nodes
+     * Attaching criteria for the existing nodes
      */
+    private String operator;
+    private String key;
+    private String value;
+    private String filterJson;
+
+    private Pattern ptrn;
     private String filter;
 
     public ListNodesAction() {
-        addOption("filter", false, "Filter");
+        addOption("operator", false, "Filter operator");
+        addOption("key", false, "Filter key");
+        addOption("value", false, "Filter value");
+        addOption("filterjson", false, "Filter json object");
+        filter = "";
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
 
+        prepareInputParameters();
+
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
 
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
 
-        // check if filter is provided or not
-        filter = getOptionValue("filter");
-
+        ConsoleWriter.writeln("Using Filter " + filter);
         ConsoleWriter.writeln("Calling URL : " + webResource.getURI());
 
-        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-
+        ClientResponse response = webResource.entity(filter, MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
         prepareOutput(CommonUtil.jsonArrayResponse(response.getEntityInputStream()));
 
     }
@@ -56,23 +69,19 @@ public class ListNodesAction extends AbstractHttpAction {
     private void prepareOutput(JsonArray jsonArray) {
         List<String> nodeList = getNodes(jsonArray);
         List<String> filterNodeList = null;
-        Pattern pt = null;
         // filtering data
-        if (CommonUtil.checkNotEmpty(filter) && !nodeList.isEmpty()) {
+        if (CommonUtil.checkNotNull(ptrn) && !nodeList.isEmpty()) {
             filterNodeList = new ArrayList<String>();
-            try {
-                pt = Pattern.compile(filter);
-            } catch (PatternSyntaxException pe) {
-                pt = Pattern.compile(Pattern.quote(filter));
-            }
-            for (String group : nodeList) {
-                if (pt.matcher(group).matches()) {
-                    filterNodeList.add(group);
+            for (String node : nodeList) {
+                if (ptrn.matcher(node).matches()) {
+                    filterNodeList.add(node);
                 }
             }
         } else {
             filterNodeList = nodeList;
         }
+        // Sorting Filter data on name
+        Collections.sort(filterNodeList);
         // preparing output of filtered data
         StringBuilder sb = new StringBuilder();
         for (String nodeGroup : filterNodeList) {
@@ -85,6 +94,32 @@ public class ListNodesAction extends AbstractHttpAction {
         ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + filterNodeList.size());
         ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + sb.toString());
 
+    }
+
+    private void prepareInputParameters() {
+        // check if filter is provided or not
+        filterJson = getOptionValue("filterjson");
+        if (CommonUtil.checkNotEmpty(filterJson)) {
+            filter = filterJson;
+        } else {
+
+            operator = getOptionValue("operator");
+            key = getOptionValue("key");
+            value = getOptionValue("value");
+            if (CommonUtil.checkNotEmpty(operator) && CommonUtil.checkNotEmpty(key) && CommonUtil.checkNotEmpty(value)) {
+
+                try {
+                    ptrn = Pattern.compile(value);
+                    JsonArrayBuilder filterArray = Json.createArrayBuilder();
+                    filterArray.add(operator);
+                    filterArray.add(key);
+                    filterArray.add(value);
+                    filter = Json.createObjectBuilder().add("query", filterArray).build().toString();
+                } catch (PatternSyntaxException pe) {
+                    ptrn = Pattern.compile(Pattern.quote(value));
+                }
+            }
+        }
     }
 
     // get the list of nodes
