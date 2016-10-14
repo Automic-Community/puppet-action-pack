@@ -7,13 +7,16 @@
 <OH_SubType/>
 </HEADER>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[
+<MSCRI><![CDATA[: IF &UC4RB_PUP_PROTOCOL# EQ "https"
+:   IF &UC4RB_PUP_SSL_VALIDATION# EQ "NO"
 ! Host Certificate
- export ENV_HOSTCERT=`puppet config print hostcert`
+  export ENV_HOSTCERT=`puppet config print hostcert`
 ! Client Certificate
- export ENV_HOSTPRIVKEY=`puppet config print hostprivkey`
+  export ENV_HOSTPRIVKEY=`puppet config print hostprivkey`
 ! Private Certificate
- export ENV_LOCALCACERT=`puppet config print localcacert`
+  export ENV_LOCALCACERT=`puppet config print localcacert`
+:   ENDIF
+: ENDIF
 ]]></MSCRI>
 </SCRIPT>
 <DOCU_Docu state="1" type="text">
