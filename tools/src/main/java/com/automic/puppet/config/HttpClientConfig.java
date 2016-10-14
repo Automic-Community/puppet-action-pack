@@ -1,5 +1,6 @@
 package com.automic.puppet.config;
 
+import java.nio.file.Paths;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
@@ -43,6 +44,15 @@ public final class HttpClientConfig {
         config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
+        if (!CommonUtil.convert2Bool(skipCertValidation)) {
+            String hostcertPath = CommonUtil.getEnvParameter(Constants.ENV_HOSTCERT, "");
+            String hostprivkeyPath = CommonUtil.getEnvParameter(Constants.ENV_HOSTPRIVKEY, "");
+            String localcacertPath = CommonUtil.getEnvParameter(Constants.ENV_LOCALCACERT, "");
+            if (CommonUtil.checkNotEmpty(hostcertPath) && CommonUtil.checkNotEmpty(hostprivkeyPath)
+                    && CommonUtil.checkNotEmpty(localcacertPath)) {
+                validateCertificates(hostcertPath, hostprivkeyPath, localcacertPath, config);
+            }
+        }
         return Client.create(config);
     }
 
@@ -76,6 +86,25 @@ public final class HttpClientConfig {
             ConsoleWriter.writeln(e);
             throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT);
         }
+    }
+
+    /**
+     * Method to validate certificates specified at system path with that of the Docker URL specified.
+     * 
+     * @param certificatePath
+     *            Path to certificates
+     * @param config
+     *            config to Docker connection
+     * @throws DockerException
+     */
+    private static void validateCertificates(String hostcertPath, String hostprivkeyPath, String localcacertPath,
+            ClientConfig config) throws AutomicException {
+
+        PuppetCertificate certs = new PuppetCertificate(Paths.get(hostcertPath), Paths.get(hostprivkeyPath),
+                Paths.get(localcacertPath));
+        HTTPSProperties props = new HTTPSProperties(certs.hostnameVerifier(), certs.sslContext());
+        config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, props);
+
     }
 
 }
