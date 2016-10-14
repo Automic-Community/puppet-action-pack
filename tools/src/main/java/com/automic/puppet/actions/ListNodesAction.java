@@ -107,17 +107,18 @@ public class ListNodesAction extends AbstractHttpAction {
             key = getOptionValue("key");
             value = getOptionValue("value");
             if (CommonUtil.checkNotEmpty(operator) && CommonUtil.checkNotEmpty(key) && CommonUtil.checkNotEmpty(value)) {
-
-                try {
-                    ptrn = Pattern.compile(value);
-                    JsonArrayBuilder filterArray = Json.createArrayBuilder();
-                    filterArray.add(operator);
-                    filterArray.add(key);
-                    filterArray.add(value);
-                    filter = Json.createObjectBuilder().add("query", filterArray).build().toString();
-                } catch (PatternSyntaxException pe) {
-                    ptrn = Pattern.compile(Pattern.quote(value));
+                if ("~".equals(operator)) {
+                    try {
+                        ptrn = Pattern.compile(value);
+                    } catch (PatternSyntaxException pe) {
+                        operator = "=";
+                    }
                 }
+                JsonArrayBuilder filterArray = Json.createArrayBuilder();
+                filterArray.add(operator);
+                filterArray.add(key);
+                filterArray.add(value);
+                filter = Json.createObjectBuilder().add("query", filterArray).build().toString();
             }
         }
     }

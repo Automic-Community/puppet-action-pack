@@ -30,9 +30,6 @@ public class Constants {
     public static final String PUPPET_USERNAME = "username";
     public static final String PUPPET_PASSWORD = "password";
     public static final String SKIP_CERT_VALIDATION = "skipvalidation";
-    public static final String HOST_CERT = "hostcert";
-    public static final String HOST_PRIV_CERT = "hostprivkey";
-    public static final String LOCAL_CERT = "localcacert";
 
     public static final String YES = "YES";
     public static final String TRUE = "TRUE";

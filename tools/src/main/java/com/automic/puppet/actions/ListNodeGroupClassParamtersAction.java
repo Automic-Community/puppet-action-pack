@@ -77,8 +77,7 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
                 sb.append(paramEntrySet.size());
                 sb.append("\n");
 
-                for (Map.Entry<String, JsonValue> entry : paramObj.entrySet())
-                {
+                for (Map.Entry<String, JsonValue> entry : paramObj.entrySet()) {
                     String key = entry.getKey();
                     sb.append("UC4RB_PUP_CLASS_PARAM_" + key + "::=");
 

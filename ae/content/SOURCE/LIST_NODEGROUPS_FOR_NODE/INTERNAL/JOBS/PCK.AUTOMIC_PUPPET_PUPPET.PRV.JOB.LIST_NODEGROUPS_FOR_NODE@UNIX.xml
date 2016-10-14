@@ -129,7 +129,7 @@
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "  -skipvalidation &UC4RB_PUP_DB_SSL_VALIDATION#")
 
 ! operator
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, ' -operator "~"')
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, ' -operator "="')
 
 ! key
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, ' -key "certname"')

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.security.KeyFactory;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
@@ -28,10 +27,15 @@ import org.bouncycastle.openssl.PEMParser;
 
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.ConsoleWriter;
 
+/**
+ * This class generates the SSL Context using puppet certificates.
+ * 
+ */
 public class PuppetCertificate {
 
-    private static final char[] KEY_STORE_PASSWORD = "docker!!11!!one!".toCharArray();
+    private static final char[] KEY_STORE_PASSWORD = "puppet!!11!!one!".toCharArray();
 
     private File caCertPath;
     private File clientKeyPath;
@@ -39,17 +43,20 @@ public class PuppetCertificate {
 
     private SSLContext sslContext;
 
-    public PuppetCertificate(final Path hostcertPath, final Path hostprivkeyPath, final Path localcacertPath)
+    public PuppetCertificate(String hostcertPath, String hostprivkeyPath, String localcacertPath)
             throws AutomicException {
 
-        clientCertPath = hostcertPath.toFile();
-        clientKeyPath = hostprivkeyPath.toFile();
-        caCertPath = localcacertPath.toFile();
+        ConsoleWriter.writeln("Host Certificate :" + hostcertPath);
+        ConsoleWriter.writeln("key :" + hostprivkeyPath);
+        ConsoleWriter.writeln("CA Certificate :" + localcacertPath);
+
+        clientCertPath = new File(hostcertPath);
+        clientKeyPath = new File(hostprivkeyPath);
+        caCertPath = new File(localcacertPath);
 
         if (!caCertPath.exists() || !clientKeyPath.exists() || !clientCertPath.exists()) {
             throw new AutomicException(ExceptionConstants.PUPPET_CERTIFICATE_MISSING);
         }
-
         generateCertificates();
     }
 
@@ -89,8 +96,8 @@ public class PuppetCertificate {
 
         } catch (CertificateException | IOException | NoSuchAlgorithmException | InvalidKeySpecException
                 | KeyStoreException | UnrecoverableKeyException | KeyManagementException e) {
-
-            throw new AutomicException(ExceptionConstants.GENERIC_ERROR_MSG);
+            ConsoleWriter.writeln(e);
+            throw new AutomicException(ExceptionConstants.INVALID_PUPPET_CERITIFCATES);
         } finally {
             if (reader != null) {
                 try {
