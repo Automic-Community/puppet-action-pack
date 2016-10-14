@@ -70,7 +70,7 @@ Install Agent Windows Template
     ...    &UC4RB_PUP_INSTALL_DIR#    ${PathToInstallAgent}
     Action Set    &UC4RB_PUP_CA_SERVER#    ${CAServer}
     Action Set    &UC4RB_PUP_CERT_NAME#    ${CertName}
-    Action Set    &UC4RB_PUP_MASTER_ENV#    ${Environment}
+    Action Set    &UC4RB_PUP_NODE_ENV#    ${Environment}
     Action Set    &UC4RB_PUP_STARTUP_MODE#    ${StartupMode}
     Action Set    &UC4RB_PUP_AGENT_USERNAME#    ${AgentAccountUser}
     Action Set    &UC4RB_PUP_AGENT_PASSWORD#    ${AgentAccountPassword}
