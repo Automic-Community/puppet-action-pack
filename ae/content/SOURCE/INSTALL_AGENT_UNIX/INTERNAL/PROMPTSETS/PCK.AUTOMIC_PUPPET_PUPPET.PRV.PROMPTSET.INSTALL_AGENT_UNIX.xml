@@ -77,7 +77,7 @@
     </integer></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_MASTER_PRTCLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_MASTER_PRTCL#" ReadFromTable="OPSE"></UC4RB_PUP_MASTER_PRTCLs.00><UC4RB_PUP_MASTER_SERVERs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_MASTER_SERVER#" ReadFromTable="OPSE"></UC4RB_PUP_MASTER_SERVERs.00><UC4RB_PUP_MASTER_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_MASTER_PORT#" ReadFromTable="OPSE">8140</UC4RB_PUP_MASTER_PORTs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_MASTER_PRTCLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_MASTER_PRTCL#" ReadFromTable="OPSE">https</UC4RB_PUP_MASTER_PRTCLs.00><UC4RB_PUP_MASTER_SERVERs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_MASTER_SERVER#" ReadFromTable="OPSE"></UC4RB_PUP_MASTER_SERVERs.00><UC4RB_PUP_MASTER_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_MASTER_PORT#" ReadFromTable="OPSE">8140</UC4RB_PUP_MASTER_PORTs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>
