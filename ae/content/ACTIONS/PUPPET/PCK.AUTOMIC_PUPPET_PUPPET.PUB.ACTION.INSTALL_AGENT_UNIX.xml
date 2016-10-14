@@ -57,17 +57,17 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
 <ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 <UC4RB_PUP_MASTER_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">8140</UC4RB_PUP_MASTER_PORTs.00>
-<UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
+<UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">https</UC4RB_PUP_MASTER_PRTCLs.00>
 <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">
-<PRPTBOX promptset="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">
-<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO"/>
-<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO"/>
-<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -124,17 +124,17 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
 <ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 <UC4RB_PUP_MASTER_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">8140</UC4RB_PUP_MASTER_PORTs.00>
-<UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
+<UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">https</UC4RB_PUP_MASTER_PRTCLs.00>
 <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">
-<PRPTBOX promptset="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">
-<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO"/>
-<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO"/>
-<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -177,17 +177,17 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
 <ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 <UC4RB_PUP_MASTER_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">8140</UC4RB_PUP_MASTER_PORTs.00>
-<UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
+<UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">https</UC4RB_PUP_MASTER_PRTCLs.00>
 <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 </PRPTBOX>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">
-<PRPTBOX promptset="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">
-<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO"/>
-<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO"/>
-<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PPRPTS" type="PPROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">
+<UC4RB_SUDO_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_PASSWORD#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_SUDO_USERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_SUDO_USER#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO"/>
+<UC4RB_USE_SUDOs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_USE_SUDO#" promptsetname="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO">None</UC4RB_USE_SUDOs.00>
 </PRPTBOX>
 </PROMPTSET>
 </node>
@@ -259,9 +259,9 @@
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" prptmode="1"/>
 </PROMPTSET>
 </node>
-<node content="1" id="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
-<PROMPTSET name="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" ontop="1">
-<PRPTBOX promptset="PCK.AUTOMIC_SHARED.PUB.PROMPTSET.SUDO" prptmode="1"/>
+<node content="1" id="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" parent="PRPTS" type="PROMPTSET">
+<PROMPTSET name="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" ontop="1">
+<PRPTBOX promptset="PCK.ITPA_SHARED.PUB.PROMPTSET.SUDO" prptmode="1"/>
 </PROMPTSET>
 </node>
 <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
