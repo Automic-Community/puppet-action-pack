@@ -55,7 +55,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 <UC4RB_PUP_MASTER_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">8140</UC4RB_PUP_MASTER_PORTs.00>
 <UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">https</UC4RB_PUP_MASTER_PRTCLs.00>
 <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
@@ -122,7 +121,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 <UC4RB_PUP_MASTER_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">8140</UC4RB_PUP_MASTER_PORTs.00>
 <UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">https</UC4RB_PUP_MASTER_PRTCLs.00>
 <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
@@ -175,7 +173,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
 <UC4RB_PUP_MASTER_PORTs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PORT#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">8140</UC4RB_PUP_MASTER_PORTs.00>
 <UC4RB_PUP_MASTER_PRTCLs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_PRTCL#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX">https</UC4RB_PUP_MASTER_PRTCLs.00>
 <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_UNIX"/>
@@ -305,7 +302,7 @@ This action is used to install agent on unix platform. The action doesn't fail i
 
 = Inputs =
 * Protocol         : Specify the protocol to use to connect Puppet master server. Possible values are https(default) and http
-* Server Name	   : Specify Puppet master server name. E.g. learning.puppetlabs.vm
+* Puppet master Server	   : Specify the name of Puppet master server. E.g. learning.puppetlabs.vm
 * Port             : Specify the port to use to connect Puppet master server. E.g. 8140
 * Sudo Password    : The password for the sudo command.
 * Options          : Run using sudo password (and sudo username if specified).
