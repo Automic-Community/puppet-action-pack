@@ -183,7 +183,6 @@ SET ERROR=0
 !------------------changing the directory to agent's temp directory------------------------------------------------
 
 : SET &AGENT_TEMPDIR# = GET_VAR('UC_EX_PATH_TEMP', &AGENT#)
-  cd /d "&AGENT_TEMPDIR#"
 : SET &RESULT_TEMPFILE# = STR_CAT(&AGENT_TEMPDIR#,'installagent-&$RUNID#.txt')
 
 !------------------------------------------ Buidling Install puppet agent command -------------------------------------------------------------------------------------------
