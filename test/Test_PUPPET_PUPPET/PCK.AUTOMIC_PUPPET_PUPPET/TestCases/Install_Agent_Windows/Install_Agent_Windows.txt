@@ -78,6 +78,8 @@ Install Agent Windows Template
     Set Overwrite Agent
     Action Execute
     Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_LOG_FILE#    ELSE IF    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found
+    ...    &UC4RB_PUP_LOG_FILE#
 
 Teardown
     Log    *******End Test "INSTALL AGENT WINDOWS"*******
