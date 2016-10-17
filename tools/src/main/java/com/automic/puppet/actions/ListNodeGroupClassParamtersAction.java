@@ -36,7 +36,6 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
     public ListNodeGroupClassParamtersAction() {
         addOption("nodegroup", true, "Node group name");
         addOption("classname", true, "Class name");
-
     }
 
     @Override
@@ -50,16 +49,12 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
         String authToken = tHandler.login(username);
 
         try {
-
             JsonObject ngJson = new NodeGroupInfo(authToken, webResClient).getNodeGroup(nodeGroup);
-
             prepareOutput(ngJson);
-
         } finally {
             // destroy token
             tHandler.logout(authToken);
         }
-
     }
 
     private void prepareOutput(JsonObject ngJson) throws AutomicException {
@@ -67,40 +62,26 @@ public class ListNodeGroupClassParamtersAction extends AbstractHttpAction {
             JsonObject classObj = ngJson.getJsonObject("classes");
 
             if (classObj.containsKey(className)) {
-
                 JsonObject paramObj = classObj.getJsonObject(className);
-
                 Set<Entry<String, JsonValue>> paramEntrySet = paramObj.entrySet();
-
-                StringBuilder sb = new StringBuilder();
-                sb.append("UC4RB_PUP_CLASS_PARAM_COUNT::=");
-                sb.append(paramEntrySet.size());
-                sb.append("\n");
-
-                for (Map.Entry<String, JsonValue> entry : paramObj.entrySet())
-                {
+                ConsoleWriter.writeln("UC4RB_PUP_CLASS_PARAM_COUNT::=" + paramEntrySet.size());
+                for (Map.Entry<String, JsonValue> entry : paramObj.entrySet()) {
                     String key = entry.getKey();
-                    sb.append("UC4RB_PUP_CLASS_PARAM_" + key + "::=");
+                    ConsoleWriter.write("UC4RB_PUP_CLASS_PARAM_" + key + "::=");
 
                     JsonValue varValue = entry.getValue();
                     if (varValue.getValueType() == JsonValue.ValueType.STRING) {
-                        sb.append(paramObj.getString(key));
+                        ConsoleWriter.write(paramObj.getString(key));
                     } else {
-                        sb.append(paramObj.get(key));
+                        ConsoleWriter.write(paramObj.get(key).toString());
                     }
-                    sb.append("\n");
-
+                    ConsoleWriter.newLine();
                 }
-
-                ConsoleWriter.writeln(sb.toString());
-
             } else {
                 throw new AutomicException("No class found with name [" + className + "]");
 
             }
-
         }
-
     }
 
     private void prepareInputParameters() throws AutomicException {

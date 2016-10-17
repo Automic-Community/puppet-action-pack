@@ -118,37 +118,23 @@
 !------------------------------------------ Buidling java arguments ---------------------------------------------------------------
 
 !checking valid node
-: SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'
-
-
+echo "***** Validating the node name *****"
+: SET &ACTION_NAME# = "ListNodesAction"
 ! PuppetDB URL
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DB_CONNECTION_URL
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_DB_CMD#")
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DBCMD
 
-! SSL Validation
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "  -skipvalidation &UC4RB_PUP_DB_SSL_VALIDATION#")
+! operator
+: SET &UC4RB_PUP_DBCMD# = STR_CAT(&UC4RB_PUP_DBCMD#, ' -operator "="')
+! key
+: SET &UC4RB_PUP_DBCMD# = STR_CAT(&UC4RB_PUP_DBCMD#, ' -key "certname"')
 
 ! Filter criteria
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &NODE_NAME# = &UC4RB_PUP_ESCAPED_STRING#
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -filter &NODE_NAME#")
+: SET &NODENAME# = &UC4RB_PUP_ESCAPED_STRING#
+: SET &UC4RB_PUP_DBCMD# = STR_CAT(&UC4RB_PUP_DBCMD#, " -value &NODENAME#")
 
-! read connection timeout and read timeout from vara
-:SET &VARA_OBJ_CONFIG# = "PCK.AUTOMIC_PUPPET_PUPPET.PRV.VARA.PACKAGE_PARAMETERS"
-
-:SET &UC4RB_PUP_CONNECTION_TIMEOUT# = GET_VAR(&VARA_OBJ_CONFIG#, "CONNECTION_TIMEOUT")
-export CONNECTION_TIMEOUT="&UC4RB_PUP_CONNECTION_TIMEOUT#"
-
-:SET &UC4RB_PUP_READ_TIMEOUT# = GET_VAR(&VARA_OBJ_CONFIG#, "READ_TIMEOUT")
-export READ_TIMEOUT="&UC4RB_PUP_READ_TIMEOUT#"
-
-! read puppetDB API version from vara
-:SET &VARA_API_OBJ_CONFIG# = "PCK.AUTOMIC_PUPPET_PUPPET.PUB.VARA.API_VERSIONS"
-:SET &UC4RB_PUP_DB_APIVERSION# = GET_VAR(&VARA_API_OBJ_CONFIG#, "DB_API_VERSION")
-export ENV_DB_API_VERSION="&UC4RB_PUP_DB_APIVERSION#"
-
-output_var=`&UC4RB_PUP_CMD#`
+output_var=`&UC4RB_PUP_DBCMD#`
 execcode=$?
 echo  "$output_var"
 
@@ -167,12 +153,12 @@ execcode=$?
 
 if [ "$execcode" -ne "0" ]
 then
-    echo "[ERROR] Either node name [&NODE_NAME#] is invalid or more than one node exists for the given node name"
+    echo "[ERROR]Invalid node group [&NODENAME#] "
     echo "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
     exit $execcode
 fi
 
-
+echo "***** Node name is valid *****"
 node_name="$(echo "$output_var" | grep "UC4RB_PUP_NODE_LIST::=" | sed s/UC4RB_PUP_NODE_LIST::=//g)"
 
 
@@ -188,8 +174,6 @@ node_name="$(echo "$output_var" | grep "UC4RB_PUP_NODE_LIST::=" | sed s/UC4RB_PU
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
 export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 
-! Set Execution Environment
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
 : PRINT &UC4RB_PUP_CMD#
 
 &UC4RB_PUP_CMD# -nodename "$node_name"

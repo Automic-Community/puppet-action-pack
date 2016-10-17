@@ -140,23 +140,38 @@ public class NodeGroupInfo {
         }
         return nodeGroups;
     }
-    
-    
+
     /**
      * Get the available node groups id
      * 
      * @return List of node groups
      * @throws AutomicException
      */
-    public Map<String,String> getNodeGroupIdAndName() throws AutomicException {
-        Map<String,String> nodeGroupMap = new HashMap<String,String>();
+    public Map<String, String> getNodeGroupIdAndName() throws AutomicException {
+        Map<String, String> nodeGroupMap = new HashMap<String, String>();
         JsonObject obj = null;
         for (int i = 0, arraySize = jsonArray.size(); i < arraySize; i++) {
             obj = jsonArray.getJsonObject(i);
-            nodeGroupMap.put( obj.getString("id"),obj.getString("name"));
-           
+            nodeGroupMap.put(obj.getString("id"), obj.getString("name"));
+
         }
         return nodeGroupMap;
+    }
+
+    /**
+     * Get the available node groups
+     * 
+     * @param nodeGroup
+     * @return List of rules
+     * @throws AutomicException
+     */
+    public String getRules(String nodeGroup) throws AutomicException {
+        JsonObject jsonobj = getNodeGroup(nodeGroup);
+        String rule = null;
+        if (jsonobj != null && jsonobj.containsKey("rule")) {
+            rule = jsonobj.getJsonArray("rule").toString();
+        }
+        return rule;
     }
 
 }

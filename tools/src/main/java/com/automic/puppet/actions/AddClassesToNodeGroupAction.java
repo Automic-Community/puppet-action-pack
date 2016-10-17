@@ -6,6 +6,7 @@ import javax.json.JsonValue;
 
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.validator.PuppetValidator;
 
 /**
@@ -38,7 +39,7 @@ public class AddClassesToNodeGroupAction extends UpdateNodeGroupAction {
 
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         for (String classname : classList) {
-            objectBuilder.add(classname.trim(), emptyJson);
+            objectBuilder.add(classname, emptyJson);
         }
         JsonObjectBuilder classesJson = Json.createObjectBuilder();
         classesJson.add("classes", objectBuilder);
@@ -49,7 +50,7 @@ public class AddClassesToNodeGroupAction extends UpdateNodeGroupAction {
         // classes
         String classes = getOptionValue("classes");
         PuppetValidator.checkNotEmpty(classes, "Classes");
-        classList = classes.split(",");
+        classList = CommonUtil.splitAndTrimSpace(classes, ",");
         if (classList.length == 0) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Classes", classes));
         }

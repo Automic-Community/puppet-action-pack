@@ -17,7 +17,7 @@ Puppet Enterprise is the leading platform for automatically delivering, operatin
 * List/remove nodes
 * List/replace node group
 * Run agent
-
+* Install Agent
 
 =Supported versions=
 Puppet enterprise 4.5
@@ -26,12 +26,9 @@ Puppet enterprise 4.5
 (none)
 
 =Setup=
-* Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
-
-* For actions running on Puppet server the AE agent should be running on it.
- 
+* Oracle JRE 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
+* AE Agent must be installed on Puppet master server. However, there are some action which require AE Agent installation on puppet Agent machine as well. 
 * For actions based on HTTP client the Agent should be able to access the Puppet server in order to make HTTP requests.
-
 * You should have connection details to connect to Puppet server.
 
 =Actions=
@@ -84,6 +81,9 @@ Following actions are supported for Puppet Enterprise:
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE
 * Action Description: This action is used to get all the node groups of a node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES_FOR_NODE_GROUP
+* Action Description: Listing all the nodes for the specified node group.
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX
 * Action Description: This action is used to install agent on unix platform.

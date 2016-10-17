@@ -43,11 +43,11 @@ public class AddEditVariableToNodeGroupAction extends UpdateNodeGroupAction {
     private void actionSpecificValidation() throws AutomicException {
         // variable name
         variableName = getOptionValue("varaname");
-        PuppetValidator.checkNotEmpty(variableName, "varaname");
+        PuppetValidator.checkNotEmpty(variableName, "Variable Name");
 
         // value of variable
         variableValueList = getOptionValue("varavalue");
-        PuppetValidator.checkNotEmpty(variableValueList, "varavalue");
+        PuppetValidator.checkNotEmpty(variableValueList, "Variable Value");
     }
 
     // generate json to add/edit variable to node group

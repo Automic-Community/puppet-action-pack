@@ -29,13 +29,9 @@ public final class HttpClientConfig {
     private HttpClientConfig() {
     }
 
-    public static Client getClient(String skipCertValidation) throws AutomicException {
+    public static Client getClient(boolean skipCertValidation) throws AutomicException {
         ClientConfig config = new DefaultClientConfig();
 
-        // to skip certificate validation
-        if (CommonUtil.convert2Bool(skipCertValidation)) {
-            config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
-        }
         int connectionTimeOut = CommonUtil.getEnvParameter(Constants.ENV_CONNECTION_TIMEOUT, Constants.CONN_TIMEOUT);
         ConsoleWriter.writeln("Using Connection timeout as " + connectionTimeOut + " (ms)");
         int readTimeOut = CommonUtil.getEnvParameter(Constants.ENV_READ_TIMEOUT, Constants.READ_TIMEOUT);
@@ -43,6 +39,20 @@ public final class HttpClientConfig {
         config.getProperties().put(ClientConfig.PROPERTY_CONNECT_TIMEOUT, connectionTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_READ_TIMEOUT, readTimeOut);
         config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
+
+        // to skip certificate validation
+        if (skipCertValidation) {
+            config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
+        } else {
+            String hostcertPath = CommonUtil.getEnvParameter(Constants.ENV_HOSTCERT, "");
+            String hostprivkeyPath = CommonUtil.getEnvParameter(Constants.ENV_HOSTPRIVKEY, "");
+            String localcacertPath = CommonUtil.getEnvParameter(Constants.ENV_LOCALCACERT, "");
+            if (CommonUtil.checkNotEmpty(hostcertPath) && CommonUtil.checkNotEmpty(hostprivkeyPath)
+                    && CommonUtil.checkNotEmpty(localcacertPath)) {
+                config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES,
+                        validateCertificates(hostcertPath, hostprivkeyPath, localcacertPath));
+            }
+        }
         return Client.create(config);
     }
 
@@ -76,6 +86,13 @@ public final class HttpClientConfig {
             ConsoleWriter.writeln(e);
             throw new AutomicException(ExceptionConstants.ERROR_SKIPPING_CERT);
         }
+    }
+
+    private static HTTPSProperties validateCertificates(String hostcertPath, String hostprivkeyPath,
+            String localcacertPath) throws AutomicException {
+
+        PuppetCertificate certs = new PuppetCertificate(hostcertPath, hostprivkeyPath, localcacertPath);
+        return new HTTPSProperties(certs.hostnameVerifier(), certs.sslContext());
     }
 
 }

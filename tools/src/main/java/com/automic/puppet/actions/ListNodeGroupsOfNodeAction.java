@@ -43,8 +43,8 @@ public class ListNodeGroupsOfNodeAction extends AbstractHttpAction {
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_API_VERSION, Constants.API_VERSION);
 
         try {
-            
-            Map<String,String> nodeGroupMap = new NodeGroupInfo(authToken, webResClient).getNodeGroupIdAndName();
+
+            Map<String, String> nodeGroupMap = new NodeGroupInfo(authToken, webResClient).getNodeGroupIdAndName();
 
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("classified")
                     .path("nodes").path(nodeName);
@@ -54,7 +54,7 @@ public class ListNodeGroupsOfNodeAction extends AbstractHttpAction {
             ClientResponse response = webresource.accept(MediaType.APPLICATION_JSON)
                     .header("X-Authentication", authToken).get(ClientResponse.class);
 
-            prepareOutput(response,nodeGroupMap);
+            prepareOutput(response, nodeGroupMap);
 
         } finally {
             // revoke the token
@@ -65,28 +65,20 @@ public class ListNodeGroupsOfNodeAction extends AbstractHttpAction {
 
     private void prepareOutput(ClientResponse response, Map<String, String> nodeGroupMap) {
         JsonArray jArray = CommonUtil.jsonObjectResponse(response.getEntityInputStream()).getJsonArray("groups");
-
         ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_COUNT::=" + jArray.size());
         StringBuilder sb = new StringBuilder();
-
         for (int i = 0; i < jArray.size(); i++) {
-
             sb.append(nodeGroupMap.get(jArray.getString(i))).append(",");
-
         }
-
-        if (sb.length() > 1) {
+        if (sb.length() > 0) {
             sb.deleteCharAt(sb.length() - 1);
         }
-
         ConsoleWriter.writeln("UC4RB_PUP_NODE_GROUP_LIST::=" + sb.toString());
     }
 
     private void prepareInputParameters() throws AutomicException {
-
         nodeName = getOptionValue("nodename");
         PuppetValidator.checkNotEmpty(nodeName, "Node name");
-
     }
 
 }

@@ -12,7 +12,7 @@ import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.util.validator.PuppetValidator;
 
 /**
- * This action adds or edits a parameter to the given class in a noge group if it exist.
+ * This action adds or edits a parameter to the given class in a node group if it exist.
  * 
  * @author anuragupadhyay
  *

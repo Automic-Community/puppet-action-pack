@@ -330,7 +330,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
 
 = General description =
-This action is used to add a new node to the puppet server and assign it to a node group. User needs to provide the connection details along with the node group name.
+This action is used to add a new node to the puppet server and assign it to a node group. User needs to provide the connection details along with the node group name. This action must be executed on the host where the puppet master server is installed if you want to sign the certificate.
 Action covers the following steps:
 * Signs the certificate for the new node, based on the option selected by the user. The user must send a request to puppet server for signing the certificate.
 * Adds a new node to the given node group. The given node group name must be an existing one.

@@ -16,21 +16,21 @@ public final class PuppetValidator {
     private PuppetValidator() {
     }
 
-    public static void checkNotEmpty(String parameter, String parameterName) throws AutomicException {
+    public static final void checkNotEmpty(String parameter, String parameterName) throws AutomicException {
         if (!CommonUtil.checkNotEmpty(parameter)) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, parameterName,
                     parameter));
         }
     }
     
-    public static void checkNotNull(Object parameter, String parameterName) throws AutomicException {
+    public static final void checkNotNull(Object parameter, String parameterName) throws AutomicException {
         if (!CommonUtil.checkNotNull(parameter)) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, parameterName,
                     parameter));
         }
     }
 
-    public static void checkFileExists(File file) throws AutomicException {
+    public static final void checkFileExists(File file) throws AutomicException {
         if (!(file.exists() && file.isFile())) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_FILE, file));
         }

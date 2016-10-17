@@ -5,6 +5,7 @@ import java.util.List;
 import com.automic.puppet.actions.helper.NodeGroupInfo;
 import com.automic.puppet.actions.helper.TokenHandler;
 import com.automic.puppet.exception.AutomicException;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.automic.puppet.util.validator.PuppetValidator;
 import com.sun.jersey.api.client.WebResource;
@@ -54,10 +55,8 @@ public class ListNodeGroupClassesAction extends AbstractHttpAction {
     // print the list of class in AE vara UC4RB_PUP_CLASS_LIST in the job report
     private void prepareOutput(List<String> classList) {
         // write the node group details to job report
-        ConsoleWriter.writeln("UC4RB_PUP_CLASS_COUNT::=" + classList.size());
-        String list = classList.toString();
-        ConsoleWriter.writeln("UC4RB_PUP_CLASS_LIST::=" + list.substring(1, list.length() - 1));
-
+        ConsoleWriter.writeln("UC4RB_PUP_CLASS_COUNT::=" + classList.size());        
+        ConsoleWriter.writeln("UC4RB_PUP_CLASS_LIST::=" + CommonUtil.listToString(classList,","));
     }
 
 }

@@ -29,34 +29,31 @@ import com.sun.jersey.api.client.WebResource;
 public class ListNodesAction extends AbstractHttpAction {
 
     /**
-     * Atching criteria for the existing nodes
+     * Attaching criteria for the existing nodes
      */
     private Pattern ptrn;
-    private JsonArrayBuilder filterArray;
+    private String filter;
 
     public ListNodesAction() {
-        addOption("filter", false, "Filter");
+        addOption("operator", false, "Filter operator");
+        addOption("key", false, "Filter key");
+        addOption("value", false, "Filter value");
+        addOption("filterjson", false, "Filter json object");
+        filter = "";
     }
 
     @Override
     protected void executeSpecific() throws AutomicException {
-
         prepareInputParameters();
-
         String apiVersion = CommonUtil.getEnvParameter(Constants.ENV_DB_API_VERSION, Constants.DB_API_VERSION);
-
         WebResource webResource = getClient().path("pdb").path("query").path(apiVersion).path("nodes");
-        
-        if (filterArray != null) {
-            webResource = webResource.queryParam("query", filterArray.build().toString());
-        }
 
+        ConsoleWriter.writeln("Using Filter " + filter);
         ConsoleWriter.writeln("Calling URL : " + webResource.getURI());
 
-        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-
+        ClientResponse response = webResource.entity(filter, MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON).post(ClientResponse.class);
         prepareOutput(CommonUtil.jsonArrayResponse(response.getEntityInputStream()));
-
     }
 
     // prepare the output - list of nodes and total count
@@ -66,9 +63,9 @@ public class ListNodesAction extends AbstractHttpAction {
         // filtering data
         if (CommonUtil.checkNotNull(ptrn) && !nodeList.isEmpty()) {
             filterNodeList = new ArrayList<String>();
-            for (String group : nodeList) {
-                if (ptrn.matcher(group).matches()) {
-                    filterNodeList.add(group);
+            for (String node : nodeList) {
+                if (ptrn.matcher(node).matches()) {
+                    filterNodeList.add(node);
                 }
             }
         } else {
@@ -76,34 +73,35 @@ public class ListNodesAction extends AbstractHttpAction {
         }
         // Sorting Filter data on name
         Collections.sort(filterNodeList);
-        // preparing output of filtered data
-        StringBuilder sb = new StringBuilder();
-        for (String nodeGroup : filterNodeList) {
-            sb.append(nodeGroup).append(",");
-        }
-        if (sb.length() > 1) {
-            sb.deleteCharAt(sb.length() - 1);
-        }
 
         ConsoleWriter.writeln("UC4RB_PUP_NODE_COUNT::=" + filterNodeList.size());
-        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + sb.toString());
-
+        ConsoleWriter.writeln("UC4RB_PUP_NODE_LIST::=" + CommonUtil.listToString(filterNodeList, ","));
     }
 
     private void prepareInputParameters() {
         // check if filter is provided or not
-        String filter = getOptionValue("filter");
-        if (CommonUtil.checkNotEmpty(filter)) {
-            try {
-                ptrn = Pattern.compile(filter);
-                filterArray = Json.createArrayBuilder();
-                filterArray.add("~");
-                filterArray.add("certname");
-                filterArray.add(filter);
-            } catch (PatternSyntaxException pe) {
-                filter = Pattern.quote(filter);
-                ptrn = Pattern.compile(filter);
-            }            
+        String filterJson = getOptionValue("filterjson");
+        if (CommonUtil.checkNotEmpty(filterJson)) {
+            filter = filterJson;
+        } else {
+
+            String opr = getOptionValue("operator");
+            String key = getOptionValue("key");
+            String val = getOptionValue("value");
+            if (CommonUtil.checkNotEmpty(opr) && CommonUtil.checkNotEmpty(key) && CommonUtil.checkNotEmpty(val)) {
+                if ("~".equals(opr)) {
+                    try {
+                        ptrn = Pattern.compile(val);
+                    } catch (PatternSyntaxException pe) {
+                        opr = "=";
+                    }
+                }
+                JsonArrayBuilder filterArray = Json.createArrayBuilder();
+                filterArray.add(opr);
+                filterArray.add(key);
+                filterArray.add(val);
+                filter = Json.createObjectBuilder().add("query", filterArray).build().toString();
+            }
         }
     }
 
@@ -123,7 +121,6 @@ public class ListNodesAction extends AbstractHttpAction {
                     }
                 }
             }
-
         }
         return nodeList;
     }

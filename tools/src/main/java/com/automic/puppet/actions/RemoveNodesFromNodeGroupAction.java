@@ -62,7 +62,6 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
             WebResource webresource = webResClient.path("classifier-api").path(apiVersion).path("groups").path(groupId)
                     .path("unpin");
 
-            ConsoleWriter.newLine();
             ConsoleWriter.writeln("Calling action specific URL: " + webresource.getURI());
 
             webresource.accept(MediaType.APPLICATION_JSON).header("X-Authentication", authToken)
@@ -81,7 +80,7 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
         // nodes
         String nodes = getOptionValue("nodes");
         PuppetValidator.checkNotEmpty(nodes, "Nodes");
-        nodeList = nodes.split(",");
+        nodeList = CommonUtil.splitAndTrimSpace(nodes, ",");
         if (nodeList.length == 0) {
             throw new AutomicException(String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "Nodes", nodes));
         }
@@ -92,7 +91,7 @@ public class RemoveNodesFromNodeGroupAction extends AbstractHttpAction {
 
         JsonArrayBuilder jsonarrayBuilder = Json.createArrayBuilder();
         for (String nodename : nodeList) {
-            jsonarrayBuilder.add(nodename.trim());
+            jsonarrayBuilder.add(nodename);
         }
         JsonObjectBuilder nodesJson = Json.createObjectBuilder();
         nodesJson.add("nodes", jsonarrayBuilder);

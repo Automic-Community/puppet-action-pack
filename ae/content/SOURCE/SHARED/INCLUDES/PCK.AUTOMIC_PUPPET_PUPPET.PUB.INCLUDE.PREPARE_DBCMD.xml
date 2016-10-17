@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBI name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DBCMD">
+<HEADER state="1">
+<Title>Prepare DB connection URL</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[: SET &UC4RB_PUP_DBCMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action &ACTION_NAME#'
+
+! Make URL
+: SET &TEMP# = STR_CAT(&UC4RB_PUP_PROTOCOL#, "://")
+: SET &TEMP# = STR_CAT(&TEMP#, &UC4RB_PUP_SERVER_NAME#)
+: SET &TEMP# = STR_CAT(&TEMP#, ":&UC4RB_PUP_PORT#")
+
+: SET &UC4RB_PUP_ESCAPED_STRING# = &TEMP#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_DBCMD# = STR_CAT(&UC4RB_PUP_DBCMD#, " -baseurl &UC4RB_PUP_ESCAPED_STRING#")
+
+! Load package parameters
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.LOAD_PCK_PARAMETERS
+
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_CERTIFICATE
+
+]]></MSCRI>
+</SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBI>
+</uc-export>

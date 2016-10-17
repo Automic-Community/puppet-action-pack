@@ -14,16 +14,16 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    Protocol          ServerName               Port    SkipSSLValidation       Filter
 List nodes with valid filter
                       [Tags]    main_scenarios
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${Filter}
+                      OK        http              ${Puppet_Server_Name}    8081    ${SkipSSLValidation}    ${Filter}
 
 Assert filter as optional field
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${EMPTY}
+                      OK        http              ${Puppet_Server_Name}    8081    ${SkipSSLValidation}    ${EMPTY}
 
 Assert behaviour for invalid filter
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    Invalid
+                      OK        http              ${Puppet_Server_Name}    8081    ${SkipSSLValidation}    Invalid
 
 Assertion with invalid server name
-                      NOK       http              Invalid                  8080    ${SkipSSLValidation}    ${Filter}
+                      NOK       http              Invalid                  8081    ${SkipSSLValidation}    ${Filter}
 
 *** Keywords ***
 Startup
@@ -47,7 +47,7 @@ List Nodes Template
     Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_SERVER_NAME#    ${ServerName}
     Action Set    &UC4RB_PUP_PORT#    ${Port}
-    Action Set    &UC4RB_PUP_DB_SSL_VALIDATION#    ${SSLValidation}
+    Action Set    &UC4RB_PUP_SSL_VALIDATION#    ${SSLValidation}
     Run Keyword If    '${NodeFilter}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_FILTER#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_FILTER#    ${NodeFilter}
     Set Overwrite Agent

@@ -8,6 +8,7 @@ import com.automic.puppet.constants.Constants;
 import com.automic.puppet.constants.ExceptionConstants;
 import com.automic.puppet.exception.AutomicException;
 import com.automic.puppet.filter.GenericResponseFilter;
+import com.automic.puppet.util.CommonUtil;
 import com.automic.puppet.util.ConsoleWriter;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -31,7 +32,7 @@ public abstract class AbstractHttpAction extends AbstractAction {
     /**
      * Option to skip validation
      */
-    private String skipCertValidation;
+    private boolean skipCertValidation;
 
     /**
      * Service end point
@@ -41,12 +42,12 @@ public abstract class AbstractHttpAction extends AbstractAction {
     public AbstractHttpAction() {
         addOption(Constants.BASE_URL, true, "Puppet URL");
         addOption(Constants.PUPPET_USERNAME, false, "Username");
-        addOption(Constants.SKIP_CERT_VALIDATION, true, "Skip SSL validation");
+        addOption(Constants.SKIP_CERT_VALIDATION, false, "Skip SSL validation");
     }
 
     /**
      * This method initializes the arguments and calls the execute method.
-     * 
+     *
      * @throws AutomicException
      *             exception while executing an action
      */
@@ -66,7 +67,7 @@ public abstract class AbstractHttpAction extends AbstractAction {
         try {
             this.baseUrl = new URI(temp);
             this.username = getOptionValue(Constants.PUPPET_USERNAME);
-            this.skipCertValidation = getOptionValue(Constants.SKIP_CERT_VALIDATION);
+            this.skipCertValidation = CommonUtil.convert2Bool(getOptionValue(Constants.SKIP_CERT_VALIDATION));
         } catch (URISyntaxException e) {
             ConsoleWriter.writeln(e);
             String msg = String.format(ExceptionConstants.INVALID_INPUT_PARAMETER, "URL", temp);
@@ -76,16 +77,16 @@ public abstract class AbstractHttpAction extends AbstractAction {
 
     /**
      * Method to execute the action.
-     * 
+     *
      * @throws AutomicException
      */
     protected abstract void executeSpecific() throws AutomicException;
 
     /**
      * Method to initialize Client instance.
-     * 
+     *
      * @throws AutomicException
-     * 
+     *
      */
     protected WebResource getClient() throws AutomicException {
         if (client == null) {
