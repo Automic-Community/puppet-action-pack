@@ -295,7 +295,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX
 
 = General description =
-This action is used to install agent on unix platform. The action doesn't fail if the puppet agent is already installed.
+This action is used to install agent on unix platform. This action must be executed on the host where the puppet agent needs to be installed. The action doesn't fail if the puppet agent is already installed. 
 
 Note: Before going ahead with the installation of puppet agent, ensure that you add the appropriate class for the repo that contains the agent packages, and you classify the PE Master node group with that class. 
 

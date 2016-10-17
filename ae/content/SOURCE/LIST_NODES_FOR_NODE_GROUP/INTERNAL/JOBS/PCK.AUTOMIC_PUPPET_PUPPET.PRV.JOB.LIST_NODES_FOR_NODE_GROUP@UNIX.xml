@@ -127,8 +127,6 @@ echo "***** Retrieving rules for the specified Node Group *****"
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
 
-
-
 ! Access key is decrypted and send to jar as argument
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
 : SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_PUP_PASSWORD#"
@@ -161,7 +159,7 @@ then
     echo "UC4RB_PUP_NODE_LIST::="
 else
   echo "***** Retrieving Nodes for the rules *****"
-  db_query="$(echo "$rules" | sed s/DB_QUERY_OBJECT::=//g)"
+  db_query="$(echo "$output_var" | grep -q "DB_QUERY_OBJECT::=" | sed s/DB_QUERY_OBJECT::=//g)"
 !List nodes
 : SET &ACTION_NAME# = "ListNodesAction"
 ! PuppetDB URL

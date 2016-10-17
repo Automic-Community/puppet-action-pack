@@ -77,7 +77,7 @@
     </integer></readpanel></dialog>]]></XUIEDITOR>
 </PROMPTSETXUI>
 <PROMPTSETDATA state="1">
-<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_PROTOCOLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PROTOCOL#" ReadFromTable="OPSE">https</UC4RB_PUP_PROTOCOLs.00><UC4RB_PUP_SERVER_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_SERVER_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_SERVER_NAMEs.00><UC4RB_PUP_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PORT#" ReadFromTable="OPSE">8140</UC4RB_PUP_PORTs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
+<DATAEDITOR><![CDATA[<PRPTS ontop="1"><PRPTBOX><UC4RB_PUP_PROTOCOLs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PROTOCOL#" ReadFromTable="OPSE">https</UC4RB_PUP_PROTOCOLs.00><UC4RB_PUP_SERVER_NAMEs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_SERVER_NAME#" ReadFromTable="OPSE"></UC4RB_PUP_SERVER_NAMEs.00><UC4RB_PUP_PORTs.00 haslist="0" msgnr="-1" msginsert="" altview="0" promptname="UC4RB_PUP_PORT#" ReadFromTable="OPSE">8081</UC4RB_PUP_PORTs.00></PRPTBOX></PRPTS>]]></DATAEDITOR>
 </PROMPTSETDATA>
 <DOCU_Docu state="1" type="text">
 <DOC/>

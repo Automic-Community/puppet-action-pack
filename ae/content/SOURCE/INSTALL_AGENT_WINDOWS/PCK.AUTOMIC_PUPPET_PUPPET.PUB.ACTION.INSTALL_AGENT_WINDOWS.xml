@@ -284,7 +284,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS
 
 = General description =
-This action is used to install agent on windows platform. The action doesn't fail if the puppet agent is already installed.
+This action is used to install agent on windows platform. This action must be executed on the host where the puppet agent needs to be installed. The action doesn't fail if the puppet agent is already installed.
 The progress of installation will be logged in a log file, UC4RB_PUP_LOG_FILE# . 
 
 Note: Before going ahead with the installation of puppet agent, ensure that you add the appropriate class for the repo that contains the agent packages, and you classify the PE Master node group with that class. 

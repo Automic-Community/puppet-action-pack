@@ -298,6 +298,7 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT_USINGMCOLLECTIVE
 This action is used to trigger a puppet run on all agent nodes remotely from puppet master using mcollective. You can also optionally provide
 * the Path to mcollective config file.
 * list of nodes separated by comma
+This action must be executed on the host where puppet master server is installed.
 Note:
 * By default number of nodes to be processed concurrently by mcollective is 5 which could be modified using Concurrent limit field.
 * This action skips agents which do not exist or which do not respond to status check by mcollective.

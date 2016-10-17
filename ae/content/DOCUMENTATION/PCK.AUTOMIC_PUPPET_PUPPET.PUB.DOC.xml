@@ -27,11 +27,8 @@ Puppet enterprise 4.5
 
 =Setup=
 * Oracle JRE 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
-
-* For actions running on Puppet server the AE agent should be running on it.
- 
+* AE Agent must be installed on Puppet master server. However, there are some action which require AE Agent installation on puppet Agent machine as well. 
 * For actions based on HTTP client the Agent should be able to access the Puppet server in order to make HTTP requests.
-
 * You should have connection details to connect to Puppet server.
 
 =Actions=
