@@ -86,7 +86,13 @@ Following actions are supported for Puppet Enterprise:
 * Action Description: This action is used to get all the node groups of a node.
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES_FOR_NODE_GROUP
-* Action Description: Listing all the nodes for the specified node group.]]></DOC>
+* Action Description: Listing all the nodes for the specified node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX
+* Action Description: This action is used to install agent on unix platform.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS
+* Action Description: This action is used to install agent on windows platform.
 </DOCU_Docu>
 </DOCU>
 </uc-export>

@@ -131,7 +131,8 @@ echo "***** Validating the node name *****"
 ! Filter criteria
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_NAME#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
-: SET &UC4RB_PUP_DBCMD# = STR_CAT(&UC4RB_PUP_DBCMD#, " -value &UC4RB_PUP_ESCAPED_STRING#")
+: SET &NODENAME# = &UC4RB_PUP_ESCAPED_STRING#
+: SET &UC4RB_PUP_DBCMD# = STR_CAT(&UC4RB_PUP_DBCMD#, " -value &NODENAME#")
 
 output_var=`&UC4RB_PUP_DBCMD#`
 execcode=$?
@@ -152,7 +153,7 @@ execcode=$?
 
 if [ "$execcode" -ne "0" ]
 then
-    echo "[ERROR]Invalid node group [&UC4RB_PUP_NODE_NAME#] "
+    echo "[ERROR]Invalid node group [&NODENAME#] "
     echo "******** LIST NODE GROUPS FOR NODE ACTION FAILED ********"
     exit $execcode
 fi
