@@ -137,8 +137,24 @@
 : SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CMD#
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : PRINT &UC4RB_PUP_ESCAPED_STRING#
-curl -k &UC4RB_PUP_ESCAPED_STRING# -w '%{http_code}' | sudo bash
 
+puppet --version
+execcode=$?
+if [ "$execcode" -eq "0" ]
+  then
+     echo "***** WARN: It seems puppet is already installed on the machine. *****"
+fi
+
+tmp=`curl -k &UC4RB_PUP_ESCAPED_STRING# -w '%{http_code}'`
+execcode=$?
+if [ "$execcode" -eq "0" ]
+  then
+    echo "$tmp" | sudo bash
+else
+    echo "curl output: $tmp"
+    echo "******** INSTALL AGENT UNIX ACTION FAILED ********"
+    exit $execcode
+fi
 
 !------------------------------------------ Error Handling --------------------------------------------------------------------------------------------------------
 ! Status messages

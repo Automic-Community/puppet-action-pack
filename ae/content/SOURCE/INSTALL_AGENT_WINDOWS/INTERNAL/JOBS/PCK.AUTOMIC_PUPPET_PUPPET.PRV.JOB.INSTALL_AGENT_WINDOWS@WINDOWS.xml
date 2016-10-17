@@ -247,6 +247,11 @@ SET ERROR=0
 :     SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_ACCOUNT_PASSWORD=%UC4_DECRYPTED_PWD%")
 : ENDIF
 
+puppet --version
+IF %ERRORLEVEL% EQ 0 (
+   echo "***** WARN:It seems Puppet is already installed. *****"
+)
+
 echo UC4RB_PUP_LOG_FILE::=&RESULT_TEMPFILE#
 ! Invoking command
 &UC4RB_PUP_CMD# /l*v "&RESULT_TEMPFILE#"

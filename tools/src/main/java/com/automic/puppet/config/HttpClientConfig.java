@@ -29,7 +29,7 @@ public final class HttpClientConfig {
     private HttpClientConfig() {
     }
 
-    public static Client getClient(String skipCertValidation) throws AutomicException {
+    public static Client getClient(boolean skipCertValidation) throws AutomicException {
         ClientConfig config = new DefaultClientConfig();
 
         int connectionTimeOut = CommonUtil.getEnvParameter(Constants.ENV_CONNECTION_TIMEOUT, Constants.CONN_TIMEOUT);
@@ -41,7 +41,7 @@ public final class HttpClientConfig {
         config.getProperties().put(ClientConfig.PROPERTY_FOLLOW_REDIRECTS, true);
 
         // to skip certificate validation
-        if (CommonUtil.convert2Bool(skipCertValidation)) {
+        if (skipCertValidation) {
             config.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, skipValidation());
         } else {
             String hostcertPath = CommonUtil.getEnvParameter(Constants.ENV_HOSTCERT, "");

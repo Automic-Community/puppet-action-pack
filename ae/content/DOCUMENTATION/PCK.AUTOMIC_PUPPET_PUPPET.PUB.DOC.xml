@@ -17,7 +17,7 @@ Puppet Enterprise is the leading platform for automatically delivering, operatin
 * List/remove nodes
 * List/replace node group
 * Run agent
-
+* Install Agent
 
 =Supported versions=
 Puppet enterprise 4.5
@@ -26,7 +26,7 @@ Puppet enterprise 4.5
 (none)
 
 =Setup=
-* Oracle JDK 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
+* Oracle JRE 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
 
 * For actions running on Puppet server the AE agent should be running on it.
  
