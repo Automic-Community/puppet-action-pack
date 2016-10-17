@@ -184,14 +184,6 @@ SET ERROR=0
 
 : SET &AGENT_TEMPDIR# = GET_VAR('UC_EX_PATH_TEMP', &AGENT#)
   cd /d "&AGENT_TEMPDIR#"
-
-SET ERROR=%ERRORLEVEL%
-IF %ERROR% NEQ 0 (
-:     SET &UC4RB_LOGGING_ERROR# = "Unable to change the directory to agent's temp directory"
-:     INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
-      set retcode=%ERROR%
-      goto :retcode
-)
 : SET &RESULT_TEMPFILE# = STR_CAT(&AGENT_TEMPDIR#,'installagent-&$RUNID#.txt')
 
 !------------------------------------------ Buidling Install puppet agent command -------------------------------------------------------------------------------------------
@@ -260,14 +252,14 @@ echo UC4RB_PUP_LOG_FILE::=&RESULT_TEMPFILE#
 ! Invoking command
 &UC4RB_PUP_CMD# /l*v "&RESULT_TEMPFILE#"
 
+IF %ERRORLEVEL% NEQ 0 (
+    echo "ERROR: Unable to install the puppet agent. Please check log file for more information."
+)
+
 !------------------------------------------ Error Handling --------------------------------------------------------------------------------------------------------
 ! Status messages
 : SET &UC4RB_LOGGING_INFO# = "******** INSTALL AGENT WINDOWS ACTION EXECUTED SUCCESSFULLY ********"
 : SET &UC4RB_LOGGING_ERROR# = "******** INSTALL AGENT WINDOWS ACTION FAILED ********"
-
-IF %ERRORLEVEL% NEQ 0 (
-    echo "ERROR: Unable to install the puppet agent. Please check log file for more information."
-)
 
 ! Check error level
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS]]></MSCRI>

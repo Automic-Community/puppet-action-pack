@@ -55,7 +55,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_DOMAINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_DOMAIN#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
@@ -120,7 +119,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_DOMAINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_DOMAIN#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
@@ -171,7 +169,6 @@
 <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PPRPTS" type="PPROMPTSET">
 <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
 <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
-<ELEMENT ReadFromTable="OPUD" altview="0" haslist="0" msginsert="" msgnr="" promptname="ELEMENT" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_DOMAINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_DOMAIN#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
 <UC4RB_PUP_AGENT_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS"/>
@@ -290,6 +287,17 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS
 This action is used to install agent on windows platform. The action doesn't fail if the puppet agent is already installed.
 The progress of installation will be logged in a log file, UC4RB_PUP_LOG_FILE# . 
 
+Note: Before going ahead with the installation of puppet agent, ensure that you add the appropriate class for the repo that contains the agent packages, and you classify the PE Master node group with that class. 
+
+For example, if your Puppet master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware, use the follow procedure.
+
+* In the console, click Nodes > Classification.
+* Select the PE Masters group.
+* Click the Classes tab.
+* In the Class name field, begin typing pe_repo, and select the repo class from the list of classes.
+* Click Add class and commit the changes.
+* Go to the node, and then click "Run agent".
+
 = Failure Conditions =
 (none)
 
@@ -309,9 +317,9 @@ The progress of installation will be logged in a log file, UC4RB_PUP_LOG_FILE# .
 
 Note:
 * Startup node (Options)
-	* Automatic (default) 	? Puppet agent will start with Windows and stay running in the background.
-	* Manual 		? Puppet agent won?t run by default, but can be started in the services console or with net start on the command line.
-	* Disabled 		? Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
+	* Automatic (default) 	: Puppet agent will start with Windows and stay running in the background.
+	* Manual 		: Puppet agent won?t run by default, but can be started in the services console or with net start on the command line.
+	* Disabled 		: Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
 
 * Installation directory (default values)
 	* 32-bit(Puppet install type)	32-bit(OS type)		C:\Program Files\Puppet Labs\Puppet(Default install path)
