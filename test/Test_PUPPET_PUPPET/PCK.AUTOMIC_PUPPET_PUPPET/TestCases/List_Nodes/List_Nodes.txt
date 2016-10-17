@@ -47,7 +47,7 @@ List Nodes Template
     Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_SERVER_NAME#    ${ServerName}
     Action Set    &UC4RB_PUP_PORT#    ${Port}
-    Action Set    &UC4RB_PUP_SSL_VALIDATION#    ${SSLValidation}
+    Action Set    &UC4RB_PUP_DB_SSL_VALIDATION#    ${SSLValidation}
     Run Keyword If    '${NodeFilter}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_FILTER#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_FILTER#    ${NodeFilter}
     Set Overwrite Agent

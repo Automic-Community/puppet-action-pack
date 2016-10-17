@@ -29,3 +29,5 @@ ${Puppet_Server_Name}    learning.puppetlabs.vm
 ${Puppet_Path_UNIX}    /opt/puppetlabs/bin/puppet
 ${Puppet_Path_WIN}    C:\\Program Files\\Puppet Labs\\Puppet\\bin\\puppet
 ${Node_Groups}    PE Infrastructure,Production environment
+#---- Install Agent Windows ----------------------------------------------------------------------------------
+${MSI_Path}       ${EXEDIR}\\setup.msi
