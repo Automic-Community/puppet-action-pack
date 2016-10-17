@@ -11,19 +11,19 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    Protocol          ServerName               Port    SkipSSLValidation       Filter
+*** Test Cases ***    OK_NOK    Protocol          ServerName               Port    Filter
 List nodes with valid filter
                       [Tags]    main_scenarios
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${Filter}
+                      OK        https             ${Puppet_Server_Name}    8080    ${Filter}
 
 Assert filter as optional field
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${EMPTY}
+                      OK        https             ${Puppet_Server_Name}    8080    ${EMPTY}
 
 Assert behaviour for invalid filter
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    Invalid
+                      OK        https             ${Puppet_Server_Name}    8080    Invalid
 
 Assertion with invalid server name
-                      NOK       http              Invalid                  8080    ${SkipSSLValidation}    ${Filter}
+                      NOK       https             Invalid                  8080    ${Filter}
 
 *** Keywords ***
 Startup
@@ -32,14 +32,13 @@ Startup
     Connect AE
 
 List Nodes Template
-    [Arguments]    ${OK_NOK}    ${Protocol}    ${ServerName}    ${Port}    ${SSLValidation}    ${NodeFilter}
+    [Arguments]    ${OK_NOK}    ${Protocol}    ${ServerName}    ${Port}    ${NodeFilter}
     [Documentation]    This test list nodes that satisfies the given filter criteria.
     ...    -Precondition: To execute this test variables used should be changed accordingly.
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${Protocol}: This field specifies protocol to be used.
     ...    -${ServerName}: This field specifies server name to be used.
     ...    -${Port}: This field specifies port to be used.
-    ...    -${SkipSSLValidation}: This field Skips SSL validation if "Yes" is selected.
     ...    -${Filter}: This field specifies filter which will be applied on node name. Eg. Dev
     Generate String
     Action Create    ${_LIST_NODES_ACTION}
@@ -47,7 +46,6 @@ List Nodes Template
     Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_SERVER_NAME#    ${ServerName}
     Action Set    &UC4RB_PUP_PORT#    ${Port}
-    Action Set    &UC4RB_PUP_DB_SSL_VALIDATION#    ${SSLValidation}
     Run Keyword If    '${NodeFilter}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_FILTER#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_FILTER#    ${NodeFilter}
     Set Overwrite Agent

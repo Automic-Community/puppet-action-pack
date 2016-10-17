@@ -11,22 +11,22 @@ Resource          ../../Resources/keywords.txt
 Resource          ../../Resources/variables.txt
 Resource          ../../Resources/actions.txt
 
-*** Test Cases ***    OK_NOK    Protocol          ServerName               Port    SkipSSLValidation       NodeGroupName
+*** Test Cases ***    OK_NOK    Protocol          ServerName               Port    NodeGroupName
 List nodes of node group with valid inputs
                       [Tags]    main_scenarios
-                      OK        http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${Node_Group}
+                      OK        https             ${Puppet_Server_Name}    8080    ${Node_Group}
 
 Assertion with invalid server name
-                      NOK       http              Invalid                  8080    ${SkipSSLValidation}    ${Node_Group}
+                      NOK       https             Invalid                  8080    ${Node_Group}
 
 List nodes of node group with invalid node group name
-                      NOK       http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    Invalid
+                      NOK       https             ${Puppet_Server_Name}    8080    Invalid
 
 Assert node group name as mandatory field
-                      NOK       http              ${Puppet_Server_Name}    8080    ${SkipSSLValidation}    ${EMPTY}
+                      NOK       https             ${Puppet_Server_Name}    8080    ${EMPTY}
 
 Assert server name as mandatory field
-                      NOK       http              ${EMPTY}                 8080    ${SkipSSLValidation}    ${EMPTY}
+                      NOK       https             ${EMPTY}                 8080    ${EMPTY}
 
 *** Keywords ***
 Startup
@@ -35,14 +35,13 @@ Startup
     Connect AE
 
 List Nodes For Node Group Template
-    [Arguments]    ${OK_NOK}    ${Protocol}    ${ServerName}    ${Port}    ${SSLValidation}    ${NodeGroupName}
+    [Arguments]    ${OK_NOK}    ${Protocol}    ${ServerName}    ${Port}    ${NodeGroupName}
     [Documentation]    This test lists all the nodes of the specified node group.
     ...    -Precondition: To execute this test, required variable values should be change in variable.txt file
     ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
     ...    -${Protocol}: This field specifies protocol to be used.
     ...    -${ServerName}: This field specifies server name to be used.
     ...    -${Port}: This field specifies port to be used.
-    ...    -${SkipSSLValidation}: This field Skips SSL validation if "Yes" is selected.
     ...    -${NodeGroupName}: This field specifies name of the node group of which user wants to fecth the nodes.
     Generate String
     Action Create    ${_LIST_NODES_FOR_NODE_GROUP_ACTION}
@@ -51,7 +50,6 @@ List Nodes For Node Group Template
     Run Keyword If    '${ServerName}' == 'Invalid'    Action Set    &UC4RB_PUP_SERVER_NAME#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_SERVER_NAME#    ${ServerName}
     Action Set    &UC4RB_PUP_PORT#    ${Port}
-    Action Set    &UC4RB_PUP_DB_SSL_VALIDATION#    ${SSLValidation}
     Run Keyword If    '${NodeGroupName}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
     ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroupName}
     Set Overwrite Agent
