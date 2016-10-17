@@ -10,7 +10,7 @@
 <DESIGNER/>
 </PROMPTDESIGNER>
 <PROMPTSETXUI state="1">
-<XUIEDITOR><![CDATA[<dialog height="422" icon="PRPT" id="PRPTS" left="0" top="0" width="330"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="Puppet DB connection details"><properties><entry name="text">Puppet DB connection details</entry><entry name="modifiable">0</entry></properties><combo alt="1" dynamic="0" enabled="1" fill="b" filter="0" focus="0" id="UC4RB_PUP_PROTOCOLs.00" nl="1" strict="1" text="Protocol" tooltip="Specify the protocol to use." vtype="i"><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command owner="_self" owneraction="setsource" ownerparam="src|_dialog@src"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptcombolist" target="_self" targetaction="setlist" wait="0"/>
+<XUIEDITOR><![CDATA[<dialog height="422" icon="PRPT" id="PRPTS" left="0" top="0" width="330"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="Puppet DB Endpoint details"><properties><entry name="text">Puppet DB Endpoint details</entry><entry name="modifiable">0</entry></properties><combo alt="1" dynamic="0" enabled="1" fill="b" filter="0" focus="0" id="UC4RB_PUP_PROTOCOLs.00" nl="1" strict="1" text="Protocol" tooltip="Specify the protocol to use." vtype="i"><command request="_internal" target="_view" targetaction="setAttribute" targetparam="promptname|@id"/><command owner="_self" owneraction="setsource" ownerparam="src|_dialog@src"/><command owner="_promptsetcontainer" owneraction="getData" request="getpromptcombolist" target="_self" targetaction="setlist" wait="0"/>
          
          
          

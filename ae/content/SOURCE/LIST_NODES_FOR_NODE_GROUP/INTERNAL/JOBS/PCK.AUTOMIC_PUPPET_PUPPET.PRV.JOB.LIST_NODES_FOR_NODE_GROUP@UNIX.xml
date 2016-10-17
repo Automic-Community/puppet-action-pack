@@ -159,7 +159,7 @@ then
     echo "UC4RB_PUP_NODE_LIST::="
 else
   echo "***** Retrieving Nodes for the rules *****"
-  db_query="$(echo "$output_var" | grep -q "DB_QUERY_OBJECT::=" | sed s/DB_QUERY_OBJECT::=//g)"
+  db_query="$(echo "$output_var" | grep "DB_QUERY_OBJECT::=" | sed s/DB_QUERY_OBJECT::=//g)"
 !List nodes
 : SET &ACTION_NAME# = "ListNodesAction"
 ! PuppetDB URL

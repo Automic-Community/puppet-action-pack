@@ -300,6 +300,12 @@ This action is used to trigger a puppet run on all agent nodes remotely from pup
 * list of nodes separated by comma
 This action must be executed on the host where puppet master server is installed.
 Note:
+
+* Usually mcollective commands, for instance, mco ping are executed as a special user peadmin.
+* Since this user doesn't have a password, it cannot be used in AE login object. 
+* All mcollective commands can be executed with a user having root priveledges and a .mcollective config file should be present in the home directory.
+* You can also provide the path to this to the .mcollective file present in the peadmin home directory. E.g. /var/lib/peadmin/.mcollective
+* For more information on mcollective, refer to https://docs.puppet.com/pe/latest/mco_invoke_cli.html
 * By default number of nodes to be processed concurrently by mcollective is 5 which could be modified using Concurrent limit field.
 * This action skips agents which do not exist or which do not respond to status check by mcollective.
 
