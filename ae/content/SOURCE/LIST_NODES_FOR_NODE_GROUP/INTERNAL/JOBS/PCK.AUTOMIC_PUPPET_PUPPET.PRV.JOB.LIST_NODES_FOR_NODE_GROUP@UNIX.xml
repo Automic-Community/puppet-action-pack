@@ -137,9 +137,6 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 
 : PRINT &UC4RB_PUP_CMD#
 
-! Set Execution Environment
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
-
 output_var=`&UC4RB_PUP_CMD#`
 execcode=$?
 echo  "$output_var"
@@ -163,30 +160,15 @@ then
     echo "UC4RB_PUP_NODE_COUNT::=0"
     echo "UC4RB_PUP_NODE_LIST::="
 else
-echo "***** Retrieving Nodes for the rules *****"
-db_query="$(echo "$rules" | sed s/DB_QUERY_OBJECT::=//g)"
+  echo "***** Retrieving Nodes for the rules *****"
+  db_query="$(echo "$rules" | sed s/DB_QUERY_OBJECT::=//g)"
 !List nodes
-: SET &UC4RB_PUP_CMD# = 'java -jar "&UC4RB_PUP_PATH_JAR#" -action ListNodesAction'
-
-
+: SET &ACTION_NAME# = "ListNodesAction"
 ! PuppetDB URL
-: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DB_CONNECTION_URL
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -baseurl &UC4RB_PUP_DB_CMD#")
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.PREPARE_DBCMD
 
-! SSL Validation
-: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, "  -skipvalidation &UC4RB_PUP_DB_SSL_VALIDATION#")
-
-
-! read puppetDB API version from vara
-:SET &VARA_API_OBJ_CONFIG# = "PCK.AUTOMIC_PUPPET_PUPPET.PUB.VARA.API_VERSIONS"
-:SET &UC4RB_PUP_DB_APIVERSION# = GET_VAR(&VARA_API_OBJ_CONFIG#, "DB_API_VERSION")
-export ENV_DB_API_VERSION="&UC4RB_PUP_DB_APIVERSION#"
-
-: PRINT &UC4RB_PUP_CMD#
-! Set Execution Environment
-: INC PCK.ITPA_SHARED.PRV.INCLUDE.CHANGE_DIRECTORY_TO_AGENT_BIN
-&UC4RB_PUP_CMD# -filterjson "$db_query"
-
+: PRINT &UC4RB_PUP_DBCMD#
+  &UC4RB_PUP_DBCMD# -filterjson "$db_query"
 fi
 
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
