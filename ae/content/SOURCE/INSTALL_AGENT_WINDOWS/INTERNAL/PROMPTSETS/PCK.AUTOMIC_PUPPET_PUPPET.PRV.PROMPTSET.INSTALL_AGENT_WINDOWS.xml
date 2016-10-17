@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <PRPT name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
 <HEADER state="1">
-<Title>Install puppet agent</Title>
+<Title>Install puppet agent on windows</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <OH_SubType/>

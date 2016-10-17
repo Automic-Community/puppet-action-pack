@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX">
 <XHEADER state="1">
-<Title>Install puppet agent</Title>
+<Title>Install puppet agent on unix</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -296,6 +296,17 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX
 
 = General description =
 This action is used to install agent on unix platform. The action doesn't fail if the puppet agent is already installed.
+
+Note: Before going ahead with the installation of puppet agent, ensure that you add the appropriate class for the repo that contains the agent packages, and you classify the PE Master node group with that class. 
+
+For example, if your Puppet master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware, use the follow procedure.
+
+* In the console, click Nodes > Classification.
+* Select the PE Masters group.
+* Click the Classes tab.
+* In the Class name field, begin typing pe_repo, and select the repo class from the list of classes.
+* Click Add class and commit the changes.
+* Go to the node, and then click "Run agent".
 
 = Failure Conditions =
 (none)

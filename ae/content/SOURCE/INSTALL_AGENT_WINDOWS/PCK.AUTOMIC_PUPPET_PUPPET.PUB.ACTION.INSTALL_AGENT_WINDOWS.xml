@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS">
 <XHEADER state="1">
-<Title>Install puppet agent</Title>
+<Title>Install puppet agent on windows</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -303,28 +303,31 @@ For example, if your Puppet master is on a node running EL6 and you want to add 
 
 = Inputs =
 * Agent installer file         	: Specify full path of the puppet agent installer file. E.g. C:\puppet.msi
-* Server Name	   	       	: Specify the Pappet master server name. If empty, it defaults to puppet. E.g. learning.puppetlabs.vm
+* Puppet master server 	       	: Specify the Pappet master server name. If empty, it defaults to puppet. E.g. learning.puppetlabs.vm
 * Installation directory	: Specify the directory where puppet and its dependencies should be installed. E.g. C:\puppetlabs
+					Default values are :
+					* 32-bit(Puppet install type)	32-bit(OS type)		C:\Program Files\Puppet Labs\Puppet(Default install path)
+					* 32-bit(Puppet install type)	64-bit(OS type)		C:\Program Files (x86)\Puppet Labs\Puppet(Default install path)
+					* 64-bit(Puppet install type)	64-bit(OS type)		C:\Program Files \Puppet Labs\Puppet(Default install path)
 * Puppet server hostname	: Specify the hostname where the CA Puppet master server can be reached (if you are using multiple masters and only one of them is acting as the CA). If empty, it defaults to the value of the PUPPET_MASTER_SERVER property. E.g. learning.puppetlabs.vm
 * Certificate name          	: Specify the node's certificate name. Use only lowercase letters, numbers, periods, and dashes. If empty, it defaults to node's fully-qualified name. E.g. puppetcert
 * Environment			: Specify node's environment. If empty, it defaults to production. E.g. staging
-* Startup mode			: Specify whether if the Puppet agent service should run. Possible values are Automatic(default), Manual, Disabled
+* Startup mode			: Specify whether if the Puppet agent service should run. Possible values are :
+					* Automatic (default) 	: Puppet agent will start with Windows and stay running in the background.
+					* Manual 		: Puppet agent won?t run by default, but can be started in the services console or with net start on the command line.
+					* Disabled 		: Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
 * Agent account user		: Specify the user account which should be used by puppet agent service. E.g. automic
+					This input comes into picture as and when Puppet agent need to access files on UNC shares, since the default LocalService account cannot access these network resources
+					* This user account must already exist, and may be a local or domain user. (The installer will allow domain users even if they have not accessed this machine before.)
+					* If the user isn?t already a local administrator, the installer will add it to the Administrators group.
+					* The installer will also grant Logon as Service to the user.
+					This property should be combined with "Agent account password" and "Agent account domain". 
 * Agent account password	: Specify the password for the user account.
 * Agent account domain		: Specify the domain of agent user account.
 * Overwrite Agent  		: Overwrites the default agent
 * Overwrite Login  		: Overwrites the default login
 
-Note:
-* Startup node (Options)
-	* Automatic (default) 	: Puppet agent will start with Windows and stay running in the background.
-	* Manual 		: Puppet agent won?t run by default, but can be started in the services console or with net start on the command line.
-	* Disabled 		: Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
-
-* Installation directory (default values)
-	* 32-bit(Puppet install type)	32-bit(OS type)		C:\Program Files\Puppet Labs\Puppet(Default install path)
-	* 32-bit(Puppet install type)	64-bit(OS type)		C:\Program Files (x86)\Puppet Labs\Puppet(Default install path)
-	* 64-bit(Puppet install type)	64-bit(OS type)		C:\Program Files \Puppet Labs\Puppet(Default install path)
+Note : If you set a non-default value for any of the input property, the installer will replace the existing value in puppet.conf.
 
 = Behavior =
 (none)

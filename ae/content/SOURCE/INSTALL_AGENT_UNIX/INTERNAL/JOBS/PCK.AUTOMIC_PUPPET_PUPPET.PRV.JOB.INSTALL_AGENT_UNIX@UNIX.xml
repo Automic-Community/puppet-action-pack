@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
 <JOBS_UNIX AttrType="UNIX" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.INSTALL_AGENT_UNIX@UNIX">
 <XHEADER state="1">
-<Title>Install puppet agent</Title>
+<Title>Install puppet agent on unix</Title>
 <ArchiveKey1/>
 <ArchiveKey2/>
 <Active>1</Active>
@@ -107,10 +107,10 @@
 <PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS]]></PSCRI>
 </PRE_SCRIPT>
 <SCRIPT mode="1" state="1">
-<MSCRI><![CDATA[: DEFINE &STRING_ARR#, string, 30
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
+<MSCRI><![CDATA[: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
 
-: INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
+: DEFINE &STRING_ARR#, string, 30
+: INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
 
 !----------------------------------------------- Parameter validation ---------------------------------------------------------------------------------------------
 : INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
