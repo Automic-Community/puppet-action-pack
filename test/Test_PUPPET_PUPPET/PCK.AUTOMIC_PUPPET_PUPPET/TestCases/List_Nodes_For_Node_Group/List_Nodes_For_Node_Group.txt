@@ -14,19 +14,19 @@ Resource          ../../Resources/actions.txt
 *** Test Cases ***    OK_NOK    Protocol          ServerName               Port    NodeGroupName
 List nodes of node group with valid inputs
                       [Tags]    main_scenarios
-                      OK        https             ${Puppet_Server_Name}    8080    ${Node_Group}
+                      OK        https             ${Puppet_Server_Name}    8081    ${Node_Group}
 
 Assertion with invalid server name
-                      NOK       https             Invalid                  8080    ${Node_Group}
+                      NOK       https             Invalid                  8081    ${Node_Group}
 
 List nodes of node group with invalid node group name
-                      NOK       https             ${Puppet_Server_Name}    8080    Invalid
+                      NOK       https             ${Puppet_Server_Name}    8081    Invalid
 
 Assert node group name as mandatory field
-                      NOK       https             ${Puppet_Server_Name}    8080    ${EMPTY}
+                      NOK       https             ${Puppet_Server_Name}    8081    ${EMPTY}
 
 Assert server name as mandatory field
-                      NOK       https             ${EMPTY}                 8080    ${EMPTY}
+                      NOK       https             ${EMPTY}                 8081    ${EMPTY}
 
 *** Keywords ***
 Startup
