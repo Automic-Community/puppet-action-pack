@@ -151,49 +151,58 @@
 :   CASE "WINDOWS"
 
 @set retcode=%errorlevel%
+set ISFAILED=TRUE
 if %retcode% == 0 (
+       echo INFO: The run succeeded with no changes or failures; the system was already in the desired state.
 :      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
+       SET ISFAILED=FALSE
+)
+
+if %retcode% == 1 (
+  echo ERROR: The run failed, or wasn't attempted due to another run already in progress.
 )
 
 if %retcode% == 2 (
-  echo INFO: The puppet run succeeded, and some resources were changed.
+  echo INFO: The run succeeded, and some resources were changed.
+  echo &UC4RB_LOGGING_INFO#
+  SET ISFAILED=FALSE
 )
 
 if %retcode% == 4 (
-  echo INFO: The run succeeded, and some resources failed.
+  echo ERROR: The run succeeded, and some resources failed.
 )
 
 if %retcode% == 6 (
-  echo INFO: The run succeeded, and included both changes and failures.
+  echo ERROR: The run succeeded, and included both changes and failures.
 )
 
-if NOT %retcode% == 0 (
+if %ISFAILED% == TRUE (
 echo ERROR: Fail to run agent.
 :      INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
+:      INC PCK.ITPA_SHARED.PRV.INCLUDE.CHECK_CMDLINE_CMD@WINDOWS
 )
-
-:INC PCK.ITPA_SHARED.PRV.INCLUDE.CHECK_CMDLINE_CMD@WINDOWS
 
 :   CASE "UNIX"
 
 execcode=$?
-if [ "$execcode" -eq "0" ] ;
-then
-:    INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.INFO
-fi
 
-if [ "$execcode" -ne "0" ] ;
-then
-  case $execcode in
-    2) echo "INFO: The puppet run succeeded, and some resources were changed.";;
-    4) echo "INFO: The run succeeded, and some resources failed.";;
-    6) echo "INFO: The run succeeded, and included both changes and failures.";;
-    *) echo "ERROR: Fail to run agent.";;
+case $execcode in
+ 0) echo "INFO: The run succeeded with no changes or failures; the system was already in the desired state.";;
+ 1) echo "INFO: The run failed, or wasn't attempted due to another run already in progress.";;
+ 2) echo "INFO: The run succeeded, and some resources were changed.";;
+ 4) echo "INFO: The run succeeded, and some resources failed.";;
+ 6) echo "INFO: The run succeeded, and included both changes and failures.";;
+ *) echo "ERROR: Fail to run agent.";;
   esac
-:     INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.ERROR
-    exit $execcode
-fi
 
+if [ "$execcode" -eq "0" -o "$execcode" -eq "2" ];
+then
+   echo "INFO: &UC4RB_LOGGING_INFO#"
+   execcode=0
+else
+   echo "ERROR: &UC4RB_LOGGING_ERROR#"
+   exit $execcode
+fi
 :   OTHER
 : ENDSWITCH
 

@@ -109,7 +109,7 @@
 <SCRIPT mode="1" state="1">
 <MSCRI><![CDATA[! Status messages
 
-: SET &UC4RB_LOGGING_ERROR# = "******** ADD NEW ACTION FAILED ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** ADD NEW NODE ACTION FAILED ********"
 
 : DEFINE &STRING_ARR#, string, 30
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_HEADER
@@ -154,7 +154,7 @@ export UC4_DECRYPTED_PWD="$UC4_DECRYPTED_PWD"
 
 &UC4RB_PUP_CMD#
 !------------------------------------------ Error Handling -----------------------------------------------------------------------------------------------------
-: SET &UC4RB_LOGGING_INFO# = "******** ADD NEW ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_INFO# = "******** ADD NEW NODE ACTION EXECUTED SUCCESSFULLY ********"
 
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
 : INC PCK.ITPA_SHARED.PUB.INCLUDE.SUDOERS_FOOTER]]></MSCRI>
