@@ -66,7 +66,7 @@
         <entry name="resetable">1</entry>
       <entry name="initvalue"/>
          </properties>
-    </text><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_PUP_SIGN_CERTs.00" nl="1" text="Sign certificate" tooltip="Define if this action auto sign the new certificate for the new node. Only works if the the node is configured to remotely sign certificates." required="0">
+    </text><dynradiogroup alt="1" enabled="1" fill="b" focus="" id="UC4RB_PUP_SIGN_CERTs.00" nl="1" text="Sign certificate" tooltip="Specify YES, if you want to auto sign the certificate request for the new node." required="0">
       <properties>
         <entry listparam="C,N" name="reference" reftype="STATIC">PCK.ITPA_SHARED.PRV.VARA.YES_NO</entry>
         <entry name="xmlkey"/>
@@ -76,7 +76,7 @@
         <entry name="id">UC4RB_PUP_SIGN_CERTs.00</entry>
         <entry name="enabled">0</entry>
         <entry name="focus">0</entry>
-        <entry name="tooltip">Define if this action auto sign the new certificate for the new node. Only works if the the node is configured to remotely sign certificates.</entry>
+        <entry name="tooltip">Specify YES, if you want to auto sign the certificate request for the new node.</entry>
         <entry name="modifiable">1</entry>
         <entry name="customfield"/>
       <entry name="initvalue"/>

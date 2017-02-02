@@ -332,8 +332,13 @@ PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
 = General description =
 This action is used to add a new node to the puppet server and assign it to a node group. User needs to provide the connection details along with the node group name. This action must be executed on the host where the puppet master server is installed if you want to sign the certificate.
 Action covers the following steps:
-* Signs the certificate for the new node, based on the option selected by the user. The user must send a request to puppet server for signing the certificate.
+* Signs the certificate for the new node, based on the option selected by the user. 
 * Adds a new node to the given node group. The given node group name must be an existing one.
+
+Certificate signing behaviour: If user specifies the Sign Certificate as "Yes", behavior will be as follows.
+* If certificate sign request is available, it will sign the certificate.
+* If Certificate sign request is not available and certificate is already signed for the specified node. It will skip the certificate signing part.
+* If neither certificate request is available nor certificate is already signed, it will fail the action.
 
 = Failure Conditions =
 (none)
@@ -345,7 +350,7 @@ Action covers the following steps:
 * Skip SSL Validation           : Skips SSL validation if 'YES' is selected.
 * Node name		                : Specify the node name you want to add. E.g. puppetagent. Node name should be an existing node.
 * Node group name               : Specify the node group name to which you want to add the node to. E.g. puppetgroup
-* Sign certificate              : Define if this action auto sign the new certificate for the new node. Only works if the the node is configured to remotely sign certificates. Possible values are YES or NO.
+* Sign certificate              : Specify YES, if you want to auto sign the new certificate for the new node. Possible values are YES or NO.
 * Sudo Password                 : The password for the sudo command.
 * Options                       : Run using sudo password (and sudo username if specified).
 * Sudo Username                 : The username to be used for the sudo command. 		  
