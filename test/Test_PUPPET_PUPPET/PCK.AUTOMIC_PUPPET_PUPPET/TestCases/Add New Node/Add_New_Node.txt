@@ -15,24 +15,26 @@ Add new node and sign the certificate
                       [Tags]    main_scenarios
                       OK        ${Node_Name}      ${Node_Group}    YES
 
+Verify certificate skipping for an already signed certificate
+                      OK        ${Node_Name}      ${Node_Group}    YES
+
 Add new node without signining the certificate
-                      [Tags]    main_scenarios
                       OK        ${Node_Name}      ${Node_Group}    NO
 
 Assertion with invalid node name
-                      [Tags]    main_scenarios
                       OK        Invalid           ${Node_Group}    NO
+
+Assertion when no certificate request is present
+                      OK        Invalid           ${Node_Group}    YES
 
 Assertion with invalid node group
                       [Tags]    main_scenarios
                       NOK       ${Node_Name}      Invalid          NO
 
 Assert node name as mandatory Field
-                      [Tags]    main_scenarios
                       NOK       ${EMPTY}          ${Node_Group}    NO
 
 Assert node group as mandatory Field
-                      [Tags]    main_scenarios
                       NOK       ${Node_Name}      ${EMPTY}         NO
 
 *** Keywords ***
@@ -58,8 +60,7 @@ Add New Node Template
     Action Set    &UC4RB_PUP_SIGN_CERT#    ${SignCert}
     Set Overwrite Agent
     Action Execute
-    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success
-    Run Keyword If    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
 
 Teardown
     Log    *******End Test "ADD NEW NODE"*******

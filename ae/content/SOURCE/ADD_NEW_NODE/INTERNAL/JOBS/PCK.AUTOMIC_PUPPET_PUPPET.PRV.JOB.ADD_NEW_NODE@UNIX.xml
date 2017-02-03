@@ -135,10 +135,35 @@
 : INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
 : SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " -nodegroup &UC4RB_PUP_ESCAPED_STRING#")
 
+! Signing the puppet certificate request
 : IF &UC4RB_PUP_SIGN_CERT# EQ "YES"
 :  SET &UC4RB_LOGGING_INFO# = "Successfully signed the certificate"
-   puppet cert sign &UC4RB_PUP_NODE_NAME#
-:  INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS
+:  SET &TEMP_NODENAME# = STR_SUB(&UC4RB_PUP_NODE_NAME#, "'", "'\''")
+   puppet cert list | grep -q '"&TEMP_NODENAME#"'
+   execcode=$?
+   if [ $execcode -ne 0 ];
+   then
+     echo 'WARN: There is no sign request available for node &TEMP_NODENAME#'
+     echo 'INFO: Checking, node is already signed or not.'
+     puppet cert list --all | grep -q '+ "&TEMP_NODENAME#"'
+     execcode=$?
+     if [ $execcode -ne 0 ];
+     then
+       echo 'ERROR: Neither sign request is available nor node is already signed'
+     else
+       echo 'INFO: Node is already signed. So skipping it.'
+     fi
+   else
+     echo 'INFO: Certificate sign request is waiting to be signed.'
+     puppet cert sign '&TEMP_NODENAME#'
+     execcode=$?
+   fi
+
+   if [ $execcode -ne 0 ];
+   then
+     echo 'ERROR: &UC4RB_LOGGING_ERROR#'
+     exit $execcode
+   fi
 : ENDIF
 
 : PRINT &UC4RB_PUP_CMD#
