@@ -24,6 +24,9 @@ Add new node without signining the certificate
 Assertion with invalid node name
                       OK        Invalid           ${Node_Group}    NO
 
+Assertion when no certificate request is present
+                      OK        Invalid           ${Node_Group}    YES
+
 Assertion with invalid node group
                       [Tags]    main_scenarios
                       NOK       ${Node_Name}      Invalid          NO
