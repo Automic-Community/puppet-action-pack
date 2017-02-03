@@ -31,5 +31,5 @@ ${Puppet_Path_WIN}    C:\\Program Files\\Puppet Labs\\Puppet\\bin\\puppet
 ${Node_Groups}    PE Infrastructure,Production environment
 #---- Install Agent Windows ----------------------------------------------------------------------------------
 ${MSI_Path}       ${EXECDIR}\\setup.msi
-#---- Start Service-------------------------------------------------------------------------------------------
+#---- Start/Stop Service-------------------------------------------------------------------------------------------
 ${Service_Name}    puppet

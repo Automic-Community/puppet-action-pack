@@ -94,6 +94,9 @@ Following actions are supported for Puppet Enterprise:
 
 * Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.START_SERVICE
 * Action Description: This action is used to start the service on the agent node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.STOP_SERVICE
+* Action Description: This action is used to stop the service on the agent node.
 ]]></DOC>
 </DOCU_Docu>
 </DOCU>
