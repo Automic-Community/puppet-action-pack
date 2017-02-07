@@ -292,7 +292,7 @@
 PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.START_SERVICE
 
 = General description =
-This action starts the specified service on the node where specified agent is running. puppet executable must be present on agent OS.
+This action starts the specified service on the node where specified agent is running. puppet executable must be present on agent OS. This action doesn't do anything if service is already started.
 
 Note:
 * AE Agent needs to be setup on the puppet agent node.

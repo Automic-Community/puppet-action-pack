@@ -337,8 +337,8 @@ Action covers the following steps:
 
 Certificate signing behaviour: If user specifies the Sign Certificate as "Yes", behavior will be as follows.
 * If certificate sign request is available, it will sign the certificate.
-* If Certificate sign request is not available and certificate is already signed for the specified node. It will skip the certificate signing part.
-* If neither certificate request is available nor certificate is already signed, it will fail the action.
+* If certificate is already signed for the corresponding node. It will skip the certificate signing part.
+* If certificate is not already signed and no certificate request is available. It will fail the action.
 
 = Failure Conditions =
 (none)

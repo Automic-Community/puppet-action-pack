@@ -149,13 +149,13 @@
      execcode=$?
      if [ $execcode -ne 0 ];
      then
-       echo 'ERROR: Neither sign request is available nor node is already signed'
+       echo 'ERROR: Node is not already signed and no certificate request is available'
      else
        echo 'INFO: Node is already signed. So skipping it.'
      fi
    else
      echo 'INFO: Certificate sign request is waiting to be signed.'
-     puppet cert sign '&TEMP_NODENAME#'
+     puppet cert sign '&TEMP_NODENAME#' --color=false
      execcode=$?
    fi
 
