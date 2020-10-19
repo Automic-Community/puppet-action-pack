@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?>
+<uc-export clientvers="11.0.0">
+  <JOBP AllowExternal="1" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS">
+    <XHEADER state="1">
+      <Title>Install puppet agent on windows</Title>
+      <ArchiveKey1 />
+      <ArchiveKey2 />
+      <Active>1</Active>
+      <OH_SubType />
+      <CustomAttributes KeyListID="0" dataRequestID="0" />
+    </XHEADER>
+    <SYNCREF state="1">
+      <Syncs />
+    </SYNCREF>
+    <ATTR_JOBP state="1">
+      <Queue>CLIENT_QUEUE</Queue>
+      <ChildQueue />
+      <StartType />
+      <ExtRepDef>1</ExtRepDef>
+      <ExtRepAll>0</ExtRepAll>
+      <ExtRepNone>0</ExtRepNone>
+      <IntAccount />
+      <AutoDeactNo>0</AutoDeactNo>
+      <AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
+      <AutoDeactErrorFree>1</AutoDeactErrorFree>
+      <DeactWhen>ANY_OK</DeactWhen>
+      <AutoDeactAlways>0</AutoDeactAlways>
+      <DeactDelay>0</DeactDelay>
+      <ActAtRun>1</ActAtRun>
+      <UC4Priority>0</UC4Priority>
+      <MaxParallel2>0</MaxParallel2>
+      <ReuseHG>1</ReuseHG>
+      <MpElse1>1</MpElse1>
+      <MpElse2>0</MpElse2>
+      <TZ />
+      <RWhen />
+      <RExecute />
+      <JPA_SubType />
+    </ATTR_JOBP>
+    <JOBP state="1">
+      <JobpStruct mode="design">
+        <task Alias="" BranchType="0" Col="1" Lnr="1" OType="&lt;START&gt;" Object="START" ParentAlias="" ParentObject="" Row="1" Text2="">
+          <checkpoint RollbackFlag="0" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0" />
+          <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0" />
+          <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="0" WElseH="0" WElseS="1" WElseX="0" WhenExecute="" WtimOn="0" />
+          <preconditions>
+            <PreCon>
+              <conditions id="CONDITIONS" />
+            </PreCon>
+          </preconditions>
+          <predecessors />
+          <runtime MrtCancel="0" MrtDays="0" MrtErt="0" MrtExecute="0" MrtExecuteObj="" MrtFix="0" MrtMethodDate="0" MrtMethodErt="0" MrtMethodFix="0" MrtMethodNone="1" MrtOn="1" MrtTZ="" MrtTime="00:00" SrtErt="0" SrtFix="0" SrtMethodErt="0" SrtMethodFix="0" SrtMethodNone="1" />
+          <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen="" />
+          <dynvalues>
+            <dyntree>
+              <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PPRPTS" type="PPROMPTSET">
+                <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
+                  <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
+                    <UC4RB_PUP_AGENT_DOMAINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_DOMAIN#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_AGENT_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_AGENT_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_CA_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CA_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_CERT_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_INSTALL_DIRs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_INSTALL_DIR#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_MSI_FILEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MSI_FILE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_NODE_ENVs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_ENV#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_STARTUP_MODEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_STARTUP_MODE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">Automatic</UC4RB_PUP_STARTUP_MODEs.00>
+                  </PRPTBOX>
+                </PROMPTSET>
+              </node>
+              <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
+                <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+                  <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+                    <AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+                    <LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+                  </PRPTBOX>
+                </PROMPTSET>
+              </node>
+            </dyntree>
+          </dynvalues>
+          <CIT />
+          <calendars CCTypeAll="0" CCTypeExt="0" CCTypeNone="0" CCTypeOne="1" CaleOn="0" />
+          <postconditions>
+            <PostCon>
+              <conditions id="CONDITIONS" />
+            </PostCon>
+          </postconditions>
+        </task>
+        <task Alias="INSTALL_AGENT_WINDOWS" BranchType="0" Col="2" Lnr="2" OType="JOBS" Object="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.INSTALL_AGENT_WINDOWS@WINDOWS" ParentAlias="" ParentObject="" Row="1" Text2="">
+          <checkpoint RollbackFlag="1" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0" />
+          <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0" />
+          <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0" />
+          <preconditions>
+            <PreCon>
+              <conditions id="CONDITIONS" />
+            </PreCon>
+          </preconditions>
+          <predecessors>
+            <pre BranchType="0" Lnr="1" PreLnr="1" When="ANY_OK" type="container" />
+          </predecessors>
+          <runtime MrtCancel="0" MrtDays="0" MrtErt="0" MrtExecute="0" MrtExecuteObj="" MrtFix="0" MrtMethodDate="0" MrtMethodErt="0" MrtMethodFix="0" MrtMethodNone="1" MrtOn="1" MrtTZ="" MrtTime="00:00" SrtErt="0" SrtFix="0" SrtMethodErt="0" SrtMethodFix="0" SrtMethodNone="1" />
+          <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen="" />
+          <dynvalues>
+            <dyntree>
+              <node content="1" id="VALUE" name="Variables" parent="" type="TASKVALUE">
+                <VALUE state="2">
+                  <Values />
+                  <Mode>0</Mode>
+                </VALUE>
+              </node>
+              <node content="1" id="PVALUE" name="Parent Variables" parent="" type="TASKVALUE">
+                <VALUE state="2">
+                  <Values />
+                  <Mode>0</Mode>
+                </VALUE>
+              </node>
+              <node content="1" id="PRPTS" name="PromptSets" parent="" pref="1" type="PROMPTSET" />
+              <node content="0" id="PPRPTS" name="Parent PromptSets" parent="" type="PPROMPTSET" />
+              <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PPRPTS" type="PPROMPTSET">
+                <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
+                  <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
+                    <UC4RB_PUP_AGENT_DOMAINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_DOMAIN#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_AGENT_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_AGENT_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_CA_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CA_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_CERT_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_INSTALL_DIRs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_INSTALL_DIR#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_MSI_FILEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MSI_FILE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_NODE_ENVs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_ENV#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_STARTUP_MODEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_STARTUP_MODE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">Automatic</UC4RB_PUP_STARTUP_MODEs.00>
+                  </PRPTBOX>
+                </PROMPTSET>
+              </node>
+              <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
+                <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+                  <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+                    <AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+                    <LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+                  </PRPTBOX>
+                </PROMPTSET>
+              </node>
+            </dyntree>
+          </dynvalues>
+          <CIT />
+          <calendars CCTypeAll="0" CCTypeExt="0" CCTypeNone="0" CCTypeOne="1" CaleOn="0" />
+          <postconditions>
+            <PostCon>
+              <conditions id="CONDITIONS" />
+            </PostCon>
+          </postconditions>
+        </task>
+        <task Alias="" BranchType="0" Col="3" Lnr="3" OType="&lt;END&gt;" Object="END" ParentAlias="" ParentObject="" Row="1" Text2="">
+          <checkpoint RollbackFlag="0" RunPerPatch="0" RunPerTarget="0" TcpADays="0" TcpATime="00:00" TcpATimeTZ="" TcpExecute="" TcpOn="0" promptatgen="0" showprompt="0" />
+          <after ActFlg="1" AtimOn="0" ErlstStDays="0" ErlstStTime="00:00" ErlstStTimeTZ="" HoldFlg="0" />
+          <when ChkWhenExec="0" LtstEnd="0" LtstEndDays="0" LtstEndTime="00:00" LtstSt="0" LtstStDays="0" LtstStTime="00:00" LtstTimeTZ="" WCTypeAND="1" WCTypeOR="0" WElseA="1" WElseH="0" WElseS="0" WElseX="0" WhenExecute="" WtimOn="0" />
+          <preconditions>
+            <PreCon>
+              <conditions id="CONDITIONS" />
+            </PreCon>
+          </preconditions>
+          <predecessors>
+            <pre BranchType="0" Lnr="1" PreLnr="2" When="ANY_OK" type="container" />
+          </predecessors>
+          <runtime MrtCancel="0" MrtDays="0" MrtErt="0" MrtExecute="0" MrtExecuteObj="" MrtFix="0" MrtMethodDate="0" MrtMethodErt="0" MrtMethodFix="0" MrtMethodNone="1" MrtOn="1" MrtTZ="" MrtTime="00:00" SrtErt="0" SrtFix="0" SrtMethodErt="0" SrtMethodFix="0" SrtMethodNone="1" />
+          <result ChkRExec="0" RElseHalt="0" RElseIgn="0" RElseJPAbend="0" RExecFlag="0" RExecute="" RRepMTimes="0" RRepOn="0" RRepWait="0" RWhen="" />
+          <dynvalues>
+            <dyntree>
+              <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PPRPTS" type="PPROMPTSET">
+                <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
+                  <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">
+                    <UC4RB_PUP_AGENT_DOMAINs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_DOMAIN#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_AGENT_PASSWORDs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_PASSWORD#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_AGENT_USERNAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_AGENT_USERNAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_CA_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CA_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_CERT_NAMEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_CERT_NAME#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_INSTALL_DIRs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_INSTALL_DIR#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_MASTER_SERVERs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MASTER_SERVER#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_MSI_FILEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_MSI_FILE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_NODE_ENVs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_NODE_ENV#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" />
+                    <UC4RB_PUP_STARTUP_MODEs.00 ReadFromTable="OPSE" altview="0" haslist="0" msginsert="" msgnr="" promptname="UC4RB_PUP_STARTUP_MODE#" promptsetname="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS">Automatic</UC4RB_PUP_STARTUP_MODEs.00>
+                  </PRPTBOX>
+                </PROMPTSET>
+              </node>
+              <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PPRPTS" type="PPROMPTSET">
+                <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+                  <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">
+                    <AGENTs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="AGENT#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;AGENT#</AGENTs.00>
+                    <LOGINs.00 ReadFromTable="OPUD" altview="1" haslist="0" msginsert="" msgnr="" promptname="LOGIN#" promptsetname="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT">&amp;LOGIN#</LOGINs.00>
+                  </PRPTBOX>
+                </PROMPTSET>
+              </node>
+            </dyntree>
+          </dynvalues>
+          <CIT />
+          <calendars CCTypeAll="0" CCTypeExt="0" CCTypeNone="0" CCTypeOne="1" CaleOn="0" />
+          <postconditions>
+            <PostCon>
+              <conditions id="CONDITIONS" />
+            </PostCon>
+          </postconditions>
+        </task>
+        <OPTIONS />
+      </JobpStruct>
+    </JOBP>
+    <RUNTIME state="1">
+      <MaxRetCode>0</MaxRetCode>
+      <MrcExecute />
+      <MrcElseE>0</MrcElseE>
+      <FcstStatus>0| |</FcstStatus>
+      <ErtMethodDef>1</ErtMethodDef>
+      <ErtMethodFix>0</ErtMethodFix>
+      <ErtFix>0</ErtFix>
+      <ErtDynMethod>2|Average</ErtDynMethod>
+      <ErtMethodDyn>0</ErtMethodDyn>
+      <ErtCnt>0</ErtCnt>
+      <ErtCorr>0</ErtCorr>
+      <ErtIgn>0</ErtIgn>
+      <ErtIgnFlg>0</ErtIgnFlg>
+      <ErtMinCnt>0</ErtMinCnt>
+      <MrtMethodNone>1</MrtMethodNone>
+      <MrtMethodFix>0</MrtMethodFix>
+      <MrtFix>0</MrtFix>
+      <MrtMethodErt>0</MrtMethodErt>
+      <MrtErt>0</MrtErt>
+      <MrtMethodDate>0</MrtMethodDate>
+      <MrtDays>0</MrtDays>
+      <MrtTime>00:00</MrtTime>
+      <MrtTZ />
+      <SrtMethodNone>1</SrtMethodNone>
+      <SrtMethodFix>0</SrtMethodFix>
+      <SrtFix>0</SrtFix>
+      <SrtMethodErt>0</SrtMethodErt>
+      <SrtErt>0</SrtErt>
+      <MrtCancel>0</MrtCancel>
+      <MrtExecute>0</MrtExecute>
+      <MrtExecuteObj />
+    </RUNTIME>
+    <DYNVALUES state="1">
+      <dyntree>
+        <node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
+          <VALUE state="1">
+            <Values />
+            <Mode>0</Mode>
+          </VALUE>
+        </node>
+        <node content="1" id="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" parent="PRPTS" type="PROMPTSET">
+          <PROMPTSET name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" ontop="1">
+            <PRPTBOX promptset="PCK.AUTOMIC_PUPPET_PUPPET.PRV.PROMPTSET.INSTALL_AGENT_WINDOWS" prptmode="1" />
+          </PROMPTSET>
+        </node>
+        <node content="1" id="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" parent="PRPTS" type="PROMPTSET">
+          <PROMPTSET name="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" ontop="1">
+            <PRPTBOX promptset="PCK.ITPA_SHARED.PRV.PROMPTSET.OVERWRITE_AGENT" prptmode="1">
+              <AGENTs.00 altview="1" haslist="0">&amp;AGENT#</AGENTs.00>
+              <LOGINs.00 altview="1" haslist="0">&amp;LOGIN#</LOGINs.00>
+            </PRPTBOX>
+          </PROMPTSET>
+        </node>
+      </dyntree>
+    </DYNVALUES>
+    <DEPLOYMENT state="1">
+      <DeploymentFlag>0</DeploymentFlag>
+      <WFTypeA>1</WFTypeA>
+      <WFTypeC>0</WFTypeC>
+      <AppName />
+      <WFName />
+      <ComponentName />
+    </DEPLOYMENT>
+    <ROLLBACK state="1">
+      <RollbackFlag>0</RollbackFlag>
+      <CBackupObj />
+      <CRollbackObj />
+      <FBackupPath />
+      <FDeleteBefore>0</FDeleteBefore>
+      <FInclSubDirs>0</FInclSubDirs>
+    </ROLLBACK>
+    <SCRIPT mode="1" state="1">
+      <MSCRI />
+    </SCRIPT>
+    <DOCU_Docu state="1" type="text">
+      <DOC><![CDATA[= Action name =
+PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS
+
+= General description =
+This action is used to install agent on windows platform. This action must be executed on the host where the puppet agent needs to be installed. The action doesn't fail if the puppet agent is already installed.
+The progress of installation will be logged in a log file, UC4RB_PUP_LOG_FILE# . 
+
+Note: Before going ahead with the installation of puppet agent, ensure that you add the appropriate class for the repo that contains the agent packages, and you classify the PE Master node group with that class. 
+
+For example, if your Puppet master is on a node running EL6 and you want to add an agent node running Debian 6 on AMD64 hardware, use the follow procedure.
+
+* In the console, click Nodes > Classification.
+* Select the PE Masters group.
+* Click the Classes tab.
+* In the Class name field, begin typing pe_repo, and select the repo class from the list of classes.
+* Click Add class and commit the changes.
+* Go to the node, and then click "Run agent".
+
+= Failure Conditions =
+(none)
+
+= Inputs =
+* Agent installer file         	: Specify full path of the puppet agent installer file. E.g. C:\puppet.msi
+* Puppet master server 	       	: Specify the Pappet master server name. If empty, it defaults to puppet. E.g. learning.puppetlabs.vm
+* Installation directory	: Specify the directory where puppet and its dependencies should be installed. E.g. C:\puppetlabs
+					Default values are :
+					* 32-bit(Puppet install type)	32-bit(OS type)		C:\Program Files\Puppet Labs\Puppet(Default install path)
+					* 32-bit(Puppet install type)	64-bit(OS type)		C:\Program Files (x86)\Puppet Labs\Puppet(Default install path)
+					* 64-bit(Puppet install type)	64-bit(OS type)		C:\Program Files \Puppet Labs\Puppet(Default install path)
+* Puppet server hostname	: Specify the hostname where the CA Puppet master server can be reached (if you are using multiple masters and only one of them is acting as the CA). If empty, it defaults to the value of the PUPPET_MASTER_SERVER property. E.g. learning.puppetlabs.vm
+* Certificate name          	: Specify the node's certificate name. Use only lowercase letters, numbers, periods, and dashes. If empty, it defaults to node's fully-qualified name. E.g. puppetcert
+* Environment			: Specify node's environment. If empty, it defaults to production. E.g. staging
+* Startup mode			: Specify whether if the Puppet agent service should run. Possible values are :
+					* Automatic (default) 	: Puppet agent will start with Windows and stay running in the background.
+					* Manual 		: Puppet agent won?t run by default, but can be started in the services console or with net start on the command line.
+					* Disabled 		: Puppet agent will be installed but disabled. You will have to change its start up type in the services console before you can start the service.
+* Agent account user		: Specify the user account which should be used by puppet agent service. E.g. automic
+					This input comes into picture as and when Puppet agent need to access files on UNC shares, since the default LocalService account cannot access these network resources
+					* This user account must already exist, and may be a local or domain user. (The installer will allow domain users even if they have not accessed this machine before.)
+					* If the user isn?t already a local administrator, the installer will add it to the Administrators group.
+					* The installer will also grant Logon as Service to the user.
+					This property should be combined with "Agent account password" and "Agent account domain". 
+* Agent account password	: Specify the password for the user account.
+* Agent account domain		: Specify the domain of agent user account.
+* Overwrite Agent  		: Overwrites the default agent
+* Overwrite Login  		: Overwrites the default login
+
+Note : If you set a non-default value for any of the input property, the installer will replace the existing value in puppet.conf.
+
+= Behavior =
+(none)
+
+= Return Value =
+* UC4RB_PUP_LOG_FILE : File to log the progress of installation
+
+= Outputs =
+* Return code is 0 in case of success.
+* Return code is non-zero in case of failure.
+
+= Rollback =
+(none)
+
+= Logging =
+AE logs will be displayed in the AE report.
+
+= Example =
+(none)
+]]></DOC>
+    </DOCU_Docu>
+  </JOBP>
+</uc-export>

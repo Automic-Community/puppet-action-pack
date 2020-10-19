@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<VARA OVD_VRName="FREI" data_type="STATIC" name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.VARA.PROMPT_EXTERNAL_MAP" replacementmode="2">
+<HEADER state="1">
+<Title/>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType>STATIC</OH_SubType>
+</HEADER>
+<ATTR_VARA state="1">
+<Type>C|Text</Type>
+<lblSource>Static</lblSource>
+<source>STATIC</source>
+<VRName>FREI|Freely selected</VRName>
+<NotFoundErr>0</NotFoundErr>
+<NotFoundDef>1</NotFoundDef>
+<ShareN>0</ShareN>
+<ShareL>0</ShareL>
+<ShareR>0</ShareR>
+<MaxValue_C>1024</MaxValue_C>
+<CheckMax_C>0</CheckMax_C>
+<uppercase>0</uppercase>
+<sortColumn>0</sortColumn>
+<sortDirection>0</sortDirection>
+</ATTR_VARA>
+<VARA state="1">
+<Variables>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES_FOR_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES_FOR_NODE_GROUP/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.READ_NODE_GROUP_VARIABLE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.READ_NODE_GROUP_VARIABLE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_NODES_FROM_NODE_GROUP/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_NODES_FROM_NODE_GROUP/LOGIN#" Value="&amp;lOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT_USINGMCOLLECTIVE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT_USINGMCOLLECTIVE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.START_SERVICE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.START_SERVICE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.STOP_SERVICE/AGENT#" Value="&amp;AGENT#" Value1="" Value2="" Value3="" Value4=""/>
+<row Name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.STOP_SERVICE/LOGIN#" Value="&amp;LOGIN#" Value1="" Value2="" Value3="" Value4=""/>
+</Variables>
+</VARA>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</VARA>
+</uc-export>
