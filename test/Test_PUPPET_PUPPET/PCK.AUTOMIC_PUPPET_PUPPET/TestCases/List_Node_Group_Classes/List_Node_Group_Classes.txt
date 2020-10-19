@@ -1,0 +1,51 @@
+*** Settings ***
+Suite Setup       Startup
+Suite Teardown    Teardown
+Force Tags        list_node_group_classes
+Test Template     List Node Group Classes Template
+Library           com.automic.robot.itpa.ItpaLibrary
+Library           String
+Library           DateTime
+Resource          ../../Resources/messages.txt
+Resource          ../../Resources/keywords.txt
+Resource          ../../Resources/variables.txt
+Resource          ../../Resources/actions.txt
+
+*** Test Cases ***    OK_NOK    NodeGroup
+List Classes in node group
+                      [Tags]    main_scenarios
+                      OK        ${Node_Group}
+
+Assert Behaviour for Non-Existing Node Group
+                      NOK       Invalid
+
+Assert Node Group Name as Mandatory Field
+                      NOK       ${EMPTY}
+
+*** Keywords ***
+Startup
+    Log    *******Start Test "LIST NODE GROUP CLASSES"*******
+    Log    *******Connect to AE*******
+    Connect AE
+
+List Node Group Classes Template
+    [Arguments]    ${OK_NOK}    ${NodeGroup}
+    [Documentation]    This test list classes assigned to node group
+    ...    -Precondition: To execute this test variables used should be changed accordingly.
+    ...    -${OK_NOK}: Boolean value indicate if the action is ENDED_OK or ENDED_NOT_OK/FAULT_OTHER. Value of this variable should be OK or NOK.
+    ...    -${NodeGroup}: This field specifies the node group name of which you want to list the classes.
+    Generate String
+    Action Create    ${_LIST_NODE_GROUP_CLASSES_ACTION}
+    Connect To Puppet
+    Run Keyword If    '${NodeGroup}' == 'Invalid'    Action Set    &UC4RB_PUP_NODE_GROUP#    ${Generated_Name}_${Time}    ELSE    Action Set
+    ...    &UC4RB_PUP_NODE_GROUP#    ${NodeGroup}
+    Set Overwrite Agent
+    Action Execute
+    Run Keyword If    '${OK_NOK}' == 'OK'    Assert Success    ELSE IF    '${OK_NOK}' == 'NOK'    Assert Failure
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_CLASS_LIST#    ELSE IF    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found
+    ...    &UC4RB_PUP_CLASS_LIST#
+    Run Keyword If    '${OK_NOK}' == 'OK'    Action Object Variable Should Be Found    &UC4RB_PUP_CLASS_COUNT#    ELSE IF    '${OK_NOK}' == 'NOK'    Action Object Variable Should Not Be Found
+    ...    &UC4RB_PUP_CLASS_COUNT#
+
+Teardown
+    Log    *******End Test "LIST NODE GROUP CLASSES"*******

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<DOCU name="PCK.AUTOMIC_PUPPET_PUPPET.PUB.DOC">
+<HEADER state="1">
+<Title>Package documentation</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<OH_SubType/>
+</HEADER>
+<DOCU_Docu state="1" type="text">
+<DOC><![CDATA[About Automic's Puppet Package
+================================
+Puppet Enterprise is the leading platform for automatically delivering, operating and securing your infrastructure. The result is you can deliver more software faster than ever, while maintaining quality, security, and compliance. With this package we automate the given business goal:
+* Classify nodes into node group
+* List/add/remove/replace classes from node group
+* Read/add/edit variables in node group 
+* List/add/remove class parameter to node group
+* List/remove nodes
+* List/replace node group
+* Run agent
+* Install Agent
+* Manage Service E.g. Start/Stop
+
+=Supported versions=
+Puppet enterprise 4.5
+
+=Limitations=
+(none)
+
+=Setup=
+* Oracle JRE 1.7 or higher must be installed on Agent OS and "java" must be set as executable on the same.
+* AE Agent must be installed on Puppet master server. However, there are some action which require AE Agent installation on puppet Agent machine as well. 
+* For actions based on HTTP client the Agent should be able to access the Puppet server in order to make HTTP requests.
+* You should have connection details to connect to Puppet server.
+
+=Actions=
+Following actions are supported for Puppet Enterprise:
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_NEW_NODE
+* Action Description: This action is used to add new node to a node group. Additionally, you can also sign the certificate for the corresponding node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_EDIT_VARIABLE
+* Action Description: This action is used to add a new variable or edits an existing variable for node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASSES_TO_NODE_GROUP
+* Action Description: This action is used to add multiple classes to a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.ADD_CLASS_PARAMETER_TO_NODE_GROUP
+* Action Description: This action is used to add class parameter to a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_CLASS_PARAM_FROM_NODE_GROUP
+* Action Description: This action is used to remove class parameter from a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASSES
+* Action Description: This action is used to get all classes present in a node group published in an AE variable.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUP_CLASSES
+* Action Description: This action is used to replace existing node group classes with provided classes.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REPLACE_NODE_GROUPS_OF_NODE
+* Action Description: This action is used to replace the already existing node groups for a node with provided node groups.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.READ_NODE_GROUP_VARIABLE
+* Action Description: This action is used to read value of a variable from node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.REMOVE_NODES_FROM_NODE_GROUP
+* Action Description: This action is used to remove node(s) from a node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUP_CLASS_PARAMETERS
+* Action Description: This action is used to list the class parameters for node group/class pair.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODE_GROUPS
+* Action Description: This action is used to get node groups based on the provided filter and published in an AE variable.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES
+* Action Description: This action is used to List nodes.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT
+* Action Description: This action is used to trigger a puppet run on an agent node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.RUN_AGENT_USINGMCOLLECTIVE
+* Action Description: This action is used to trigger a puppet run on all agent nodes remotely from puppet master using mcollective.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODEGROUPS_FOR_NODE
+* Action Description: This action is used to get all the node groups of a node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.LIST_NODES_FOR_NODE_GROUP
+* Action Description: Listing all the nodes for the specified node group.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_UNIX
+* Action Description: This action is used to install agent on unix platform.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.INSTALL_AGENT_WINDOWS
+* Action Description: This action is used to install agent on windows platform.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.START_SERVICE
+* Action Description: This action is used to start the service on the agent node.
+
+* Action Name: PCK.AUTOMIC_PUPPET_PUPPET.PUB.ACTION.STOP_SERVICE
+* Action Description: This action is used to stop the service on the agent node.
+]]></DOC>
+</DOCU_Docu>
+</DOCU>
+</uc-export>

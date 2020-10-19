@@ -1,0 +1,35 @@
+*** Settings ***
+Resource          ../../../Env/default.txt
+
+*** Variables ***
+#---- Promptset Fields -------------------------------------------------------------------------------------
+#---- Common Fields ----------------------------------------------------------------------------------------
+${Puppet_URL}     https://learning.puppetlabs.vm:4433
+${Puppet_Username}    automic
+${Puppet_Password}    automic
+${SkipSSLValidation}    YES
+${Sudo_Username}    vagrant
+${Sudo_Password}    vagrant
+${Options}        Sudo
+#---- Add new node, List Node Group Classes-
+${Node_Name}      agentcentos.puppetlabs.vm
+${Node_Group}     PE Agent
+#---- Add Classes to Node Group, Replace Node Group Classes-------------------------------------------------
+${Class_Name}     docker
+#---- Add Class Parameter to Node Group---------------------------------------------------------------------
+${Class_Param}    dns
+${Param_Value}    docker.net
+#---- Read Node Group Variable------------------------------------------------------------------------------
+${Variable_Name}    ntp_servers
+#---- List Node Groups, List Nodes---------------------------------------------------------------------------
+${Filter}         .*
+#---- List Node Groups of Node, List Nodes---------------------------------------------------------------------------
+${Puppet_Server_Name}    learning.puppetlabs.vm
+#---- Run Agent---------------------------------------------------------------------------------------------
+${Puppet_Path_UNIX}    /opt/puppetlabs/bin/puppet
+${Puppet_Path_WIN}    C:\\Program Files\\Puppet Labs\\Puppet\\bin\\puppet
+${Node_Groups}    PE Infrastructure,Production environment
+#---- Install Agent Windows ----------------------------------------------------------------------------------
+${MSI_Path}       ${EXECDIR}\\setup.msi
+#---- Start/Stop Service-------------------------------------------------------------------------------------------
+${Service_Name}    puppet

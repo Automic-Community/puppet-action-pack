@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="ISO-8859-15" standalone="no"?><uc-export clientvers="11.0.0">
+<JOBS_WINDOWS AttrType="WINDOWS" name="PCK.AUTOMIC_PUPPET_PUPPET.PRV.JOB.INSTALL_AGENT_WINDOWS@WINDOWS">
+<XHEADER state="1">
+<Title>Install puppet agent on windows</Title>
+<ArchiveKey1/>
+<ArchiveKey2/>
+<Active>1</Active>
+<OH_SubType/>
+<CustomAttributes KeyListID="0" dataRequestID="0"/>
+</XHEADER>
+<OUTPUTREG state="1">
+<FileReg/>
+</OUTPUTREG>
+<SYNCREF state="1">
+<Syncs/>
+</SYNCREF>
+<ATTR_JOBS state="1">
+<Queue>CLIENT_QUEUE</Queue>
+<StartType/>
+<HostDst>|&lt;WIN&gt;|HOST</HostDst>
+<HostATTR_Type>WINDOWS</HostATTR_Type>
+<CodeName/>
+<Login/>
+<IntAccount/>
+<ExtRepDef>1</ExtRepDef>
+<ExtRepAll>0</ExtRepAll>
+<ExtRepNone>0</ExtRepNone>
+<AutoDeactNo>0</AutoDeactNo>
+<AutoDeact1ErrorFree>0</AutoDeact1ErrorFree>
+<AutoDeactErrorFree>0</AutoDeactErrorFree>
+<DeactWhen/>
+<DeactDelay>0</DeactDelay>
+<AutoDeactAlways>1</AutoDeactAlways>
+<AttDialog>0</AttDialog>
+<ActAtRun>0</ActAtRun>
+<Consumption>0</Consumption>
+<UC4Priority>0</UC4Priority>
+<MaxParallel2>0</MaxParallel2>
+<MpElse1>1</MpElse1>
+<MpElse2>0</MpElse2>
+<TZ/>
+</ATTR_JOBS>
+<ATTR_WINDOWS state="1">
+<OutputDb>1</OutputDb>
+<OutputDbErr>0</OutputDbErr>
+<OutputFile>0</OutputFile>
+<IsGenerated>0</IsGenerated>
+<BAT>1</BAT>
+<COM>0</COM>
+<WinBatch>0</WinBatch>
+<Standard>1</Standard>
+<Minimized>0</Minimized>
+<Maximized>0</Maximized>
+<JObjDefault>1</JObjDefault>
+<JObjYes>0</JObjYes>
+<JObjNo>0</JObjNo>
+<WorkingDirectory>c:\</WorkingDirectory>
+<Command/>
+<LogOn>0</LogOn>
+<ShowJob>0</ShowJob>
+</ATTR_WINDOWS>
+<RUNTIME state="1">
+<MaxRetCode>0</MaxRetCode>
+<MrcExecute/>
+<MrcElseE>0</MrcElseE>
+<FcstStatus>0| |</FcstStatus>
+
+<ErtMethodDef>1</ErtMethodDef>
+<ErtMethodFix>0</ErtMethodFix>
+<ErtFix>0</ErtFix>
+<ErtDynMethod>2|Average</ErtDynMethod>
+<ErtMethodDyn>0</ErtMethodDyn>
+<ErtCnt>0</ErtCnt>
+<ErtCorr>0</ErtCorr>
+<ErtIgn>0</ErtIgn>
+<ErtIgnFlg>0</ErtIgnFlg>
+<ErtMinCnt>0</ErtMinCnt>
+<MrtMethodNone>1</MrtMethodNone>
+<MrtMethodFix>0</MrtMethodFix>
+<MrtFix>0</MrtFix>
+<MrtMethodErt>0</MrtMethodErt>
+<MrtErt>0</MrtErt>
+<MrtMethodDate>0</MrtMethodDate>
+<MrtDays>0</MrtDays>
+<MrtTime>00:00</MrtTime>
+<MrtTZ/>
+<SrtMethodNone>1</SrtMethodNone>
+<SrtMethodFix>0</SrtMethodFix>
+<SrtFix>0</SrtFix>
+<SrtMethodErt>0</SrtMethodErt>
+<SrtErt>0</SrtErt>
+<MrtCancel>0</MrtCancel>
+<MrtExecute>0</MrtExecute>
+<MrtExecuteObj/>
+</RUNTIME>
+<DYNVALUES state="1">
+<dyntree>
+<node content="1" id="VALUE" name="Variables" parent="" type="VALUE">
+<VALUE state="1">
+<Values/>
+<Mode>0</Mode>
+</VALUE>
+</node>
+</dyntree>
+</DYNVALUES>
+<ROLLBACK state="1">
+<RollbackFlag>0</RollbackFlag>
+<CBackupObj/>
+<CRollbackObj/>
+<FBackupPath/>
+<FDeleteBefore>0</FDeleteBefore>
+<FInclSubDirs>0</FInclSubDirs>
+</ROLLBACK>
+<PRE_SCRIPT mode="1" replacementmode="1" state="1">
+<PSCRI><![CDATA[:INC PCK.ITPA_SHARED.PUB.INCLUDE.START_STOP_JOB_ACCORDING_TO_AGENT_OS]]></PSCRI>
+</PRE_SCRIPT>
+<SCRIPT mode="1" state="1">
+<MSCRI><![CDATA[@echo off
+SET ERROR=0
+
+!----------------------------------------------- Parameter validation ---------------------------------------------------------------------------------------------
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.PARAM_VALIDATION
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Agent installer file"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_MSI_FILE#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Puppet master server"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_MASTER_SERVER#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Installation directory"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_INSTALL_DIR#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Puppet server hostname"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_CA_SERVER#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Certificate name"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_CERT_NAME#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Environment"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_NODE_ENV#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Startup mode"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_STARTUP_MODE#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Agent account user"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_AGENT_USERNAME#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: SET &UC4RB_LOGGING_PARAMETER# = "Agent account domain"
+: SET &UC4RB_LOGGING_PARAMETER_VAL# = &UC4RB_PUP_AGENT_DOMAIN#
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.PARAM
+
+: INC PCK.ITPA_SHARED.PRV.INCLUDE.LOGGING.HEADER.EXECUTION
+
+!------------------------------------------ Validation of file----------------------------------------------------------------------------------------------------
+
+! Agent installer file
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_MSI_FILE#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &INSTALLER_FILE# = &UC4RB_PUP_ESCAPED_STRING#
+
+: SET &FILE_PATH# = &INSTALLER_FILE#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_FILE_DIR_EXIST
+
+! Installation directory
+: SET &INSTALLATION_DIR# = ""
+: IF &UC4RB_PUP_INSTALL_DIR# <> ""
+:    SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_INSTALL_DIR#
+:    INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:    SET &INSTALLATION_DIR# = &UC4RB_PUP_ESCAPED_STRING#
+
+:    SET &FILE_PATH# = &INSTALLATION_DIR#
+:    INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_FILE_DIR_EXIST
+: ENDIF
+
+!------------------changing the directory to agent's temp directory------------------------------------------------
+
+: SET &AGENT_TEMPDIR# = GET_VAR('UC_EX_PATH_TEMP', &AGENT#)
+: SET &RESULT_TEMPFILE# = STR_CAT(&AGENT_TEMPDIR#,'installagent-&$RUNID#.txt')
+
+!------------------------------------------ Buidling Install puppet agent command -------------------------------------------------------------------------------------------
+
+: SET &UC4RB_PUP_CMD# = "msiexec /qn /norestart /i &INSTALLER_FILE#"
+
+! Installation directory
+: IF &INSTALLATION_DIR# <> ""
+:       SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " INSTALLDIR=&INSTALLATION_DIR#")
+: ENDIF
+
+! Puppet master server
+: SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_MASTER_SERVER#
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_MASTER_SERVER=&UC4RB_PUP_ESCAPED_STRING#")
+
+! Puppet server hostname
+: IF &UC4RB_PUP_CA_SERVER# <> ""
+:       SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CA_SERVER#
+:       INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:       SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_CA_SERVER=&UC4RB_PUP_ESCAPED_STRING#")
+: ENDIF
+
+! Certificate name
+: IF &UC4RB_PUP_CERT_NAME# <> ""
+:       SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_CERT_NAME#
+:       INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:       SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_CERTNAME=&UC4RB_PUP_ESCAPED_STRING#")
+: ENDIF
+
+! Environment
+: IF &UC4RB_PUP_NODE_ENV# <> ""
+:       SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_NODE_ENV#
+:       INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:       SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_ENVIRONMENT=&UC4RB_PUP_ESCAPED_STRING#")
+: ENDIF
+
+! Startup mode
+: SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_STARTUP_MODE=&UC4RB_PUP_STARTUP_MODE#")
+
+! Agent account user
+: IF &UC4RB_PUP_AGENT_USERNAME# <> ""
+:       SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_AGENT_USERNAME#
+:       INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:       SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_ACCOUNT_USER=&UC4RB_PUP_ESCAPED_STRING#")
+: ENDIF
+
+! Agent account domain
+: IF &UC4RB_PUP_AGENT_DOMAIN# <> ""
+:       SET &UC4RB_PUP_ESCAPED_STRING# = &UC4RB_PUP_AGENT_DOMAIN#
+:       INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.ESCAPE_ARG_VALUE
+:       SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_ACCOUNT_DOMAIN=&UC4RB_PUP_ESCAPED_STRING#")
+: ENDIF
+
+: PRINT &UC4RB_PUP_CMD#
+
+! Agent account password
+: IF &UC4RB_PUP_AGENT_PASSWORD# <> ""
+:     INC PCK.ITPA_SHARED.PUB.INCLUDE.ATTACH
+:     SET &UC4RB_ENCRYPTED_PASSWORD_TMP# = "&UC4RB_PUP_AGENT_PASSWORD#"
+:     INC PCK.ITPA_SHARED.PRV.INCLUDE.DECRYPT_PASSWORD
+:     SET &UC4RB_PUP_CMD# = STR_CAT(&UC4RB_PUP_CMD#, " PUPPET_AGENT_ACCOUNT_PASSWORD=%UC4_DECRYPTED_PWD%")
+: ENDIF
+
+call puppet --version
+IF %ERRORLEVEL% == 0 (
+   echo "***** WARN:It seems Puppet agent is already installed. *****"
+)
+
+echo UC4RB_PUP_LOG_FILE::=&RESULT_TEMPFILE#
+! Invoking command
+&UC4RB_PUP_CMD# /l*v "&RESULT_TEMPFILE#"
+
+IF %ERRORLEVEL% NEQ 0 (
+    echo "ERROR: Unable to install the puppet agent. Please check log file for more information."
+)
+
+!------------------------------------------ Error Handling --------------------------------------------------------------------------------------------------------
+! Status messages
+: SET &UC4RB_LOGGING_INFO# = "******** INSTALL AGENT WINDOWS ACTION EXECUTED SUCCESSFULLY ********"
+: SET &UC4RB_LOGGING_ERROR# = "******** INSTALL AGENT WINDOWS ACTION FAILED ********"
+
+! Check error level
+: INC PCK.AUTOMIC_PUPPET_PUPPET.PUB.INCLUDE.CHECK_JOBSTATUS]]></MSCRI>
+</SCRIPT>
+<OUTPUTSCAN state="1">
+<Inherit>N</Inherit>
+<filterobjects/>
+<HostFsc/>
+<LoginFsc/>
+</OUTPUTSCAN>
+<POST_SCRIPT mode="1" replacementmode="1" state="1">
+<OSCRI><![CDATA[:SET &STATUS# = GET_UC_OBJECT_STATUS(,,"RETCODE")
+
+:IF &STATUS# EQ 0
+:  SET &HND# = PREP_PROCESS_REPORT("JOBS",, "REP","UC4RB_PUP_LOG_FILE*","COL=DELIMITER", 'DELIMITER=*::=*')
+:  PROCESS &HND#
+:     SET &KEY# = GET_PROCESS_LINE(&HND#,1)
+:     SET &VALUE# = GET_PROCESS_LINE(&HND#,2)
+:     IF &KEY# = "UC4RB_PUP_LOG_FILE"
+:         SET &UC4RB_PUP_LOG_FILE# = "&VALUE#"
+:         PUBLISH &UC4RB_PUP_LOG_FILE#,,"WORKFLOW"
+:         TERM_PROCESS
+:     ENDIF
+:   ENDPROCESS
+:   CLOSE_PROCESS &HND#
+:ELSE
+:  SET &UC4RB_PUP_LOG_FILE# = ""
+:  PUBLISH &UC4RB_PUP_LOG_FILE#,,"WORKFLOW"
+:ENDIF]]></OSCRI>
+</POST_SCRIPT>
+<DOCU_Docu state="1" type="text">
+<DOC/>
+</DOCU_Docu>
+</JOBS_WINDOWS>
+</uc-export>
