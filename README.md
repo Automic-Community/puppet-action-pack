@@ -54,11 +54,11 @@ The Puppet Action Pack enables you to automate the provisioning, patching, confi
 
 ###### Package/Action Documentation
 
-Please refer to the link for [package documentation](source/ae/DOCUMENTATION/PCK.AUTOMIC_PUPPET_PUPPET.PUB.DOC.xml)
+Please refer to the link for [package documentation](source/ae/content/DOCUMENTATION/PCK.AUTOMIC_PUPPET_PUPPET.PUB.DOC.xml)
 
 ###### Third party licenses:
 
-The third-party library and license document reference.[Third party licenses](source/ae/DOCUMENTATION/PCK.AUTOMIC_PUPPET_PUPPET.PUB.LICENSES.xml)
+The third-party library and license document reference.[Third party licenses](source/ae/content/DOCUMENTATION/PCK.AUTOMIC_PUPPET_PUPPET.PUB.LICENSES.xml)
 
 ###### Useful References
 
